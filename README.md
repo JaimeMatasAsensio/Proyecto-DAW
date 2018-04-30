@@ -6,5 +6,8 @@ Proyecto Dirigido por el Profesor Pablo Lizano Montalvo.
 ## Comentarios Varios  
 Vacio, por Ahora...
   
+## Version 0.0.1  
+Creadion de la base de datos y la documentacion en Word  
+  
 ## Version 0  
 Creacion de la documentacion: Anteproyecto.
