@@ -1,0 +1,11 @@
+Color 1 - #ec1971 - rgba(236, 25, 113, 1)
+Color 2 - #f2346b - rgba(242, 52, 107, 1)
+Color 3 - #f46758 - rgba(244, 103, 88, 1)
+Color 4 - #f35141 - rgba(243, 81, 65, 1)
+Color 5 - #fce8e9 - rgba(252, 232, 233, 1)
+Color 6 - #f47c4c - rgba(244, 124, 76, 1)
+Color 7 - #ec044c - rgba(236, 4, 76, 1) (Cabecera!)
+Color 8 - #f4673b - rgba(244, 103, 59, 1)
+
+Color 9 - Blanco - rgba(0, 0, 0, 1)
+Color 10 - negro - rgba(255, 255, 255, 1)

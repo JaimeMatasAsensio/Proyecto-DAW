@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-04-2018 a las 16:55:30
+-- Tiempo de generación: 08-05-2018 a las 21:53:09
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -45,8 +45,8 @@ CREATE TABLE `1_empleado` (
 --
 
 INSERT INTO `1_empleado` (`codEmpleado`, `nombre`, `apellido1`, `apellido2`, `telefono`, `movil`, `foto`, `sueldo`, `codUsuario`) VALUES
-('1', 'Pancracio', 'Dominico', 'Bataran', '9262400002', '6969200012', '', 1000.5, '1'),
-('2', 'Eustaquio', 'Dominico', 'Salinero', '926240003', '696920003', '', 875.24, '2');
+('1', 'Pancracio', 'Fernandez', 'Juarez', '926240002', '692920002', '', 1200.34, '1'),
+('2', 'Privato', 'Juarez', 'Beltran', '926240004', '696920004', '', 875.49, '2');
 
 -- --------------------------------------------------------
 
@@ -72,8 +72,8 @@ CREATE TABLE `1_producto` (
 -- Volcado de datos para la tabla `1_producto`
 --
 
-INSERT INTO `1_producto` (`codProducto`, `referencia`, `nombre`, `descripcion`, `precio`, `IVA`, `descuento`, `cantidad`, `cantidadMin`, `nuevo`) VALUES
-('1', '4789465123384', 'TotalClear', 'Herbicida ponente para uso exterior de efecto rapido. Esta herbicida eliminara las malas hierbas de su cosecha sin dañar las plantas buenas. De baja dispersion y disolucion rapida. No usar en abientes cerrados ni con concentracion alta. Puede dañar los y vias respiratorias si hay una larga exposicion', 248.79, 0.23, 0.1, 100, 5, 1,"";
+INSERT INTO `1_producto` (`codProducto`, `referencia`, `nombre`, `descripcion`, `precio`, `IVA`, `descuento`, `cantidad`, `cantidadMin`, `nuevo`, `foto`) VALUES
+('1', '7896451456128', 'PlagaFest', 'Plaguicida de efecto rapido. Conserva tu cosecha en perfecto estado sin alterar el fruto afectando solamente a las malas hierbas que reducen tu produccion. Manejar con cuidado y no exponer al sol o a alta temperatura. Venta en bidones de 80 litros de capacidad', 164.25, 0.16, 0.1, 100, 10, 1, '');
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE `1_proveedor` (
 --
 
 INSERT INTO `1_proveedor` (`codProveedor`, `nombre`, `nombreContacto`, `apellido1Contacto`, `apellido2Contacto`, `telefono`, `movil`, `email`) VALUES
-('1', 'Quimicas Manchegas S.A.', 'Manuel', 'Fernandez', 'de la Hera', '926240004', '696920004', 'comercial@quimicasmanchegas.com');
+('1', 'Quimicas Manchegas S.A.', 'Manuel', 'Lopez', 'Valiente', '926240003', '696920003', 'comercial1@quimiman.net');
 
 -- --------------------------------------------------------
 
@@ -134,8 +134,7 @@ CREATE TABLE `acceso` (
 
 INSERT INTO `acceso` (`codUsuario`, `codTienda`) VALUES
 ('0', '1'),
-('1', '1'),
-('2', '1');
+('1', '1');
 
 -- --------------------------------------------------------
 
@@ -162,7 +161,7 @@ CREATE TABLE `tienda` (
 --
 
 INSERT INTO `tienda` (`codTienda`, `nombre`, `pais`, `provincia`, `poblacion`, `direccion`, `numero`, `telefono`, `movil`, `email`, `tipoSuscripcion`) VALUES
-('1', 'Tienda1', 'España', 'Ciudad Real', 'Miguelturra', 'C/Paraiso', '14', '926240001', '696920001', 'tienda1@hotmail.com', 'fre');
+('1', 'Suministros Agricolas AlCampo', 'España', 'Ciudad Real', 'Miguelturra', 'C/Secarral', '1', '926240001', '696920001', 'alCampo@Suministros.es', 'fre');
 
 -- --------------------------------------------------------
 
@@ -183,9 +182,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`codUsuario`, `nombre`, `password`, `email`, `nivelAcceso`) VALUES
-('0', 'admin', 'ea92acff989b7a0b0a5363b0453ae47b4809bcee', 'admin@shopshere.es', 'adm'),
-('1', 'gerente1', 'ea92acff989b7a0b0a5363b0453ae47b4809bcee', 'gerente@hotmail.com', 'gen'),
-('2', 'empleado1', 'ea92acff989b7a0b0a5363b0453ae47b4809bcee', 'empleado1@gmail.com', 'emp');
+('0', 'Admin', ' ea92acff989b7a0b0a5363b0453ae47b4809bce', 'administrador@hshosphere.es', 'adm'),
+('1', 'gerente1', ' ea92acff989b7a0b0a5363b0453ae47b4809bce', 'gerente1@gmail.com', 'gen'),
+('2', 'empleado1', ' ea92acff989b7a0b0a5363b0453ae47b4809bce', 'privato@gmail.com', 'emp');
 
 --
 -- Índices para tablas volcadas
