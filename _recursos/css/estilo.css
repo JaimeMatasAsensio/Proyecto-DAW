@@ -1,0 +1,388 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: monaShark;
+    src: url(../fonts/MonaShark.ttf);
+}
+
+body{
+	background-color: rgb(208, 220, 239);
+}
+
+/*Estilos para header*/
+header{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color:rgb(153, 183, 232);
+}
+header div.row{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+header div img{
+	width: 100px;
+	height: auto;
+	background-color: black;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+header div h1{
+	font-variant: small-caps;
+	font-size: 10rem;
+	font-family: monaShark;
+}
+header div h2{
+	font-family: monaShark;
+	font-size: 5rem;
+}
+header form{
+	display: inline-block;
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+}
+header form label{
+	display: block;
+	margin: 0 auto;
+}
+header form .btn-sm{
+	vertical-align: bottom;
+}
+@media (max-width: 1200px){
+	header form{
+		display: inline-block;
+		margin: 0 auto;
+		text-align: center;
+		width: 100%;
+	}
+	.form-inline .form-control{
+		width: 100%;
+	}
+	header form>div{
+		display: inline-block;
+		width: 50%;
+	}
+}
+
+@media (max-width: 760px){
+	header div h1{
+		font-size: 5rem;
+	}
+	header div h2{
+		font-size: 2.5rem;
+	}
+	header form{
+		display: inline-block;
+		margin: 0 auto;
+		text-align: center;
+		width: 100%;
+	}
+	header form>div{
+		display: inline-block;
+		width: 50%;
+	}
+	header form .btn-sm{
+	vertical-align: unset;
+}
+} 
+
+@media (max-width: 418px) {
+	header div h1{
+		font-size: 3rem;
+	}
+	header div h2{
+		font-size: 1.5rem;
+	}
+	header form{
+		display: inline-block;
+		margin: 0 auto;
+		text-align: center;
+		width: 100%;
+	}
+	header form label{
+		display: block;
+		margin:0 auto;
+	}
+	header form>div{
+		display: inline-block;
+		width: 50%;
+	}
+
+}
+
+/*Estilos para el nav*/
+.navbar-inverse .navbar-nav>li>a:hover{
+	background-color: black;
+}
+.navbar{
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
+.dropdown-menu{
+	background-color: #222;
+}
+
+.dropdown-menu>li>a{
+	color: #9d9d9d;
+}
+
+.dropdown-menu>li>a:hover{
+	color:white;
+	background-color: black;
+}
+#imgBrand{
+	position:relative;
+}
+#imgBrand img{
+	width: 50px;
+	height: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+/*estilos para main*/
+main{
+	position: relative;
+	min-height: calc(100vh - 230px);
+	background-color: white;
+}
+main .aporte{
+	margin: 10px 0px;
+	padding: 10px;
+	border: solid 1px black;
+	border-radius: 15px;
+}
+main .aporte .titulo{
+	font-size: 3.5rem;
+	text-align: center;
+	font-family: monaShark;
+}
+.controls button[data-state="subtitles"] {
+  height:85%;
+  text-indent:0;
+  font-size:16px;
+  font-size:1rem;
+  font-weight:bold;
+  color:#666;
+  background:#000;
+  border-radius:2px;
+}
+.aporte .tags:before{
+	content: "Etiquetas: ";
+}
+.aporte .tags a{
+	background-color: black;
+	color: white;
+	text-decoration: none;
+	padding: 5px;
+}
+.aporte .tags a p:hover{
+	text-decoration: underline;
+	text-decoration-color: white;
+}	
+.aporte .tags a p{
+	display: inline-block;
+
+}
+.aporte .pieConte > *{
+	display: inline-block;
+	margin-right: 10px;
+}
+.aporte .pieConte h4.autor{
+	font-style: italic;
+}
+.aporte .pieConte .autor:before{
+	content: "Autor del Post: ";
+}
+.aporte .pieConte h4.fecha{
+	font-style: italic;
+}
+.aporte .pieConte .fecha:before{
+	content: "Fecha publicacion: ";
+}
+.conte img{
+	display: block;
+	margin: 0 auto;
+	width: 400px;
+	height: auto;
+}
+.conte div.svg{
+	display: flex;
+	justify-content: center;
+}
+.conte div.svg svg{
+	width: 200px;
+	height: 210px;
+}
+.conte video{
+	width: 100%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+}
+.conte audio{
+	display: block;
+	margin: 0 auto;
+}
+.conte iframe{
+	width: 100%;
+	height: 400px;
+	display: block;
+	margin: 0 auto;
+}
+@media (max-width: 418px) {
+	.conte img{
+		width: 100%;
+		height: auto
+	}
+	.conte div.svg svg{
+		width: calc(100vh / 2);
+		height: calc(100vh / 2 + 10px);
+	}
+	.conte audio{
+		width: 100%;
+	}
+	.aporte .tags:before{
+	content: "";
+	}
+	.aporte .pieConte>*{
+		font-size: 1.4rem;
+	}
+
+}
+/*Contenido secundario*/
+#secCont div.contSec{
+	border-radius: 15px;
+	border: solid 1px black;
+	margin: 10px 0px;
+	padding: 3px;
+}
+#secCont div.headSec{
+	background-color:rgb(153, 183, 232);
+	text-align: center;
+}
+#secCont div.headSec h3{
+	font-family: monaShark;
+	font-size: 2.4rem;
+}
+#secCont div.headSec h4{
+	font-family: monaShark;
+	font-size: 2rem;
+
+}
+#secCont div.headSec a img{
+	background-color: black;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	width: 50px;
+	height: auto;
+	margin-bottom: 10px;
+}
+#secCont div.contSec table{
+	width: 100%;
+}
+#secCont div.contSec div.tablaCont{
+	overflow-x: auto;
+	margin-bottom: 10px;
+}
+
+#secCont div.contSec form{
+	margin:10px 5px;
+}
+#toTop{
+	color: white;
+	position: fixed;
+	bottom: 60px;
+	right: 10px;
+	padding: 10px;
+	background-color: black;
+	border-radius: 5000px;
+}
+/*estilos para el footer*/
+
+footer{
+	background-color: #222;
+	min-height: 50px;
+	padding-bottom: 20px;
+}
+footer .piePagina h3{
+	font-family: monaShark;
+	color: white;
+	text-shadow: 3px 3px 0px black;
+}
+footer .piePagina h4{
+	font-family: monaShark;
+	color: white;
+	text-shadow: 3px 3px 0px black;
+}
+
+footer .piePagina img{
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-color: white;
+	width: 50px;
+	height: auto;
+}
+footer .rrss {
+	border-left: 1px solid white;
+	margin-top: 15px;
+	height: 135px;
+}
+footer .rrss h3{
+	font-family: monaShark;
+	color: white;
+	text-shadow: 3px 3px 0px black;
+	text-align: center;
+}
+footer .rrss img{
+	width: 50px;
+	height: auto;
+	background-color: white;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+footer .rrss .enlacesRRSS{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+@media (max-width: 770px){
+	footer .rrss {
+		border-left: none;
+		height: auto;
+	}
+}
+@media (max-width: 418px) {
+	footer .piePagina h3{ font-size: 1.3rem; }
+	footer .piePagina h4{ font-size: 1rem; }
+	footer .piePagina img{
+		width: 25px;
+		height: auto;		
+	}
+	
+	footer .rrss h3{font-size: 1rem}
+	footer .rrss img{
+		width: 30px;
+		height: auto;	
+	}
+}
+
+/*Media queries -.-*/
+/*----> Media queries de bootstrap*/
+@media (min-width: 1200px){
+	.container {
+	    width: 1170px;
+	}
+}
+@media (min-width: 992px){
+	.container {
+	    width: initial;
+	}
+}
+@media (min-width: 760px){
+	.container {
+	    width: initial;
+	}
+}

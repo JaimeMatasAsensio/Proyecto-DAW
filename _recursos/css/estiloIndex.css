@@ -1,0 +1,53 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+/*Colores*/
+/*
+rgba(236, 25, 113, 1)
+rgba(242, 52, 107, 1)
+rgba(244, 103, 88, 1)(... candidato a color secundario)
+rgba(243, 81, 65, 1)
+rgba(252, 232, 233, 1)
+rgba(244, 124, 76, 1)
+rgba(236, 4, 76, 1) (Cabecera!)
+rgba(244, 103, 59, 1)
+
+*/
+.bg-principal{
+	background-color: rgba(236, 4, 76, 1); 
+}
+.bg-secundario{
+	background-color: rgba(243, 81, 65, 1); 	
+}
+/*Estilos para header*/
+header{
+	padding: 5px 0px;
+}
+
+header div{
+	display: inline;
+}
+#contentHeader{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#logo{
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	display: inline;
+}
+#logo img{
+	width:50px;
+	height: auto; 
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#opcionesMovil{
+	background-color: rgba(244, 124, 76, 1);
+	padding: 5px 0px;
+	display: block;
+	width: 100%;
+}
+#opcionesMovil
