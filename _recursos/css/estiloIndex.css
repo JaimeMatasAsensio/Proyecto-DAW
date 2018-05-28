@@ -4,11 +4,11 @@
 }
 /*Colores*/
 /*
-rgba(236, 25, 113, 1)
+rgba(236, 25, 113, 1) - Morado suave
 rgba(242, 52, 107, 1)
-rgba(244, 103, 88, 1)(... candidato a color secundario)
+rgba(244, 103, 88, 1)Naranja suave
 rgba(243, 81, 65, 1)
-rgba(252, 232, 233, 1)
+rgba(252, 232, 233, 1) - Blanco
 rgba(244, 124, 76, 1)
 rgba(236, 4, 76, 1) (Cabecera!)
 rgba(244, 103, 59, 1)
@@ -20,6 +20,16 @@ rgba(244, 103, 59, 1)
 .bg-secundario{
 	background-color: rgba(243, 81, 65, 1); 	
 }
+.btn{
+	border-radius: 0px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.border-shopShpere-xs{
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
 /*Estilos para header*/
 header{
 	padding: 5px 0px;
@@ -47,7 +57,267 @@ header div{
 #opcionesMovil{
 	background-color: rgba(244, 124, 76, 1);
 	padding: 5px 0px;
-	display: block;
+	display: none;
 	width: 100%;
 }
-#opcionesMovil
+#opcionesMovil ul li{
+	text-align: center;
+	list-style: none;
+	text-decoration: none;
+	display: inline-block;
+	width: 100%;
+}
+#opcionesMovil ul li a{
+	color:white;
+	text-align: center;
+	display: inline-block;
+	width: 99%;
+	padding: 5px 0px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#opcionesMovil ul li a:hover{
+	background-color: rgba(242, 52, 107, 1);
+	text-decoration: none;
+	color:black;
+}
+#opcionesMovil ul li a:active{
+	background-color: rgba(242, 52, 107, 1);
+	text-decoration: none;
+	color:black;
+}
+@media (min-width: 700px) {
+	#logo img{
+		width:150px;
+		height: auto; 
+		border-top-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+	#menuEscritorio{
+		display: inline;
+		width: 60%;
+	}
+	#menuEscritorio ul {
+		display: flex;
+		justify-content: space-between;
+		justify-content: space-evenly;
+		align-items: center;
+	}
+	#menuEscritorio ul li{
+		list-style: none;
+		display: inline-block;
+		border-top-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		background-color: rgba(244, 103, 88, 1);
+		font-weight: bold;
+		min-height: 48.3px;
+		text-align: center;
+	}
+	#menuEscritorio ul li a{
+		display: inline-block;
+		color: white;
+		width: 100%;
+		height: 48.3px;
+		padding: 7px 7px;
+		font-size: 1.2rem;
+	}
+	#menuEscritorio ul li:hover{
+		text-decoration: none;
+		color: black;
+		background-color: rgba(242, 52, 107, 1);
+	}
+	#login button{
+		padding: 13px;
+	}
+}
+/*Estilos para main*/
+main{
+	min-height: calc(100vh - 160px);
+}
+.indexCont{
+	margin: 8px 0px;
+}
+	/*Estilos para la primera division del main*/
+#cont0 h1{
+	text-align: center;
+	font-variant: small-caps;
+}
+#cont0 div{
+	display: flex;
+	justify-content: center;
+}
+#cont0 div img{
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	margin: 0px auto;
+	text-align: center;
+}
+	/*Estilos para la segunda division del main*/
+#imgCont1{
+ position: relative;
+} 
+#imgCont1 img{
+	width: 100%;
+	height: auto;
+}
+#imgCont1 p{
+	position: absolute;
+	display: inline-block;
+	width: 65%;
+	top: 55%;
+	left: 55%;
+	transform: translate(-50%, -50%);
+	width: 86%;
+	font-size: 16px;
+	color: white;
+	text-shadow: -1px -1px black;
+	cursor: pointer;
+}
+#textoDesc{
+	display: none;
+	text-align: justify;
+	box-sizing: border-box;
+	margin: 5px 0px; 
+}
+#imgCont2 img{
+	width: 100%;
+	height: auto;
+}
+#imgCont2 p{
+	position: absolute;
+	display: inline-block;
+	width: 90%;
+	top: 55%;
+	left: 55%;
+	transform: translate(-50%, -50%);
+	width: 86%;
+	font-size: 16px;
+	color: white;
+	text-shadow: -1px -1px black;
+	cursor: pointer;
+}
+#textoVent{
+	display: none;
+	text-align: justify;
+	box-sizing: border-box;
+}
+#textoVent ul li{
+	list-style: square;
+	list-style-position: inside;
+	margin-bottom: 5px;
+}
+
+	/*Estilos para la tercera division del main*/
+#cont3 h2{
+	text-align: center;
+	font-variant: small-caps;
+}
+.suscripciones h3{
+	border-top-left-radius: 5px;
+	margin-bottom: 0px;
+	text-align: center;
+	font-variant: small-caps;
+	background-color: rgba(236, 25, 113, 1);
+	color: white;
+	padding: 8px 0px;
+}
+.suscripciones div h4{
+	text-align: center;
+	color: white;
+	margin: 0px; 	
+	font-variant: small-caps;
+	background-color: rgba(243, 81, 65, 1);
+	padding: 6px 3px;
+}
+.suscripciones div:nth-child(2){
+	margin:0px;
+	border-bottom-right-radius: 5px;
+	background-color: rgba(244, 124, 76, 0.15);
+}
+.suscripciones div ul li{
+	list-style: none;
+	margin:10px 0px;
+
+}
+.suscripciones div ul li span{
+	margin:0px 7px;
+}
+.suscripciones div button{
+	border:none;
+	padding: 8px 0px; 
+	background-color: #5cb85c;
+	width: 100%;
+	color: white;
+	border-bottom-right-radius: 5px;
+}
+.suscripciones div button:hover{
+	text-decoration: underline;
+}
+
+ /*Estilos cuarta division del main */
+#div-registro{
+	position: relative;
+}
+#div-registro img{
+	width: 100%;
+	height: auto;
+	margin:8px 0px;
+	border: 1px solid rgba(242, 52, 107, 1); 
+}
+
+#div-registro button{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba(236, 4, 76, 0.7);
+	border: none;
+	color: black; 
+	font-weight: bold;
+}
+#div-registro button:hover{
+	text-decoration: underline;
+}
+/*Estilos para el footer*/
+footer{
+	background-color: rgba(0, 0, 0, 1);
+	min-height: 100px;
+}
+#contPie{
+	padding-top: 8px;
+}
+#contPie div{
+	width: 33%;
+	text-align: center;
+}
+#enlacesPie ul li{
+	list-style: none;
+	text-decoration: none;
+	font-size: 12px;
+}
+#enlacesPie ul li a{
+	color: white;
+}
+#redesSociales{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#redesSociales div{
+	display: inline-block;
+	margin-right: 7px;
+}
+#redesSociales a{
+	display: inline-block;
+	margin-bottom: 5px;
+}
+#redesSociales a img{
+	display: inline-block;
+	width: 25px;
+	height: auto;
+}
+#logoPie a img{
+	width: 50px;
+	height: auto;
+}
