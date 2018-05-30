@@ -2,10 +2,10 @@
 	<div id="contPie">
 		<div id="enlacesPie" class="col-xs-4">
 			<ul>
-				<li><a href="#div1Main">Shopsphere</a></li>
-				<li><a href="#div2Main">Ventajas</a></li>
-				<li><a href="#div3Main">Suscripciones</a></li>
-				<li><a href="#div4Main">¡¡¡Registrate!!!</a></li>
+				<li><a href="#cont1">Shopsphere</a></li>
+				<li><a href="#cont2">Ventajas</a></li>
+				<li><a href="#cont3">Suscripciones</a></li>
+				<li><a href="#cont4">¡¡¡Registrate!!!</a></li>
 			</ul>
 		</div>
 		<div id="redesSociales" class="col-xs-5">

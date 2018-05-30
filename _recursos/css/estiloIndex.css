@@ -86,7 +86,7 @@ header div{
 	text-decoration: none;
 	color:black;
 }
-@media (min-width: 700px) {
+@media (min-width: 768px) {
 	#logo img{
 		width:150px;
 		height: auto; 
@@ -136,13 +136,13 @@ header div{
 /*Estilos para main*/
 main{
 	min-height: calc(100vh - 160px);
-
+	max-width: 1335px; 
 }
 .indexCont{
 	margin: 60px 0px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
 	.indexCont{
 		margin: 20px 0px;
 	}	
@@ -164,7 +164,7 @@ main{
 	margin: 0px auto;
 	text-align: center;
 }
-@media (min-width: 699px) {
+@media (min-width: 768px) {
 	#cont0 div img{
 		width: 400px;
 		height: 400px;		
@@ -205,7 +205,7 @@ main{
 	margin: 10px 0px; 
 }
 
-@media (min-width: 700px) {
+@media (min-width: 768px) {
 	#textDesEsc{
 		padding-right: 0px;
 		background-color: rgba(244, 103, 88, 0.5);
@@ -229,7 +229,7 @@ main{
 		height: 230px;
 	}
 }
-@media (min-width: 900px) {
+@media (min-width: 970px) {
 	#textDesEsc{
 		border-top-left-radius: 20px;
 		height: 280px;
@@ -280,7 +280,7 @@ main{
 	margin-right: 10px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 768px) {
 	#textVentEsc{
 		background-color: rgba(242, 52, 107, 0.5);
 		border-bottom-right-radius: 15px; 
@@ -304,7 +304,7 @@ main{
 		height: 230px;
 	}
 }
-@media (min-width: 900px) {
+@media (min-width: 970px) {
 	#textVentEsc{
 		border-bottom-right-radius: 20px; 
 		width: 48%;
@@ -371,7 +371,7 @@ main{
 .suscripciones div button:hover{
 	text-decoration: underline;
 }
-@media (min-width: 700px) {
+@media (min-width: 750px) {
 	.suscripciones h3{
 		border-top-left-radius: 15px;
 	}
@@ -382,7 +382,7 @@ main{
 		border-bottom-right-radius: 15px;
 	}
 }
-@media (min-width: 900px) {
+@media (min-width: 970px) {
 	.suscripciones h3{
 		border-top-left-radius: 20px;
 	}
@@ -417,7 +417,7 @@ main{
 #div-registro button:hover{
 	text-decoration: underline;
 }
-@media (min-width: 700px) {
+@media (min-width: 768px) {
 	#div-registro img{
 		border: 3px solid rgba(242, 52, 107, 1); 
 		border-bottom-right-radius: 15px; 
@@ -428,7 +428,7 @@ main{
 		font-size: 18px;
 	}
 }
-@media (min-width: 900px) {
+@media (min-width: 970px) {
 	#div-registro img{
 		border-bottom-right-radius: 20px; 
 		border-top-left-radius: 20px;
@@ -479,7 +479,7 @@ footer{
 	width: 50px;
 	height: auto;
 }
-@media (min-width: 700px) {
+@media (min-width: 768px) {
 	#redesSociales a img{
 		width: 60px;
 		height: auto;
