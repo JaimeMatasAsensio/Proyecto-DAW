@@ -22,34 +22,45 @@
 			</div>
 
 			<div id="cont1" class="row indexCont">
-				<div class="col-xs-12">
+				<div class="col-sm-6 col-md-6 col-lg-6 hidden-xs" id="textDesEsc">
+					<h3>¿Que es ShopSphere?</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia libero tempore repellat. Ipsum magni numquam debitis ipsam voluptatem, harum illo atque asperiores assumenda obcaecati! Ut, est. Ut quisquam obcaecati, facilis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deleniti illo ipsa quidem, amet iste.</p>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="cont1img">
 					<div id="imgCont1">
 						<img src="_recursos/img/imgIndex1.jpg" class="border-shopShpere-xs" alt="imagen 1 del index">
-						<p id="Quees">¿Que es ShopSphere?</p>					
+						<p id="Quees" class="hidden-sm hidden-md hidden-lg">¿Que es ShopSphere?</p>					
 					</div>
-					<div id="textoDesc">
+					<div id="textoDesc" class="col-xs-12 hidden-sm hidden-md hidden-lg">
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia libero tempore repellat. Ipsum magni numquam debitis ipsam voluptatem, harum illo atque asperiores assumenda obcaecati! Ut, est. Ut quisquam obcaecati, facilis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deleniti illo ipsa quidem, amet iste. Aut quas impedit fugit soluta facilis rerum animi hic. Assumenda ex omnis perspiciatis dolore itaque.</p>
 					</div>
 				</div>
 			</div>
-
+	
 			<div id="cont2" class="row indexCont">
-				<div class="col-xs-12">
-					<div id="imgCont1">
-						<img src="_recursos/img/imgIndex2.jpg" class="border-shopShpere-xs"  alt="imagen 1 del index">
-						<p id="Vent">Ventajas de ShopSphere</p>					
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="cont2img">
+					<div id="imgCont2">
+						<img src="_recursos/img/imgIndex2.jpg" class="border-shopShpere-xs" alt="imagen 2 del index">
+						<p id="Vent" class="hidden-sm hidden-md hidden-lg">Ventajas de ShopSphere</p>					
 					</div>
-					<div id="textoVent" class="indexCont">
-						<ul>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-						</ul>
+					<div id="textoVent" class="col-xs-12 hidden-sm hidden-md hidden-lg">
+						<p><span class="glyphicon glyphicon-folder-open"></span>Organiza todo tu negocio</p>
+						<p><span class="glyphicon glyphicon-leaf"></span>Sin necesidad de imprimir documentos</p>
+						<p><span class="glyphicon glyphicon-check"></span>Controla tus proveedores y productos</p>
+						<p><span class="glyphicon glyphicon-euro"></span> Ahorra más dinero en organizacion y gestion</p>
+
 					</div>
 				</div>
+				<div class="col-sm-6 col-md-6 col-lg-6 hidden-xs" id="textVentEsc">
+					<h3>Ventajas de ShopSphere</h3>
+						<p><span class="glyphicon glyphicon-folder-open"></span> Organiza todo tu negocio</p>
+						<p><span class="glyphicon glyphicon-leaf"></span> Sin necesidad de imprimir documentos</p>
+						<p><span class="glyphicon glyphicon-check"></span> Controla tus proveedores y productos</p>
+						<p><span class="glyphicon glyphicon-euro"></span> Ahorra más dinero en organizacion y gestion</p>
+
+				</div>
 			</div>
+			
 
 			<div id="cont3" class="row indexCont">
 				<h2>Elije tu suscripcion</h2>
@@ -59,7 +70,7 @@
 						<h4>Caracteristicas</h4>
 						<ul>
 							<li><span class="glyphicon glyphicon-tasks"></span>Capacidad sin limites</li>	
-							<li><span class="glyphicon glyphicon-wrench"></span>Servicio Tecnico personalizado</li>	
+							<li><span class="glyphicon glyphicon-wrench"></span>Servicio Tecnico personal</li>	
 							<li><span class="glyphicon glyphicon-flash"></span>Sin publicidad</li>	
 							<li><span class="glyphicon glyphicon-euro"></span>360 año</li>	
 						</ul>

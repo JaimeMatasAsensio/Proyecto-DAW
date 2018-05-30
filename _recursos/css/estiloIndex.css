@@ -110,8 +110,10 @@ header div{
 		border-bottom-right-radius: 5px;
 		background-color: rgba(244, 103, 88, 1);
 		font-weight: bold;
+		min-width:20%;
 		min-height: 48.3px;
 		text-align: center;
+		border:2px solid rgba(236, 25, 113, 1);
 	}
 	#menuEscritorio ul li a{
 		display: inline-block;
@@ -119,6 +121,7 @@ header div{
 		width: 100%;
 		height: 48.3px;
 		padding: 7px 7px;
+		margin-top: 16px;
 		font-size: 1.2rem;
 	}
 	#menuEscritorio ul li:hover{
@@ -133,10 +136,18 @@ header div{
 /*Estilos para main*/
 main{
 	min-height: calc(100vh - 160px);
+
 }
 .indexCont{
-	margin: 8px 0px;
+	margin: 60px 0px;
 }
+
+@media (max-width: 700px) {
+	.indexCont{
+		margin: 20px 0px;
+	}	
+}
+
 	/*Estilos para la primera division del main*/
 #cont0 h1{
 	text-align: center;
@@ -153,11 +164,19 @@ main{
 	margin: 0px auto;
 	text-align: center;
 }
+@media (min-width: 699px) {
+	#cont0 div img{
+		width: 400px;
+		height: 400px;		
+	}
+}
 	/*Estilos para la segunda division del main*/
+
 #imgCont1{
  position: relative;
 } 
 #imgCont1 img{
+	display: inline-block;
 	width: 100%;
 	height: auto;
 }
@@ -165,21 +184,73 @@ main{
 	position: absolute;
 	display: inline-block;
 	width: 65%;
-	top: 55%;
-	left: 55%;
+	top: 50%;
+	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 86%;
-	font-size: 16px;
+	font-size: 12px;
 	color: white;
 	text-shadow: -1px -1px black;
 	cursor: pointer;
+	padding: 1px 8px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgba(242, 52, 107, 0.5);
+	text-align: center;
 }
 #textoDesc{
 	display: none;
 	text-align: justify;
 	box-sizing: border-box;
-	margin: 5px 0px; 
+	margin: 10px 0px; 
 }
+
+@media (min-width: 700px) {
+	#textDesEsc{
+		padding-right: 0px;
+		background-color: rgba(244, 103, 88, 0.5);
+		border-top-left-radius: 15px;
+		display: inline-block;
+		width: 50%;
+		height: 230px;
+	}
+	#textDesEsc p{
+		display: inline-block;
+		width: 90%;
+		height: auto;
+	}
+	#cont1img{
+		padding-left: 0px;
+	}
+	#cont1img div img{
+		border-top-left-radius: 0px;
+		border-bottom-right-radius: 15px; 
+		width: 100%;
+		height: 230px;
+	}
+}
+@media (min-width: 900px) {
+	#textDesEsc{
+		border-top-left-radius: 20px;
+		height: 280px;
+	}
+	#cont1img div img{
+		border-bottom-right-radius: 20px; 
+		height: 280px;
+	}
+}
+@media (min-width: 1200px) {
+	#textDesEsc{
+		height: 380px;
+	}
+	#cont1img div img{
+		height: 380px;
+	}
+}
+	/*Estilos para la segunda division del main*/
+#imgCont2{
+ position: relative;
+} 
 #imgCont2 img{
 	width: 100%;
 	height: auto;
@@ -187,29 +258,75 @@ main{
 #imgCont2 p{
 	position: absolute;
 	display: inline-block;
-	width: 90%;
-	top: 55%;
-	left: 55%;
+	top: 50%;
+	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 86%;
-	font-size: 16px;
+	width: 74%;
+	font-size: 12px;
 	color: white;
 	text-shadow: -1px -1px black;
 	cursor: pointer;
+	padding: 1px 8px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgba(242, 52, 107, 0.5);
+	text-align: center;
 }
 #textoVent{
 	display: none;
-	text-align: justify;
-	box-sizing: border-box;
-}
-#textoVent ul li{
-	list-style: square;
-	list-style-position: inside;
-	margin-bottom: 5px;
 }
 
+#textoVent p span{
+	margin-right: 10px;
+}
+
+@media (min-width: 700px) {
+	#textVentEsc{
+		background-color: rgba(242, 52, 107, 0.5);
+		border-bottom-right-radius: 15px; 
+		display: inline-block;
+		width: 48%;
+		height: 230px;
+	}
+	#textVentEsc h3{
+		text-align: right;
+	}
+	#textVentEsc p span{
+		margin-right: 10px;
+	}
+	#cont2img{
+		padding: 0px 0px;
+	}
+	#cont2img div img{
+		border-bottom-right-radius: 0px; 
+		border-top-left-radius: 15px;
+		width: 100%;
+		height: 230px;
+	}
+}
+@media (min-width: 900px) {
+	#textVentEsc{
+		border-bottom-right-radius: 20px; 
+		width: 48%;
+		height: 280px;
+	}
+	#cont2img div img{
+		border-bottom-right-radius: 0px; 
+		border-top-left-radius: 20px;
+		height: 280px;
+	}
+}
+@media (min-width: 1200px) {
+	#textVentEsc{
+		height: 380px;
+	}
+	#cont2img div img{
+		height: 380px;
+	}
+}
 	/*Estilos para la tercera division del main*/
 #cont3 h2{
+	margin-top: 0px;
 	text-align: center;
 	font-variant: small-caps;
 }
@@ -254,7 +371,28 @@ main{
 .suscripciones div button:hover{
 	text-decoration: underline;
 }
-
+@media (min-width: 700px) {
+	.suscripciones h3{
+		border-top-left-radius: 15px;
+	}
+	.suscripciones div:nth-child(2){
+		border-bottom-right-radius: 15px;
+	}
+	.suscripciones div button{
+		border-bottom-right-radius: 15px;
+	}
+}
+@media (min-width: 900px) {
+	.suscripciones h3{
+		border-top-left-radius: 20px;
+	}
+	.suscripciones div:nth-child(2){
+		border-bottom-right-radius: 20px;
+	}
+	.suscripciones div button{
+		border-bottom-right-radius: 20px;
+	}
+}
  /*Estilos cuarta division del main */
 #div-registro{
 	position: relative;
@@ -279,10 +417,28 @@ main{
 #div-registro button:hover{
 	text-decoration: underline;
 }
+@media (min-width: 700px) {
+	#div-registro img{
+		border: 3px solid rgba(242, 52, 107, 1); 
+		border-bottom-right-radius: 15px; 
+		border-top-left-radius: 15px;
+	}
+	#div-registro button{
+		padding: 20px 30px;
+		font-size: 18px;
+	}
+}
+@media (min-width: 900px) {
+	#div-registro img{
+		border-bottom-right-radius: 20px; 
+		border-top-left-radius: 20px;
+	}
+}
 /*Estilos para el footer*/
 footer{
 	background-color: rgba(0, 0, 0, 1);
 	min-height: 100px;
+	padding: 10px 0px;
 }
 #contPie{
 	padding-top: 8px;
@@ -292,6 +448,8 @@ footer{
 	text-align: center;
 }
 #enlacesPie ul li{
+	margin: 5px 0px;
+	text-align: left;
 	list-style: none;
 	text-decoration: none;
 	font-size: 12px;
@@ -320,4 +478,34 @@ footer{
 #logoPie a img{
 	width: 50px;
 	height: auto;
+}
+@media (min-width: 700px) {
+	#redesSociales a img{
+		width: 60px;
+		height: auto;
+	}
+	#enlacesPie ul li{
+		font-size: 18px;
+	}
+	#logoPie a img{
+		width: 100%;
+		height: auto;
+		border-bottom-right-radius: 15px; 
+		border-top-left-radius: 15px;
+	}
+}
+@media (min-width: 1200px){
+	#redesSociales a img{
+		width: 100px;
+		height: auto;
+	}
+	#enlacesPie ul li{
+		font-size: 40px;
+	}
+	#logoPie a img{
+		width: 350px;
+		height: auto;
+		border-bottom-right-radius: 20px; 
+		border-top-left-radius: 20px;
+	}
 }
