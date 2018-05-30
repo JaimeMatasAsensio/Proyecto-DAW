@@ -75,7 +75,10 @@
 							<li><span class="glyphicon glyphicon-euro"></span>360 año</li>	
 						</ul>
 						<div>
-							<button class="btn-regIndex">Registrate</button>
+							<form action="_web/controller.php?accion=nuevoRegistro" method="post">
+								<input type="hidden" name="tSuscripcion" value="pre">
+								<button class="btn-regIndex">Registrate</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -91,7 +94,10 @@
 							<li><span class="glyphicon glyphicon-euro"></span>250 año</li>	
 						</ul>
 						<div>
-							<button class="btn-regIndex">Registrate</button>
+							<form action="_web/controller.php?accion=nuevoRegistro" method="post">
+								<input type="hidden" name="tSuscripcion" value="nor">
+								<button class="btn-regIndex">Registrate</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -107,16 +113,22 @@
 							<li><span class="glyphicon glyphicon-euro"></span>Gratis!</li>	
 						</ul>
 						<div>
-							<button class="btn-regIndex">Registrate</button>
+							<form action="_web/controller.php?accion=nuevoRegistro" method="post">
+								<input type="hidden" name="tSuscripcion" value="fre">
+								<button class="btn-regIndex">Registrate</button>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div id="cont4" class="row indexCont">
+			<div id="cont4" class="row indexCont" >
 				<div id="div-registro" class="col-xs-12">
 					<img src="_recursos/img/imgRegistro.jpg" class=" border-shopShpere-xs" id="imgRegistro" alt="Imgen de registro">
-					<button class="btn btn-default">Registrate ya!</button>
+					<form action="_web/controller.php?accion=nuevoRegistro" method="post">
+						<input type="hidden" name="tSuscripcion" value="">
+						<button class="btn-regIndex">Registrate</button>
+					</form>
 				</div>
 			</div>
 			
