@@ -1,0 +1,78 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+/*Colores*/
+/*
+rgba(236, 25, 113, 1) - Morado suave
+rgba(242, 52, 107, 1)
+rgba(244, 103, 88, 1)Naranja suave
+rgba(243, 81, 65, 1)
+rgba(252, 232, 233, 1) - Blanco
+rgba(244, 124, 76, 1)
+rgba(236, 4, 76, 1) (Cabecera!)
+rgba(244, 103, 59, 1)
+
+*/
+.bg-principal{
+	background-color: rgba(236, 4, 76, 1); 
+}
+.bg-secundario{
+	background-color: rgba(243, 81, 65, 1); 	
+}
+.btn{
+	border-radius: 0px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.border-shopShpere-xs{
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+/*Estilo para formularios*/
+
+.formulario{
+	margin:100px auto; 
+	padding: 20px 0px;
+	border: 2px solid rgba(236, 25, 113, 1);
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.formulario div:last-child{
+	margin:10px 0px;
+}
+#enlaceRecuperacion a{
+	margin:5px 0px;
+	display: block;
+}
+.formulario div:last-child button{
+	margin-right: 10px;
+}
+#formularioLogin{
+	max-width: 300px;
+}
+
+
+
+
+
+/* media queries para formularios*/
+@media (min-width: 768px){
+	.formulario{
+		border-top-left-radius: 15px;
+		border-bottom-right-radius: 15px;
+	}
+}
+
+
+@media (min-width: 970px){
+	.formulario{
+		border-top-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+	}	
+}
+
+@media (min-width: 1200px){
+	
+}

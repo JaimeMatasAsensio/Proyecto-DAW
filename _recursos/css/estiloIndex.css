@@ -129,7 +129,7 @@ header div{
 		color: black;
 		background-color: rgba(242, 52, 107, 1);
 	}
-	#login button{
+	#login input{
 		padding: 13px;
 	}
 }
@@ -146,16 +146,15 @@ main{
 	margin: 60px 0px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 970px) {
 	.indexCont{
 		margin: 20px 0px;
-	}	
+	}
 }
 
+
 	/*Estilos para la primera division del main*/
-#cont0{
-	margin: 0 auto;
-}
+
 #cont0 h1{
 	text-align: center;
 	font-variant: small-caps;
@@ -465,6 +464,7 @@ footer{
 	color: white;
 }
 #redesSociales{
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -495,23 +495,21 @@ footer{
 		font-size: 18px;
 	}
 	#logoPie a img{
-		width: 100%;
-		height: auto;
+		width: 250px;
+		height: 125px;
 		border-bottom-right-radius: 15px; 
 		border-top-left-radius: 15px;
 	}
 }
 @media (min-width: 1200px){
 	#redesSociales a img{
-		width: 100px;
+		width: 75px;
 		height: auto;
 	}
 	#enlacesPie ul li{
 		font-size: 40px;
 	}
 	#logoPie a img{
-		width: 350px;
-		height: auto;
 		border-bottom-right-radius: 20px; 
 		border-top-left-radius: 20px;
 	}

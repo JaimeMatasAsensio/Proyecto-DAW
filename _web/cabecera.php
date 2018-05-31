@@ -15,7 +15,9 @@
 			</ul>
 		</div>
 		<div id="login">
-			<button class="btn btn-success">Inicia sesion</button>
+			<form action="_web/controller.php?accion=login" method="post">
+				<input type="submit" name="login" value="Inicia Sesion" class="btn btn-success">
+			</form>	
 		</div>
 		<div id="menuMovil" class="hidden-sm hidden-md hidden-lg">
 	    <button type="button" id="btnMenuMovil" class="btn bg-secundario">
