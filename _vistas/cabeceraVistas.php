@@ -16,12 +16,13 @@ session_start();
 		</div>
 		<div id="menuMovil" class="hidden-sm hidden-md hidden-lg">
 			<?php
-			if( !(isset($_SESSION["nuevoRegistroSuscripcion"])) ||  !(isset($_SESSION["login"])) ){
+			if( !(isset($_SESSION["nuevoRegistroSuscripcion"])) && !(isset($_SESSION["login"]))){
+				echo "No hay session-login";
 				echo '<button type="button" id="btnMenuMovil" class="btn bg-secundario">';
 	      echo '<span class="glyphicon glyphicon-menu-hamburger"></span>';
 	    	echo '</button>';
-	    	unset($_SESSION["nuevoRegistroSuscripcion"]);
 			}
+
 			?>
 	  </div>
 	</div>

@@ -5,16 +5,15 @@ class BD {
 
 	//Propiedades...
 	private $conexion;
-	private $nomBD;
+	private $nomBD = "shopshpere";
 	private $ip = "localhost";
 	private $user = "root";
 	private $pass = "";
 	public $datos;		//Variable para almacenar los datos de una consulta en un array
 
 	//Constructor... Realiza la conexion a la base de datos y devuelve el descriptor de la conexion.
-	public function __construct($nameDB){
+	public function __construct(){
 		try{
-			$this->nomBD = $nameDB;
       $this->conexion = new PDO("mysql:host=".$this->ip.";dbname=".$this->nomBD."",$this->user,$this->pass);
       $this->conexion->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true); // Establecer unos parametros de conexion
       $this->conexion->exec("set names utf8mb4");//Establecer juego de caracteres utilizados
