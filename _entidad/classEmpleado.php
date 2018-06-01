@@ -1,7 +1,7 @@
 <?php
 	
 	class empleado{
-		private $codUsuario;
+		private $codEmpleado;
 		private $nombre;
 		private $apellido1;
 		private $apellido2;

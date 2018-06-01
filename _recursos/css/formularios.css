@@ -53,6 +53,11 @@ rgba(244, 103, 59, 1)
 	max-width: 300px;
 }
 
+.form-control{
+	border-radius: 0px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
 
 
 

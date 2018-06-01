@@ -29,5 +29,5 @@ session_start();
 	<div id="opcionesMovil" class="hidden-sm hidden-md hidden-lg">
 		
 	</div>
-	<script type="text/javascript" src="_recursos/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="_recursos/js/jqueryUI.js"></script>
+	<script type="text/javascript" src="../_recursos/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../_recursos/js/jqueryUI.js"></script>

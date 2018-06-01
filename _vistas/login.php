@@ -16,7 +16,7 @@
 	<div class="container-fluid">
 		<main class="container">
 			<div class="row formulario" id="formularioLogin">
-				<form action="../_web/controller.php?accion=login" method="post">
+				<form action="../_web/controller.php?accion=doLogin" method="post">
 					<div class="col-xs-12 col-sm-12">
 						<fieldset>
 							<legend>Acceso ShopSphere</legend>
@@ -46,4 +46,5 @@
 	<?php	include "pieVistas.php";	?>
 </body>
 <script type="text/javascript" src="../_recursos/js/bootstrap.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="../_recursos/js/formularioLogin.js" charset="utf-8"></script>
 </html>

@@ -1,6 +1,12 @@
 <?php
 /*entidades*/
-
+require_once "../_entidad/classAcceso.php";
+require_once "../_entidad/classEmpleado.php";
+require_once "../_entidad/classProducto.php";
+require_once "../_entidad/classProveedor.php";
+require_once "../_entidad/classSuministro.php";
+require_once "../_entidad/classTienda.php";
+require_once "../_entidad/classUsuario.php";
 
 /*modelos*/
 
@@ -18,6 +24,9 @@ switch ($accion) {
 	case 'login' :
 		$_SESSION["login"] = isset($_REQUEST["login"]) ? $_REQUEST["login"] : "";
 		header("Location: ../_vistas/login.php");
+		break;
+	case 'doLogin':
+		echo '... haciendo login';
 		break;
 	default:
 		# code...
