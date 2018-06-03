@@ -10,25 +10,62 @@ session_start();
 			</a>
 		</div>
 		<div id="menuEscritorio" class="hidden-xs">
-			
+			<?php
+		if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
+			$nivelAcc = $_SESSION["nivelAcceso"];
+			if ($nivelAcc == "adm") {
+					echo "<ul>";
+					echo "<li><a href='#'>Tiendas</a></li>";
+					echo "<li><a href='#'>Usuarios</a></li>";
+					echo "<li><a href='#'>Productos</a></li>";
+					echo "<li><a href='#'>Proveedores</a></li>";
+					echo "<li><a href='#'>Empleados</a></li>";
+					echo "<li><a href='#'>Alertas</a></li>";
+					echo "</ul>";
+				}
+		}
+		?>
 		</div>
 		<div id="login">
+			<?php
+			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
+				echo "<div id='credenciales'>";
+				
+				if ($nivelAcc == "adm") {
+					echo "<p>Usuario: Administrador</p>";
+				}
+						
+				echo '<button type="button" id="cerrarSession" class="btn bg-danger">Cerrar Session</button>';
+				echo "</div>";
+			}
+			?>
 		</div>
 		<div id="menuMovil" class="hidden-sm hidden-md hidden-lg">
 			<?php
-			if( !(isset($_SESSION["nuevoRegistroSuscripcion"])) && !(isset($_SESSION["login"]))){
-				echo "No hay session-login";
+			if( isset($_SESSION["logDone"]) && $_SESSION["logDone"] == 1){
 				echo '<button type="button" id="btnMenuMovil" class="btn bg-secundario">';
 	      echo '<span class="glyphicon glyphicon-menu-hamburger"></span>';
 	    	echo '</button>';
 			}
-
 			?>
 	  </div>
 	</div>
 </header>
 	<div id="opcionesMovil" class="hidden-sm hidden-md hidden-lg">
-		
+		<?php
+		if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
+			if ($nivelAcc == "adm") {
+					echo "<ul>";
+					echo "<li><a href='#'>Tiendas</a></li>";
+					echo "<li><a href='#'>Usuarios</a></li>";
+					echo "<li><a href='#'>Productos</a></li>";
+					echo "<li><a href='#'>Proveedores</a></li>";
+					echo "<li><a href='#'>Empleados</a></li>";
+					echo "<li><a href='#'>Alertas</a></li>";
+					echo "</ul>";
+				}
+		}
+		?>
 	</div>
 	<script type="text/javascript" src="../_recursos/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../_recursos/js/jqueryUI.js"></script>

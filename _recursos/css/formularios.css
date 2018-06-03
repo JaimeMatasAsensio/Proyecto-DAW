@@ -31,6 +31,9 @@ rgba(244, 103, 59, 1)
 }
 
 /*Estilo para formularios*/
+h1{
+	font-size: 23px;
+}
 
 .formulario{
 	margin:100px auto; 
@@ -38,6 +41,10 @@ rgba(244, 103, 59, 1)
 	border: 2px solid rgba(236, 25, 113, 1);
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+}
+.formulario-crud{
+	margin:20px auto; 
+	padding: 20px 0px;
 }
 .formulario div:last-child{
 	margin:10px 0px;
@@ -59,14 +66,35 @@ rgba(244, 103, 59, 1)
 	border-bottom-right-radius: 5px;
 }
 
-
+#formBusq select{
+	height: 34px;
+	border: 1px solid #ccc;
+	border-radius: 0px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#formBusq div:first-child{
+	display:flex;
+	justify-content: center;
+	align-content: center;
+}
+#formBusq div.from-group{
+	display: inline-block;
+}
 
 
 /* media queries para formularios*/
 @media (min-width: 768px){
 	.formulario{
+		width: 80%;
 		border-top-left-radius: 15px;
 		border-bottom-right-radius: 15px;
+	}
+	.formulario form{
+		width: 100%;
+	}
+	h1{
+		font-size: 36px;
 	}
 }
 
@@ -80,4 +108,41 @@ rgba(244, 103, 59, 1)
 
 @media (min-width: 1200px){
 	
+}
+
+
+
+/*Estilo cabeceraVistas*/
+#menuEscritorio ul li {
+    min-width: 48px;
+    min-height: initial;
+	}
+#credenciales{
+	display: inline-block;
+	padding: 5px;
+	text-align: center;
+	background-color: rgba(236, 25, 113, 1);
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	height: 50px;
+}
+#credenciales p{
+	text-align: left;
+	color: white;
+	margin-bottom: 0px;
+	font-size: 12px;
+}
+#credenciales button{
+	margin: 0px auto;
+	font-size: 12px;
+	margin-top: 0px;
+	padding: 2px;
+}
+
+
+@media (min-width: 768px){
+	#menuEscritorio ul li {
+    min-width: 16%;
+    min-height: initial;
+	}
 }

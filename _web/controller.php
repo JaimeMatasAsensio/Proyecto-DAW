@@ -10,6 +10,7 @@ require_once "../_entidad/classUsuario.php";
 
 /*modelos*/
 require_once "../_modelo/daoUsuarios.php";
+require_once "../_modelo/daoTiendas.php";
 
 /*controlador*/
 session_start();
@@ -49,6 +50,7 @@ switch ($accion) {
 					switch ($_SESSION["nivelAcceso"]	) {
 						case 'adm':
 							echo "Acceso para administrador";
+							header("Location: ../_vistas/tienda.php");
 							break;
 						case 'gen':
 							echo "Acceso para gerente";
@@ -73,6 +75,8 @@ switch ($accion) {
 		}
 
 		break;
+
+
 	default:
 		# code...
 		break;
