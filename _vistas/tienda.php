@@ -43,11 +43,11 @@
 				</form>
 			</div>
 
-			<div class="row" id="nuevaTienda">
+			<div class="row" id="nuevoElemento">
 				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Nueva Tienda </h2>	
 			</div>
 
-			<div class="row formulario formulario-crud" id="formNuevaTienda">
+			<div class="row formulario formulario-crud" id="formNuevoElemento">
 				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=alta" method="post">
 					<div class="col-xs-12">
 						<fieldset>
@@ -90,7 +90,7 @@
 							    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="pais" class="hidden-xs">Tipo de Suscripcion</label>
+							    <label for="tSuscripcion" class="hidden-xs">Tipo de Suscripcion</label>
 							    <select class="form-control" name="tSuscripcion" id="tSuscripcion">
 							    	<option value="">Tipo Suscripcion</option>
 							    	<option value="pre">Premium - 360€/año</option>
@@ -98,22 +98,21 @@
 							    	<option value="fre">Basica - ¡¡Gratis!!</option>
 							    </select>
 							  </div>
-							  <div class="col-xs-12 control-btn">
-							  		<div class="col-xs-6">
-							  			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
-							  		</div>
-							  		<div class="col-xs-6">
-							  			<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-							  		</div>
-								  </div>
-							  
 							</div>
 						</fieldset>
 					</div>
 				</form>
+			  <div class="col-xs-12 control-btn">
+		  		<div class="col-xs-6">
+		  			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+		  		</div>
+		  		<div class="col-xs-6">
+		  			<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+		  		</div>
+			  </div>
 			</div>
 
-			<div class="row" id="resultadoBusquedaTienda">
+			<div class="row" id="resultadoBusquedaElementos">
 				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda
 			</div>
 
@@ -123,6 +122,7 @@
 						<div class="col-xs-12">
 							<fieldset>
 								<legend>Tienda: 'codTienda'</legend>
+								<input type="hidden" name="codTienda" value="">
 								<div class="row">
 								  <div class="form-group col-xs-12 col-sm-6">
 								    <label for="nombre" class="hidden-xs">Nombre</label>

@@ -56,6 +56,21 @@ h2{
 	padding: 20px 0px;
 }
 
+.formulario-crud label[for="nuevo"]{
+	width: 100%;
+	text-align: center;
+}
+.formulario-crud textarea[name="descripcion"]{
+	display: block;
+	max-width: 100%;
+	min-width: 100%;
+	min-height: 100px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
 #enlaceRecuperacion a{
 	margin:5px 0px;
 	display: block;
@@ -88,7 +103,25 @@ h2{
 #formBusq div.from-group{
 	display: inline-block;
 }
-#formNuevaTienda{
+
+#selectorTienda select{
+	height: 34px;
+	border: 1px solid #ccc;
+	border-radius: 0px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#selectorTienda div:first-child{
+	display:flex;
+	justify-content: center;
+	align-content: center;
+}
+#selectorTienda div.from-group{
+	display: inline-block;
+}
+
+
+#formNuevoElemento{
 	display: none;
 }
 #formsResaultadoBusqueda{
@@ -105,6 +138,90 @@ div.confMod.col-xs-6 button{
 	display: inline-block;
 	margin-bottom: 5px;
 }
+.formulario-crud input[type="file"] {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.formulario-crud label[for="foto"] {
+	font-size: 14px;
+	font-weight: 600;
+	background-color: rgba(236, 25, 113, 0.7);
+	display: inline-block;
+	transition: all .5s;
+	cursor: pointer;
+	padding: 10px 30px;
+	width: 100%;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	text-transform: uppercase;
+	width: fit-content;
+	text-align: center;
+}
+.inputImg{
+	margin-bottom: 10px;
+}
+.inputImg div:first-child{
+	text-align: center;
+}
+.inputImg>div>img{
+	margin-bottom: 10px;
+	width: 100px;
+	height: auto;
+}
+
+
+.alertasProductos{
+	width: 98%;
+	margin: 5px auto;
+	margin-bottom: 40px;
+}
+.imgAlerta, .itemAlerta, .controlAlerta button{
+	border-left: 1px solid rgba(236, 4, 76, 0.8);
+	border-right: 1px solid rgba(236, 4, 76, 0.8);
+	border-bottom: 1px solid rgba(236, 4, 76, 0.8);
+}
+.alertasProductos h3{
+	text-align: center;
+	background-color: rgba(236, 4, 76, 0.8);
+	border-top-left-radius: 5px;
+	font-size: 18px;
+	padding: 5px 2px;
+	margin-bottom: 0px;
+}
+.alertasProductos .imgAlerta{
+	display: flex;
+	justify-content: center;
+	
+}
+.alertasProductos .imgAlerta img{
+	width: 100px;
+	height: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.alertasProductos .itemAlerta{
+	background-color: rgba(244, 103, 59, 0.5);
+}
+.alertasProductos .itemAlerta p{
+	margin: 10px auto;
+}
+.alertasProductos .itemAlerta p:last-child{
+	background-color: red;
+	color: white;
+	text-align: center;
+	padding: 10px 0px;
+}
+.alertasProductos .controlAlerta button{
+	width: 100%;
+	border-radius: 0px;
+	border-bottom-right-radius: 5px;
+}
+
+
 /* media queries para formularios*/
 @media (min-width: 768px){
 	.formulario{
@@ -123,8 +240,16 @@ div.confMod.col-xs-6 button{
 		border-top-left-radius: 15px;
 		border-bottom-right-radius: 15px;
 	}
+	.alertasProductos{
+		max-width: 80%;
+	}
+	.alertasProductos h3{
+		border-top-left-radius: 15px;
+	}
+	.alertasProductos .controlAlerta button{
+		border-bottom-right-radius: 15px;		
+	}
 }
-
 
 @media (min-width: 970px){
 	.formulario{
@@ -143,7 +268,8 @@ div.confMod.col-xs-6 button{
 #menuEscritorio ul li {
     min-width: 48px;
     min-height: initial;
-	}
+}
+
 #credenciales{
 	display: inline-block;
 	padding: 5px;
@@ -153,19 +279,20 @@ div.confMod.col-xs-6 button{
 	border-bottom-right-radius: 5px;
 	height: 50px;
 }
+
 #credenciales p{
 	text-align: left;
 	color: white;
 	margin-bottom: 0px;
 	font-size: 12px;
 }
+
 #credenciales button{
 	margin: 0px auto;
 	font-size: 12px;
 	margin-top: 0px;
 	padding: 2px;
 }
-
 
 @media (min-width: 768px){
 	#menuEscritorio ul li {

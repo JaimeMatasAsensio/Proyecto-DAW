@@ -16,12 +16,12 @@ $(document).ready(function(){
 	});
 	/*Efecto para el texto de ventajas*/
 
-	$( "#nuevaTienda" ).click( function() {
-		$( "#formNuevaTienda" ).toggle("blind",{},200);
+	$( "#nuevoElemento" ).click( function() {
+		$( "#formNuevoElemento" ).toggle("blind",{},200);
 	});
 	/*Efecto para el formulario de nueva tienda*/
 
-	$( "#resultadoBusquedaTienda" ).click( function() {
+	$( "#resultadoBusquedaElementos" ).click( function() {
 	  $( "#formsResaultadoBusqueda" ).toggle("blind",{},200);
 	});
 	/*Efecto para los resultados de busqueda en tiendas*/
@@ -36,5 +36,13 @@ $(document).ready(function(){
 		$(".confMod").hide();
 	});
 
+	$(".formulario-crud input[type='file']").change(function(){
+		var filename = $(this).val().split('\\').pop();
+		var idname = $(this).attr('id');
+		console.log($(this));
+		console.log(filename);
+		console.log(idname);
+		$('span.'+idname).next().find('span').html(filename);
+	 });
 
 });//Fin documentReady
