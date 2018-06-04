@@ -72,7 +72,7 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
 
-    public function buscarTienda($nombre){
+    public function buscarTiendaPorNombre($nombre){
       try {
         $consulta = "SELECT * FROM tienda WHERE nombre = :nombre";
         $param = array(":nombre" => $nombre);

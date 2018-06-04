@@ -34,7 +34,17 @@ rgba(244, 103, 59, 1)
 h1{
 	font-size: 23px;
 }
-
+h2{
+	font-size: 17px;
+	background-color: rgba(236, 25, 113, 1);
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	width: 90%;
+	display: inline-block;
+	padding: 6px 0px;
+	margin: 10px 0px;
+	cursor: pointer;
+}
 .formulario{
 	margin:100px auto; 
 	padding: 20px 0px;
@@ -81,8 +91,12 @@ h1{
 #formBusq div.from-group{
 	display: inline-block;
 }
-
-
+#formNuevaTienda{
+	display: none;
+}
+#formsResaultadoBusqueda{
+	display: none;
+}
 /* media queries para formularios*/
 @media (min-width: 768px){
 	.formulario{
@@ -95,6 +109,11 @@ h1{
 	}
 	h1{
 		font-size: 36px;
+	}
+	h2{
+		font-size: 30px;
+		border-top-left-radius: 15px;
+		border-bottom-right-radius: 15px;
 	}
 }
 

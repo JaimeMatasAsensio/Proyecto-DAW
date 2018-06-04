@@ -15,4 +15,14 @@ $(document).ready(function(){
 	  $( "#textoVent" ).toggle("blind",{},200);
 	});
 	/*Efecto para el texto de ventajas*/
+
+	$( "#nuevaTienda" ).click( function() {
+	  $( "#formNuevaTienda" ).toggle("blind",{},200);
+	});
+	/*Efecto para el formulario de nueva tienda*/
+
+	$( "#resultadoBusquedaTienda" ).click( function() {
+	  $( "#formsResaultadoBusqueda" ).toggle("blind",{},200);
+	});
+	/*Efecto para los resultados de busqueda en tiendas*/
 });//Fin documentReady
