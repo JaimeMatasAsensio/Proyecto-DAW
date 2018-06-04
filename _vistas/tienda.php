@@ -169,21 +169,24 @@
 								    	<option value="fre">Basica - ¡¡Gratis!!</option>
 								    </select>
 								  </div>
-								  <div class="col-xs-12 control-btn">
-							  		<div class="col-xs-6">
-							  			<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-							  		</div>
-							  		<div class="col-xs-6">
-							  			<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>
-							  		</div>
-								  </div>
-								  
 								</div>
 							</fieldset>
 						</div>
 					</form>
+				  <div class="col-xs-12 control-btn">
+			  		<div class="col-xs-6 divMod">
+			  			<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+			  		</div>
+			  		<div class="col-xs-6 confMod">
+			  			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
+			  		</div>
+			  		<div class="col-xs-6">
+			  			<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>
+			  		</div>
+				  </div>
 				</div>
 			</div>
+
 		</main>
 	</div>
 	<?php	include "pieVistas.php";	?>

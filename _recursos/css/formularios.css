@@ -32,7 +32,7 @@ rgba(244, 103, 59, 1)
 
 /*Estilo para formularios*/
 h1{
-	font-size: 23px;
+	font-size: 20px;
 }
 h2{
 	font-size: 17px;
@@ -97,6 +97,13 @@ h2{
 .control-btn div.col-xs-6{
 	display: flex;
 	justify-content: center;
+}
+div.confMod.col-xs-6{
+	display: none;
+}
+div.confMod.col-xs-6 button{
+	display: inline-block;
+	margin-bottom: 5px;
 }
 /* media queries para formularios*/
 @media (min-width: 768px){

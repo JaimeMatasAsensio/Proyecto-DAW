@@ -25,4 +25,16 @@ $(document).ready(function(){
 	  $( "#formsResaultadoBusqueda" ).toggle("blind",{},200);
 	});
 	/*Efecto para los resultados de busqueda en tiendas*/
+
+	$( ".divMod button" ).click( function() {
+		$( ".divMod" ).hide();
+		$(".confMod").show();
+	});
+	
+	$( ".cancelMod" ).click( function() {
+		$( ".divMod" ).show();
+		$(".confMod").hide();
+	});
+
+
 });//Fin documentReady
