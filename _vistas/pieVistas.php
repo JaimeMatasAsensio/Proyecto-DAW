@@ -1,7 +1,21 @@
 <footer class="container-fluid">
 	<div id="contPie">
 		<div id="enlacesPie" class="col-xs-4">
-			
+				<?php
+		if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
+			$nivelAcc = $_SESSION["nivelAcceso"];
+			if ($nivelAcc == "adm") {
+					echo "<ul>";
+					echo "<li><a href='#'>Tiendas</a></li>";
+					echo "<li><a href='#'>Usuarios</a></li>";
+					echo "<li><a href='#'>Productos</a></li>";
+					echo "<li><a href='#'>Proveedores</a></li>";
+					echo "<li><a href='#'>Empleados</a></li>";
+					echo "<li><a href='#'>Alertas</a></li>";
+					echo "</ul>";
+				}
+		}
+		?>
 		</div>
 		<div id="redesSociales" class="col-xs-5">
 			<div>

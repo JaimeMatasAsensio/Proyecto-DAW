@@ -36,10 +36,9 @@ h1{
 }
 h2{
 	font-size: 17px;
-	background-color: rgba(236, 25, 113, 1);
+	background-color: rgba(236, 25, 113, 0.7);
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
-	width: 90%;
 	display: inline-block;
 	padding: 6px 0px;
 	margin: 10px 0px;
@@ -56,9 +55,7 @@ h2{
 	margin:20px auto; 
 	padding: 20px 0px;
 }
-.formulario div:last-child{
-	margin:10px 0px;
-}
+
 #enlaceRecuperacion a{
 	margin:5px 0px;
 	display: block;
@@ -97,6 +94,10 @@ h2{
 #formsResaultadoBusqueda{
 	display: none;
 }
+.control-btn div.col-xs-6{
+	display: flex;
+	justify-content: center;
+}
 /* media queries para formularios*/
 @media (min-width: 768px){
 	.formulario{
@@ -108,10 +109,10 @@ h2{
 		width: 100%;
 	}
 	h1{
-		font-size: 36px;
+		font-size: 30px;
 	}
 	h2{
-		font-size: 30px;
+		font-size: 26px;
 		border-top-left-radius: 15px;
 		border-bottom-right-radius: 15px;
 	}

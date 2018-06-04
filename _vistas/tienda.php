@@ -42,9 +42,11 @@
 					</div>
 				</form>
 			</div>
+
 			<div class="row" id="nuevaTienda">
-				<h2 class="col-xs-12">Nueva Tienda</h2>
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Nueva Tienda </h2>	
 			</div>
+
 			<div class="row formulario formulario-crud" id="formNuevaTienda">
 				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=alta" method="post">
 					<div class="col-xs-12">
@@ -90,25 +92,31 @@
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="pais" class="hidden-xs">Tipo de Suscripcion</label>
 							    <select class="form-control" name="tSuscripcion" id="tSuscripcion">
-							    	<option value=""></option>
+							    	<option value="">Tipo Suscripcion</option>
 							    	<option value="pre">Premium - 360€/año</option>
 							    	<option value="nor">Normal - 250€/año</option>
 							    	<option value="fre">Basica - ¡¡Gratis!!</option>
 							    </select>
 							  </div>
-							  <div class="col-xs-12">
-							  	<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
-							  	<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></span></button>
-							  </div>
+							  <div class="col-xs-12 control-btn">
+							  		<div class="col-xs-6">
+							  			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+							  		</div>
+							  		<div class="col-xs-6">
+							  			<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+							  		</div>
+								  </div>
 							  
 							</div>
 						</fieldset>
 					</div>
 				</form>
 			</div>
+
 			<div class="row" id="resultadoBusquedaTienda">
-				<h2 class="col-xs-12">Resultado de Busqueda</h2>
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda
 			</div>
+
 			<div id="formsResaultadoBusqueda">
 				<div class="row formulario formulario-crud" id="formTiendaCodTienda">
 					<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=modificacion" method="post">
@@ -155,15 +163,19 @@
 								  <div class="form-group col-xs-12 col-sm-6">
 								    <label for="pais" class="hidden-xs">Tipo de Suscripcion</label>
 								    <select class="form-control" name="tSuscripcion" id="tSuscripcion">
-								    	<option value=""></option>
+								    	<option value="">Tipo Suscripcion</option>
 								    	<option value="pre">Premium - 360€/año</option>
 								    	<option value="nor">Normal - 250€/año</option>
 								    	<option value="fre">Basica - ¡¡Gratis!!</option>
 								    </select>
 								  </div>
-								  <div class="col-xs-12">
-								  	<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-								  	<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>
+								  <div class="col-xs-12 control-btn">
+							  		<div class="col-xs-6">
+							  			<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+							  		</div>
+							  		<div class="col-xs-6">
+							  			<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>
+							  		</div>
 								  </div>
 								  
 								</div>

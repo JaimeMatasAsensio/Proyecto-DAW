@@ -17,7 +17,7 @@ $(document).ready(function(){
 	/*Efecto para el texto de ventajas*/
 
 	$( "#nuevaTienda" ).click( function() {
-	  $( "#formNuevaTienda" ).toggle("blind",{},200);
+		$( "#formNuevaTienda" ).toggle("blind",{},200);
 	});
 	/*Efecto para el formulario de nueva tienda*/
 
