@@ -42,7 +42,8 @@ switch ($accion) {
 				$ini = "-.^@#%{";
 				$fin = "}%#@^.-";
 				$pass = sha1($ini.$pass.$fin); 
-				if($usuario == $user->__GET("nombre") && $pass == $user->__GET("password")){
+				echo "$pass:".trim($user->__GET("password")); 
+				if($usuario == $user->__GET("nombre") && $pass == trim($user->__GET("password"))){
 					$_SESSION["logDone"] = 1;
 					$_SESSION["codUser"] = $user->__GET("codUsuario");
 					$_SESSION["nivelAcceso"] = $user->__GET("nivelAcceso"); 
