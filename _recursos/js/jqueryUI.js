@@ -6,6 +6,7 @@ $(document).ready(function(){
 	  $( "#opcionesMovil" ).toggle("blind",{},500);
 	});
 	/*Efecto para el menu de movil*/
+	
 	$( "#Quees" ).click( function() {
 	  $( "#textoDesc" ).toggle("blind",{},200);
 	});
