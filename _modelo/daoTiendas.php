@@ -32,7 +32,7 @@ require_once '../_conexion/libreria_PDO.php';
           $tienda->__SET("poblacion", $fila['poblacion']);
           $tienda->__SET("direccion", $fila['direccion']);
           $tienda->__SET("numero", $fila['numero']);
-          $tienda->__SET("telfono", $fila['telefono']);
+          $tienda->__SET("telefono", $fila['telefono']);
           $tienda->__SET("movil", $fila['movil']);
           $tienda->__SET("email", $fila['email']);
           $tienda->__SET("tipoSuscripcion", $fila['tipoSuscripcion']);

@@ -55,8 +55,10 @@ switch ($accion) {
 							$daoTienda->listarTiendas();
 							$tiendas = $daoTienda->result;
 							$codTiendas = array();
+							$nombreTiendas = array();
 							for( $i = 0; $i < count($tiendas) ; $i++){
 								$codTiendas[] = $tiendas[$i]->__GET("codTienda");
+								$codNombre[] = $tiendas[$i]->__GET("codTienda");
 							}
 							/*
 							for( $i = 0; $i < count($codTiendas) ; $i++){
