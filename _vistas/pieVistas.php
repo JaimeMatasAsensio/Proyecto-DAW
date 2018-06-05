@@ -29,7 +29,7 @@
 		</div>
 		<div id="logoPie" class="col-xs-3">
 			<a href="index.php"><img src="../_recursos/img/Logo_Movil.jpg"  class="border-shopShpere-xs hidden-sm hidden-md hidden-lg" alt="Logo shopsphere" title="shopsphere.S.L.U"></a>
-			<a href="index.php"><img src="../_recursos/img/Logo_Largo.jpg"  class="border-shopShpere-xs hidden-xs" alt="Logo shopsphere" title="shopsphere.S.L.U"></a>
+			<a href="../index.php"><img src="../_recursos/img/Logo_Largo.jpg"  class="border-shopShpere-xs hidden-xs" alt="Logo shopsphere" title="shopsphere.S.L.U"></a>
 		</div>
 	</div>
 

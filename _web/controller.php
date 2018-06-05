@@ -44,6 +44,7 @@ switch ($accion) {
 				$pass = sha1($ini.$pass.$fin); 
 				//echo "$pass:".trim($user->__GET("password")); 
 				if($usuario == $user->__GET("nombre") && $pass == trim($user->__GET("password"))){
+					
 					$_SESSION["logDone"] = 1;
 					$_SESSION["codUser"] = $user->__GET("codUsuario");
 					$_SESSION["nivelAcceso"] = $user->__GET("nivelAcceso"); 
@@ -58,7 +59,7 @@ switch ($accion) {
 							$nombreTiendas = array();
 							for( $i = 0; $i < count($tiendas) ; $i++){
 								$codTiendas[] = $tiendas[$i]->__GET("codTienda");
-								$codNombre[] = $tiendas[$i]->__GET("codTienda");
+								$nombreTiendas[] = $tiendas[$i]->__GET("codTienda");
 							}
 							/*
 							for( $i = 0; $i < count($codTiendas) ; $i++){
@@ -67,7 +68,9 @@ switch ($accion) {
 							echo $tiendas[0]->toString();
 							*/
 							$_SESSION["codTiendas"] = serialize($codTiendas);
+							$_SESSION["nombreTiendas"] = serialize($nombreTiendas);
 							$_SESSION["listadoTiendas"] = serialize($tiendas);
+							
 							header("Location: ../_vistas/tienda.php");
 							break;
 						case 'gen':
