@@ -36,6 +36,7 @@ require_once '../_conexion/libreria_PDO.php';
           $tienda->__SET("movil", $fila['movil']);
           $tienda->__SET("email", $fila['email']);
           $tienda->__SET("tipoSuscripcion", $fila['tipoSuscripcion']);
+          $this->result[] = $tienda;
         }
       }catch (Exception $e){
         echo($e->getMessage());

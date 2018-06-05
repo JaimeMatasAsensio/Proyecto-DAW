@@ -13,7 +13,10 @@
   <script type="text/javascript" src="../_recursos/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-	<?php include "cabeceraVistas.php"; ?>
+	<?php
+	include "cabeceraVistas.php"; 
+	require_once '../_entidad/classTienda.php';
+	?>
 	<div class="container-fluid">
 		<main class="container">
 			<h1>Mantenimiento Tiendas</h1>
@@ -115,7 +118,12 @@
 			<div class="row" id="resultadoBusquedaElementos">
 				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda
 			</div>
-
+			<?php
+			if(isset($_SESSION["listadoTiendas"])  && !empty($_SESSION["listadoTiendas"]) ){
+				$tiendas = unserialize($_SESSION["listadoTiendas"]);
+				
+			}
+			?>
 			<div id="formsResaultadoBusqueda">
 				<div class="row formulario formulario-crud" id="formTiendaCodTienda">
 					<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=modificacion" method="post">

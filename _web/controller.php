@@ -35,14 +35,14 @@ switch ($accion) {
 		if(isset($_POST["nombreUsuario"]) && isset($_POST["passUsuario"]) && !(empty($_POST["nombreUsuario"])) && !(empty($_POST["passUsuario"]))){
 			$usuario = $_POST["nombreUsuario"];
 			$pass = $_POST["passUsuario"];
-			$dao = new daoUsuarios();
+			$daoUsuario = new daoUsuarios();
 			
-			$user = $dao->buscarUsuarioPorNombre($usuario);
+			$user = $daoUsuario->buscarUsuarioPorNombre($usuario);
 			if($user){
 				$ini = "-.^@#%{";
 				$fin = "}%#@^.-";
 				$pass = sha1($ini.$pass.$fin); 
-				echo "$pass:".trim($user->__GET("password")); 
+				//echo "$pass:".trim($user->__GET("password")); 
 				if($usuario == $user->__GET("nombre") && $pass == trim($user->__GET("password"))){
 					$_SESSION["logDone"] = 1;
 					$_SESSION["codUser"] = $user->__GET("codUsuario");
@@ -50,7 +50,22 @@ switch ($accion) {
 
 					switch ($_SESSION["nivelAcceso"]	) {
 						case 'adm':
-							echo "Acceso para administrador";
+							//echo "Acceso para administrador";
+							$daoTienda = new daoTiendas();
+							$daoTienda->listarTiendas();
+							$tiendas = $daoTienda->result;
+							$codTiendas = array();
+							for( $i = 0; $i < count($tiendas) ; $i++){
+								$codTiendas[] = $tiendas[$i]->__GET("codTienda");
+							}
+							/*
+							for( $i = 0; $i < count($codTiendas) ; $i++){
+								echo "Codigo Tienda: " . $codTiendas[$i] ;
+							}
+							echo $tiendas[0]->toString();
+							*/
+							$_SESSION["codTiendas"] = serialize($codTiendas);
+							$_SESSION["listadoTiendas"] = serialize($tiendas);
 							header("Location: ../_vistas/tienda.php");
 							break;
 						case 'gen':

@@ -20,6 +20,19 @@
 			$this->$nom = $value;
 		}
 
+		public function toString(){
+			return "CodTienda: ".$this->codTienda
+							."; nombre: ".$this->nombre
+							."; pais: ".$this->pais
+							."; provincia: ".$this->provincia
+							."; poblacion: ".$this->poblacion
+							."; direccion: ".$this->direccion
+							."; numero: ".$this->numero
+							."; telefono: ".$this->movil
+							."; email: ".$this->email
+							."; tipoSuscripcion: ".$this->tipoSuscripcion;
+
+		}
 	}
 
 ?>
