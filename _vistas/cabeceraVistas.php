@@ -34,8 +34,9 @@ session_start();
 				if ($nivelAcc == "adm") {
 					echo "<p>Usuario: Administrador</p>";
 				}
-						
-				echo '<button type="button" id="cerrarSession" class="btn bg-danger">Cerrar Session</button>';
+				echo "<form action='../_web/controller.php?accion=logoff' method='post'>";
+				echo '<input type="submit" id="cerrarSession" class="btn btn-info" value="Cerrar Session">';
+				echo "</form>";
 				echo "</div>";
 			}
 			?>
@@ -69,3 +70,4 @@ session_start();
 	</div>
 	<script type="text/javascript" src="../_recursos/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../_recursos/js/jqueryUI.js"></script>
+	<script type="text/javascript" src="../_recursos/js/formularios.js"></script>

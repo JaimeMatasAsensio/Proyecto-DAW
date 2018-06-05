@@ -22,7 +22,6 @@ switch ($accion) {
 		$_SESSION["nuevoRegistroSuscripcion"] = isset($_REQUEST["tSuscripcion"]) ? $_REQUEST["tSuscripcion"] : "";
 		header("Location: ../_vistas/nuevoRegistro.php");
 		break;
-
 	case 'login' :
 		if(isset($_SESSION["logDone"])){
 			unset($_SESSION["logDone"]);
@@ -30,7 +29,6 @@ switch ($accion) {
 		$_SESSION["login"] = isset($_REQUEST["login"]) ? $_REQUEST["login"] : "";
 		header("Location: ../_vistas/login.php");
 		break;
-
 	case 'doLogin':
 		if(isset($_POST["nombreUsuario"]) && isset($_POST["passUsuario"]) && !(empty($_POST["nombreUsuario"])) && !(empty($_POST["passUsuario"]))){
 			$usuario = $_POST["nombreUsuario"];
@@ -96,8 +94,24 @@ switch ($accion) {
 		}
 
 		break;
-
-
+	case 'logoff':
+		echo "Haciendo log out...";
+		session_unset();
+		session_destroy();
+		header("Location: ../index.php");
+		break;
+	case 'mantenimentoTiendas':
+		$operacion = $_REQUEST["operacion"];
+		switch ($operacion) {
+			case 'modificacion':
+				
+				break;
+			
+			default:
+				
+				break;
+		}
+		break;
 	default:
 		# code...
 		break;

@@ -52,7 +52,7 @@
 			</div>
 
 			<div class="row formulario formulario-crud" id="formNuevoElemento">
-				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=alta" method="post">
+				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=alta" method="post" name="tienda">
 					<div class="col-xs-12">
 						<fieldset>
 							<legend>Añadir Tienda</legend>

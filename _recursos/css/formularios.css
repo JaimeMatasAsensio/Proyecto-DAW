@@ -29,7 +29,9 @@ rgba(244, 103, 59, 1)
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
-
+input#cerrarSession{
+	padding: 3px 13px;
+}
 /*Estilo para formularios*/
 h1{
 	font-size: 20px;
@@ -276,13 +278,13 @@ div.confMod.col-xs-6 button{
 	background-color: rgba(236, 25, 113, 1);
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
-	height: 50px;
+	height: 68px;
 }
 
 #credenciales p{
 	text-align: left;
 	color: white;
-	margin-bottom: 0px;
+	margin-bottom: 10px;
 	font-size: 12px;
 }
 
