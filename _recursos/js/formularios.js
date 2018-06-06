@@ -56,7 +56,7 @@ $(document).ready(function(){
         tienda.telefono = form[8].value;
         tienda.movil = form[9].value;
         tienda.email = form[10].value;
-        var i = 0;
+        var i = 1;
         while(tienda.tipoSuscripcion == ""){
           tienda.tipoSuscripcion = form[11][i].selected?form[11][i].value:"";
           i++;
@@ -94,7 +94,7 @@ $(document).ready(function(){
         form[9].value =  tienda.movil;
         form[10].value = tienda.email;
         
-        for(var i = 0; i < form[11].length; i++){
+        for(var i = 1; i < form[11].length; i++){
           form[11][i].selected = form[11][i].value == tienda.tipoSuscripcion ? true : false ;
         }
         resetTienda(tienda);
@@ -141,7 +141,7 @@ $(document).ready(function(){
         tienda.telefono = form[8].value;
         tienda.movil = form[9].value;
         tienda.email = form[10].value;
-        var i = 0;
+        var i = 1;
         while(tienda.tipoSuscripcion == ""){
           tienda.tipoSuscripcion = form[11][i].selected?form[11][i].value:"";
           i++;
@@ -159,6 +159,31 @@ $(document).ready(function(){
         }).done(function(response,estado,jqXHR){
           var tiendaUpdated = JSON.parse(response);
           console.log(tiendaUpdated);
+          //Toma los nuevos valores y los inserta en el formulario
+          form[1].value = tiendaUpdated.codTienda;
+          form[2].value = tiendaUpdated.nombre;
+          form[3].value = tiendaUpdated.pais;
+          form[4].value = tiendaUpdated.provincia;
+          form[5].value = tiendaUpdated.poblacion;
+          form[6].value = tiendaUpdated.direccion;
+          form[7].value = tiendaUpdated.numero;
+          form[8].value = tiendaUpdated.telefono;
+          form[9].value =  tiendaUpdated.movil;
+          form[10].value = tiendaUpdated.email;
+          for(var i = 1; i < form[11].length; i++){
+            form[11][i].selected = form[11][i].value == tiendaUpdated.tipoSuscripcion ? true : false ;
+          }
+          //Deshabilita la modificacion de campos
+          for( var i = 1; i < form.length ; i++){
+            var type = form[i].type;
+            if(type != "hidden"){
+              form[i].disabled = true;
+            }
+          }
+          //Oculta la division de control de modificacion y muestra de la division de modificacion
+          $( ".divMod" ).show();
+          $(".confMod").hide();
+          
         }).fail(function(jqXHR,estado,error){
           console.log(error);
           console.log(estado);
@@ -177,7 +202,7 @@ $(document).ready(function(){
         break;
     }
   });
-  /*Funcion de envio de datos por ajax con JSON*/
+  /*Funcion de envio de datos por ajax con JSON para la modificacion del Formulario*/
   
 
 
