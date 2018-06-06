@@ -131,7 +131,6 @@ $(document).ready(function(){
 	});
   /*Deshabilita los campos del formulario de modificacion y recoje los valores antiguos*/
 
-
   $( ".confMod button:first-child" ).click( function() {
     var form = $( ".divMod" ).parent().prev();
     form = form[0];
@@ -234,6 +233,14 @@ $(document).ready(function(){
   });
   /*Funcion de envio de datos por ajax con JSON para la modificacion del Formulario*/
   
-
+  $( "#resultadoBusquedaElementos" ).click( function() {
+    var formsBusqueda = $( "#formsResaultadoBusqueda div.row.formulario.formulario-crud form" );
+    for(var i = 0 ; i < formsBusqueda.length ; i++){
+      for(var j = 2 ; j < formsBusqueda[i].length ; j++){
+        formsBusqueda[i][j].parentElement.className = "form-group col-xs-12 col-sm-6";
+      }      
+    }
+  });
+  //Funcion para resetar los input y quitar las marcas de validacion en los formularios de busqueda
 
 });//Fin del documentReady
