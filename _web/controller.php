@@ -156,7 +156,8 @@ switch ($accion) {
 					"telefono" => $updateTienda->__GET("telefono"),
 					"movil" => $updateTienda->__GET("movil"),
 					"email" => $updateTienda->__GET("email"),
-					"tipoSuscripcion" => $updateTienda->__GET("tipoSuscripcion")
+					"tipoSuscripcion" => $updateTienda->__GET("tipoSuscripcion"),
+					"msgReturn" => "Modificacion completada con exito"
 				);
 
 				echo json_encode($returnTienda);

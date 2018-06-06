@@ -1,6 +1,11 @@
 "use strict";
 /*Documento para implementar las funcionalidades de los formularios y sus validaciones */
-
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2017
+*/
 /*Acciones con JQuery*/
 $(document).ready(function(){
   /*Objetos planos para recoger valores y realizar JSON*/
@@ -17,8 +22,7 @@ $(document).ready(function(){
     email: "",
     tipoSuscripcion: ""
   };
-  
-    /*Objeto Tienda */
+  /*Objeto Tienda */
 
   function resetTienda(tienda){
     tienda.codTienda = "";
@@ -80,7 +84,6 @@ $(document).ready(function(){
   $( ".confMod button.cancelMod" ).click( function() {
 		var form = $( ".divMod" ).parent().prev();
     form = form[0];
-    
     switch (form.name) {
       case "tienda":
         form[1].value = tienda.codTienda;
@@ -97,7 +100,13 @@ $(document).ready(function(){
         for(var i = 1; i < form[11].length; i++){
           form[11][i].selected = form[11][i].value == tienda.tipoSuscripcion ? true : false ;
         }
+
+        for(var i = 2; i < form.length ; i++){
+          form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
+        }
+        
         resetTienda(tienda);
+        
         break;
       
       case "usuario":
@@ -128,8 +137,10 @@ $(document).ready(function(){
     form = form[0];
     switch (form.name) {
       case "tienda":
-        //Validar antes de enviar
-
+        //Divisiones de informacion y bloqueo del formulario mientras se realiza el AJAX
+        $( ".divMod" ).parent().prev().prev().prev().text("");
+        $( ".divMod" ).parent().prev().prev().animate({zIndex:"1"});
+      
         //Montar el obj, para convertirlo a JSON
         tienda.codTienda = form[1].value;
         tienda.nombre = form[2].value;
@@ -147,18 +158,20 @@ $(document).ready(function(){
           i++;
         }
         //AJAX
+        //Parametros de la peticion ajax para la modificacion de tienda
         var parametros = {
           accion: "mantenimentoTiendas",
           operacion:  "modificacion",
           json: JSON.stringify(tienda)
         };
+        //Envio de AJAX
         $.ajax({
           data: parametros,
           url: "../_web/controller.php",
           type: "post"
         }).done(function(response,estado,jqXHR){
+          //Peticion terminada con resultado correcto
           var tiendaUpdated = JSON.parse(response);
-          console.log(tiendaUpdated);
           //Toma los nuevos valores y los inserta en el formulario
           form[1].value = tiendaUpdated.codTienda;
           form[2].value = tiendaUpdated.nombre;
@@ -183,11 +196,28 @@ $(document).ready(function(){
           //Oculta la division de control de modificacion y muestra de la division de modificacion
           $( ".divMod" ).show();
           $(".confMod").hide();
-          
+          $( ".divMod" ).parent().prev().prev().prev().text(tiendaUpdated.msgReturn)
         }).fail(function(jqXHR,estado,error){
+          //Errores en la peticion de AJAX
           console.log(error);
           console.log(estado);
-        }); 
+        }).always(function(){
+          //Animaciones tras la peticion AJAX y resultado  
+            var aux = $( ".divMod" ).parent().prev().prev();
+            var width = aux[0].offsetWidth;
+            var height = aux[0].offsetHeight
+            width = "-=" + width + "px";
+            height = "-=" + height + "px";
+            $( ".divMod" ).parent().prev().prev().animate({height: height, width: width},"500",function(){
+              $( ".divMod" ).parent().prev().prev().prev().animate({zIndex: "1"},"10000"); 
+              $( ".divMod" ).parent().prev().prev().prev().animate({opacity:0,zIndex: "-100"},3000,function(){
+                $( ".divMod" ).parent().prev().prev().prev().css({opacity:1, zIndex: "-100"});
+                $( ".divMod" ).parent().prev().prev().css({width:"100%" , height: "100%", zIndex: "-100"}); 
+              }); 
+              
+            });  
+        });
+        
         break;
       
       case "usuario":

@@ -1,5 +1,11 @@
 "use strict";
 /*Documento para implementar las acciones o validaciones en el formulario de login */
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2017
+*/
 
 function doLogin(){
   console.log("hago log in");

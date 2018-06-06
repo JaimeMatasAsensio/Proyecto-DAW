@@ -1,7 +1,10 @@
 <?php
 /*Funciones de impresion de formularios*/
 function imprFormTienda($obj){
-echo '<div class="row formulario formulario-crud" id="formTiendaCodTienda">';
+echo '<div class="row formulario formulario-crud">';
+echo "<h3 class=infoProceso></h3>";
+echo '<div class="overFlowForms">';
+echo '</div>';
 echo'<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=modificacion" method="post" name="tienda">';
 echo '<div class="col-xs-12">';
 echo '<fieldset>';
@@ -10,43 +13,43 @@ echo '<input type="hidden" name="codTienda" value="'.$obj->__GET("codTienda").'"
 echo '<div class="row">';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo '<label for="nombre" class="hidden-xs">Nombre</label>';
-echo '<input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Tienda" value="'.$obj->__GET("nombre").'" disabled="true">';
+echo '<input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Tienda" value="'.$obj->__GET("nombre").'" disabled="true" required="true">';
 echo '</div>';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo '<label for="pais" class="hidden-xs">Pais</label>';
-echo '<input type="text" class="form-control" name="pais" id="pais" placeholder="Pais" value="'.$obj->__GET("pais").'" disabled="true">';
+echo '<input type="text" class="form-control" name="pais" id="pais" placeholder="Pais" value="'.$obj->__GET("pais").'" disabled="true" required="true">';
 echo '</div>';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo '<label for="provincia" class="hidden-xs">Provincia</label>';
-echo '<input type="text" class="form-control" name="provincia" id="Provincia" placeholder="Provincia" value="'.$obj->__GET("provincia").'" disabled="true">';
+echo '<input type="text" class="form-control" name="provincia" id="Provincia" placeholder="Provincia" value="'.$obj->__GET("provincia").'" disabled="true" required="true">';
 echo '</div>';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo'<label for="poblacion" class="hidden-xs">Poblacion</label>';
-echo '<input type="text" class="form-control" name="poblacion" id="poblacion" placeholder="Poblacion" value="'.$obj->__GET("poblacion").'" disabled="true">';
+echo '<input type="text" class="form-control" name="poblacion" id="poblacion" placeholder="Poblacion" value="'.$obj->__GET("poblacion").'" disabled="true" required="true">';
 echo '</div>';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo '<label for="direccion" class="hidden-xs">Direccion</label>';
-echo '<input type="text" class="form-control" name="direccion" id="direccion" placeholder="Direccion" value="'.$obj->__GET("direccion").'" disabled="true">';
+echo '<input type="text" class="form-control" name="direccion" id="direccion" placeholder="Direccion" value="'.$obj->__GET("direccion").'" disabled="true" required="true">';
 echo '</div>';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo '<label for="numero" class="hidden-xs">Numero</label>';
-echo '<input type="text" class="form-control" name="numero" id="numero" placeholder="Numero" value="'.$obj->__GET("numero").'" disabled="true">';
+echo '<input type="text" class="form-control" name="numero" id="numero" placeholder="Numero" value="'.$obj->__GET("numero").'" disabled="true" required="true">';
 echo '</div>';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo '<label for="telefono" class="hidden-xs">Telefono</label>';
-echo '<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono" value="'.$obj->__GET("telefono").'" disabled="true">';
+echo '<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono" value="'.$obj->__GET("telefono").'" disabled="true" required="true">';
 echo '</div>';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo '<label for="movil" class="hidden-xs">Movil</label>';
-echo '<input type="text" class="form-control" name="movil" id="movil" placeholder="Movil" value="'.$obj->__GET("movil").'" disabled="true">';
+echo '<input type="text" class="form-control" name="movil" id="movil" placeholder="Movil" value="'.$obj->__GET("movil").'" disabled="true" required="true">';
 echo '</div>';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo '<label for="email"  class="hidden-xs">Email</label>';
-echo '<input type="text" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled="true">';
+echo '<input type="text" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled="true"  required="true">';
 echo '</div>';
 echo '<div class="form-group col-xs-12 col-sm-6">';
 echo '<label for="pais" class="hidden-xs">Tipo de Suscripcion</label>';
-echo '<select class="form-control" name="tSuscripcion" id="tSuscripcion" disabled="true">';
+echo '<select class="form-control" name="tSuscripcion" id="tSuscripcion" disabled="true"  required="true">';
 
 switch ($obj->__GET("tipoSuscripcion")) {
 	case 'pre':

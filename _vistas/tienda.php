@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
   <meta name="author" content="Jaime Matas Asensio">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-cache"> 
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
   <link rel="icon" type="image/x-icon" href="../_recursos/img/Logo_Movil.jpg">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/estiloIndex.css">
@@ -52,6 +52,8 @@
 			</div>
 
 			<div class="row formulario formulario-crud" id="formNuevoElemento">
+			<h3 class=infoProceso></h3>
+			<div class="overFlowForms"></div>
 				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=alta" method="post" name="tienda">
 					<div class="col-xs-12">
 						<fieldset>
@@ -135,5 +137,6 @@
 	</div>
 	<?php	include "pieVistas.php";	?>
 	<script type="text/javascript" src="../_recursos/js/bootstrap.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../_recursos/js/validacionTienda.js"></script>
 </body>
 </html>
