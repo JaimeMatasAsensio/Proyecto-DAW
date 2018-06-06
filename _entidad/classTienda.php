@@ -33,6 +33,7 @@
 							."; tipoSuscripcion: ".$this->tipoSuscripcion;
 
 		}
+
 	}
 
 ?>

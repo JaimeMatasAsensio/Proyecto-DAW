@@ -46,7 +46,7 @@ require_once '../_conexion/libreria_PDO.php';
     public function buscarTienda($codTienda){
       try {
         $consulta = "SELECT * FROM tienda WHERE codTienda = :codTienda";
-        $param = array(":CodTienda" => $codTienda);
+        $param = array(":codTienda" => $codTienda);
         $this->con->ConsultaNormalAssoc($consulta, $param);
         $fila = $this->con->datos[0];
         if(!empty($fila)){

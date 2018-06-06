@@ -21,7 +21,6 @@ $(document).ready(function(){
     /*Objeto Tienda */
 
   function resetTienda(tienda){
-    console.log(tienda);
     tienda.codTienda = "";
     tienda.nombre =  "";
     tienda.pais = "";
@@ -76,7 +75,7 @@ $(document).ready(function(){
         break;
     }
 	});
-  /*Habilita los campos del formulario y topa los valores por si se cancela la modificacion*/
+  /*Habilita los campos del formulario y toma los valores por si se cancela la modificacion*/
 
   $( ".confMod button.cancelMod" ).click( function() {
 		var form = $( ".divMod" ).parent().prev();
@@ -147,10 +146,23 @@ $(document).ready(function(){
           tienda.tipoSuscripcion = form[11][i].selected?form[11][i].value:"";
           i++;
         }
-        //Preparar el JSON
-
         //AJAX
-        
+        var parametros = {
+          accion: "mantenimentoTiendas",
+          operacion:  "modificacion",
+          json: JSON.stringify(tienda)
+        };
+        $.ajax({
+          data: parametros,
+          url: "../_web/controller.php",
+          type: "post"
+        }).done(function(response,estado,jqXHR){
+          var tiendaUpdated = JSON.parse(response);
+          console.log(tiendaUpdated);
+        }).fail(function(jqXHR,estado,error){
+          console.log(error);
+          console.log(estado);
+        }); 
         break;
       
       case "usuario":
