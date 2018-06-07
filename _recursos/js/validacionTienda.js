@@ -18,7 +18,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value.length < 30){
         $(input).parent().removeClass("has-error");
         $(input).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
@@ -31,7 +41,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value.length < 30){
         $(input).parent().removeClass("has-error");
         $(input).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
@@ -44,7 +64,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value.length < 30){
         $(input).parent().removeClass("has-error");
         $(input).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
@@ -57,7 +87,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value.length < 30){
         $(input).parent().removeClass("has-error");
         $(input).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
@@ -70,7 +110,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value.length < 50){
         $(input).parent().removeClass("has-error");
         $(element).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
@@ -84,7 +134,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value.length < 6){
         $(input).parent().removeClass("has-error");
         $(input).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
@@ -97,7 +157,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value.length < 12){
         $(input).parent().removeClass("has-error");
         $(input).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
@@ -110,7 +180,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value.length < 12){
         $(input).parent().removeClass("has-error");
         $(input).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
@@ -124,7 +204,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value.length < 40){
         $(input).parent().removeClass("has-error");
         $(input).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
@@ -138,7 +228,17 @@ function validarTienda (element){
       if(exprNombre.test(element.value) && element.value != ""){
         $(input).parent().removeClass("has-error");
         $(input).parent().addClass("has-success");
-        $( ".confMod button:first-child" ).attr("disabled",false);
+        //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+        var divInputs = element.parentElement.parentElement.children;
+        for(var i = 0; i < divInputs.length ; i++){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
+              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+            $( ".confMod button:first-child" ).attr("disabled",false);
+          }else{
+            $( ".confMod button:first-child" ).attr("disabled",true);  
+            i = divInputs.length; 
+          }
+        }
       }else{
         $(input).parent().removeClass("has-success");
         $(input).parent().addClass("has-error");
