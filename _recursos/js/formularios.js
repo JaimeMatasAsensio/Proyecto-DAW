@@ -44,6 +44,7 @@ $(document).ready(function(){
     var divControlMod = btnMod.parenteElement.nextElementSibling;
     console.log(divControlMod);
     console.log(btnMod);
+    
     var form = $( ".divMod" ).parent().prev();
     form = form[0];
     for( var i = 1; i < form.length ; i++){
