@@ -245,14 +245,12 @@ $(document).ready(function(){
 
   $( "#nuevoElemento" ).click( function() {
     var formsInsert = $( "#formNuevoElemento form" );
-    console.log(formsInsert);
-    /*
-    for(var i = 0 ; i < formsInsert.length ; i++){
-      for(var j = 2 ; j < formsInsert[i].length ; j++){
-        formsInser[i][j].parentElement.className = "form-group col-xs-12 col-sm-6";
-      }      
-    }
-    */
+    formsInsert = formsInsert[0];
+    for(var j = 1 ; j < formsInsert.length ; j++){
+      formsInsert[j].parentElement.className = "form-group col-xs-12 col-sm-6";
+    }      
+    
+    
   });
   //Funcion para resetar los input y quitar las marcas de validacion en los formularios de busqueda
 

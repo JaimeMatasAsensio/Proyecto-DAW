@@ -11,6 +11,7 @@ function validarTienda (element){
   element = element.target || element;
   var input = "form input[name=" + element.name + "]";
   //Segun el nombre del input recibe un tratamiento u otro
+  console.log(element);
   switch (element.name) {
     case "nombre":
     //validacion para los input de nombre
@@ -285,11 +286,11 @@ function validarTienda (element){
 $( "#resultadoBusquedaElementos" ).click( function() {
   
   $("#formsResaultadoBusqueda form input").keyup(validarTienda);
-  //$("form input").focusin(validarTienda);
+  $("#formsResultadoBusqueda form input").focusin(validarTienda);
   $("#formsResaultadoBusqueda form input").focusout(validarTienda);
   
   $("#formsResaultadoBusqueda form select").change(validarTienda);
-  //$("form select").focusin(validarTienda);
+  $("#formsResultadoBusqueda form select").focusin(validarTienda);
   $("#formsResaultadoBusqueda form select").focusout(validarTienda);
 
 });
