@@ -6,7 +6,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 /*Tabla de empleado*/
-CREATE TABLE `2_empleado` (
+CREATE TABLE `empleado_codTienda` (
   `codEmpleado` varchar(3) NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `apellido1` varchar(30) NOT NULL,
@@ -18,11 +18,11 @@ CREATE TABLE `2_empleado` (
   `codUsuario` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `2_empleado`
+ALTER TABLE `empleado_codTienda`
   ADD PRIMARY KEY (`codEmpleado`);
 
 /* Tabla de  producto*/
-CREATE TABLE `2_producto` (
+CREATE TABLE `producto_codTienda` (
   `codProducto` varchar(3) NOT NULL,
   `referencia` varchar(13) NOT NULL,
   `nombre` varchar(30) NOT NULL,
@@ -36,11 +36,11 @@ CREATE TABLE `2_producto` (
   `foto` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `2_producto`
+ALTER TABLE `producto_codTienda`
   ADD PRIMARY KEY (`codProducto`);
 
 /*Tabla de Proveedores*/
-CREATE TABLE `2_proveedor` (
+CREATE TABLE `proveedor_codTienda` (
   `codProveedor` varchar(3) NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `nombreContacto` varchar(30) NOT NULL,
@@ -51,17 +51,17 @@ CREATE TABLE `2_proveedor` (
   `email` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `2_proveedor`
+ALTER TABLE `proveedor_codTienda`
   ADD PRIMARY KEY (`codProveedor`);
 
 /*Tabla de suministro*/
-CREATE TABLE `2_suministro` (
+CREATE TABLE `suministro_codTienda` (
   `codProducto` varchar(3) NOT NULL,
   `codProveedor` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-ALTER TABLE `2_suministro`
+ALTER TABLE `suministro_codTienda`
   ADD PRIMARY KEY (`codProducto`,`codProveedor`);
 
  COMMIT;

@@ -35,14 +35,15 @@ $(document).ready(function(){
 	/*Efecto para los resultados de busqueda de elementos*/
 
 	$( ".divMod button" ).click( function() {
-		$( ".divMod" ).hide();
-		$(".confMod").show();
+		$( this ).parent().hide();
+		$( this ).parent().next().show();
 	});
 	//Efecto para mostrar los controles de modificacion
 
 	$( ".cancelMod" ).click( function() {
-		$( ".divMod" ).show();
-		$(".confMod").hide();
+		$( this ).parent().hide();
+		$( this ).parent().prev().show();
+		
 	});
 	//Efecto para ocultar los controles de modificacion 
 	$(".formulario-crud input[type='file']").change(function(){

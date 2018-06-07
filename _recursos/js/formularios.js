@@ -41,12 +41,9 @@ $(document).ready(function(){
 
   $( ".divMod button" ).click( function(element) {
     var btnMod = element.target
-    var divControlMod = btnMod.parenteElement.nextElementSibling;
-    console.log(divControlMod);
-    console.log(btnMod);
-    
-    var form = $( ".divMod" ).parent().prev();
-    form = form[0];
+    var divControlMod = btnMod.parentElement.nextElementSibling;
+    var form = divControlMod.parentElement.parentElement.children[2];
+    divControlMod.children[0].disabled = "true";
     for( var i = 1; i < form.length ; i++){
       var type = form[i].type;
       if(type != "hidden"){
@@ -87,7 +84,7 @@ $(document).ready(function(){
   /*Habilita los campos del formulario y toma los valores por si se cancela la modificacion*/
 
   $( ".confMod button.cancelMod" ).click( function() {
-		var form = $( ".divMod" ).parent().prev();
+    var form = $( this ).parent().parent().prev();
     form = form[0];
     switch (form.name) {
       case "tienda":
@@ -228,12 +225,13 @@ $(document).ready(function(){
             height = "-=" + height + "px";
             $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
               $( "#onProcessInfo" ).animate({zIndex: "1"}); 
-              $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},5000,function(){
+              $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},3000,function(){
                 $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
                 $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"}); 
                 $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
-                console.log(overFlow);
-                console.log(infoProcess);
+                for(var i = 2; i < form.length; i++){
+                  form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
+                }
               }); 
               
             });  
@@ -258,9 +256,10 @@ $(document).ready(function(){
   
   $( "#resultadoBusquedaElementos" ).click( function() {
     var formsBusqueda = $( "#formsResaultadoBusqueda div.row.formulario.formulario-crud form" );
+    console.log(formsBusqueda);
     for(var i = 0 ; i < formsBusqueda.length ; i++){
       for(var j = 2 ; j < formsBusqueda[i].length ; j++){
-        formsBusqueda[i][j].parentElement.className = "form-group col-xs-12 col-sm-6";
+        formsBusqueda[i][j].parentElement.className = formsBusqueda[i][j].tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
       }      
     }
   });
@@ -277,5 +276,14 @@ $(document).ready(function(){
   });
   //Funcion para resetar los input y quitar las marcas de validacion en los formularios de busqueda
 
+  $("#tBusqueda").change( function(){
+    var elementsBusqueda = $(this).parent().next().children();
+    elementsBusqueda[1].style.display = $(this).val() == "nombre" || $( this ).val() == "" || $( this ).val() == "codTienda" ? "inline-block" : "none";
+    elementsBusqueda[2].style.display = $(this).val() == "tsuscripcion" ? "inline-block" : "none";
+    
+  });
+  //Funcion para modificar el tipo de input en la busqueda
   
+
+
 });//Fin del documentReady

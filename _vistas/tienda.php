@@ -5,7 +5,11 @@
 	<meta charset="UTF-8">
   <meta name="author" content="Jaime Matas Asensio">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+	<meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+	<meta http-equiv="Last-Modified" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+	<meta http-equiv="Pragma" content="no-cache"> 
   <link rel="icon" type="image/x-icon" href="../_recursos/img/Logo_Movil.jpg">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/estiloIndex.css">
@@ -22,15 +26,16 @@
 		<main class="container">
 			<h1>Mantenimiento Tiendas</h1>
 			<div class="row formulario formulario-crud" id="formBusq">
-				<form action="#" class="form-inline">
+				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=buscar" method="post" class="form-inline" id="f0">
 					<div class="col-xs-12">
 						<fieldset>
 							<legend>Buscar Tienda</legend>
-							 
+							<div id="elementosBusqueda">
 							 <div class="form-group">
 						    <label class="sr-only" for="tBusqueda">Tipo Busqueda</label>
-						    <select name="tBusqueda" lass="form-control" id="tBusqueda">
-						    	<option value=""></option>
+						    <select name="tBusqueda" lass="form-control" id="tBusqueda" required>
+						    	<option value="">Filtro</option>
+						    	<option value="codTienda">Codigo Tienda</option>
 						    	<option value="nombre">Nombre</option>
 						    	<option value="tsuscripcion">Tipo Suscripcion</option>
 						    </select>
@@ -38,10 +43,16 @@
 
 						  <div class="form-group">
 						    <label class="sr-only" for="busqueda">Buscar</label>
-						    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
+						    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar" required>
+						    <select name="busqueda" lass="form-control" id="tBusqueda" required>
+						    	<option value="">-----</option>
+							    <option value="pre">Premium - 360€/año</option>
+							    <option value="nor">Normal - 250€/año</option>
+							    <option value="fre">Basica - ¡¡Gratis!!</option>
+						    </select>
 						  </div>
-						  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-
+						  <button type="submit" class="btn btn-default" form="f0"><span class="glyphicon glyphicon-search"></span></button>
+							</div>
 						</fieldset>
 					</div>
 				</form>
@@ -125,9 +136,22 @@
 			<?php
 			if(isset($_SESSION["listadoTiendas"])  && !empty($_SESSION["listadoTiendas"]) ){
 				$tiendas = unserialize($_SESSION["listadoTiendas"]);
-				for ($i=0; $i < count($tiendas); $i++) { 
-					imprFormTienda($tiendas[$i]);
+				switch (gettype($tiendas)) {
+					case 'array':
+						for ($i=0; $i < count($tiendas); $i++) { 
+							imprFormTienda($tiendas[$i]);
+						}
+						break;
+					case 'object':
+						imprFormTienda($tiendas);
+						
+						break;
+					
+					default:
+						# code...
+						break;
 				}
+				
 			}
 			?>
 				

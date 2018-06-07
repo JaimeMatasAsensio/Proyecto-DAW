@@ -5,7 +5,11 @@
 	<meta charset="UTF-8">
   <meta name="author" content="Jaime Matas Asensio">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-cache"> 
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+	<meta http-equiv="Last-Modified" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+	<meta http-equiv="Pragma" content="no-cache"> 
   <link rel="icon" type="image/x-icon" href="../_recursos/img/Logo_Movil.jpg">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/estiloIndex.css">
@@ -51,7 +55,7 @@
 					<div class="col-xs-12">
 						<fieldset>
 							<legend>Buscar Producto</legend>
-							 
+							 <div id="elementosBusqueda">
 							 <div class="form-group">
 						    <label class="sr-only" for="tBusqueda">Tipo Busqueda</label>
 						    <select name="tBusqueda" class="form-control" id="tBusqueda">
@@ -62,13 +66,12 @@
 						    	<option value="Precio">Precio</option>
 						    </select>
 						  </div>
-
 						  <div class="form-group">
 						    <label class="sr-only" for="busqueda">Buscar</label>
 						    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						  </div>
 						  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-
+							</div>						
 						</fieldset>
 					</div>
 				</form>
@@ -127,7 +130,7 @@
 							    <label for="nuevo">Nuevo Producto</label>
 							    <input type="checkbox" class="form-control" name="nuevo" id="nuevo">
 							  </div>
-								<div class="form-group col-xs-12">
+								<div class="form-group col-xs-12 col-sm-12">
 							    <label for="descripcion" class="hidden-xs">Descripcion</label>
 							    <textarea name="descripcion" id="descripcion">Introduzca una Descripcion</textarea>
 							  </div>								
@@ -200,7 +203,7 @@
 								    <label for="nuevo">Nuevo Producto</label>
 								    <input type="checkbox" class="form-control" name="nuevo" id="nuevo">
 								  </div>
-									<div class="form-group col-xs-12">
+									<div class="form-group col-xs-12 col-sm-12">
 								    <label for="descripcion" class="hidden-xs">Descripcion</label>
 								    <textarea name="descripcion" id="descripcion" >Introduzca una Descripcion</textarea>
 								  </div>								

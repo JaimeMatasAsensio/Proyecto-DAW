@@ -58,7 +58,6 @@ h2{
 	padding: 20px 0px;
 	position:relative;
 }
-
 .formulario-crud label[for="nuevo"]{
 	width: 100%;
 	text-align: center;
@@ -73,14 +72,12 @@ h2{
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
-
 #enlaceRecuperacion a{
 	margin:5px 0px;
 	display: block;
 }
 .formulario div:last-child button{
 	margin-right: 10px;
-	
 }
 .overFlowForms{
 	position: absolute;
@@ -124,15 +121,29 @@ h3.infoProceso{
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
-#formBusq div:first-child{
-	display:flex;
-	justify-content: center;
-	align-content: center;
+#formBusq fieldset{
+	width: 100%;
+	display: inline-flex;
+	text-align: center;
 }
-#formBusq div.from-group{
-	display: inline-block;
+#formBusq fieldset div{
+	display:inline-block;
+	margin-left: 5px;
 }
-
+#selectBusq{
+	margin-left: 5px;
+}
+#formBusq fieldset button{
+	margin-left: 5px;
+}
+#formBusq select[name="busqueda"]{
+	display: none;
+}
+#elementosBusqueda{
+display: flex;
+width: 100%;
+justify-content: space-between;
+}
 #selectorTienda select{
 	height: 34px;
 	border: 1px solid #ccc;

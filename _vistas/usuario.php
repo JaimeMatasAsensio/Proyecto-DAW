@@ -5,7 +5,11 @@
 	<meta charset="UTF-8">
   <meta name="author" content="Jaime Matas Asensio">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-cache"> 
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+	<meta http-equiv="Last-Modified" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+	<meta http-equiv="Pragma" content="no-cache">  
   <link rel="icon" type="image/x-icon" href="../_recursos/img/Logo_Movil.jpg">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/estiloIndex.css">
@@ -21,16 +25,14 @@
 				<form action="#" class="form-inline">
 					<div class="col-xs-12">
 						<fieldset>
-							<legend>Buscar Usuario</legend>
-							 
+							<legend>Buscar Tienda</legend>
+							<div id="elementosBusqueda">
 							 <div class="form-group">
 						    <label class="sr-only" for="tBusqueda">Tipo Busqueda</label>
 						    <select name="tBusqueda" lass="form-control" id="tBusqueda">
-						    	<option value=""></option>
+						    	<option value="">Filtro</option>
 						    	<option value="nombre">Nombre</option>
-						    	<option value="email">Email</option>
-						    	<option value="nacceso">Nivel Acceso</option>
-						    	
+						    	<option value="tsuscripcion">Tipo Suscripcion</option>
 						    </select>
 						  </div>
 
@@ -39,7 +41,7 @@
 						    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						  </div>
 						  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-
+							</div>
 						</fieldset>
 					</div>
 				</form>

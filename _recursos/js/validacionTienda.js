@@ -9,9 +9,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 function validarTienda (element){
   //Selector de la division del input a tratar
   element = element.target || element;
-  var input = "form input[name=" + element.name + "]";
   //Segun el nombre del input recibe un tratamiento u otro
-  console.log(element);
   switch (element.name) {
     case "nombre":
     //validacion para los input de nombre
@@ -19,132 +17,130 @@ function validarTienda (element){
       //Comprueba la longitud y que admite la expresion regular
       if(exprNombre.test(element.value) && element.value.length < 30){
         //si todo es true
-        $(input).parent().removeClass("has-error");
-        $(input).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         //busca en las divisiones del Formulario la classe "has-error"
         for(var i = 0; i < divInputs.length ; i++){
-          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
-              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
             //Si no encuentra una division con la clase "has-error" habilita el boton de enviar
             //
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+            
           }else{
             //Si encuentra una division con la clase "has-error" deshabilita el boton de enviado y no revisa otras divisiones
-            $( ".confMod button:first-child" ).attr("disabled",true); 
-            $( ".confInsert div:first-child button" ).attr("disabled",true);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            
             i = divInputs.length; 
           }
         }
       }else{
         //Si falla los requisitos de la validaion deshabilita el boton de envio
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+        
       }
       break;
     case "pais":
     //Validacion para los input de pais
       var exprNombre = /^[áéíóúÁÉÍÓÚüÜñÑ]*([aA-zZ]+[áéíóúÁÉÍÓÚüÜñÑ]*\s*)+$/;
       if(exprNombre.test(element.value) && element.value.length < 30){
-        $(input).parent().removeClass("has-error");
-        $(input).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
-          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
-              || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+          if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" ){
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+            
           }else{
-            $( ".confMod button:first-child" ).attr("disabled",true); 
-            $( ".confInsert div:first-child button" ).attr("disabled",true); 
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            
             i = divInputs.length; 
           }
         }
       }else{
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+        
       }
       break; 
     case "provincia":
     //validacion para los input de provincia
       var exprNombre = /^[áéíóúÁÉÍÓÚüÜñÑ]*([aA-zZ]+[áéíóúÁÉÍÓÚüÜñÑ]*\s*)+$/;
       if(exprNombre.test(element.value) && element.value.length < 30){
-        $(input).parent().removeClass("has-error");
-        $(input).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+            
           }else{
-            $( ".confMod button:first-child" ).attr("disabled",true); 
-            $( ".confInsert div:first-child button" ).attr("disabled",true);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            
             i = divInputs.length; 
           }
         }
       }else{
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+        
       }
       break;
     case "poblacion":
     //Validacion para los input de poblacion
       var exprNombre = /^[áéíóúÁÉÍÓÚüÜñÑ]*([aA-zZ]+[áéíóúÁÉÍÓÚüÜñÑ]*\s*)+$/;
       if(exprNombre.test(element.value) && element.value.length < 30){
-        $(input).parent().removeClass("has-error");
-        $(input).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+            
           }else{
-            $( ".confMod button:first-child" ).attr("disabled",true);
-            $( ".confInsert div:first-child button" ).attr("disabled",true);  
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            
             i = divInputs.length; 
           }
         }
       }else{
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+        
       }
       break;
     case "direccion":
     //validacion para los input de direccion
       var exprNombre = /^([aA-zZ]+[áéíóúÁÉÍÓÚüÜñÑ]*\s*\/*\s*)*[áéíóúÁÉÍÓÚüÜñÑ]*[aA-zZ]+([aA-zZ]+[áéíóúÁÉÍÓÚüÜñÑ]*\s*)+$/;
       if(exprNombre.test(element.value) && element.value.length < 50){
-        $(input).parent().removeClass("has-error");
-        $(element).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+            
           }else{
-            $( ".confMod button:first-child" ).attr("disabled",true);
-            $( ".confInsert div:first-child button" ).attr("disabled",true);  
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            
             i = divInputs.length; 
           }
         }
       }else{
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+       
         
       }
       break;
@@ -152,75 +148,75 @@ function validarTienda (element){
     //validacion para los input de numero
       var exprNombre = /^\d{1,6}$/;
       if(exprNombre.test(element.value) && element.value.length < 6){
-        $(input).parent().removeClass("has-error");
-        $(input).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+            
           }else{
-            $( ".confMod button:first-child" ).attr("disabled",true);
-            $( ".confInsert div:first-child button" ).attr("disabled",true);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            
             i = divInputs.length; 
           }
         }
       }else{
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+        
       }
       break;
     case "telefono":
     //Validacion para los input de telefono
       var exprNombre = /^(\+\d\d)*\d{9}$/;
       if(exprNombre.test(element.value) && element.value.length < 12){
-        $(input).parent().removeClass("has-error");
-        $(input).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+            
           }else{
-            $( ".confMod button:first-child" ).attr("disabled",true);
-            $( ".confInsert div:first-child button" ).attr("disabled",true); 
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            
             i = divInputs.length; 
           }
         }
       }else{
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+        
       }
       break;
     case "movil":
     //Validacion para los input de movil
       var exprNombre = /^(\+\d\d)*\d{9}$/;
       if(exprNombre.test(element.value) && element.value.length < 12){
-        $(input).parent().removeClass("has-error");
-        $(input).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+           
           }else{
-            $( ".confMod button:first-child" ).attr("disabled",true);
-            $( ".confInsert div:first-child button" ).attr("disabled",true); 
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+           
             i = divInputs.length; 
           }
         }
       }else{
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);       
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+       
       }
       break;
     case "email":
@@ -228,51 +224,50 @@ function validarTienda (element){
     patron para validar email obtenido de : http://w3.unpocodetodo.info/utiles/regex-ejemplos.php?type=email*/
       var exprNombre = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
       if(exprNombre.test(element.value) && element.value.length < 40){
-        $(input).parent().removeClass("has-error");
-        $(input).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+        
           }else{
-            $( ".confMod button:first-child" ).attr("disabled",true);
-            $( ".confInsert div:first-child button" ).attr("disabled",true);  
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+        
             i = divInputs.length; 
           }
         }
       }else{
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+        
       }
       break;
     case "tSuscripcion":
     //Validacion para el select de tipo de suscripcion
       var exprNombre = /((pre)||(fre)||(nor)){1}/;
-      input = "form select[name=" + element.name + "]";
       if(exprNombre.test(element.value) && element.value != ""){
-        $(input).parent().removeClass("has-error");
-        $(input).parent().addClass("has-success");
+        $( this ).parent().removeClass("has-error");
+        $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
-            $( ".confMod button:first-child" ).attr("disabled",false);
-            $( ".confInsert div:first-child button" ).attr("disabled",false);
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+            
           }else{
-            $( ".confMod button:first-child" ).attr("disabled",true);
-            $( ".confInsert div:first-child button" ).attr("disabled",true); 
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            
             i = divInputs.length; 
           }
         }
       }else{
-        $(input).parent().removeClass("has-success");
-        $(input).parent().addClass("has-error");
-        $( ".confMod button:first-child" ).attr("disabled",true);
-        $( ".confInsert div:first-child button" ).attr("disabled",true);
+        $( this ).parent().removeClass("has-success");
+        $( this ).parent().addClass("has-error");
+        $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+        
       }
       break;
 

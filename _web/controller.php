@@ -173,7 +173,30 @@ switch ($accion) {
 				break;
 
 			case 'buscar':
-				
+				$tipoBusqueda = $_REQUEST["tBusqueda"];
+				$paramBusqueda = $_REQUEST["busqueda"];
+				echo "$tipoBusqueda ; $paramBusqueda";
+				/*
+				$daoTiendas = new daoTiendas();
+				if($tipoBusqueda == "tsuscripcion"){
+					$daoTiendas->buscarTiendaPorSuscripcion($paramBusqueda);
+					$tiendas = $daoTiendas->result;
+					$_SESSION["listadoTiendas"] = serialize($tiendas);
+					//header("Location: ../_vistas/tienda.php");
+				}
+				if($tipoBusqueda == "nombre"){
+					$paramBusqueda = "%".$paramBusqueda."%";
+					$daoTiendas->buscarTiendaPorSuscripcion($paramBusqueda);
+					$tiendas = $daoTiendas->result;
+					$_SESSION["listadoTiendas"] = serialize($tiendas);
+					//header("Location: ../_vistas/tienda.php");
+				}
+				if($tipoBusqueda == "codTienda"){
+					$tiendas = $daoTiendas->buscarTienda($paramBusqueda);
+					$_SESSION["listadoTiendas"] = serialize($tiendas);
+					//header("Location: ../_vistas/tienda.php");
+				}
+				*/
 				break;
 			
 			default:

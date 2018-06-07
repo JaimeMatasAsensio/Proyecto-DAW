@@ -75,27 +75,25 @@ require_once '../_conexion/libreria_PDO.php';
 
     public function buscarTiendaPorNombre($nombre){
       try {
-        $consulta = "SELECT * FROM tienda WHERE nombre = :nombre";
+        $consulta = "SELECT * FROM tienda WHERE nombre LIKE %:nombre%";
         $param = array(":nombre" => $nombre);
         $this->con->ConsultaNormalAssoc($consulta, $param);
-        $fila = $this->con->datos[0];
-        if(!empty($fila)){
-          $tienda = new tienda();   
-          $tienda->__SET("codTienda", $fila['codTienda']);
-          $tienda->__SET("nombre", $fila['nombre']);
-          $tienda->__SET("pais", $fila['pais']);
-          $tienda->__SET("provincia", $fila['provincia']);
-          $tienda->__SET("poblacion", $fila['poblacion']);
-          $tienda->__SET("direccion", $fila['direccion']);
-          $tienda->__SET("numero", $fila['numero']);
-          $tienda->__SET("telfono", $fila['telefono']);
-          $tienda->__SET("movil", $fila['movil']);
-          $tienda->__SET("email", $fila['email']);
-          $tienda->__SET("tipoSuscripcion", $fila['tipoSuscripcion']);
-          return $usuario;
-        }else{
-          return false;
-        }
+        $this->result = array();
+          foreach ($this->con->datos as $fila){
+            $tienda = new tienda();   
+            $tienda->__SET("codTienda", $fila['codTienda']);
+            $tienda->__SET("nombre", $fila['nombre']);
+            $tienda->__SET("pais", $fila['pais']);
+            $tienda->__SET("provincia", $fila['provincia']);
+            $tienda->__SET("poblacion", $fila['poblacion']);
+            $tienda->__SET("direccion", $fila['direccion']);
+            $tienda->__SET("numero", $fila['numero']);
+            $tienda->__SET("telefono", $fila['telefono']);
+            $tienda->__SET("movil", $fila['movil']);
+            $tienda->__SET("email", $fila['email']);
+            $tienda->__SET("tipoSuscripcion", $fila['tipoSuscripcion']);
+            $this->result[] = $tienda;
+          }
 
       }catch (Exception $e){
         echo($e->getMessage());
@@ -121,6 +119,7 @@ require_once '../_conexion/libreria_PDO.php';
           $tienda->__SET("movil", $fila['movil']);
           $tienda->__SET("email", $fila['email']);
           $tienda->__SET("tipoSuscripcion", $fila['tipoSuscripcion']);
+          $this->result[] = $tienda;
         }
       }catch (Exception $e){
         echo($e->getMessage());
