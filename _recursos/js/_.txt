@@ -1,2 +1,6 @@
 JavaScript
+Varios Problemas
+1.- Al pulsar el boton de modificacion se habilitan todas las divisiones de control de modificacion
+2.- La validacion no es unitaria, indica el error en todos los input de los formularios de la pagina
+3.- Completar la habilitacion/ des habilitacion del botton de confirmar modificacion
 

@@ -132,24 +132,27 @@ $(document).ready(function(){
   /*Deshabilita los campos del formulario de modificacion y recoje los valores antiguos*/
 
   $( ".confMod button:first-child" ).click( function(element) {
-
+    //Obtenemos los elementes que pertenecen al boton donde se ha hecho click
     var form = element.target.parentElement.parentElement.parentElement.children[2];
     var overFlow = element.target.parentElement.parentElement.parentElement.children[1];
     var infoProcess = element.target.parentElement.parentElement.parentElement.children[0];
+    /*
     console.log(form);
     console.log(form[4]);
     console.log(overFlow);
     console.log(infoProcess);
+    */
+    overFlow.id = "onProcessOverFlow";
+    infoProcess.id = "onProcessInfo";
 
-    /*
-    // Requiere modificacion para varios registros
     
-    form = form[0];
+    // Requiere modificacion para varios registros
+
     switch (form.name) {
       case "tienda":
         //Divisiones de informacion y bloqueo del formulario mientras se realiza el AJAX
-        $( ".divMod" ).parent().prev().prev().prev().text("");
-        $( ".divMod" ).parent().prev().prev().animate({zIndex:"1"});
+        $( "#onProcessInfo" ).text("");
+        $( "#onProcessOverFlow" ).animate({zIndex:"1"});
       
         //Montar el obj, para convertirlo a JSON
         tienda.codTienda = form[1].value;
@@ -206,23 +209,26 @@ $(document).ready(function(){
           //Oculta la division de control de modificacion y muestra de la division de modificacion
           $( ".divMod" ).show();
           $(".confMod").hide();
-          $( ".divMod" ).parent().prev().prev().prev().text(tiendaUpdated.msgReturn)
+          $( "#onProcessInfo" ).text(tiendaUpdated.msgReturn)
         }).fail(function(jqXHR,estado,error){
           //Errores en la peticion de AJAX
           console.log(error);
           console.log(estado);
         }).always(function(){
           //Animaciones tras la peticion AJAX y resultado  
-            var aux = $( ".divMod" ).parent().prev().prev();
+            var aux = $( "#onProcessOverFlow" );
             var width = aux[0].offsetWidth;
             var height = aux[0].offsetHeight
             width = "-=" + width + "px";
             height = "-=" + height + "px";
-            $( ".divMod" ).parent().prev().prev().animate({height: height, width: width},"500",function(){
-              $( ".divMod" ).parent().prev().prev().prev().animate({zIndex: "1"},"10000"); 
-              $( ".divMod" ).parent().prev().prev().prev().animate({opacity:0,zIndex: "-100"},3000,function(){
-                $( ".divMod" ).parent().prev().prev().prev().css({opacity:1, zIndex: "-100"});
-                $( ".divMod" ).parent().prev().prev().css({width:"100%" , height: "100%", zIndex: "-100"}); 
+            $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
+              $( "#onProcessInfo" ).animate({zIndex: "1"}); 
+              $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},5000,function(){
+                $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
+                $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"}); 
+                $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
+                console.log(overFlow);
+                console.log(infoProcess);
               }); 
               
             });  
@@ -241,7 +247,7 @@ $(document).ready(function(){
       default:
         break;
     }
-    */
+    
   });
   /*Funcion de envio de datos por ajax con JSON para la modificacion del Formulario*/
   
