@@ -131,8 +131,19 @@ $(document).ready(function(){
 	});
   /*Deshabilita los campos del formulario de modificacion y recoje los valores antiguos*/
 
-  $( ".confMod button:first-child" ).click( function() {
-    var form = $( ".divMod" ).parent().prev();
+  $( ".confMod button:first-child" ).click( function(element) {
+
+    var form = element.target.parentElement.parentElement.parentElement.children[2];
+    var overFlow = element.target.parentElement.parentElement.parentElement.children[1];
+    var infoProcess = element.target.parentElement.parentElement.parentElement.children[0];
+    console.log(form);
+    console.log(form[4]);
+    console.log(overFlow);
+    console.log(infoProcess);
+
+    /*
+    // Requiere modificacion para varios registros
+    
     form = form[0];
     switch (form.name) {
       case "tienda":
@@ -230,6 +241,7 @@ $(document).ready(function(){
       default:
         break;
     }
+    */
   });
   /*Funcion de envio de datos por ajax con JSON para la modificacion del Formulario*/
   

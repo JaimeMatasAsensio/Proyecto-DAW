@@ -28,6 +28,7 @@ function validarTienda (element){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success" 
               || divInputs[i].className == "form-group col-xs-12 col-sm-6" ){
             //Si no encuentra una division con la clase "has-error" habilita el boton de enviar
+            //
             $( ".confMod button:first-child" ).attr("disabled",false);
             $( ".confInsert div:first-child button" ).attr("disabled",false);
           }else{
