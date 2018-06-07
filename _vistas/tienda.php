@@ -108,9 +108,9 @@
 						</fieldset>
 					</div>
 				</form>
-			  <div class="col-xs-12 control-btn">
+			  <div class="col-xs-12 control-btn confInsert">
 		  		<div class="col-xs-6">
-		  			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+		  			<button class="btn btn-success" disabled="true"><span class="glyphicon glyphicon-ok"></span></button>
 		  		</div>
 		  		<div class="col-xs-6">
 		  			<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
