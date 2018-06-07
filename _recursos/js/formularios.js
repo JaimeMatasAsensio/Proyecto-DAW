@@ -39,7 +39,11 @@ $(document).ready(function(){
   }
   /*Reset de valores del objeto Tienda */
 
-  $( ".divMod button" ).click( function() {
+  $( ".divMod button" ).click( function(element) {
+    var btnMod = element.target
+    var divControlMod = btnMod.parenteElement.nextElementSibling;
+    console.log(divControlMod);
+    console.log(btnMod);
     var form = $( ".divMod" ).parent().prev();
     form = form[0];
     for( var i = 1; i < form.length ; i++){
