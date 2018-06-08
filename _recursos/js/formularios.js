@@ -167,11 +167,8 @@ $(document).ready(function(){
         tienda.telefono = form[8].value;
         tienda.movil = form[9].value;
         tienda.email = form[10].value;
-        var i = 1;
-        while(tienda.tipoSuscripcion == ""){
-          tienda.tipoSuscripcion = form[11][i].selected?form[11][i].value:"";
-          i++;
-        }
+        tienda.tipoSuscripcion = form[11].value;
+                
         //AJAX
         //Parametros de la peticion ajax para la modificacion de tienda
         var parametros = {
@@ -185,6 +182,11 @@ $(document).ready(function(){
           url: "../_web/controller.php",
           type: "post"
         }).done(function(response,estado,jqXHR){
+          console.log("---------->Retorno de AJAX : DONE<-----------");
+          console.log(response);
+          console.log(estado);
+          console.log(jqXHR);
+          console.log("---------->Retorno de AJAX : DONE<-----------");
           //Peticion terminada con resultado correcto
           var tiendaUpdated = JSON.parse(response);
           //Toma los nuevos valores y los inserta en el formulario
@@ -212,10 +214,15 @@ $(document).ready(function(){
           $( ".divMod" ).show();
           $(".confMod").hide();
           $( "#onProcessInfo" ).text(tiendaUpdated.msgReturn)
+          
         }).fail(function(jqXHR,estado,error){
           //Errores en la peticion de AJAX
+          console.log("---------->Retorno de AJAX : FAIL<-----------");
           console.log(error);
           console.log(estado);
+          console.log(jqXHR);
+          console.log("---------->Retorno de AJAX : FAIL<-----------");
+          
         }).always(function(){
           //Animaciones tras la peticion AJAX y resultado  
             var aux = $( "#onProcessOverFlow" );
@@ -256,7 +263,6 @@ $(document).ready(function(){
   
   $( "#resultadoBusquedaElementos" ).click( function() {
     var formsBusqueda = $( "#formsResaultadoBusqueda div.row.formulario.formulario-crud form" );
-    console.log(formsBusqueda);
     for(var i = 0 ; i < formsBusqueda.length ; i++){
       for(var j = 2 ; j < formsBusqueda[i].length ; j++){
         formsBusqueda[i][j].parentElement.className = formsBusqueda[i][j].tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;

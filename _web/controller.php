@@ -131,6 +131,7 @@ switch ($accion) {
 		}
 		break;
 	case 'mantenimentoTiendas':
+		session_unset();
 		$operacion = $_REQUEST["operacion"] ? $_REQUEST["operacion"] : "";
 		switch ($operacion) {
 			case 'modificacion':
