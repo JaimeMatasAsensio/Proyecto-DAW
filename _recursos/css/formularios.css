@@ -139,6 +139,8 @@ h3.infoProceso{
 #formBusq select[name="busqueda"]{
 	display: none;
 }
+
+
 #elementosBusqueda{
 display: flex;
 width: 100%;
@@ -316,7 +318,7 @@ div.confMod.col-xs-6 button{
 	display: inline-block;
 	padding: 5px;
 	text-align: center;
-	background-color: rgba(236, 25, 113, 1);
+	background-color: white;
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	height: 68px;
@@ -324,7 +326,8 @@ div.confMod.col-xs-6 button{
 
 #credenciales p{
 	text-align: left;
-	color: white;
+	color: black;
+	font-weight: bold;
 	margin-bottom: 10px;
 	font-size: 12px;
 }
