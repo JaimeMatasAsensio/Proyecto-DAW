@@ -3,6 +3,7 @@ session_start();
 //Entidades y modelos necesarios para el funcionamiento del controlador
 /*utilidad*/
 require_once "imprForm.php";
+
 /*entidades*/
 require_once "../_entidad/classAcceso.php";
 require_once "../_entidad/classEmpleado.php";
@@ -18,6 +19,7 @@ require_once "../_modelo/daoTiendas.php";
 require_once "../_modelo/daoProveedores.php";
 require_once "../_modelo/daoEmpleados.php";
 require_once "../_modelo/daoProductos.php";
+require_once "../_modelo/daoAcceso.php";
 
 /*controlador*/
 
@@ -66,7 +68,7 @@ switch ( $accion ) {
 						$fin = "}%#@^.-";
 						$pass = sha1($ini.$pass.$fin); 
 						
-
+						
 						if($usuario == $user->__GET("nombre") && $pass == trim($user->__GET("password"))){
 							//Si el usuario existe y la contraseña coincide recuperamos variables reaccionadas con el login
 							$_SESSION["logDone"] = 1;
@@ -77,14 +79,14 @@ switch ( $accion ) {
 							switch ($_SESSION["nivelAcceso"]) {
 								case 'adm':
 									//La pagina Inicial del Administrador sera el CRUD de tiendas
+									//Recuperamos todas las tiendas ya que un usuario administrador tendra acceso a todas
 									$daoTienda = new daoTiendas();
 									$daoTienda->listarTiendas();
 									$tiendas = $daoTienda->result;
 									$TIENDAS = array();
 									for( $i = 0; $i < count($tiendas) ; $i++){
-										$TIENDAS[$tiendas[$i]->__GET("codTienda")] = $tiendas[$i]->__GET("nombre");
+										$TIENDAS[ $tiendas[$i]->__GET("codTienda") ] = $tiendas[$i]->__GET("nombre");
 									}
-									imprArray($TIENDAS);
 									//Variablas necesarias para el mantenimento de tablas especificas de cada tienda
 									$_SESSION["TIENDAS"] = serialize($TIENDAS);
 
@@ -94,10 +96,66 @@ switch ( $accion ) {
 									header("Location: ../_vistas/tienda.php");
 									break;
 								case 'gen':
-									//Acceso para el gerente
+									//La pagina de inicio de los gerentes sean las alertas
+									//Recuperamos el codTienda a la que tiene acceso el usuario
+									$daoAcceso = new daoAcceso();
+									$codTiendaAcceso = $daoAcceso->buscarAcceso($_SESSION["codUser"]);
+									//Almacenamos la tienda en la variable de sesion
+									$daoTiendas = new daoTiendas();
+									$tiendaAcceso = $daoTiendas->buscarTienda($codTiendaAcceso->__GET("codTienda"));
+									
+									$TIENDAS[ $tiendaAcceso->__GET("codTienda") ] = $tiendaAcceso->__GET("nombre");
+									$_SESSION["TIENDAS"] = serialize($TIENDAS);
+
+									//Guardamos el nombre de la tienda para mostrarsela al usuario
+									$nombreTienda = $tiendaAcceso->__GET("nombre");
+									$_SESSION["nombreTienda"] = $nombreTienda;
+									
+									//Instancia del modelo para alertas
+				 					$daoProductos = new daoProductos();
+
+									//Obtenemos los datos en la precarga de alertas
+									$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+						 			$daoProductos->alertaProductos(key($TiendasSession));
+						 			
+
+						 			//Obtenemos el listado de alertas para la vista alerta
+									$_SESSION["listadoAlertas"] = serialize($daoProductos->result);
+
+									//redireccion a la pagina de proveedores
+									header("Location: ../_vistas/alertas.php");
+									
 									break;
 								case 'emp':
-									//Acceso para el empleado
+									//La pagina de inicio de los empleados seran los productos
+									//Recuperamos el codTienda a la que tiene acceso el usuario
+									$daoAcceso = new daoAcceso();
+									$codTiendaAcceso = $daoAcceso->buscarAcceso($_SESSION["codUser"]);
+									//Almacenamos la tienda en la variable de sesion
+									$daoTiendas = new daoTiendas();
+									$tiendaAcceso = $daoTiendas->buscarTienda($codTiendaAcceso->__GET("codTienda"));
+									
+									$TIENDAS[ $tiendaAcceso->__GET("codTienda") ] = $tiendaAcceso->__GET("nombre");
+									$_SESSION["TIENDAS"] = serialize($TIENDAS);
+
+									//Guardamos el nombre de la tienda para mostrarsela al usuario
+									$nombreTienda = $tiendaAcceso->__GET("nombre");
+									$_SESSION["nombreTienda"] = $nombreTienda;
+									
+									//Instancia del modelo para alertas
+				 					$daoProductos = new daoProductos();
+
+									//Obtenemos los datos en la precarga de alertas
+									$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+						 			$daoProductos->listarProductos(key($TiendasSession));
+						 			
+
+						 			//Obtenemos el listado de alertas para la vista alerta
+									$_SESSION["listadoProductos"] = serialize($daoProductos->result);
+
+									//redireccion a la pagina de proveedores
+									header("Location: ../_vistas/producto.php");
+									
 									break;
 								default:
 									echo "accion sent $accion, operacion sent '$operacion', unknown levelAccess ' ".$_SESSION["nivelAcceso"]." '";
@@ -133,7 +191,7 @@ switch ( $accion ) {
 				break;
 		}
 		break;
-//Direccionamiento de los enlaces en Pie y cabecera de las vistas ... on process
+//Direccionamiento de los enlaces en Pie y cabecera de las vistas 
 	case 'move':
 		//Recupera la operacion asociada a la accion de 'move'
 		$operacion = isset($_REQUEST["operacion"]) ? $_REQUEST["operacion"] : "" ;
@@ -225,7 +283,7 @@ switch ( $accion ) {
 				 	//Si no cumple ninguna de las condiciones, redirige al index
 				 	header("Location: ../index.php");
 				 }
-			break;
+				break;
 			case 'productos':
 			//Carga valores predeterminados para la vista de productos.Vista accesible a todos los usuarios
 				if (isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1 ){
@@ -237,7 +295,7 @@ switch ( $accion ) {
 				 		if($selectTienda){
 				 			//Lista los empleados que pertenezcan a una tienda determinada
 				 			//echo "Codigo Tienda Seleccionada : ".$selectTienda;
-				 			$daoProductos->listarproductos($selectTienda);
+				 			$daoProductos->listarProductos($selectTienda);
 				 			$_SESSION["selectTienda"] = $selectTienda;
 				 		}else{
 				 			//Si es la primera vez que el usuario se mueve a esta vista, cargara la unica tienda para usuarios [Gerente] y la primera tienda para usuarios [Administrador]
@@ -246,7 +304,7 @@ switch ( $accion ) {
 				 			$_SESSION["selectTienda"] = key($TiendasSession);
 				 		}
 
-				 		//Obtenemos el listado de empleados para la vista empleados
+				 		//Obtenemos el listado de productos para la vista producto
 						$_SESSION["listadoProductos"] = serialize($daoProductos->result);
 						//redireccion a la pagina de proveedores
 						header("Location: ../_vistas/producto.php");
@@ -257,6 +315,32 @@ switch ( $accion ) {
 				break;
 			case 'alertas':
 			//Carga valores predeterminados para la vista de alertas.Vista accesible a todos los usuarios
+					if (isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1 ){
+				 		//Instancia del modelo para alertas
+				 		$daoProductos = new daoProductos();
+				 		//Si se ha echo una seleccion de la tienda [solo administrador], recuperamos la clave enviada
+				 		$selectTienda = isset($_REQUEST["selectTienda"]) && !empty($_REQUEST["selectTienda"]) ? $_REQUEST["selectTienda"] : false ;
+				 		 
+				 		if($selectTienda){
+				 			//Lista los empleados que pertenezcan a una tienda determinada
+				 			//echo "Codigo Tienda Seleccionada : ".$selectTienda;
+				 			$daoProductos->alertaProductos($selectTienda);
+				 			$_SESSION["selectTienda"] = $selectTienda;
+				 		}else{
+				 			//Si es la primera vez que el usuario se mueve a esta vista, cargara la unica tienda para usuarios [Gerente] y la primera tienda para usuarios [Administrador]
+				 			$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+				 			$daoProductos->alertaProductos(key($TiendasSession));
+				 			$_SESSION["selectTienda"] = key($TiendasSession);
+				 		}
+
+				 		//Obtenemos el listado de empleados para la vista empleados
+						$_SESSION["listadoAlertas"] = serialize($daoProductos->result);
+						//redireccion a la pagina de proveedores
+						header("Location: ../_vistas/alertas.php");
+					}else{
+				 		//Si no cumple ninguna de las condiciones, redirige al index
+				 		header("Location: ../index.php");
+				 	}
 				break;
 			default:
 			echo "Accion sent: $accion, unknown destiny ' $to ' ";

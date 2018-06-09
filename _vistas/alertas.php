@@ -8,11 +8,13 @@ session_start();
 	<meta charset="UTF-8">
   <meta name="author" content="Jaime Matas Asensio">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-	<meta http-equiv="Last-Modified" content="0">
-	<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
-	<meta http-equiv="Pragma" content="no-cache">  
+  <?php 
+		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); 
+		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 
+		header("Cache-Control: no-store, no-cache, must-revalidate"); 
+		header("Cache-Control: post-check=0, pre-check=0", false); 
+		header("Pragma: no-cache"); 
+	?> 
   <link rel="icon" type="image/x-icon" href="../_recursos/img/Logo_Movil.jpg">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/estiloIndex.css">
@@ -20,16 +22,35 @@ session_start();
   <script type="text/javascript" src="../_recursos/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-	<?php include "cabeceraVistas.php"; ?>
+	<?php
+	include "cabeceraVistas.php";
+	require_once '../_entidad/classProducto.php';
+	require_once '../_web/imprForm.php';
+	?>
 	<div class="container-fluid">
 		<main class="container">
-			<h1>Sistema alertas</h1>
 			<?php
+			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
+				if( isset($_SESSION["nombreTienda"]) && !empty($_SESSION["nombreTienda"]) ){
+					if ($nivelAcc == "gen") {
+							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
+							echo "<h3>Sistema de alertas</h3>";
+					}
+					if ($nivelAcc == "emp") {
+							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
+							echo "<h3>Sistema de alertas</h3>";
+					}
+				}
+			}
+			
 			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 				$nivelAcc = $_SESSION["nivelAcceso"];
 				if ($nivelAcc == "adm") {
+					
+					echo "<h1>Sistema de alertas - Usuario Administrador</h1>";
+					
 					echo '<div class="row formulario formulario-crud" id="selectorTienda">';
-					echo '<form action="#" class="form-inline">';
+					echo '<form action="../_web/controller.php?accion=move&operacion=alertas" method="post" class="form-inline">';
 					echo '<div class="col-xs-12">';
 					echo '<fieldset>';
 					echo '<legend>Seleccionar tienda</legend>';
@@ -37,56 +58,51 @@ session_start();
 			    echo '<label class="sr-only" for="selectTienda">Tiendas</label>';
 			    echo '<select name="selectTienda" class="form-control" id="selectTienda">';
 		    	echo '<option value="">Tiendas</option>';
-		    	echo '<option value="codTienda">codTienda - Nombre Tienda</option>';
-		    	echo '<option value="codTienda">codTienda1 - Nombre Tienda1</option>';
-		    	echo '<option value="codTienda">codTienda2 - Nombre Tienda2</option>';
-		    	echo '<option value="codTienda">codTienda3 - Nombre Tienda3</option>';
+		    	$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+		    	$selectTienda = isset($_SESSION["selectTienda"]) && !empty($_SESSION["selectTienda"]) ? $_SESSION["selectTienda"] : -1;
+		    	foreach ($TiendasSession as $key => $value) {
+		    		if($key == $selectTienda){
+		    			echo '<option value="'.$key.'" selected> '.$key.' - '.$value.'</option>';
+
+		    		}else{
+		    			echo '<option value="'.$key.'"> '.$key.' - '.$value.'</option>';
+		    			
+		    		}
+		    	}
 			    echo '</select>';
 				  echo '</div>';
-				  echo '<button type="submit" class="btn btn-default">Ir a tienda</button>';
+				  echo '<button type="submit" class="btn btn-info">Ir a tienda</button>';
 					echo '</fieldset>';
 					echo '</div>';
 					echo '</form>';
 					echo '</div>';
 				}
 			}
+			//Murestra un formulario de seleccion de tiendas solo para el administrador
+			if(isset($_SESSION["listadoAlertas"])  && !empty($_SESSION["listadoAlertas"]) ){
+				
+				$productos = unserialize($_SESSION["listadoAlertas"]);
+				if($productos){
+					echo "<div class='row'>";
+					echo "<div class='col-xs-12'>";
+					echo '<blockquote>
+						  			<p class="bg-danger" id="NoResult"><span class="glyphicon glyphicon-alert"></span> Hay productos con stock minimo y/o agotados </p>
+								</blockquote>';
+					echo "</div'>";
+					for ($i=0; $i < count($productos); $i++) { 
+						imprAlertaProducto($productos[$i]);
+					}
+				}else{
+					echo "<div class='row'>";
+					echo "<div class='col-xs-12'>";
+					echo '<blockquote>
+						  			<p class="bg-primary" id="NoResult"><span class="glyphicon glyphicon-thumbs-up"></span> Sin alertas de Productos</p>
+								</blockquote>';
+					echo "</div'>";
+				}
+					
+			}
 			?>
-		<div class="row alertasProductos">
-			<h3 class="col-xs-12">Producto - 'codProducto'</h3>
-			<div class="col-xs-12 imgAlerta">
-				<div>
-					<img src="../_recursos/img/nuevoProducto.png" alt="Imagen de nuevo producto">
-				</div>
-			</div>
-			<div class="col-xs-12 itemAlerta">
-				<p class="text-info">Nombre: Nombre Producto</p>
-				<p class="text-info">Referencia: Nombre Producto</p>
-				<p class="text-info">Cantidad: Nombre Producto</p>
-				<p class="text-danger">Estado: Agotado</p>
-			</div>
-			<div class=" controlAlerta">
-				<button class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
-			</div>
-		</div>
-		
-		<div class="row alertasProductos">
-			<h3 class="col-xs-12">Producto - 'codProducto'</h3>
-			<div class="col-xs-12 imgAlerta">
-				<div>
-					<img src="../_recursos/img/nuevoProducto.png" alt="Imagen de nuevo producto">
-				</div>
-			</div>
-			<div class="col-xs-12 itemAlerta">
-				<p class="text-info">Nombre: Nombre Producto</p>
-				<p class="text-info">Referencia: Nombre Producto</p>
-				<p class="text-info">Cantidad: Nombre Producto</p>
-				<p class="text-warning">Estado: Pocas unidades</p>
-			</div>
-			<div class=" controlAlerta">
-				<button class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
-			</div>
-		</div>
-			
 
 		</main>
 	</div>

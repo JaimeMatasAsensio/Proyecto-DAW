@@ -168,6 +168,36 @@ require_once '../_web/imprForm.php';
     }
     //Funcion modelo de datos productos busqueda por precio devuelve un array de productos por result
 
+    public function alertaProductos($codTienda){
+      try {
+      $consulta = "SELECT * FROM producto_".$codTienda." WHERE cantidad < cantidadMin";
+      $param = array();
+      $this->con->ConsultaNormalAssoc($consulta, $param);
+      $this->result = array();
+        foreach ($this->con->datos as $fila){
+          $producto = new producto();   
+          $producto->__SET("codProducto", $fila['codProducto']);
+          $producto->__SET("referencia", $fila['referencia']);
+          $producto->__SET("nombre", $fila['nombre']);
+          $producto->__SET("descripcion", $fila['descripcion']);
+          $producto->__SET("precio", $fila['precio']);
+          $producto->__SET("IVA", $fila['IVA']);
+          $producto->__SET("descuento", $fila['descuento']);
+          $producto->__SET("cantidad", $fila['cantidad']);
+          $producto->__SET("cantidadMin", $fila['cantidadMin']);
+          $producto->__SET("nuevo", $fila['nuevo']);
+          $producto->__SET("foto", $fila['foto']);
+
+          $this->result[] = $producto;
+        }
+        $aux = $this->result;
+
+      }catch (Exception $e){
+        echo($e->getMessage());
+      }
+    }
+    //Funcion modelo de datos productos devuelve un array con los productos con cantidad menor a la cantidad minima por result
+
     public function eliminarProducto($codProducto,$codTienda){
       try {
       $consulta = "DELETE FROM producto_$codTienda WHERE codProducto = :codProducto";

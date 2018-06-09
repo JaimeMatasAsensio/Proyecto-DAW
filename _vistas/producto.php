@@ -8,11 +8,13 @@ session_start();
 	<meta charset="UTF-8">
   <meta name="author" content="Jaime Matas Asensio">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-	<meta http-equiv="Last-Modified" content="0">
-	<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
-	<meta http-equiv="Pragma" content="no-cache"> 
+  <?php 
+		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); 
+		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 
+		header("Cache-Control: no-store, no-cache, must-revalidate"); 
+		header("Cache-Control: post-check=0, pre-check=0", false); 
+		header("Pragma: no-cache"); 
+	?> 
   <link rel="icon" type="image/x-icon" href="../_recursos/img/Logo_Movil.jpg">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/estiloIndex.css">
@@ -27,11 +29,23 @@ session_start();
 	?>
 	<div class="container-fluid">
 		<main class="container">
-			<h1>Control de Productos</h1>
 			<?php
+			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
+				if( isset($_SESSION["nombreTienda"]) && !empty($_SESSION["nombreTienda"]) ){
+					if ($nivelAcc == "gen") {
+							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
+							echo "<h3>Gestion Productos</h3>";
+					}
+					if ($nivelAcc == "emp") {
+							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
+							echo "<h3>Gestion Productos</h3>";
+					}
+				}
+			}
 			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 				$nivelAcc = $_SESSION["nivelAcceso"];
 				if ($nivelAcc == "adm") {
+					echo "<h1>Gestion Proveedores - Usuario Administrador</h1>";
 					echo '<div class="row formulario formulario-crud" id="selectorTienda">';
 					echo '<form action="../_web/controller.php?accion=move&operacion=productos" method="post" class="form-inline">';
 					echo '<div class="col-xs-12">';
@@ -54,7 +68,7 @@ session_start();
 		    	}
 			    echo '</select>';
 				  echo '</div>';
-				  echo '<button type="submit" class="btn btn-default">Ir a tienda</button>';
+				  echo '<button type="submit" class="btn btn-info">Ir a tienda</button>';
 					echo '</fieldset>';
 					echo '</div>';
 					echo '</form>';
@@ -84,7 +98,7 @@ session_start();
 						    <label class="sr-only" for="busqueda">Buscar</label>
 						    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						  </div>
-						  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+						  <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
 							</div>						
 						</fieldset>
 					</div>
@@ -121,8 +135,8 @@ session_start();
 							    <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia">
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="precio" class="hidden-xs">Precio</label>
-							    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio">
+							    <label for="precio" class="hidden-xs">Precio (€)</label>
+							    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio (€)">
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
 							    <label for="IVA" class="hidden-xs">IVA</label>

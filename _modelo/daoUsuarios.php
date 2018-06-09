@@ -1,14 +1,10 @@
 <?php
-
 require_once '../_entidad/classUsuario.php';
 require_once '../_conexion/libreria_PDO.php';
-
  class daoUsuarios{
  
     private $con;    //Propiedad para guardar el objeto conexion
-
     public $result = array();  //Array de objetos para devolver el resultado
-
     public function __CONSTRUCT(){
       try{
         $this->con = new BD();
@@ -16,8 +12,7 @@ require_once '../_conexion/libreria_PDO.php';
         die($e->getMessage());
       }
     }
-	  //Funcion constructor del modelos de datos de usuario
-
+    //Funcion constructor del modelos de datos de usuario
     public function listarUsuarios(){
       try {
       $consulta = "SELECT * FROM usuario WHERE 1";
@@ -38,7 +33,6 @@ require_once '../_conexion/libreria_PDO.php';
       }
     }
     //Funcion modelo de datos usuario lista usuarios, devuelve un array de objetos por result
-
     public function buscarUsuario($codUsuario){
       try {
         $consulta = "SELECT * FROM usuario WHERE codUsuario = :codUsuario";
@@ -52,18 +46,15 @@ require_once '../_conexion/libreria_PDO.php';
           $usuario->__SET("password", $fila['password']);
           $usuario->__SET("email", $fila['email']);
           $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
-
           return $usuario;
         }else{
           return false;
         }
-
       }catch (Exception $e){
         echo($e->getMessage());
       }  
     }
     //Funcion modelo de datos usuario busqueda por clave, devuelve un objeto por return
-
     public function buscarUsuarioPorNombre($nombre){
       try {
         $consulta = "SELECT * FROM usuario WHERE nombre LIKE :nombre";
@@ -77,18 +68,15 @@ require_once '../_conexion/libreria_PDO.php';
           $usuario->__SET("password", $fila['password']);
           $usuario->__SET("email", $fila['email']);
           $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
-
           return $usuario;
         }else{
           return false;
         }
-
       }catch (Exception $e){
         echo($e->getMessage());
       }  
     }
     //Funcion modelo de datos usuario busqueda por nombre, devuelve un array de objetos por result
-
     public function buscarUsuarioPorEmail($email){
       try {
         $consulta = "SELECT * FROM usuario WHERE email = :email";
@@ -102,18 +90,15 @@ require_once '../_conexion/libreria_PDO.php';
           $usuario->__SET("password", $fila['password']);
           $usuario->__SET("email", $fila['email']);
           $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
-
           return $usuario;
         }else{
           return false;
         }
-
       }catch (Exception $e){
         echo($e->getMessage());
       }  
     }
     //Funcion modelo de datos usuario busqueda por email, devuelve un objeto por return
-
     public function eliminarUsuario($codUsuario){
       try {
       $consulta = "DELETE FROM usuario WHERE codUsuario = :codUsuario";
@@ -125,7 +110,6 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
     //Funcion modelo de datos usuario elimina por clave
-
     public function insertarUsuario($obj){
       try {
       $consulta = "INSERT INTO usuario(codUsuario, nombre, password, email, nivelAcceso) VALUES (?,?,?,?,?,?,?,?)";
@@ -143,7 +127,6 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
     //Funcion modelo de datos usuario inserta un nuevo registro
-
     public function actualizarUsuario($obj){
       try {
       $consulta = "UPDATE articulos SET nombre=?,password=?,email=?,nivelAcceso=? WHERE codUsuario=?";

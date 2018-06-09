@@ -12,15 +12,30 @@
 		if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 			$nivelAcc = $_SESSION["nivelAcceso"];
 			if ($nivelAcc == "adm") {
-					echo "<ul>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=usuarios'>Usuarios</a></li>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=empleados'>Empleados</a></li>";
-					echo "<li><a href='../_vistas/alertas.php'>Alertas</a></li>";
-					echo "</ul>";
-				}
+				echo "<ul>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=usuarios'>Usuarios</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=empleados'>Empleados</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
+				echo "</ul>";
+			}
+			if ($nivelAcc == "gen") {
+				echo "<ul>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=empleados'>Empleados</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
+				echo "</ul>";
+			}
+			if ($nivelAcc == "emp") {
+				echo "<ul>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
+				echo "</ul>";
+			}
 		}
 		?>
 		</div>
@@ -32,6 +47,12 @@
 
 				if ($nivelAcc == "adm") {
 					echo "<p>Usuario: Administrador</p>";
+				}
+				if ($nivelAcc == "gen") {
+					echo "<p>Usuario: Gerente</p>";
+				}
+				if ($nivelAcc == "emp") {
+					echo "<p>Usuario: Trabajador</p>";
 				}
 				echo "<form action='../_web/controller.php?accion=login&operacion=logoff' method='post'>";
 				echo '<input type="submit" id="cerrarSession" class="btn btn-info" value="Cerrar Session">';
@@ -57,15 +78,30 @@
 		//Segun el nivel de acceso se limitaran unas opciones u otras en los menus de navegacion para movil
 		if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 			if ($nivelAcc == "adm") {
-					echo "<ul>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=usuarios'>Usuarios</a></li>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=empleados'>Empleados</a></li>";
-					echo "<li><a href='../_vistas/alertas.php'>Alertas</a></li>";
-					echo "</ul>";
-				}
+				echo "<ul>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=usuarios'>Usuarios</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=empleados'>Empleados</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
+				echo "</ul>";
+			}
+			if ($nivelAcc == "gen") {
+				echo "<ul>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=empleados'>Empleados</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
+				echo "</ul>";
+			}
+			if ($nivelAcc == "emp") {
+				echo "<ul>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
+				echo "</ul>";
+			}
 		}
 		?>
 	</div>

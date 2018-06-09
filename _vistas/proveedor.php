@@ -29,11 +29,24 @@ session_start();
 	?>
 	<div class="container-fluid">
 		<main class="container">
-			<h1>Control de Proveedores</h1>
 			<?php
+			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
+				if( isset($_SESSION["nombreTienda"]) && !empty($_SESSION["nombreTienda"]) ){
+					if ($nivelAcc == "gen") {
+							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
+							echo "<h3>Gestion Proveedores</h3>";
+					}
+					if ($nivelAcc == "emp") {
+							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
+							echo "<h3>Gestion Proveedores</h3>";
+					}
+				}
+			}
+
 			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 				$nivelAcc = $_SESSION["nivelAcceso"];
 				if ($nivelAcc == "adm") {
+					echo "<h1>Gestion Proveedores - Usuario Administrador</h1>";
 					echo '<div class="row formulario formulario-crud" id="selectorTienda">';
 					echo '<form action="../_web/controller.php?accion=move&operacion=proveedores" method="post" class="form-inline">';
 					echo '<div class="col-xs-12">';
@@ -56,7 +69,7 @@ session_start();
 		    	}
 			    echo '</select>';
 				  echo '</div>';
-				  echo '<button type="submit" class="btn btn-default">Ir a tienda</button>';
+				  echo '<button type="submit" class="btn btn-info">Ir a tienda</button>';
 					echo '</fieldset>';
 					echo '</div>';
 					echo '</form>';
@@ -82,7 +95,7 @@ session_start();
 							    <label class="sr-only" for="busqueda">Buscar</label>
 							    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 							  </div>
-							  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+							  <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
 						</div>
 						</fieldset>
 					</div>

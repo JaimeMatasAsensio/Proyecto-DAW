@@ -5,15 +5,30 @@
 		if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 			$nivelAcc = $_SESSION["nivelAcceso"];
 			if ($nivelAcc == "adm") {
-					echo "<ul>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
-					echo "<li><a href='../_web/controller.php?accion=move&operacion=usuarios'>Usuarios</a></li>";
-					echo "<li><a href='../_vistas/producto.php'>Productos</a></li>";
-					echo "<li><a href='../_vistas/proveedor.php'>Proveedores</a></li>";
-					echo "<li><a href='../_vistas/empleado.php'>Empleados</a></li>";
-					echo "<li><a href='../_vistas/alertas.php'>Alertas</a></li>";
-					echo "</ul>";
-				}
+				echo "<ul>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=usuarios'>Usuarios</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=empleados'>Empleados</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
+				echo "</ul>";
+			}
+			if ($nivelAcc == "gen") {
+				echo "<ul>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=empleados'>Empleados</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
+				echo "</ul>";
+			}
+			if ($nivelAcc == "emp") {
+				echo "<ul>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=proveedores'>Proveedores</a></li>";
+				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
+				echo "</ul>";
+			}
 		}
 		?>
 		</div>

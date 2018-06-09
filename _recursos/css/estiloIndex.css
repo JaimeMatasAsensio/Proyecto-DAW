@@ -113,7 +113,7 @@ header div{
 		min-width:20%;
 		min-height: 48.3px;
 		text-align: center;
-		border:2px solid rgba(236, 25, 113, 1);
+		border:2px solid white;
 	}
 	#menuEscritorio ul li a{
 		display: inline-block;

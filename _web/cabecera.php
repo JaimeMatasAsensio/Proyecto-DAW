@@ -8,8 +8,8 @@
 		</div>
 		<div id="menuEscritorio" class="hidden-xs">
 			<ul>
-				<li><a href="#cont1">¿Que es ShopSphere?</a></li>
-				<li><a href="#cont2">Ventajas ShopSphere</a></li>
+				<li><a href="#cont1">ShopSphere</a></li>
+				<li><a href="#cont2">Ventajas</a></li>
 				<li><a href="#cont3">Suscripciones</a></li>
 				<li><a href="#cont4">¡¡¡Registrate!!!</a></li>
 			</ul>

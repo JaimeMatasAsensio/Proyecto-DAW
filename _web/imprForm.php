@@ -352,8 +352,8 @@ echo '<div class="row formulario formulario-crud">
 				    <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia" value="'.$obj->__GET("referencia").'" disabled>
 				  </div>
 				  <div class="form-group col-xs-12 col-sm-4">
-				    <label for="precio" class="hidden-xs">Precio</label>
-				    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio" value="'.$obj->__GET("precio").'" disabled>
+				    <label for="precio" class="hidden-xs">Precio (€)</label>
+				    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio (€)" value="'.$obj->__GET("precio").'" disabled>
 				  </div>
 					<div class="form-group col-xs-12 col-sm-4">
 				    <label for="IVA" class="hidden-xs">IVA</label>
@@ -407,4 +407,41 @@ echo '<div class="row formulario formulario-crud">
 </div>';
 }
 //Funcion para la impresion del formulario de producto pasando un objeto php
+
+function imprAlertaProducto($obj){
+	echo'<div class="row alertasProductos">
+			<h3 class="col-xs-12">Producto - \''.$obj->__GET("codProducto").'\' - '.$obj->__GET("referencia").'</h3>
+			<div class="col-xs-12 imgAlerta">
+				<div>';
+				if( !empty($obj->__GET("foto")) ){
+					echo '<img src="../_recursos/img/nuevoProducto.png" alt="Imagen de nuevo producto">';
+				}else{
+					//Tratamiento de Imagenes... BUILDING...
+					echo '<img src="../_recursos/img/nuevoProducto.png" alt="Imagen de nuevo producto">';
+				}
+	echo '</div>
+			</div>
+			<div class="col-xs-12 itemAlerta">
+				<p class="bg-primary">Nombre:<span class="dataAlert"> '.$obj->__GET("nombre").' </span> </p>
+				<p class="bg-primary">Precio:<span class="dataAlert"> '.$obj->__GET("precio").' €  </span></p>
+				<p class="bg-primary">I.V.A :<span class="dataAlert"> '.($obj->__GET("IVA") * 100).' %  </span></p>
+				<p class="bg-primary">Descuento:<span class="dataAlert"> '.($obj->__GET("descuento") * 100).' %  </span> <span class=dataAlert></p>';
+				if($obj->__GET("nuevo")){
+	echo	'<p class="bg-primary">Estado:<span class="dataAlert"> Nuevo producto </span></p>';							
+				}
+				if($obj->__GET("cantidad") == 0){
+	echo	'<p class="text-danger">Estado:<span class="dataAlertDanger"> Agotado </span></p>';
+				}
+				if($obj->__GET("cantidad") < $obj->__GET("cantidadMin")){
+	echo	'<p class="text-danger">Estado: Quedan <span class="dataAlertDanger">'.$obj->__GET("cantidad").'</span> unidades</p>';
+				}
+				
+	echo '</div>
+			<div class=" controlAlerta">
+				<button class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
+			</div>
+		</div>';
+}
+//Funcion para la impresion de las alertas de un producto que tenga cantidad menor a la cantidad minima puesta
+
 ?>

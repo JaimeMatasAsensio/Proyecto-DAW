@@ -45,11 +45,16 @@ $(document).ready(function(){
 		$( this ).parent().prev().show();
 		
 	});
-	//Efecto para ocultar los controles de modificacion 
+	//Efecto para ocultar los controles de modificacion
+
 	$(".formulario-crud input[type='file']").change(function(){
 		var filename = $(this).val().split('\\').pop();
 		var idname = $(this).attr('id');
 		$('span.'+idname).next().find('span').html(filename);
 	 });
+	//Enmascaramiento del input file
+	//Estilos, y funcion JQuery obtenidas de la siguiente pagina : https://www.somoswaka.com/blog/2017/10/cambiar-estilo-al-input-typefile-formulario/
+
+
 
 });//Fin documentReady

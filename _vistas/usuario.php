@@ -49,7 +49,7 @@ session_start();
 						    <label class="sr-only" for="busqueda">Buscar</label>
 						    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						  </div>
-						  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+						  <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
 							</div>
 						</fieldset>
 					</div>

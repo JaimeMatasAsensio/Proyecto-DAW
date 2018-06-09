@@ -84,7 +84,7 @@ class BD {
 			{
 				$this->datos[] = $fila;
 			}
-
+				
 		}catch(PDOException $e) {
     	//Muestra un error en caso de fallar la conexion
       echo "    <p>Error: Fallo en la consulta!</p>";
