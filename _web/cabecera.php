@@ -15,7 +15,7 @@
 			</ul>
 		</div>
 		<div id="login">
-			<form action="_web/controller.php?accion=login" method="post">
+			<form action="_web/controller.php?accion=login&operacion=doLogin" method="post">
 				<input type="submit" name="login" value="Inicia Sesion" class="btn btn-success">
 			</form>	
 		</div>

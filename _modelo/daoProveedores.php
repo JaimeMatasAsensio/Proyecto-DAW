@@ -3,7 +3,7 @@
 require_once '../_entidad/classProveedor.php';
 require_once '../_conexion/libreria_PDO.php';
 
- class daoProveedor{
+ class daoProveedores{
  
     private $con;    //Propiedad para guardar el objeto conexion
 
@@ -17,40 +17,47 @@ require_once '../_conexion/libreria_PDO.php';
       }
     }
 	 
-    public function listarProveedores(){
+    public function listarProveedores($codTienda){
       try {
-      $consulta = "SELECT * FROM usuario WHERE 1";
+      $consulta = "SELECT * FROM proveedor_".$codTienda." WHERE 1";
       $param = array();
       $this->con->ConsultaNormalAssoc($consulta, $param);
       $this->result = array();
         foreach ($this->con->datos as $fila){
-          $usuario = new usuario();   
-          $usuario->__SET("codUsuario", $fila['codUsuario']);
-          $usuario->__SET("nombre", $fila['nombre']);
-          $usuario->__SET("password", $fila['password']);
-          $usuario->__SET("email", $fila['email']);
-          $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
+          $proveedor = new proveedor();   
+          $proveedor->__SET("codProveedor", $fila['codProveedor']);
+          $proveedor->__SET("nombre", $fila['nombre']);
+          $proveedor->__SET("nombreContacto", $fila['nombreContacto']);
+          $proveedor->__SET("apellido1Contacto", $fila['apellido1Contacto']);
+          $proveedor->__SET("apellido2Contacto", $fila['apellido2Contacto']);
+          $proveedor->__SET("telefono", $fila['telefono']);
+          $proveedor->__SET("movil", $fila['movil']);
+          $proveedor->__SET("email", $fila['email']);
+          $this->result[] = $proveedor;
         }
+
       }catch (Exception $e){
         echo($e->getMessage());
       }
     }
 
-    public function buscarUsuario($codUsuario){
+    public function buscarProveedor($codProveedor,$codTienda){
       try {
-        $consulta = "SELECT * FROM usuario WHERE codUsuario = :codUsuario";
-        $param = array(":codUsuario" => $codUsuario);
+        $consulta = "SELECT * FROM proveedor_$codTienda WHERE codProveedor = :codProveedor";
+        $param = array(":codProveedor" => $codProveedor);
         $this->con->ConsultaNormalAssoc($consulta, $param);
         $fila = $this->con->datos[0];
         if(!empty($fila)){
-          $usuario = new usuario();   
-          $usuario->__SET("codUsuario", $fila['codUsuario']);
-          $usuario->__SET("nombre", $fila['nombre']);
-          $usuario->__SET("password", $fila['password']);
-          $usuario->__SET("email", $fila['email']);
-          $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
-
-          return $usuario;
+          $proveedor = new proveedor();   
+          $proveedor->__SET("codProveedor", $fila['codProveedor']);
+          $proveedor->__SET("nombre", $fila['nombre']);
+          $proveedor->__SET("nombreContacto", $fila['nombreContaco']);
+          $proveedor->__SET("apellido1Contacto", $fila['apellido1Contacto']);
+          $proveedor->__SET("apellido2Contacto", $fila['apellido2Contacto']);
+          $proveedor->__SET("telefono", $fila['telefono']);
+          $proveedor->__SET("movil", $fila['movil']);
+          $proveedor->__SET("email", $fila['email']);
+          return $proveedor;
         }else{
           return false;
         }
@@ -60,21 +67,24 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
 
-    public function buscarUsuarioPorNombre($nombre){
+    public function buscarProveedorPorNombre($nombre,$codTienda){
       try {
-        $consulta = "SELECT * FROM usuario WHERE nombre = :nombre";
+        $consulta = "SELECT * FROM proveedor_$codTienda WHERE nombre LIKE %:nombre%";
         $param = array(":nombre" => $nombre);
         $this->con->ConsultaNormalAssoc($consulta, $param);
         $fila = $this->con->datos[0];
         if(!empty($fila)){
-          $usuario = new usuario();   
-          $usuario->__SET("codUsuario", $fila['codUsuario']);
-          $usuario->__SET("nombre", $fila['nombre']);
-          $usuario->__SET("password", $fila['password']);
-          $usuario->__SET("email", $fila['email']);
-          $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
+          $proveedor = new proveedor();   
+          $proveedor->__SET("codProveedor", $fila['codProveedor']);
+          $proveedor->__SET("nombre", $fila['nombre']);
+          $proveedor->__SET("nombreContacto", $fila['nombreContaco']);
+          $proveedor->__SET("apellido1Contacto", $fila['apellido1Contacto']);
+          $proveedor->__SET("apellido2Contacto", $fila['apellido2Contacto']);
+          $proveedor->__SET("telefono", $fila['telefono']);
+          $proveedor->__SET("movil", $fila['movil']);
+          $proveedor->__SET("email", $fila['email']);
+          return $proveedor;
 
-          return $usuario;
         }else{
           return false;
         }
@@ -84,21 +94,23 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
 
-    public function buscarUsuarioPorEmail($email){
+    public function buscarProveedorPorEmail($email,$codTienda){
       try {
-        $consulta = "SELECT * FROM usuario WHERE email = :email";
+        $consulta = "SELECT * FROM proveedor_$codTienda WHERE email LIKE %:email%";
         $param = array(":email" => $email);
         $this->con->ConsultaNormalAssoc($consulta, $param);
         $fila = $this->con->datos[0];
         if(!empty($fila)){
-          $usuario = new usuario();   
-          $usuario->__SET("codUsuario", $fila['codUsuario']);
-          $usuario->__SET("nombre", $fila['nombre']);
-          $usuario->__SET("password", $fila['password']);
-          $usuario->__SET("email", $fila['email']);
-          $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
-
-          return $usuario;
+          $proveedor = new proveedor();   
+          $proveedor->__SET("codProveedor", $fila['codProveedor']);
+          $proveedor->__SET("nombre", $fila['nombre']);
+          $proveedor->__SET("nombreContacto", $fila['nombreContaco']);
+          $proveedor->__SET("apellido1Contacto", $fila['apellido1Contacto']);
+          $proveedor->__SET("apellido2Contacto", $fila['apellido2Contacto']);
+          $proveedor->__SET("telefono", $fila['telefono']);
+          $proveedor->__SET("movil", $fila['movil']);
+          $proveedor->__SET("email", $fila['email']);
+          return $proveedor;
         }else{
           return false;
         }
@@ -108,10 +120,10 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
 
-    public function eliminarUsuario($codUsuario){
+    public function eliminarProveedor($codProveedor,$codTienda){
       try {
-      $consulta = "DELETE FROM usuario WHERE codUsuario = :codUsuario";
-      $param = array(":codUsuario" => $codUsuario);
+      $consulta = "DELETE FROM proveedor_$codTienda WHERE codProveedor = :codProveedor";
+      $param = array(":codProveedor" => $codProveedor);
       $this->result = $this->con->ConsultaSimple($consulta, $param);
       
       }catch (Exception $e){
@@ -119,15 +131,19 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
     
-    public function insertarUsuario($obj){
+    public function insertarProveedor($obj,$codTienda){
       try {
-      $consulta = "INSERT INTO usuario(codUsuario, nombre, password, email, nivelAcceso) VALUES (?,?,?,?,?,?,?,?)";
+      $consulta = "INSERT INTO proveedor_$codTienda(codProveedor, nombre, nombreContacto, apellido1Contacto, apellido2Contacto, telefono, movil,email) VALUES (?,?,?,?,?,?,?,?)";
       $param = array(
-        $obj->__GET("codUsuario"),
+        $obj->__GET("codProveedor"),
         $obj->__GET("nombre"),
-        $obj->__GET("password"),
-        $obj->__GET("email"),
-        $obj->__GET("nivelAcceso"),
+        $obj->__GET("nombreContacto"),
+        $obj->__GET("apellido1Contacto"),
+        $obj->__GET("apellido2Contacto"),
+        $obj->__GET("telefono"),
+        $obj->__GET("movil"),
+        $obj->__GET("email")
+
       );
       $this->result = $this->con->ConsultaSimple($consulta, $param);
       
@@ -136,15 +152,19 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
 
-    public function actualizarUsuario($obj){
+    public function actualizarProveedor($obj,$codTienda){
       try {
-      $consulta = "UPDATE articulos SET nombre=?,password=?,email=?,nivelAcceso=? WHERE codUsuario=?";
+      $consulta = "UPDATE proveedor_$codTienda SET nombre=?,nombreContacto=?, apellido1Contacto=?, apellido2Contacto=?, telefono=?, movil=?, email=? WHERE codProveedor=?";
       $param = array(
         $obj->__GET("nombre"),
-        $obj->__GET("password"),
+        $obj->__GET("nombreContacto"),
+        $obj->__GET("apellido1Contacto"),
+        $obj->__GET("apellido2Contacto"),
+        $obj->__GET("telefono"),
+        $obj->__GET("movil"),
         $obj->__GET("email"),
-        $obj->__GET("nivelAcceso"),
-        $obj->__GET("codUsuario")
+        $obj->__GET("codProveedor")
+
       );
       $this->result = $this->con->ConsultaSimple($consulta, $param);
       

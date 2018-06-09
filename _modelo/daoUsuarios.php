@@ -30,6 +30,7 @@ require_once '../_conexion/libreria_PDO.php';
           $usuario->__SET("password", $fila['password']);
           $usuario->__SET("email", $fila['email']);
           $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
+          $this->result[] = $usuario;
         }
       }catch (Exception $e){
         echo($e->getMessage());

@@ -15,7 +15,7 @@ function doLogin(){
 
 function cancelLogin(){
   console.log("no hago login");
-  window.location.href = "../index.php";
+  window.location.href = "../_web/controller.php?accion=login&operacion=logoff";
 }
 /*Funcion que cancela el login y envia al usuario a la pagina principal*/
 

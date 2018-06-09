@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es-ES">
 <head>
@@ -23,7 +26,7 @@
 	<div class="container-fluid">
 		<main class="container">
 			<div class="row formulario" id="formularioLogin">
-				<form action="../_web/controller.php?accion=doLogin" method="post">
+				<form action="../_web/controller.php?accion=login&operacion=validarLogin" method="post">
 					<div class="col-xs-12 col-sm-12">
 						<fieldset>
 							<legend>Acceso ShopSphere</legend>
@@ -42,7 +45,7 @@
 						<a href="#">¿Olvido su usuario?</a>
 					</div>
 					<?php
-					if(isset($_SESSION["logDone"]) && $_SESSION["logDone"] == 0){
+					if(isset($_SESSION["logDone"]) && $_SESSION["logDone"] == -1){
 						echo "<div class='col-xs-12' id='infoLogin'>";
 						echo "<p class='text-danger'>Usuario y contraseña incorrectos</p>";
 						echo "</div>";

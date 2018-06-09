@@ -6,8 +6,8 @@
 			$nivelAcc = $_SESSION["nivelAcceso"];
 			if ($nivelAcc == "adm") {
 					echo "<ul>";
-					echo "<li><a href='../_vistas/tienda.php'>Tiendas</a></li>";
-					echo "<li><a href='../_vistas/usuario.php'>Usuarios</a></li>";
+					echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
+					echo "<li><a href='../_web/controller.php?accion=move&operacion=usuarios'>Usuarios</a></li>";
 					echo "<li><a href='../_vistas/producto.php'>Productos</a></li>";
 					echo "<li><a href='../_vistas/proveedor.php'>Proveedores</a></li>";
 					echo "<li><a href='../_vistas/empleado.php'>Empleados</a></li>";

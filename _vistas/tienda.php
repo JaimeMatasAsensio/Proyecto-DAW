@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es-ES">
 <head>
@@ -148,12 +151,12 @@
 						}
 						break;
 					case 'object':
-						imprFormTienda($tiendas);
+						 imprFormTienda($tiendas);
 						
 						break;
 					
 					default:
-						# code...
+						echo "¿?";
 						break;
 				}
 				

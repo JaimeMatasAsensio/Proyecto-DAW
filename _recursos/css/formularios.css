@@ -30,8 +30,9 @@ rgba(244, 103, 59, 1)
 	border-bottom-right-radius: 5px;
 }
 input#cerrarSession{
-	padding: 3px 13px;
+	padding: 1px 13px;
 }
+
 /*Estilo para formularios*/
 h1{
 	font-size: 20px;
@@ -261,9 +262,46 @@ div.confMod.col-xs-6 button{
 	border-bottom-right-radius: 5px;
 }
 
+/*Estilo cabeceraVistas*/
+#menuEscritorio ul li {
+    min-width: 48px;
+    min-height: initial;
+}
+
+#credenciales{
+	display: inline-block;
+	padding: 5px;
+	text-align: center;
+	background-color: white;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	height: 50px;
+}
+
+#credenciales p{
+	text-align: left;
+	color: black;
+	font-weight: bold;
+
+	margin-bottom: 2px;
+	font-size: 12px;
+}
+
+#credenciales button{
+	margin: 0px auto;
+	font-size: 12px;
+	margin-top: 0px;
+	padding: 1px;
+}
 
 /* media queries para formularios*/
 @media (min-width: 768px){
+	#credenciales{
+		height: 72px;
+	}
+	input#cerrarSession{
+		padding: 3px 13px;
+	}
 	.formulario{
 		width: 80%;
 		border-top-left-radius: 15px;
@@ -304,39 +342,6 @@ div.confMod.col-xs-6 button{
 
 @media (min-width: 1200px){
 	
-}
-
-
-
-/*Estilo cabeceraVistas*/
-#menuEscritorio ul li {
-    min-width: 48px;
-    min-height: initial;
-}
-
-#credenciales{
-	display: inline-block;
-	padding: 5px;
-	text-align: center;
-	background-color: white;
-	border-top-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	height: 68px;
-}
-
-#credenciales p{
-	text-align: left;
-	color: black;
-	font-weight: bold;
-	margin-bottom: 10px;
-	font-size: 12px;
-}
-
-#credenciales button{
-	margin: 0px auto;
-	font-size: 12px;
-	margin-top: 0px;
-	padding: 2px;
 }
 
 @media (min-width: 768px){
