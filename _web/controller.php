@@ -17,6 +17,7 @@ require_once "../_modelo/daoUsuarios.php";
 require_once "../_modelo/daoTiendas.php";
 require_once "../_modelo/daoProveedores.php";
 require_once "../_modelo/daoEmpleados.php";
+require_once "../_modelo/daoProductos.php";
 
 /*controlador*/
 
@@ -138,23 +139,23 @@ switch ( $accion ) {
 		$operacion = isset($_REQUEST["operacion"]) ? $_REQUEST["operacion"] : "" ;
 		//Direccionamientos segun la operacion para la accion de 'move'
 		switch ($operacion) {
-			//Carga de valores predeterminados para la vista de tiendas. Vista exclusiva del administrador
 			case 'tiendas': 
+			//Carga de valores predeterminados para la vista de tiendas. Vista exclusiva del administrador
 				 //Si el login es existe, no esta vacio y es igual a '1' (login correcto)
-				 if (isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1 ){
+				  if (isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1 ){
 				 		$daoTienda = new daoTiendas();
 						$daoTienda->listarTiendas();
 						$tiendas = $daoTienda->result;
 						$_SESSION["listadoTiendas"] = serialize($tiendas);
 						//redireccion a la pagina de tiendas
 						header("Location: ../_vistas/tienda.php");
-				 }else{
-				 	//Si no cumple ninguna de las condiciones, redirige al index
-				 	header("Location: ../index.php");
-				 }
+				  }else{
+				 		//Si no cumple ninguna de las condiciones, redirige al index
+				 		header("Location: ../index.php");
+				  }
 				break;
-			//Carga de valores predeterminados para la vista de usuarios. Vista exclusiva del administrador
 			case 'usuarios':
+			//Carga de valores predeterminados para la vista de usuarios. Vista exclusiva del administrador
 				if (isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1 ){
 				 		$daoUsuarios = new daoUsuarios();
 						$daoUsuarios->listarUsuarios();
@@ -168,12 +169,26 @@ switch ( $accion ) {
 				 }
 				break;
 			case 'empleados':
+			//Carga de valores predeterminados para la vista de empleados. Vista accesible a usuarios 'Administrador' y 'Gerente'
 				if (isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1 ){
+				 		//Instancia del modelo para empleados
 				 		$daoEmpleados = new daoEmpleados();
-				 		//Desserializa $_SESSION["codTiendas"] para saber si es un array
-				 		$TiendasSession = unserialize($_SESSION["TIENDAS"]);
-				 		$daoEmpleados->listarEmpleados(key($TiendasSession));
+				 		//Si se ha echo una seleccion de la tienda [solo administrador], recuperamos la clave enviada
+				 		$selectTienda = isset($_REQUEST["selectTienda"]) && !empty($_REQUEST["selectTienda"]) ? $_REQUEST["selectTienda"] : false ;
+				 		 
+				 		if($selectTienda){
+				 			//Lista los empleados que pertenezcan a una tienda determinada
+				 			//echo "Codigo Tienda Seleccionada : ".$selectTienda;
+				 			$daoEmpleados->listarEmpleados($selectTienda);
+				 			$_SESSION["selectTienda"] = $selectTienda;
+				 		}else{
+				 			//Si es la primera vez que el usuario se mueve a esta vista, cargara la unica tienda para usuarios [Gerente] y la primera tienda para usuarios [Administrador]
+				 			$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+				 			$daoEmpleados->listarEmpleados(key($TiendasSession));
+				 			$_SESSION["selectTienda"] = key($TiendasSession);
+				 		}
 
+				 		//Obtenemos el listado de empleados para la vista empleados
 						$_SESSION["listadoEmpleados"] = serialize($daoEmpleados->result);
 						//redireccion a la pagina de proveedores
 						header("Location: ../_vistas/empleado.php");
@@ -183,14 +198,26 @@ switch ( $accion ) {
 				 }	
 				break;
 			case 'proveedores':
-			//Carga de valores predeterminados para la vista de proveedores. Vista accesible a usuarios 'Gerente' y 'Empleado'
+			//Carga de valores predeterminados para la vista de proveedores. Vista accesible a usuarios todos los usuarios
 				if (isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1 ){
 				 		$daoProveedores = new daoProveedores();
 				 		//Desserializa $_SESSION["codTiendas"] para saber si es un array
 				 		$TiendasSession = unserialize($_SESSION["TIENDAS"]);
-				 		//
-				 		$daoProveedores->listarProveedores(key($TiendasSession));
-						$_SESSION["listadoProveedores"] = serialize($daoProveedores->result);
+				 		//Si se ha echo una seleccion de la tienda [solo administrador], recuperamos la clave enviada
+				 		$selectTienda = isset($_REQUEST["selectTienda"]) && !empty($_REQUEST["selectTienda"]) ? $_REQUEST["selectTienda"] : false ;
+				 		if ($selectTienda){
+				 			//Lista los empleados que pertenezcan a una tienda determinada
+				 			//echo "Codigo Tienda Seleccionada : ".$selectTienda;
+				 			$daoProveedores->listarProveedores($selectTienda);
+				 			$_SESSION["listadoProveedores"] = serialize($daoProveedores->result);
+				 			$_SESSION["selectTienda"] = $selectTienda;
+				 		}else{
+				 			//Si es la primera vez que el usuario se mueve a esta vista, cargara la unica tienda para usuarios [Gerente] y la primera tienda para usuarios [Administrador]
+					 		$daoProveedores->listarProveedores(key($TiendasSession));
+							$_SESSION["listadoProveedores"] = serialize($daoProveedores->result);
+							$_SESSION["selectTienda"] = key($TiendasSession);
+				 		}
+
 						//redireccion a la pagina de proveedores
 						header("Location: ../_vistas/proveedor.php");
 						
@@ -200,10 +227,36 @@ switch ( $accion ) {
 				 }
 			break;
 			case 'productos':
-				
+			//Carga valores predeterminados para la vista de productos.Vista accesible a todos los usuarios
+				if (isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1 ){
+				 		//Instancia del modelo para productos
+				 		$daoProductos = new daoProductos();
+				 		//Si se ha echo una seleccion de la tienda [solo administrador], recuperamos la clave enviada
+				 		$selectTienda = isset($_REQUEST["selectTienda"]) && !empty($_REQUEST["selectTienda"]) ? $_REQUEST["selectTienda"] : false ;
+				 		 
+				 		if($selectTienda){
+				 			//Lista los empleados que pertenezcan a una tienda determinada
+				 			//echo "Codigo Tienda Seleccionada : ".$selectTienda;
+				 			$daoProductos->listarproductos($selectTienda);
+				 			$_SESSION["selectTienda"] = $selectTienda;
+				 		}else{
+				 			//Si es la primera vez que el usuario se mueve a esta vista, cargara la unica tienda para usuarios [Gerente] y la primera tienda para usuarios [Administrador]
+				 			$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+				 			$daoProductos->listarProductos(key($TiendasSession));
+				 			$_SESSION["selectTienda"] = key($TiendasSession);
+				 		}
+
+				 		//Obtenemos el listado de empleados para la vista empleados
+						$_SESSION["listadoProductos"] = serialize($daoProductos->result);
+						//redireccion a la pagina de proveedores
+						header("Location: ../_vistas/producto.php");
+					}else{
+				 		//Si no cumple ninguna de las condiciones, redirige al index
+				 		header("Location: ../index.php");
+				 	}
 				break;
 			case 'alertas':
-				
+			//Carga valores predeterminados para la vista de alertas.Vista accesible a todos los usuarios
 				break;
 			default:
 			echo "Accion sent: $accion, unknown destiny ' $to ' ";

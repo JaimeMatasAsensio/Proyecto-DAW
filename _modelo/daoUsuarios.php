@@ -16,7 +16,8 @@ require_once '../_conexion/libreria_PDO.php';
         die($e->getMessage());
       }
     }
-	 
+	  //Funcion constructor del modelos de datos de usuario
+
     public function listarUsuarios(){
       try {
       $consulta = "SELECT * FROM usuario WHERE 1";
@@ -36,6 +37,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }
     }
+    //Funcion modelo de datos usuario lista usuarios, devuelve un array de objetos por result
 
     public function buscarUsuario($codUsuario){
       try {
@@ -60,10 +62,11 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos usuario busqueda por clave, devuelve un objeto por return
 
     public function buscarUsuarioPorNombre($nombre){
       try {
-        $consulta = "SELECT * FROM usuario WHERE nombre = :nombre";
+        $consulta = "SELECT * FROM usuario WHERE nombre LIKE :nombre";
         $param = array(":nombre" => $nombre);
         $this->con->ConsultaNormalAssoc($consulta, $param);
         $fila = $this->con->datos[0];
@@ -84,6 +87,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos usuario busqueda por nombre, devuelve un array de objetos por result
 
     public function buscarUsuarioPorEmail($email){
       try {
@@ -108,6 +112,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos usuario busqueda por email, devuelve un objeto por return
 
     public function eliminarUsuario($codUsuario){
       try {
@@ -119,7 +124,8 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
-    
+    //Funcion modelo de datos usuario elimina por clave
+
     public function insertarUsuario($obj){
       try {
       $consulta = "INSERT INTO usuario(codUsuario, nombre, password, email, nivelAcceso) VALUES (?,?,?,?,?,?,?,?)";
@@ -136,6 +142,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos usuario inserta un nuevo registro
 
     public function actualizarUsuario($obj){
       try {
@@ -153,5 +160,5 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
-
+    //Funcion modelo de datos usuario actualiza un registro existente
 }

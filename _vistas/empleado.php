@@ -34,7 +34,7 @@ session_start();
 				$nivelAcc = $_SESSION["nivelAcceso"];
 				if ($nivelAcc == "adm") {
 					echo '<div class="row formulario formulario-crud" id="selectorTienda">';
-					echo '<form action="#" class="form-inline">';
+					echo '<form action="../_web/controller.php?accion=move&operacion=empleados" method="post" class="form-inline">';
 					echo '<div class="col-xs-12">';
 					echo '<fieldset>';
 					echo '<legend>Seleccionar tienda</legend>';
@@ -43,8 +43,15 @@ session_start();
 			    echo '<select name="selectTienda" class="form-control" id="selectTienda">';
 		    	echo '<option value="">Tiendas</option>';
 		    	$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+		    	$selectTienda = isset($_SESSION["selectTienda"]) && !empty($_SESSION["selectTienda"]) ? $_SESSION["selectTienda"] : -1;
 		    	foreach ($TiendasSession as $key => $value) {
-		    		echo '<option value="'.$key.'"> '.$key.' - '.$value.'</option>';
+		    		if($key == $selectTienda){
+		    			echo '<option value="'.$key.'" selected> '.$key.' - '.$value.'</option>';
+
+		    		}else{
+		    			echo '<option value="'.$key.'"> '.$key.' - '.$value.'</option>';
+		    			
+		    		}
 		    	}
 			    echo '</select>';
 				  echo '</div>';
@@ -152,23 +159,23 @@ session_start();
 			if(isset($_SESSION["listadoEmpleados"])  && !empty($_SESSION["listadoEmpleados"]) ){
 
 				$empleados = unserialize($_SESSION["listadoEmpleados"]);
-				switch (gettype($empleados)) {
-					case 'array':
-						for ($i=0; $i < count($empleados); $i++) { 
-							imprFormEmpleado($empleados[$i]);
-						}
-						break;
-					case 'object':
-					echo "es objeto<br>";
-						imprFormEmpleado($empleados);
-						break;
-					default:
-						echo "gettype de listadoProveedores : ".gettype($empleados);
-						break;
-				}		
+				if($empleados){
+					for ($i=0; $i < count($empleados); $i++) { 
+						imprFormEmpleado($empleados[$i]);
+					}
+				}else{
+					echo "<div class='row'>";
+					echo "<div class='col-xs-12'>";
+					echo '<blockquote>
+						  			<p class="bg-info" id="NoResult">No dispone de Empleados...</p>
+									</blockquote>';
+					echo "</div'>";
+				}
+					
 			}
 			?>
 			</div>
+				}
 
 		</main>
 	</div>

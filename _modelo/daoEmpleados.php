@@ -2,6 +2,7 @@
 
 require_once '../_entidad/classEmpleado.php';
 require_once '../_conexion/libreria_PDO.php';
+require_once '../_web/imprForm.php';
 
  class daoEmpleados{
  
@@ -16,7 +17,8 @@ require_once '../_conexion/libreria_PDO.php';
         die($e->getMessage());
       }
     }
-	 
+	  // Funcion cosntructor del modelo de datos empleado
+
     public function listarEmpleados($codTienda){
       try {
       $consulta = "SELECT * FROM empleado_".$codTienda." WHERE 1";
@@ -36,11 +38,13 @@ require_once '../_conexion/libreria_PDO.php';
           $empleado->__SET("codUsuario", $fila['codUsuario']);
           $this->result[] = $empleado;
         }
+        $aux = $this->result;
 
       }catch (Exception $e){
         echo($e->getMessage());
       }
     }
+    //Funcion del modelo de datos empleado listado de empleados, devuelve un array de objetos por result
 
     public function buscarEmpleado($codEmpleado,$codTienda){
       try {
@@ -68,10 +72,11 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion del modelo de datos empleado busqueda por clave, devuelve un objeto por return
 
     public function buscarEmpleadoPorNombre($nombre,$codTienda){
       try {
-        $consulta = "SELECT * FROM empleado$codTienda WHERE nombre = %:nombre%";
+        $consulta = "SELECT * FROM empleado_$codTienda WHERE nombre LIKE %:nombre%";
         $param = array(":nombre" => $nombre);
         $this->con->ConsultaNormalAssoc($consulta, $param);
         $this->result = array();
@@ -93,6 +98,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion del modelo de datos empleado busqueda por nombre, devuelve un array de objetos por result
 
     public function buscarEmpleadoPorSueldo($sueldoMax,$sueldoMin,$codTienda){
       try {
@@ -118,6 +124,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion del modelo de datos empleado busqueda por valores maximo y minimo de suelddo, devuelve un array de objetos por result
 
     public function eliminarEmpleado($codEmpleado,$codTienda){
       try {
@@ -129,10 +136,11 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
-    
+    //Funcion del modelo de datos empleado elemina un empleado por clave
+
     public function insertarEmpleado($obj,$codTienda){
       try {
-      $consulta = "INSERT INTO empleado$codTienda(codEmpleado, nombre, foto, apellido1, apellido2, telefono, movil,sueldo,codUsuario) VALUES (?,?,?,?,?,?,?,?,?)";
+      $consulta = "INSERT INTO empleado_$codTienda(codEmpleado, nombre, foto, apellido1, apellido2, telefono, movil,sueldo,codUsuario) VALUES (?,?,?,?,?,?,?,?,?)";
       $param = array(
         $obj->__GET("codEmpleado"),
         $obj->__GET("nombre"),
@@ -151,6 +159,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion del modelo de datos empleado inserta un nuevo empleado
 
     public function actualizarEmpleado($obj,$codTienda){
       try {
@@ -173,5 +182,6 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion del modelo de datos empleado actualiza un empleado existente por clave
 
 }

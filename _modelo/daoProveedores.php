@@ -16,7 +16,7 @@ require_once '../_conexion/libreria_PDO.php';
         die($e->getMessage());
       }
     }
-	 
+	  //Funcion constructor del modelo de datos proveedor
     public function listarProveedores($codTienda){
       try {
       $consulta = "SELECT * FROM proveedor_".$codTienda." WHERE 1";
@@ -40,7 +40,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }
     }
-
+    //Funcion modelo de datos proveedor listado de proveedores, devuelve un array de objetos por result
     public function buscarProveedor($codProveedor,$codTienda){
       try {
         $consulta = "SELECT * FROM proveedor_$codTienda WHERE codProveedor = :codProveedor";
@@ -66,6 +66,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos proveedor busqueda por clave proveedor, devuelve un objeto por return
 
     public function buscarProveedorPorNombre($nombre,$codTienda){
       try {
@@ -93,6 +94,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos proveedor busqueda pro nombre, devuelve un array de objetos por result
 
     public function buscarProveedorPorEmail($email,$codTienda){
       try {
@@ -119,6 +121,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos proveedor busqueda por email, devuelve un array de objetos por result
 
     public function eliminarProveedor($codProveedor,$codTienda){
       try {
@@ -130,7 +133,8 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
-    
+    //Funcion modelo de datos proveedor, elemina por codigo
+
     public function insertarProveedor($obj,$codTienda){
       try {
       $consulta = "INSERT INTO proveedor_$codTienda(codProveedor, nombre, nombreContacto, apellido1Contacto, apellido2Contacto, telefono, movil,email) VALUES (?,?,?,?,?,?,?,?)";
@@ -151,6 +155,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos proveedor, inserta un nuevo registro
 
     public function actualizarProveedor($obj,$codTienda){
       try {
@@ -172,5 +177,5 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
-
+    //Funcion modelo de datos proveedor, actualiza un registro existente
 }

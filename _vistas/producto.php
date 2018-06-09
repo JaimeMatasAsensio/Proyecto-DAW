@@ -20,7 +20,11 @@ session_start();
   <script type="text/javascript" src="../_recursos/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-	<?php include "cabeceraVistas.php"; ?>
+	<?php 
+	include "cabeceraVistas.php";
+	require_once '../_entidad/classProducto.php';
+	require_once '../_web/imprForm.php';
+	?>
 	<div class="container-fluid">
 		<main class="container">
 			<h1>Control de Productos</h1>
@@ -29,7 +33,7 @@ session_start();
 				$nivelAcc = $_SESSION["nivelAcceso"];
 				if ($nivelAcc == "adm") {
 					echo '<div class="row formulario formulario-crud" id="selectorTienda">';
-					echo '<form action="#" class="form-inline">';
+					echo '<form action="../_web/controller.php?accion=move&operacion=productos" method="post" class="form-inline">';
 					echo '<div class="col-xs-12">';
 					echo '<fieldset>';
 					echo '<legend>Seleccionar tienda</legend>';
@@ -37,10 +41,17 @@ session_start();
 			    echo '<label class="sr-only" for="selectTienda">Tiendas</label>';
 			    echo '<select name="selectTienda" class="form-control" id="selectTienda">';
 		    	echo '<option value="">Tiendas</option>';
-		    	echo '<option value="codTienda">codTienda - Nombre Tienda</option>';
-		    	echo '<option value="codTienda">codTienda1 - Nombre Tienda1</option>';
-		    	echo '<option value="codTienda">codTienda2 - Nombre Tienda2</option>';
-		    	echo '<option value="codTienda">codTienda3 - Nombre Tienda3</option>';
+		    	$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+		    	$selectTienda = isset($_SESSION["selectTienda"]) && !empty($_SESSION["selectTienda"]) ? $_SESSION["selectTienda"] : -1;
+		    	foreach ($TiendasSession as $key => $value) {
+		    		if($key == $selectTienda){
+		    			echo '<option value="'.$key.'" selected> '.$key.' - '.$value.'</option>';
+
+		    		}else{
+		    			echo '<option value="'.$key.'"> '.$key.' - '.$value.'</option>';
+		    			
+		    		}
+		    	}
 			    echo '</select>';
 				  echo '</div>';
 				  echo '<button type="submit" class="btn btn-default">Ir a tienda</button>';
@@ -156,76 +167,25 @@ session_start();
 			</div>
 
 			<div id="formsResaultadoBusqueda">
-				<div class="row formulario formulario-crud" id="formTiendaCodTienda">
-					<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=modificacion" method="post">
-						<div class="col-xs-12">
-							<fieldset>
-								<legend>Producto: 'codProducto'</legend>
-								<input type="hidden" name="codProducto" value="">
-								<div class="row">
-									<div class="col-xs-12 inputImg">
-										<div>
-											<img src="../_recursos/img/nuevoProducto.png" alt="Imagen de nuevo producto">
-										</div>
-										<div>
-											<span class="foto">
-									    	<input type="file" name="foto" id="foto">
-											</span>
-											<label for="foto" class="inputFile"><span>Añadir Foto</span></label>
-										</div>
-									</div>
-								  <div class="form-group col-xs-12 col-sm-6">
-								    <label for="nombre" class="hidden-xs">Nombre</label>
-								    <input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Usuario">
-								  </div>
-								  <div class="form-group col-xs-12 col-sm-6">
-								    <label for="referencia" class="hidden-xs">Referencia</label>
-								    <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia">
-								  </div>
-								  <div class="form-group col-xs-12 col-sm-4">
-								    <label for="precio" class="hidden-xs">Precio</label>
-								    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio">
-								  </div>
-									<div class="form-group col-xs-12 col-sm-4">
-								    <label for="IVA" class="hidden-xs">IVA</label>
-								    <input type="text" class="form-control" name="IVA" id="IVA" placeholder="IVA">
-								  </div>
-									<div class="form-group col-xs-12 col-sm-4">
-								    <label for="descuento" class="hidden-xs">Descuento</label>
-								    <input type="text" class="form-control" name="descuento" id="descuento" placeholder="Descuento">
-								  </div>
-									<div class="form-group col-xs-12 col-sm-4">
-								    <label for="cantidad" class="hidden-xs">Cantidad</label>
-								    <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad" min="0">
-								  </div>
-								  <div class="form-group col-xs-12 col-sm-4">
-								    <label for="cantidadMin" class="hidden-xs">Cantidad Minima</label>
-								    <input type="number" class="form-control" name="cantidadMin" id="cantidadMin" placeholder="Cantidad Minima" min="0">
-								  </div>
-									<div class="form-group col-xs-12 col-sm-4">
-								    <label for="nuevo">Nuevo Producto</label>
-								    <input type="checkbox" class="form-control" name="nuevo" id="nuevo">
-								  </div>
-									<div class="form-group col-xs-12 col-sm-12">
-								    <label for="descripcion" class="hidden-xs">Descripcion</label>
-								    <textarea name="descripcion" id="descripcion" >Introduzca una Descripcion</textarea>
-								  </div>								
-							</div>
-							</fieldset>
-						</div>
-					</form>
-				  <div class="col-xs-12 control-btn">
-			  		<div class="col-xs-6 divMod">
-			  			<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-			  		</div>
-			  		<div class="col-xs-6 confMod">
-			  			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
-			  		</div>
-			  		<div class="col-xs-6">
-			  			<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>
-			  		</div>
-				  </div>
-				</div>
+			<?php
+			if(isset($_SESSION["listadoProductos"])  && !empty($_SESSION["listadoProductos"]) ){
+
+				$productos = unserialize($_SESSION["listadoProductos"]);
+				if($productos){
+					for ($i=0; $i < count($productos); $i++) { 
+						imprFormProducto($productos[$i]);
+					}
+				}else{
+					echo "<div class='row'>";
+					echo "<div class='col-xs-12'>";
+					echo '<blockquote>
+						  			<p class="bg-info" id="NoResult">No dispone de Empleados...</p>
+									</blockquote>';
+					echo "</div'>";
+				}
+					
+			}
+			?>
 			</div>
 
 		</main>

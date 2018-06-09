@@ -73,7 +73,7 @@ class BD {
 	}
 
 	public function ConsultaNormalAssoc($consultaSQL,$parametros)
-	/*Consulta que si devuelve datos. usadas para hacer select. Devuelve un array asociativo con pares clave-valor*/
+	/*Consulta que si devuelve datos. Devuelve un array asociativo con pares clave-valor*/
 	{
 		$this->datos = array();
 		$statement = $this->conexion->prepare($consultaSQL);

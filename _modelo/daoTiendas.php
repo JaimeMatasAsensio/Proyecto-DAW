@@ -16,7 +16,8 @@ require_once '../_conexion/libreria_PDO.php';
         die($e->getMessage());
       }
     }
-	 
+	  //Funcion constructora del modelo de datos de tienda
+
     public function listarTiendas(){
       try {
       $consulta = "SELECT * FROM tienda WHERE 1";
@@ -42,6 +43,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }
     }
+    //Funcion modelo de datos tienda listado de tiendas, devuelve un array de objetos por result
 
     public function buscarTienda($codTienda){
       try {
@@ -72,6 +74,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos tienda busqueda por clave, devuelve un objeto por return
 
     public function buscarTiendaPorNombre($nombre){
       try {
@@ -99,6 +102,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos tienda busqueda por nombre, devuelve un array por result
 
     public function buscarTiendaPorSuscripcion($tipoSuscripcion){
       try {
@@ -125,8 +129,9 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }
     }
+    //Funcion modelo de datos tienda busqueda por tipo de suscripcion, devuleve un array por result
 
-    /*Retocar para que elimine las tablas que pertenezcan a una tienda*/
+/*Retocar para que elimine las tablas que pertenezcan a una tienda*/
     public function eliminarTienda($codTienda){
       try {
       $consulta = "DELETE FROM tienda WHERE codTienda = :codTienda";
@@ -137,8 +142,9 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
-    
-    /*Retocar para que genere las tablas de una tienda*/
+    //Funcion modelo de datos tienda elimna una tienda y todas las tablas que pertenecen a esta
+
+/*Retocar para que genere las tablas de una tienda*/
     public function insertarTienda($obj){
       try {
       $consulta = "INSERT INTO tienda(codTienda, nombre, pais, provincia, poblacion, direccion, numero, telefono, movil, email, tipoSuscripcion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -161,7 +167,7 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
-
+    //Funcion modelo de datos tienda inserta un nuevo registro y crea todo el conjunto de tablas que necesita una tienda
     
     public function actualizarTienda($obj){
       try {
@@ -185,5 +191,6 @@ require_once '../_conexion/libreria_PDO.php';
         echo($e->getMessage());
       }  
     }
+    //Funcion modelo de datos tienda actualiza un registro existente
 
 }
