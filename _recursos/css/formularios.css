@@ -1,8 +1,14 @@
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2017
+*/
 *{
 	margin: 0px;
 	padding: 0px;
 }
-/*Colores*/
+/*Colores de la aplicacion*/
 /*
 rgba(236, 25, 113, 1) - Morado suave
 rgba(242, 52, 107, 1)
@@ -404,8 +410,8 @@ div.confMod.col-xs-6 button{
 		border-bottom-right-radius: 15px;
 	}
 	.overFlowForms{
-		border-top-left-radius: 15px;
-		border-bottom-right-radius: 15px;
+		border-top-left-radius: 12px;
+		border-bottom-right-radius: 12px;
 	}
 	.formulario form{
 		width: 100%;
@@ -522,17 +528,9 @@ div.confMod.col-xs-6 button{
 	}	
 }
 
-@media (min-width: 1200px){
-	
-}
-
 @media (min-width: 768px){
 	#menuEscritorio ul li {
     min-width: 16%;
     min-height: initial;
-	}
-	.overFlowForms{
-		border-top-left-radius: 20px;
-		border-bottom-right-radius: 20px;
 	}
 }

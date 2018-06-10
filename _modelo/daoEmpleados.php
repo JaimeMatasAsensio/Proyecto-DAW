@@ -1,5 +1,10 @@
 <?php
-
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2018
+*/
 require_once '../_entidad/classEmpleado.php';
 require_once '../_conexion/libreria_PDO.php';
 require_once '../_web/imprForm.php';

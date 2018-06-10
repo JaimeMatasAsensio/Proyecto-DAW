@@ -1,4 +1,10 @@
 <?php
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2018
+*/
 session_start();
 
 if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&

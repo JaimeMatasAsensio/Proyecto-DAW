@@ -1,3 +1,11 @@
+<?php
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2018
+*/
+?>
 <header class="container-fluid bg-principal">
 	<div id="contentHeader">
 		<div id="logo">
@@ -115,4 +123,5 @@
 	</div>
 	<script type="text/javascript" src="../_recursos/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../_recursos/js/jqueryUI.js"></script>
+	<script type="text/javascript" src="../_recursos/js/classTienda.js"></script>
 	<script type="text/javascript" src="../_recursos/js/formularios.js"></script>

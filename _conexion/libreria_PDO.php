@@ -1,6 +1,11 @@
 <?php
 /*Libreria PDO para objetos esta libreria implmentara distintas clases para la gestion de bases de datos.*/
-
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2018
+*/
 class BD {
 
 	//Propiedades...

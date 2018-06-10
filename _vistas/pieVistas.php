@@ -1,3 +1,11 @@
+<?php
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2018
+*/
+?>
 <footer class="container-fluid">
 	<div id="contPie">
 		<div id="enlacesPie" class="col-xs-4">

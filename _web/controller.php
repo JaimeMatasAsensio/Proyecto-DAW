@@ -1,4 +1,10 @@
 <?php
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2018
+*/
 session_start();
 //Entidades y modelos necesarios para el funcionamiento del controlador
 /*utilidad*/
@@ -424,11 +430,14 @@ switch ( $accion ) {
 				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
 				//Decodificamos el JSON para que sea un array asociativo
 				$datos = json_decode($datos,true);
-
-				$daotiendas = new daoTiendas();
-
+				//Instanciamos el modelo de datos de tienda
+				$daoTiendas = new daoTiendas();
+				//Borramos la tienda y todas las tablas, usuarios y accesos relaccionada con esta
 				$daoTiendas->eliminarTienda($datos["codTienda"]);
 
+				$retornoDelete = array("msgReturn" => "Tienda con codigo: ' ".$datos["codTienda"]." '  eliminada del sistema");
+
+				echo json_encode($retornoDelete);
 				break;
 			//Busquedas de tienda por distintos parametros
 			case 'buscar':

@@ -1,4 +1,10 @@
 <?php
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2018
+*/
 /*Funciones de impresion de formularios*/
 function imprArray($array){
 	$i = 0;

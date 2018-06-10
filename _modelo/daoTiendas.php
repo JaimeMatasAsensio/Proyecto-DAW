@@ -1,5 +1,10 @@
 <?php
-
+/*
+Jaime Matas Asensio
+Proyecto DAW: ShopSphere
+I.E.S. Maestre de Calatrava - Ciudad Real
+2018
+*/
 require_once '../_entidad/classTienda.php';
 require_once '../_conexion/libreria_PDO.php';
 
@@ -165,11 +170,34 @@ require_once '../_conexion/libreria_PDO.php';
       $param = array(":codTienda" => $codTienda);
       $this->result = $this->con->ConsultaSimple($consulta, $param);
       
-      //Borrado de usuarios y accesos a la tienda<-----Continuar
+      //INI - Borrado de usuarios y accesos a la tienda
 
+      //Obtenemos todos los usuarios con acceso a la tienda
       $consulta = "SELECT codUsuario FROM `acceso` WHERE codTienda = :codTienda";
       $param = array(":codTienda" => $codTienda);
+      $this->con->ConsultaNormalAssoc($consulta, $param);
+      $this->result = array();
+        foreach ($this->con->datos as $fila){
+          $this->result[] = $fila['codUsuario'];
+        }
 
+      //Borramos cada uno de los usuarios de la tabla de acceso
+      foreach ($this->result as $key => $value) {
+        $consulta = "DELETE FROM usuario WHERE codUsuario = :codUsuario";
+        $param = array(":codUsuario" => $value);
+        $this->con->ConsultaSimple($consulta, $param);
+      }
+
+      //Borramos los accesos de los usuarios
+      foreach ($this->result as $key => $value) {
+        if($value != 0){
+          $consulta = "DELETE FROM usuario WHERE codUsuario = :codUsuario";
+          $param = array(":codUsuario" => $value);
+          $this->con->ConsultaSimple($consulta, $param);
+        }
+      }
+
+      //FIN - Borrado de usuarios y accesos a tienda
 
       //INI - Borrado de tablas
       
@@ -184,7 +212,7 @@ require_once '../_conexion/libreria_PDO.php';
       $this->result = $this->con->ConsultaSimple($consulta, $param);
 
       //Borramos la tabla de productos
-      $consulta = "DROP TABLE productos_".$codTienda;
+      $consulta = "DROP TABLE producto_".$codTienda;
       $param = array();
       $this->result = $this->con->ConsultaSimple($consulta, $param);
 

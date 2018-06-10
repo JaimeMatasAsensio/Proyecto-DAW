@@ -6,9 +6,12 @@ Proyecto DAW: ShopSphere
 I.E.S. Maestre de Calatrava - Ciudad Real
 2017
 */
+//Array de tiendas que se almacenaran durante la modificacion
+var arrTiendas = [];
 /*Acciones con JQuery*/
 $(document).ready(function(){
-  /*Objetos planos para recoger valores y realizar JSON*/
+  
+  /*Objetos planos para recoger valores y realizar JSON
   var tienda = {
     codTienda: "",
     nombre: "",
@@ -22,6 +25,7 @@ $(document).ready(function(){
     email: "",
     tipoSuscripcion: ""
   };
+  */
   /*Objeto Tienda */
 
   function resetTienda(tienda){
@@ -40,10 +44,6 @@ $(document).ready(function(){
   /*Reset de valores del objeto Tienda */
 
   $( ".divMod button" ).click( function(element) {
-    
-    //Capas de Bloqueo de otros formularios <---onWork: levantar las capas de bloqueo de otros formularios durante la modificacion
-    var othersOverFlow = $( "div.overFlowForms" );
-    console.log(othersOverFlow);
 
     //obtenemos el boton de modificacion
     var btnMod = element.target
@@ -51,6 +51,8 @@ $(document).ready(function(){
     var divControlMod = btnMod.parentElement.nextElementSibling;
     //Obtenemos el formulario al que pertenece el boton de modificacion
     var form = divControlMod.parentElement.parentElement.children[3];
+    //Obtenemos la capa de bloqueo del formulario sobre le que se realiza la modificacion
+    var onProcessOverFlow = divControlMod.parentElement.parentElement.children[2];
     //Deshabilita el boton de aceptar modificacion
     divControlMod.children[0].disabled = "true";
     //Habilita los campos del formulario
@@ -63,6 +65,9 @@ $(document).ready(function(){
     //guarda los valores previos en el formulario
     switch (form.name) {
       case "tienda":
+        //instanciamos un objeto de tienda
+        var tienda = new Tienda();
+        //Guardamos los vlaores del formulario
         tienda.codTienda = form[1].value;
         tienda.nombre = form[2].value;
         tienda.pais = form[3].value;
@@ -73,11 +78,15 @@ $(document).ready(function(){
         tienda.telefono = form[8].value;
         tienda.movil = form[9].value;
         tienda.email = form[10].value;
+        
         var i = 1;
         while(tienda.tipoSuscripcion == ""){
           tienda.tipoSuscripcion = form[11][i].selected?form[11][i].value:"";
           i++;
         }
+        //Guardamos en el array
+        arrTiendas.push(tienda);
+        
         break;
       
       case "usuario":
@@ -99,7 +108,17 @@ $(document).ready(function(){
     form = form[0];
     switch (form.name) {
       case "tienda":
-        form[1].value = tienda.codTienda;
+        //recuperamos el objeto de tienda que coincida con el cod del formulario que cancela la modificacion
+        var tienda;
+        for(var i = 0; i < arrTiendas.length ; i++){
+          if(arrTiendas[i].codTienda == form[1].value){
+            //Obtenemos el objeto, lo eliminamos del array y cortamos el bucle for
+            tienda = arrTiendas[i];
+            arrTiendas.splice(i,1);
+            i = arrTiendas.length;
+          }
+        }
+        //Recuperamos los antiguos valores al formulario
         form[2].value = tienda.nombre;
         form[3].value = tienda.pais;
         form[4].value = tienda.provincia;
@@ -116,10 +135,8 @@ $(document).ready(function(){
 
         for(var i = 2; i < form.length ; i++){
           form[i].parentElement.className = form.tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
-        }
-        
-        resetTienda(tienda);
-        
+        }     
+
         break;
       
       case "usuario":
@@ -171,6 +188,7 @@ $(document).ready(function(){
         $( "#onProcessOverFlow" ).animate({zIndex:"1"});
       
         //Montar el obj, para convertirlo a JSON
+        var tienda = new Tienda();
         tienda.codTienda = form[1].value;
         tienda.nombre = form[2].value;
         tienda.pais = form[3].value;
@@ -188,7 +206,7 @@ $(document).ready(function(){
         var parametros = {
           accion: "mantenimentoTiendas",
           operacion:  "modificacion",
-          json: JSON.stringify(tienda)
+          json: JSON.stringify(tienda.getJSON)
         };
         //Envio de AJAX
         $.ajax({
@@ -327,13 +345,7 @@ $(document).ready(function(){
     var overFlow = element.target.parentElement.parentElement.parentElement.children[2];
     //capa de mensaje de retorno 
     var infoProcess = element.target.parentElement.parentElement.parentElement.children[0];
-    
-    /*
-    console.log(form);
-    console.log(overFlow);
-    console.log(infoProcess);
-    */
-    
+        
     //Aplicamos id especiales a la capa de bloqueo y de informacion del proceso
     overFlow.id = "onProcessOverFlow";
     infoProcess.id = "onProcessInfo";
@@ -346,6 +358,7 @@ $(document).ready(function(){
         $( "#onProcessOverFlow" ).animate({zIndex:"1"});
       
         //Montar el obj, para convertirlo a JSON
+        var tienda = new Tienda();
         tienda.codTienda = "nuevo";
         tienda.nombre = form[1].value;
         tienda.pais = form[2].value;
@@ -363,7 +376,7 @@ $(document).ready(function(){
         var parametros = {
           accion: "mantenimentoTiendas",
           operacion:  "alta",
-          json: JSON.stringify(tienda)
+          json: JSON.stringify(tienda.getJSON)
         };
         //Envio de AJAX
         
@@ -499,7 +512,7 @@ $(document).ready(function(){
     //Capa de informacion del proceso
     var infoProcess = element.target.parentElement.parentElement.parentElement.children[0];
     //Conjunto completo de todos los elementos
-    var conjutoElementos = form.parentElement;
+    var conjuntoElementos = form.parentElement;
 
     //Creacion de elementos para confirmar el borrado de la tienda, son objetos de JQuery
     var pregunta = $("<h3 class='preguntaBorrado'>¿Borrar este elemento?</h3>");
@@ -542,6 +555,7 @@ $(document).ready(function(){
         $( "#onProcessOverFlow" ).animate({zIndex:"1"});
       
         //Montar el obj, para convertirlo a JSON. Solo necesitamos el codigo de la tienda a borrar
+        var tienda = new Tienda();
         tienda.codTienda = form[1].value;
                 
         //AJAX - borrar Tienda
@@ -549,7 +563,7 @@ $(document).ready(function(){
         var parametros = {
           accion: "mantenimentoTiendas",
           operacion:  "baja",
-          json: JSON.stringify(tienda)
+          json: JSON.stringify(tienda.getJSON)
         };
         //Envio de AJAX
         $.ajax({
@@ -590,15 +604,31 @@ $(document).ready(function(){
             var height = aux[0].offsetHeight
             width = "-=" + width + "px";
             height = "-=" + height + "px";
+            //Animacion se reduce la capa de bloqueo
             $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
+              //En callBack...
+              //trae hacia delante la capa de informacion de retorno
               $( "#onProcessInfo" ).animate({zIndex: "1"}); 
-              $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},3000,function(){
+              //Lleva hacia atras la capa de informacion del retorno
+              $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},2000,function(){
+                //En callBack....
+                //Restaura los valores de la capa de informacion del proceso
                 $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
+                //Restaura los valores de la capa de bloqueo
                 $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"}); 
+                //Remueve los id's del proceso
                 $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
+                //restura las clases del formulario
                 for(var i = 2; i < form.length; i++){
-                  form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
+                  form[i].parentElement.className = "form-group col-xs-12 col-sm-6";//<-----rompe estilos de formularios
                 }
+                $(confirmDelete).remove();
+                $(overFlow).remove();
+                $(infoProcess).remove();
+                //Efecto para la eliminacion de tienda
+                $(conjuntoElementos).effect("drop",{},1000,function(){
+                  $(conjuntoElementos).remove();
+                });
               }); 
               
             });  
