@@ -50,24 +50,28 @@ require_once '../_conexion/libreria_PDO.php';
         $consulta = "SELECT * FROM tienda WHERE codTienda = :codTienda";
         $param = array(":codTienda" => $codTienda);
         $this->con->ConsultaNormalAssoc($consulta, $param);
+        if(!empty($this->con->datos)){
         $fila = $this->con->datos[0];
-        if(!empty($fila)){
-          $tienda = new tienda();   
-          $tienda->__SET("codTienda", $fila['codTienda']);
-          $tienda->__SET("nombre", $fila['nombre']);
-          $tienda->__SET("pais", $fila['pais']);
-          $tienda->__SET("provincia", $fila['provincia']);
-          $tienda->__SET("poblacion", $fila['poblacion']);
-          $tienda->__SET("direccion", $fila['direccion']);
-          $tienda->__SET("numero", $fila['numero']);
-          $tienda->__SET("telfono", $fila['telefono']);
-          $tienda->__SET("movil", $fila['movil']);
-          $tienda->__SET("email", $fila['email']);
-          $tienda->__SET("tipoSuscripcion", $fila['tipoSuscripcion']);
+          if(!empty($fila)){
+            $tienda = new tienda();   
+            $tienda->__SET("codTienda", $fila['codTienda']);
+            $tienda->__SET("nombre", $fila['nombre']);
+            $tienda->__SET("pais", $fila['pais']);
+            $tienda->__SET("provincia", $fila['provincia']);
+            $tienda->__SET("poblacion", $fila['poblacion']);
+            $tienda->__SET("direccion", $fila['direccion']);
+            $tienda->__SET("numero", $fila['numero']);
+            $tienda->__SET("telefono", $fila['telefono']);
+            $tienda->__SET("movil", $fila['movil']);
+            $tienda->__SET("email", $fila['email']);
+            $tienda->__SET("tipoSuscripcion", $fila['tipoSuscripcion']);
 
-          return $tienda;
+            return $tienda;
+          }else{
+            return 0;
+          }
         }else{
-          return false;
+          return 0;
         }
 
       }catch (Exception $e){
@@ -78,7 +82,7 @@ require_once '../_conexion/libreria_PDO.php';
 
     public function buscarTiendaPorNombre($nombre){
       try {
-        $consulta = "SELECT * FROM tienda WHERE nombre LIKE %:nombre%";
+        $consulta = "SELECT * FROM tienda WHERE nombre LIKE :nombre";
         $param = array(":nombre" => $nombre);
         $this->con->ConsultaNormalAssoc($consulta, $param);
         $this->result = array();
@@ -119,7 +123,7 @@ require_once '../_conexion/libreria_PDO.php';
           $tienda->__SET("poblacion", $fila['poblacion']);
           $tienda->__SET("direccion", $fila['direccion']);
           $tienda->__SET("numero", $fila['numero']);
-          $tienda->__SET("telfono", $fila['telefono']);
+          $tienda->__SET("telefono", $fila['telefono']);
           $tienda->__SET("movil", $fila['movil']);
           $tienda->__SET("email", $fila['email']);
           $tienda->__SET("tipoSuscripcion", $fila['tipoSuscripcion']);
@@ -131,7 +135,29 @@ require_once '../_conexion/libreria_PDO.php';
     }
     //Funcion modelo de datos tienda busqueda por tipo de suscripcion, devuleve un array por result
 
-/*Retocar para que elimine las tablas que pertenezcan a una tienda*/
+    public function obtenerUltimoCodigo(){
+      
+      $consulta = "SELECT codTienda FROM tienda WHERE 1 ORDER BY codTienda DESC LIMIT 1";
+      $param = array();
+      try {
+        $this->con->ConsultaNormalAssoc($consulta, $param);
+        if(!empty($this->con->datos)){
+          $fila = $this->con->datos[0];
+            if(!empty($fila)){
+              
+              $tienda = $fila["codTienda"];
+
+              return $tienda;
+            }else{
+              return 0;
+            }
+        }
+      }catch (Exception $e){
+        echo($e->getMessage());
+      }
+    }
+    //Funcion para obtener el codigo de la ultima tienda insertada, deveulve un entero - UTILIDAD
+/*Retocar para que ELIMINE las tablas que pertenezcan a una tienda*/
     public function eliminarTienda($codTienda){
       try {
       $consulta = "DELETE FROM tienda WHERE codTienda = :codTienda";
@@ -144,7 +170,7 @@ require_once '../_conexion/libreria_PDO.php';
     }
     //Funcion modelo de datos tienda elimna una tienda y todas las tablas que pertenecen a esta
 
-/*Retocar para que genere las tablas de una tienda*/
+/*Retocar para que GENERE las tablas de una tienda*/
     public function insertarTienda($obj){
       try {
       $consulta = "INSERT INTO tienda(codTienda, nombre, pais, provincia, poblacion, direccion, numero, telefono, movil, email, tipoSuscripcion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";

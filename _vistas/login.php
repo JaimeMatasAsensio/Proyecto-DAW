@@ -1,5 +1,22 @@
 <?php
 session_start();
+
+if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
+ isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"])){
+	switch ($_SESSION["nivelAcceso"]) {
+		case "adm" :
+			header("Location: ../_vistas/tienda.php");
+			break;
+		case "gen" :
+			header("Location: ../_vistas/alertas.php");
+			break;
+		case "emp" :
+			header("Location: ../_vistas/producto.php");
+			break;
+
+	}
+	//Redireccion de usuarios en caso de que hagan login y retorno
+}
 ?>
 <!DOCTYPE html>
 <html lang="es-ES">

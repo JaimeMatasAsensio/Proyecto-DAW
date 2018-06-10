@@ -37,23 +37,25 @@ input#cerrarSession{
 h1{
 	font-size: 20px;
 	font-variant: small-caps;
-	border: 2px solid rgba(236, 25, 113, 1);
+	background-color: rgba(236, 25, 113, 1);
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	display: inline-block;
 	width: 100%;
 	text-align: center;
 	padding: 5px 0px;
+	color:white;
 }
 h2{
 	font-size: 17px;
-	background-color: rgba(236, 25, 113, 0.7);
+	background-color: rgba(236, 25, 113, 1);
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	display: inline-block;
 	padding: 6px 0px;
 	margin: 10px 0px;
 	cursor: pointer;
+	color:white;
 }
 h3{
 	font-size: 20px;
@@ -152,7 +154,7 @@ h3.infoProceso{
 #formBusq fieldset button{
 	margin-left: 5px;
 }
-#formBusq select[name="busqueda"]{
+#formBusq select[name="selBusqueda"]{
 	display: none;
 }
 #elementosBusqueda{
@@ -447,8 +449,9 @@ div.confMod.col-xs-6 button{
 	#formBusq fieldset button{
 		margin-left: 5px;
 	}
-	#formBusq select[name="busqueda"]{
+	#formBusq select[name="selBusqueda"]{
 		display: none;
+		width: 170px;
 	}
 
 	#elementosBusqueda{

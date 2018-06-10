@@ -110,20 +110,17 @@ session_start();
 			<?php
 			if(isset($_SESSION["listadoUsuarios"])  && !empty($_SESSION["listadoUsuarios"]) ){
 				$usuarios = unserialize($_SESSION["listadoUsuarios"]);
-				switch (gettype($usuarios)) {
-					case 'array':
-						for ($i=0; $i < count($usuarios); $i++) { 
+				if($usuarios && count($usuarios) > 0){
+					for ($i=0; $i < count($usuarios); $i++) { 
 							imprFormUsuario($usuarios[$i]);
 						}
-						break;
-					case 'object':
-						 imprFormUsuario($usuarios);
-						
-						break;
-					
-					default:
-						echo "¿?";
-						break;
+				}else{
+					echo "<div class='row'>";
+					echo "<div class='col-xs-12'>";
+					echo '<blockquote>
+						  			<p class="bg-info" id="NoResult">No dispone de usuarios...</p>
+									</blockquote>';
+					echo "</div'>";
 				}
 				
 			}

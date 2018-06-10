@@ -56,7 +56,6 @@ class BD {
 	{
 		$this->datos = array();
 		$statement = $this->conexion->prepare($consultaSQL);
-
 		try{
 			$statement->execute($parametros); 
 			while($fila = $statement->fetch(PDO::FETCH_NUM))	

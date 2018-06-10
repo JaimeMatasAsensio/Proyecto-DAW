@@ -31,9 +31,10 @@ session_start();
 		<main class="container">
 			<h1>Mantenimiento Tiendas</h1>
 			<div class="row formulario formulario-crud" id="formBusq">
-				<form action="../controller.php?accion=mantenimentoTiendas&operacion=buscar" method="post" class="form-inline" id="f0">
+				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=buscar" method="post" class="form-inline" id="f0">
 					<div class="col-xs-12">
 						<fieldset>
+
 							<legend>Buscar Tienda</legend>
 							<div id="elementosBusqueda">
 							 <div class="form-group">
@@ -48,19 +49,22 @@ session_start();
 
 						  <div class="form-group">
 						    <label class="sr-only" for="busqueda">Buscar</label>
-						    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar" required>
-						    <select name="busqueda" lass="form-control" id="tBusqueda" required>
+						    <input type="text" class="form-control" name="busqueda" placeholder="Buscar" required>
+						    <select name="selBusqueda" lass="form-control" required>
 						    	<option value="">-----</option>
 							    <option value="pre">Premium - 360€/año</option>
 							    <option value="nor">Normal - 250€/año</option>
 							    <option value="fre">Basica - ¡¡Gratis!!</option>
 						    </select>
+						   <?php
+						echo'<input type="hidden" name="nAcceso" value="'.$_SESSION["nivelAcceso"].'">
+								<input type="hidden" name="logDone" value="'.$_SESSION["logDone"].'">'
+
+						   ?>
 						  </div>
-						  <input type="submit" name="enviar" value="Buscar" class="btn btn-info"/>
-						  <!--
-						  <button type="submit" class="btn btn-default" form="f0"><span class="glyphicon glyphicon-search"></span></button>
-							-->
+						  <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
 							</div>
+
 						</fieldset>
 					</div>
 				</form>
@@ -80,7 +84,7 @@ session_start();
 							<div class="row">
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="nombre" class="hidden-xs">Nombre</label>
-							    <input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Tienda">
+							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Tienda">
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="pais" class="hidden-xs">Pais</label>
@@ -88,7 +92,7 @@ session_start();
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="provincia" class="hidden-xs">Provincia</label>
-							    <input type="text" class="form-control" name="provincia" id="Provincia" placeholder="Provincia">
+							    <input type="text" class="form-control" name="provincia" id="provincia" placeholder="Provincia">
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="poblacion" class="hidden-xs">Poblacion</label>
@@ -144,25 +148,24 @@ session_start();
 			<?php
 			if(isset($_SESSION["listadoTiendas"])  && !empty($_SESSION["listadoTiendas"]) ){
 				$tiendas = unserialize($_SESSION["listadoTiendas"]);
-				switch (gettype($tiendas)) {
-					case 'array':
-						for ($i=0; $i < count($tiendas); $i++) { 
-							imprFormTienda($tiendas[$i]);
-						}
-						break;
-					case 'object':
-						 imprFormTienda($tiendas);
-						
-						break;
-					
-					default:
-						echo "¿?";
-						break;
+
+				if(!empty($tiendas) && gettype($tiendas[0]) == "object" ){
+
+					for ($i=0; $i < count($tiendas); $i++) { 
+						imprFormTienda($tiendas[$i]);
+					}
+
+				}else{
+					echo "<div class='row'>";
+					echo "<div class='col-xs-12'>";
+					echo '<blockquote>
+						  			<p class="bg-info" id="NoResult">No dispone de tiendas...</p>
+									</blockquote>';
+					echo "</div'>";
 				}
 				
 			}
-			?>
-				
+			?>		
 			</div>
 
 		</main>

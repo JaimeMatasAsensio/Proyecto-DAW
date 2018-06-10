@@ -23,24 +23,19 @@ require_once "../_modelo/daoAcceso.php";
 
 /*controlador*/
 
-//Rutina de recuperacion de variables de usuario
-//Iniciamos session
-
-/*Estas variables estan reacionadas con el login y acceso del usuario se guardan antes de liberar todas las demas variables*/
-
 //Recuperamos la accion de la peticion
 $accion = isset($_REQUEST["accion"]) ? $_REQUEST["accion"] : "";
 /*
 Esta variable es el motor del controlador, segun el valor que tome, el controlador realizara unas acciones u otras
 */
 switch ( $accion ) {
-//Direccionamientos a nuevos registros
 	case 'nuevoRegistro' :
+//Direccionamientos a nuevos registros
 		$_SESSION["nuevoRegistroSuscripcion"] = isset($_REQUEST["tSuscripcion"]) ? $_REQUEST["tSuscripcion"] : "";
 		header("Location: ../_vistas/nuevoRegistro.php");
 		break;
-//Direccionamientos a login de usuario
 	case 'login' :
+//Direccionamientos a login de usuario
 		//Recupera la operacion asociada a la accion de 'login'
 		$operacion = isset($_REQUEST["operacion"]) ? $_REQUEST["operacion"] : "";
 		//Direccionamientos segun la operacion para la accion 'move'
@@ -191,8 +186,8 @@ switch ( $accion ) {
 				break;
 		}
 		break;
-//Direccionamiento de los enlaces en Pie y cabecera de las vistas 
 	case 'move':
+//Direccionamiento de los enlaces en Pie y cabecera de las vistas 
 		//Recupera la operacion asociada a la accion de 'move'
 		$operacion = isset($_REQUEST["operacion"]) ? $_REQUEST["operacion"] : "" ;
 		//Direccionamientos segun la operacion para la accion de 'move'
@@ -347,23 +342,29 @@ switch ( $accion ) {
 				break;
 		}
 		break;
-//CRUD de Tiendas
 	case 'mantenimentoTiendas':
-		session_unset();
+//CRUD de Tiendas
 		$operacion = $_REQUEST["operacion"] ? $_REQUEST["operacion"] : "";
 		switch ($operacion) {
+			//Accion de UPDATE sobre la tabla de tiendas
 			case 'modificacion':
+			//Operacion de MODIFICACION sobre la tabla de tiendas
+				//Obtenemos el JSON enviado por AJAX
 				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
+				//Decodificamos el JSON para que sea un array asociativo
 				$datos = json_decode($datos,true);
+				//Instanciamos un objeto de tienda
 				$updateTienda = new tienda();
 				foreach ($datos as $key => $value) {
 					$updateTienda->__SET($key,$value);
 				}
-
+				//Instancia del modelo de datos
 				$daoTiendas = new daoTiendas();
+				//Actualizamos los datos de tienda
 				$daoTiendas->actualizarTienda($updateTienda);
+				//Buscamos la tienda actualizada
 				$returnTienda = $daoTiendas->buscarTienda($updateTienda->__GET("codTienda"));
-				
+				//Creamos un array asociativo para convertirlo a JSON
 				$returnTienda = array(
 					"codTienda" => $updateTienda->__GET("codTienda"),
 					"nombre" => $updateTienda->__GET("nombre"),
@@ -378,44 +379,116 @@ switch ( $accion ) {
 					"tipoSuscripcion" => $updateTienda->__GET("tipoSuscripcion"),
 					"msgReturn" => "Modificacion completada con exito"
 				);
-
+				//Codificacion y devolucion del JSON - solo necesita un echo :D
 				echo json_encode($returnTienda);
 
 				break;
 
 			case 'alta':
-				
+			//Operacion de ALTA sobre la tabla de tiendas
+				//Obtenemos el JSON enviado por AJAX
+				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
+				//Decodificamos el JSON para que sea un array asociativo
+				$datos = json_decode($datos,true);
+				//Instanciamos un objeto de tienda
+				$insertTienda = new tienda();
+				foreach ($datos as $key => $value) {
+					$insertTienda->__SET($key,$value);
+				}
+				//Instancia del modelo de datos--->Modificar funcion de insertar tienda para que cree tablas
+				$daoTiendas = new daoTiendas();
+				//Generamos un nuevo codigo de tienda basandonos en el ultimo codigo
+				$codTiendaNuevo = $daoTiendas->obtenerUltimoCodigo();//
+				$codTiendaNuevo++;
+				//Añadimos el nuevo codigo a la tienda
+				$insertTienda->__SET("codTienda", $codTiendaNuevo);
+
+
+
+				//Test AJAX
+				$returnTienda = array(
+					"codTienda" => $insertTienda->__GET("codTienda"),
+					"nombre" => $insertTienda->__GET("nombre"),
+					"pais" => $insertTienda->__GET("pais"),
+					"provincia" => $insertTienda->__GET("provincia"),
+					"poblacion" => $insertTienda->__GET("poblacion"),
+					"direccion" => $insertTienda->__GET("direccion"),
+					"numero" => $insertTienda->__GET("numero"),
+					"telefono" => $insertTienda->__GET("telefono"),
+					"movil" => $insertTienda->__GET("movil"),
+					"email" => $insertTienda->__GET("email"),
+					"tipoSuscripcion" => $insertTienda->__GET("tipoSuscripcion"),
+					"msgReturn" => "Nuevo Codigo de tienda"
+				);
+				//Codificacion y devolucion del JSON - solo necesita un echo :D
+				echo json_encode($returnTienda);
+
 				break;
 
 			case 'baja':
 				
 				break;
-
+			//Busquedas de tienda por distintos parametros
 			case 'buscar':
+			//Operacion de busqueda sobre la tabla de tiendas
+				//Recepcion de los parametros de busqueda
 				$tipoBusqueda = $_REQUEST["tBusqueda"];
-				$paramBusqueda = $_REQUEST["busqueda"];
-				echo "$tipoBusqueda ; $paramBusqueda";
-				/*
-				$daoTiendas = new daoTiendas();
-				if($tipoBusqueda == "tsuscripcion"){
-					$daoTiendas->buscarTiendaPorSuscripcion($paramBusqueda);
-					$tiendas = $daoTiendas->result;
-					$_SESSION["listadoTiendas"] = serialize($tiendas);
-					//header("Location: ../_vistas/tienda.php");
+				$stringBusqueda = $_REQUEST["busqueda"];
+				$selectBusqueda = $_REQUEST["selBusqueda"];
+				//Recuperacion de variables IMPROTANTES para la sesion
+				$_SESSION["nivelAcceso"] = $_REQUEST["nAcceso"];
+				$_SESSION["logDone"] = $_REQUEST["logDone"];
+				echo "Tipode Busqueda : $tipoBusqueda ;Busqueda por Nombre/cod: $stringBusqueda ;Busqueda por suscripcion: $selectBusqueda <br>";
+				
+				switch ($tipoBusqueda) {
+					case 'codTienda':
+						//Instancia del modelo de datos
+						$daoTiendas = new daoTiendas();
+						//Buscamos Tienda por codigo
+						$tienda=$daoTiendas->buscarTienda($stringBusqueda);
+						//Se carga el resultado de la consulta en un array 
+						$tiendas[] = $tienda;
+
+						//Se almacena el array en la variable de sesion de listado de tiendas
+						$_SESSION["listadoTiendas"] = serialize($tiendas);
+						//Redireccion a la vista con los datos de consulta
+						header("Location: ../_vistas/tienda.php");
+						break;
+					case 'nombre':
+						//Instancia del modelo de datos
+						$daoTiendas = new daoTiendas();
+						//Añadimos caracteres comodin a la consulta
+						$stringBusqueda = "%".$stringBusqueda."%";
+						$daoTiendas->buscarTiendaPorNombre($stringBusqueda);
+						//Se almacena el array de la consulta en la variable de session de listado de tiendas
+						$_SESSION["listadoTiendas"] = serialize($daoTiendas->result);
+						//Redireccion a la vista con los datos de la consulta
+						header("Location: ../_vistas/tienda.php");
+						break;
+					case 'tsuscripcion':
+						//Instancia del modelo de datos
+						$daoTiendas = new daoTiendas();
+						//Buscamos
+						$daoTiendas->buscarTiendaPorSuscripcion($selectBusqueda);
+						//Se almacena el array de la consulta en la variable de session de listado de tiendas
+						$daoTiendas->result;
+						$_SESSION["listadoTiendas"] = serialize($daoTiendas->result);
+						//Redireccion a la vista de tienda con los datos de la consulta
+						header("Location: ../_vistas/tienda.php");
+						break;
+					
+					default:
+						//Encaso de forzar un fallo en el filtro de la busqueda estara esta opcion
+						//Se carga un resultado de consulta vacia en un array 
+						$tiendas[] = 0;
+
+						//Se almacena el array en la consulta vacia
+						$_SESSION["listadoTiendas"] = serialize($tiendas);
+						header("Location: ../_vistas/tienda.php");
+						break;
 				}
-				if($tipoBusqueda == "nombre"){
-					$paramBusqueda = "%".$paramBusqueda."%";
-					$daoTiendas->buscarTiendaPorSuscripcion($paramBusqueda);
-					$tiendas = $daoTiendas->result;
-					$_SESSION["listadoTiendas"] = serialize($tiendas);
-					//header("Location: ../_vistas/tienda.php");
-				}
-				if($tipoBusqueda == "codTienda"){
-					$tiendas = $daoTiendas->buscarTienda($paramBusqueda);
-					$_SESSION["listadoTiendas"] = serialize($tiendas);
-					//header("Location: ../_vistas/tienda.php");
-				}
-				*/
+
+
 				break;
 			
 			default:

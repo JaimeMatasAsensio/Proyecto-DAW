@@ -8,7 +8,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 */
 function validarTienda (element){
   //Selector de la division del input a tratar
-  element = element.target || element;
+  element = element.target || element; //Target del objetoJQuery || elemento de DOM
   //Segun el nombre del input recibe un tratamiento u otro
   switch (element.name) {
     case "nombre":
@@ -16,7 +16,7 @@ function validarTienda (element){
       var exprNombre = /^[áéíóúÁÉÍÓÚüÜñÑ]*([aA-zZ]+[áéíóúÁÉÍÓÚüÜñÑ]*\s*)+$/;
       //Comprueba la longitud y que admite la expresion regular
       if(exprNombre.test(element.value) && element.value.length < 30){
-        //si todo es true
+        //si todo es true marca el input como correcto
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
@@ -25,18 +25,18 @@ function validarTienda (element){
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
             //Si no encuentra una division con la clase "has-error" habilita el boton de enviar
-            //
+            //Busca el boton en concreto que envia la modificacion/insercion
             $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
-            
           }else{
             //Si encuentra una division con la clase "has-error" deshabilita el boton de enviado y no revisa otras divisiones
+            //Busca enconcreto el boton que envia la modificacion/inserccion
             $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
             
             i = divInputs.length; 
           }
         }
       }else{
-        //Si falla los requisitos de la validaion deshabilita el boton de envio
+        //Si falla los requisitos de la validaion deshabilita el boton de envio y marca el input con error
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
@@ -282,12 +282,12 @@ function validarTienda (element){
 $( "#resultadoBusquedaElementos" ).click( function() {
   
   $("#formsResaultadoBusqueda form input").keyup(validarTienda);
-  $("#formsResultadoBusqueda form input").focusin(validarTienda);
-  $("#formsResaultadoBusqueda form input").focusout(validarTienda);
+  //$("#formsResultadoBusqueda form input").focusin(validarTienda);
+  //$("#formsResaultadoBusqueda form input").focusout(validarTienda);
   
   $("#formsResaultadoBusqueda form select").change(validarTienda);
-  $("#formsResultadoBusqueda form select").focusin(validarTienda);
-  $("#formsResaultadoBusqueda form select").focusout(validarTienda);
+  //$("#formsResultadoBusqueda form select").focusin(validarTienda);
+  //$("#formsResaultadoBusqueda form select").focusout(validarTienda);
 
 });
 //Valida los elementos de una tienda cuando se pulsa una tecla, toma el foco o lo deja en el formulario de modificacion
