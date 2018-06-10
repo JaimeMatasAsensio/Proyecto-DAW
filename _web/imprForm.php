@@ -14,8 +14,8 @@ function imprArray($array){
 function imprFormTienda($obj){
 	echo '<div class="row formulario formulario-crud">';
 	echo "<h3 class=infoProceso></h3>";
-	echo '<div class="overFlowForms">';
-	echo '</div>';
+	echo '<div class="confirmDelete"></div>';
+	echo '<div class="overFlowForms"></div>';
 	echo'<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=modificacion" method="post" name="tienda">';
 	echo '<div class="col-xs-12">';
 	echo '<fieldset>';
@@ -103,7 +103,7 @@ function imprFormTienda($obj){
 	echo '<div class="col-xs-6 confMod">';
 	echo '<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>';
 	echo '</div>';
-	echo '<div class="col-xs-6">';
+	echo '<div class="col-xs-6 confDelete">';
 	echo '<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>';
 	echo '</div>';
 	echo '</div>';
@@ -112,92 +112,98 @@ function imprFormTienda($obj){
 //Funcion para la impresion del formulario de tienda pasando un objeto php
 
 function imprFormUsuario($obj){
-echo '<div class="row formulario formulario-crud">
-			<form action="../_web/controller.php?accion=mantenimentoUsuarios&operacion=modificacion" method="post">
-			<div class="col-xs-12">
-			<fieldset>
+	echo '<div class="row formulario formulario-crud">
+				<h3 class=infoProceso></h3>
+				<div class="confirmDelete"></div>
+				<div class="overFlowForms"></div>
+				<form action="../_web/controller.php?accion=mantenimentoUsuarios&operacion=modificacion" method="post">
+				<div class="col-xs-12">
+				<fieldset>
 
-			<legend>Usuario: \''.$obj->__GET("codUsuario").'\'</legend>
-			<input type="hidden" name="codUsuario" value="'.$obj->__GET("codUsuario").'">
-			<div class="row">
+				<legend>Usuario: \''.$obj->__GET("codUsuario").'\'</legend>
+				<input type="hidden" name="codUsuario" value="'.$obj->__GET("codUsuario").'">
+				<div class="row">
 
-			<div class="form-group col-xs-12 col-sm-6">
-			<label for="nombre" class="hidden-xs">Nombre</label>
-			<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Usuario" value="'.$obj->__GET("nombre").'" disabled>
-			</div>
+				<div class="form-group col-xs-12 col-sm-6">
+				<label for="nombre" class="hidden-xs">Nombre</label>
+				<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Usuario" value="'.$obj->__GET("nombre").'" disabled>
+				</div>
 
-			<div class="form-group col-xs-12 col-sm-6">
-			<label for="email" class="hidden-xs">Email</label>
-			<input type="mail" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled>
-			</div>
+				<div class="form-group col-xs-12 col-sm-6">
+				<label for="email" class="hidden-xs">Email</label>
+				<input type="mail" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled>
+				</div>
 
-			<div class="form-group col-xs-12 col-sm-6">
-			<label for="password" class="hidden-xs">Nueva Contraseña</label>
-			<input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" value="'.$obj->__GET("password").'" disabled>
-			</div>
+				<div class="form-group col-xs-12 col-sm-6">
+				<label for="password" class="hidden-xs">Nueva Contraseña</label>
+				<input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" value="'.$obj->__GET("password").'" disabled>
+				</div>
 
-			<div class="form-group col-xs-12 col-sm-6">
-			<label for="nacceso" class="hidden-xs">Nivel Acceso</label>
-			<select class="form-control" name="nAcceso" id="nAcceso" disabled>';
-				switch ($obj->__GET("nivelAcceso")) {
-					//Se bloquea el valor de nivel de acceso de administrador.
-					/*El nivel de acceso de Administrador solo se puede obtener si un administrador lo crea.
-						Los niveles de acceso de gerente y empleado pueden cambiarse entre si, pero no pueden
-						tomar el valor de administrador*/
-					case 'adm':
-						echo '<option value="">Nivel Acceso</option>';
-						echo '<option value="adm" selected>Administrador</option>';						
-						break;
-					case 'gen':
-						echo '<option value="">Nivel Acceso</option>';
-						echo '<option value="gen" selected>Gerente</option>';
-						echo '<option value="emp">Empleado</option>';		
-						break;
-					case 'emp':
-						echo '<option value="">Nivel Acceso</option>';
-						echo '<option value="gen">Gerente</option>';
-						echo '<option value="emp" selected>Empleado</option>';		
-						break;
-					default:
-						echo '<option value="">Nivel Acceso</option>';
-						echo '<option value="gen">Gerente</option>';
-						echo '<option value="emp">Empleado</option>';	
-						break;
-				}
+				<div class="form-group col-xs-12 col-sm-6">
+				<label for="nacceso" class="hidden-xs">Nivel Acceso</label>
+				<select class="form-control" name="nAcceso" id="nAcceso" disabled>';
+					switch ($obj->__GET("nivelAcceso")) {
+						//Se bloquea el valor de nivel de acceso de administrador.
+						/*El nivel de acceso de Administrador solo se puede obtener si un administrador lo crea.
+							Los niveles de acceso de gerente y empleado pueden cambiarse entre si, pero no pueden
+							tomar el valor de administrador*/
+						case 'adm':
+							echo '<option value="">Nivel Acceso</option>';
+							echo '<option value="adm" selected>Administrador</option>';						
+							break;
+						case 'gen':
+							echo '<option value="">Nivel Acceso</option>';
+							echo '<option value="gen" selected>Gerente</option>';
+							echo '<option value="emp">Empleado</option>';		
+							break;
+						case 'emp':
+							echo '<option value="">Nivel Acceso</option>';
+							echo '<option value="gen">Gerente</option>';
+							echo '<option value="emp" selected>Empleado</option>';		
+							break;
+						default:
+							echo '<option value="">Nivel Acceso</option>';
+							echo '<option value="gen">Gerente</option>';
+							echo '<option value="emp">Empleado</option>';	
+							break;
+					}
 
+					
+				echo '</select>
+				</div>
+
+				</div>
+				</fieldset>
+				</div>
+
+				</form>
+
+				<div class="col-xs-12 control-btn">
+				<div class="col-xs-6 divMod">
+				<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+				</div>
+				<div class="col-xs-6 confMod">
+				<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
+				</div>
 				
-			echo '</select>
-			</div>
+				<div class="col-xs-6 confDelete">';
+				if($obj->__GET("nivelAcceso") == "adm"){
+				echo	'<button class="btn btn-default" disabled><span class="glyphicon glyphicon-trash"></span></span></button>';
+				}else{
+					echo	'<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>';
+				}
+	echo	'</div>
 
-			</div>
-			</fieldset>
-			</div>
-
-			</form>
-
-			<div class="col-xs-12 control-btn">
-			<div class="col-xs-6 divMod">
-			<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-			</div>
-			<div class="col-xs-6 confMod">
-			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
-			</div>
-			
-			<div class="col-xs-6">';
-			if($obj->__GET("nivelAcceso") == "adm"){
-			echo	'<button class="btn btn-default" disabled><span class="glyphicon glyphicon-trash"></span></span></button>';
-			}else{
-				echo	'<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>';
-			}
-echo	'</div>
-
-			</div>
-			</div>';
+				</div>
+				</div>';
 }
 //Funcion para impresion del formulario de tienda pasando un objeto php
 
 function imprFormProveedor($obj){
-			echo	'<div class="row formulario formulario-crud">
+	echo	'<div class="row formulario formulario-crud">
+					<h3 class=infoProceso></h3>
+					<div class="confirmDelete"></div>
+					<div class="overFlowForms"></div>
 					<form action="../_web/controller.php?accion=mantenimentoUsuarios&operacion=modificacion" method="post">
 						<div class="col-xs-12">
 							<fieldset>
@@ -244,7 +250,7 @@ function imprFormProveedor($obj){
 			  		<div class="col-xs-6 confMod">
 			  			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
 			  		</div>
-			  		<div class="col-xs-6">
+			  		<div class="col-xs-6 confDelete">
 			  			<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>
 			  		</div>
 				  </div>
@@ -254,6 +260,9 @@ function imprFormProveedor($obj){
 
 function imprFormEmpleado($obj){
 	echo	'<div class="row formulario formulario-crud" id="formTiendaCodTienda">
+	<h3 class=infoProceso></h3>
+	<div class="confirmDelete"></div>
+	<div class="overFlowForms"></div>
 	<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=modificacion" method="post">
 	<div class="col-xs-12">
 	<fieldset>
@@ -311,7 +320,7 @@ function imprFormEmpleado($obj){
 	<div class="col-xs-6 confMod">
 	<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
 	</div>
-	<div class="col-xs-6">
+	<div class="col-xs-6 confDelete">
 	<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>
 	</div>
 	</div>
@@ -320,91 +329,94 @@ function imprFormEmpleado($obj){
 //Funcion para la impresion del formulario de empleado pasando un objeto php
 
 function imprFormProducto($obj){
-echo '<div class="row formulario formulario-crud">
-	<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=modificacion" method="post">
-		<div class="col-xs-12">
-			<fieldset>
-				<legend>Producto: \''.$obj->__GET("codProducto").'\'</legend>
-				<input type="hidden" name="codProducto" value="'.$obj->__GET("codProducto").'">
-				<div class="row">
-					<div class="col-xs-12 inputImg">
-						<div>';
-						if( !empty($obj->__GET("foto")) ){
-							echo '<img src="../_recursos/img/nuevoProducto.png" alt="Imagen de nuevo producto">';
-						}else{
-							//Tratamiento de Imagenes... BUILDING...
-							echo '<img src="../_recursos/img/nuevoProducto.png" alt="Imagen de nuevo producto">';
-						}
-			echo '</div>
-						<div>
-							<span class="foto">
-					    	<input type="file" name="foto" id="foto">
-							</span>
-							<label for="foto" class="inputFile"><span>Añadir Foto</span></label>
+	echo '<div class="row formulario formulario-crud">
+	<h3 class=infoProceso></h3>
+	<div class="confirmDelete"></div>
+	<div class="overFlowForms"></div>
+		<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=modificacion" method="post">
+			<div class="col-xs-12">
+				<fieldset>
+					<legend>Producto: \''.$obj->__GET("codProducto").'\'</legend>
+					<input type="hidden" name="codProducto" value="'.$obj->__GET("codProducto").'">
+					<div class="row">
+						<div class="col-xs-12 inputImg">
+							<div>';
+							if( !empty($obj->__GET("foto")) ){
+								echo '<img src="../_recursos/img/nuevoProducto.png" alt="Imagen de nuevo producto">';
+							}else{
+								//Tratamiento de Imagenes... BUILDING...
+								echo '<img src="../_recursos/img/nuevoProducto.png" alt="Imagen de nuevo producto">';
+							}
+				echo '</div>
+							<div>
+								<span class="foto">
+						    	<input type="file" name="foto" id="foto">
+								</span>
+								<label for="foto" class="inputFile"><span>Añadir Foto</span></label>
+							</div>
 						</div>
-					</div>
-				  <div class="form-group col-xs-12 col-sm-6">
-				    <label for="nombre" class="hidden-xs">Nombre</label>
-				    <input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Usuario" value="'.$obj->__GET("nombre").'" disabled>
-				  </div>
-				  <div class="form-group col-xs-12 col-sm-6">
-				    <label for="referencia" class="hidden-xs">Referencia</label>
-				    <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia" value="'.$obj->__GET("referencia").'" disabled>
-				  </div>
-				  <div class="form-group col-xs-12 col-sm-4">
-				    <label for="precio" class="hidden-xs">Precio (€)</label>
-				    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio (€)" value="'.$obj->__GET("precio").'" disabled>
-				  </div>
-					<div class="form-group col-xs-12 col-sm-4">
-				    <label for="IVA" class="hidden-xs">IVA</label>
-				    <input type="text" class="form-control" name="IVA" id="IVA" placeholder="IVA" value="'.$obj->__GET("IVA").'" disabled>
-				  </div>
-					<div class="form-group col-xs-12 col-sm-4">
-				    <label for="descuento" class="hidden-xs">Descuento</label>
-				    <input type="text" class="form-control" name="descuento" id="descuento" placeholder="Descuento" value="'.$obj->__GET("descuento").'" disabled>
-				  </div>
-					<div class="form-group col-xs-12 col-sm-4">
-				    <label for="cantidad" class="hidden-xs">Cantidad</label>
-				    <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad" min="0" value="'.$obj->__GET("cantidad").'" disabled>
-				  </div>
-				  <div class="form-group col-xs-12 col-sm-4">
-				    <label for="cantidadMin" class="hidden-xs">Cantidad Minima</label>
-				    <input type="number" class="form-control" name="cantidadMin" id="cantidadMin" placeholder="Cantidad Minima" min="0" value="'.$obj->__GET("cantidadMin").'" disabled>
-				  </div>
-					<div class="form-group col-xs-12 col-sm-4">
-				    <label for="nuevo">Nuevo Producto</label>
-				    <input type="checkbox" class="form-control" name="nuevo" id="nuevo" ';
-				    if( $obj->__GET("nuevo") ){
-				    	echo "checked";
-				    }
-				    echo '>
-				  </div>
-					<div class="form-group col-xs-12 col-sm-12">
-				    <label for="descripcion" class="hidden-xs">Descripcion</label>
-				    <textarea name="descripcion" id="descripcion" disabled>';
-				    if( !empty($obj->__GET("descripcion")) ){
-				    	echo $obj->__GET("descripcion");
-				    }else{
-				    	echo "Introduzca una Descripcion";
-				    }
-		 echo '</textarea>
-				  </div>								
+					  <div class="form-group col-xs-12 col-sm-6">
+					    <label for="nombre" class="hidden-xs">Nombre</label>
+					    <input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Usuario" value="'.$obj->__GET("nombre").'" disabled>
+					  </div>
+					  <div class="form-group col-xs-12 col-sm-6">
+					    <label for="referencia" class="hidden-xs">Referencia</label>
+					    <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia" value="'.$obj->__GET("referencia").'" disabled>
+					  </div>
+					  <div class="form-group col-xs-12 col-sm-4">
+					    <label for="precio" class="hidden-xs">Precio (€)</label>
+					    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio (€)" value="'.$obj->__GET("precio").'" disabled>
+					  </div>
+						<div class="form-group col-xs-12 col-sm-4">
+					    <label for="IVA" class="hidden-xs">IVA</label>
+					    <input type="text" class="form-control" name="IVA" id="IVA" placeholder="IVA" value="'.$obj->__GET("IVA").'" disabled>
+					  </div>
+						<div class="form-group col-xs-12 col-sm-4">
+					    <label for="descuento" class="hidden-xs">Descuento</label>
+					    <input type="text" class="form-control" name="descuento" id="descuento" placeholder="Descuento" value="'.$obj->__GET("descuento").'" disabled>
+					  </div>
+						<div class="form-group col-xs-12 col-sm-4">
+					    <label for="cantidad" class="hidden-xs">Cantidad</label>
+					    <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad" min="0" value="'.$obj->__GET("cantidad").'" disabled>
+					  </div>
+					  <div class="form-group col-xs-12 col-sm-4">
+					    <label for="cantidadMin" class="hidden-xs">Cantidad Minima</label>
+					    <input type="number" class="form-control" name="cantidadMin" id="cantidadMin" placeholder="Cantidad Minima" min="0" value="'.$obj->__GET("cantidadMin").'" disabled>
+					  </div>
+						<div class="form-group col-xs-12 col-sm-4">
+					    <label for="nuevo">Nuevo Producto</label>
+					    <input type="checkbox" class="form-control" name="nuevo" id="nuevo" ';
+					    if( $obj->__GET("nuevo") ){
+					    	echo "checked";
+					    }
+					    echo '>
+					  </div>
+						<div class="form-group col-xs-12 col-sm-12">
+					    <label for="descripcion" class="hidden-xs">Descripcion</label>
+					    <textarea name="descripcion" id="descripcion" disabled>';
+					    if( !empty($obj->__GET("descripcion")) ){
+					    	echo $obj->__GET("descripcion");
+					    }else{
+					    	echo "Introduzca una Descripcion";
+					    }
+			 echo '</textarea>
+					  </div>								
+				</div>
+				</fieldset>
 			</div>
-			</fieldset>
-		</div>
-	</form>
-  <div class="col-xs-12 control-btn">
-		<div class="col-xs-6 divMod">
-			<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-		</div>
-		<div class="col-xs-6 confMod">
-			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
-		</div>
-		<div class="col-xs-6">
-			<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>
-		</div>
-  </div>
-</div>';
+		</form>
+	  <div class="col-xs-12 control-btn">
+			<div class="col-xs-6 divMod">
+				<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+			</div>
+			<div class="col-xs-6 confMod">
+				<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
+			</div>
+			<div class="col-xs-6 confDelete">
+				<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>
+			</div>
+	  </div>
+	</div>';
 }
 //Funcion para la impresion del formulario de producto pasando un objeto php
 

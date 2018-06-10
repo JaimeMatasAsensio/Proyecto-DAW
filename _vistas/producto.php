@@ -110,6 +110,9 @@ session_start();
 			</div>
 
 			<div class="row formulario formulario-crud" id="formNuevoElemento">
+				<h3 class=infoProceso></h3>
+				<div class="confirmDelete"></div>
+				<div class="overFlowForms"></div>
 				<form action="../_web/controller.php?accion=mantenimientoProductos&operacion=alta" method="post" enctype="multipart/form-data" >
 					<div class="col-xs-12">
 						<fieldset>

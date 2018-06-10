@@ -11,6 +11,7 @@
 			//Segun el nivel de acceso se limitaran unas opciones u otras en los menus de navegacion
 		if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 			$nivelAcc = $_SESSION["nivelAcceso"];
+			//Enlaces de navegacion para un usuario con el nivel de acceso de administrador
 			if ($nivelAcc == "adm") {
 				echo "<ul>";
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
@@ -21,6 +22,7 @@
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
 				echo "</ul>";
 			}
+			//Enlaces de navegacion para un usuario con el nivel de acceso de gerente
 			if ($nivelAcc == "gen") {
 				echo "<ul>";
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
@@ -29,6 +31,7 @@
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
 				echo "</ul>";
 			}
+			//Enlaces de navegacion para un usuario con el nivel de acceso de empleado
 			if ($nivelAcc == "emp") {
 				echo "<ul>";
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
@@ -44,13 +47,15 @@
 			//Segun el nivel de acceso se mostraran un formato u otro de credenciales
 			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 				echo "<div id='credenciales'>";
-
+				//Titulo para el usuario con el nivel de acceso de administrador
 				if ($nivelAcc == "adm") {
 					echo "<p>Usuario: Administrador</p>";
 				}
+				//Titulo para el usuario con el nivel de acceso de gerente
 				if ($nivelAcc == "gen") {
 					echo "<p>Usuario: Gerente</p>";
 				}
+				//Titulo para el usuario con el nivel de acceso de empleado
 				if ($nivelAcc == "emp") {
 					echo "<p>Usuario: Trabajador</p>";
 				}
@@ -77,6 +82,7 @@
 		<?php
 		//Segun el nivel de acceso se limitaran unas opciones u otras en los menus de navegacion para movil
 		if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
+			//Enlaces de navegacion para un usuario con el nivel de acceso de administrador en movil
 			if ($nivelAcc == "adm") {
 				echo "<ul>";
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
@@ -87,6 +93,7 @@
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
 				echo "</ul>";
 			}
+			//Enlaces de navegacion para un usuario con el nivel de acceso de gerente en movil
 			if ($nivelAcc == "gen") {
 				echo "<ul>";
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
@@ -95,6 +102,7 @@
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
 				echo "</ul>";
 			}
+			//Enlaces de navegacion para un usuario con el nivel de acceso de empleado en movil
 			if ($nivelAcc == "emp") {
 				echo "<ul>";
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";

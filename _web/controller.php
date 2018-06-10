@@ -400,33 +400,35 @@ switch ( $accion ) {
 				//Generamos un nuevo codigo de tienda basandonos en el ultimo codigo
 				$codTiendaNuevo = $daoTiendas->obtenerUltimoCodigo();//
 				$codTiendaNuevo++;
-				//Añadimos el nuevo codigo a la tienda
+				//Añadimos el nuevo codigo al objeto de tienda
 				$insertTienda->__SET("codTienda", $codTiendaNuevo);
 
+				//Insertamos el registro de la nueva tienda en la tabla de tiendas y las tablas que necesita
+				$daoTiendas->insertarTienda($insertTienda);
 
-
-				//Test AJAX
+				//retorno AJAX
 				$returnTienda = array(
 					"codTienda" => $insertTienda->__GET("codTienda"),
 					"nombre" => $insertTienda->__GET("nombre"),
-					"pais" => $insertTienda->__GET("pais"),
-					"provincia" => $insertTienda->__GET("provincia"),
-					"poblacion" => $insertTienda->__GET("poblacion"),
-					"direccion" => $insertTienda->__GET("direccion"),
-					"numero" => $insertTienda->__GET("numero"),
-					"telefono" => $insertTienda->__GET("telefono"),
-					"movil" => $insertTienda->__GET("movil"),
-					"email" => $insertTienda->__GET("email"),
 					"tipoSuscripcion" => $insertTienda->__GET("tipoSuscripcion"),
-					"msgReturn" => "Nuevo Codigo de tienda"
+					"msgReturn" => "Nueva tienda Creada con exito"
 				);
 				//Codificacion y devolucion del JSON - solo necesita un echo :D
 				echo json_encode($returnTienda);
-
+				
 				break;
 
 			case 'baja':
-				
+			//Operacion de BAJA sobre la tabla de tiendas
+				//Obtenemos el JSON enviado por AJAX
+				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
+				//Decodificamos el JSON para que sea un array asociativo
+				$datos = json_decode($datos,true);
+
+				$daotiendas = new daoTiendas();
+
+				$daoTiendas->eliminarTienda($datos["codTienda"]);
+
 				break;
 			//Busquedas de tienda por distintos parametros
 			case 'buscar':

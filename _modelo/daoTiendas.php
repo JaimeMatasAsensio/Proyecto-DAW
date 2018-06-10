@@ -157,24 +157,54 @@ require_once '../_conexion/libreria_PDO.php';
       }
     }
     //Funcion para obtener el codigo de la ultima tienda insertada, deveulve un entero - UTILIDAD
-/*Retocar para que ELIMINE las tablas que pertenezcan a una tienda*/
+
     public function eliminarTienda($codTienda){
       try {
+      //Borramos el Registro de la tabla de tiendas
       $consulta = "DELETE FROM tienda WHERE codTienda = :codTienda";
-      $param = array(":cosTienda" => $CodTienda);
+      $param = array(":codTienda" => $codTienda);
       $this->result = $this->con->ConsultaSimple($consulta, $param);
       
+      //Borrado de usuarios y accesos a la tienda<-----Continuar
+
+      $consulta = "SELECT codUsuario FROM `acceso` WHERE codTienda = :codTienda";
+      $param = array(":codTienda" => $codTienda);
+
+
+      //INI - Borrado de tablas
+      
+      //Borramos la tabla de empleados
+      $consulta = "DROP TABLE empleado_".$codTienda;
+      $param = array();
+      $this->result = $this->con->ConsultaSimple($consulta, $param);
+
+      //Borramos la tabla de proveedor
+      $consulta = "DROP TABLE proveedor_".$codTienda;
+      $param = array();
+      $this->result = $this->con->ConsultaSimple($consulta, $param);
+
+      //Borramos la tabla de productos
+      $consulta = "DROP TABLE productos_".$codTienda;
+      $param = array();
+      $this->result = $this->con->ConsultaSimple($consulta, $param);
+
+      //Borramos la tabla de suministro
+      $consulta = "DROP TABLE suministro_".$codTienda;
+      $param = array();
+      $this->result = $this->con->ConsultaSimple($consulta, $param);
+
+      //FIN - Borrado de tablas
       }catch (Exception $e){
         echo($e->getMessage());
       }  
     }
     //Funcion modelo de datos tienda elimna una tienda y todas las tablas que pertenecen a esta
 
-/*Retocar para que GENERE las tablas de una tienda*/
     public function insertarTienda($obj){
       try {
-      $consulta = "INSERT INTO tienda(codTienda, nombre, pais, provincia, poblacion, direccion, numero, telefono, movil, email, tipoSuscripcion) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-      $param = array(
+        //Insertamos el Registro de la nueva tienda en la tabla
+        $consulta = "INSERT INTO tienda(codTienda, nombre, pais, provincia, poblacion, direccion, numero, telefono, movil, email, tipoSuscripcion) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        $param = array(
         $obj->__GET("codTienda"),
         $obj->__GET("nombre"),
         $obj->__GET("pais"),
@@ -186,9 +216,82 @@ require_once '../_conexion/libreria_PDO.php';
         $obj->__GET("movil"),
         $obj->__GET("email"),
         $obj->__GET("tipoSuscripcion")
-      );
-      $this->result = $this->con->ConsultaSimple($consulta, $param);
-      
+        );
+        $this->result = $this->con->ConsultaSimple($consulta, $param);
+
+        //INI-Creacion de tablas
+        
+        //Creamos la tabla de empleado con el codigo de la nueva tienda
+        $consulta = "CREATE TABLE `empleado_".$obj->__GET("codTienda")."` ( `codEmpleado` varchar(3) NOT NULL,
+                  `nombre` varchar(30) NOT NULL,
+                  `apellido1` varchar(30) NOT NULL,
+                  `apellido2` varchar(30) NOT NULL,
+                  `telefono` varchar(12) NOT NULL,
+                  `movil` varchar(12) NOT NULL,
+                  `foto` blob NOT NULL,
+                  `sueldo` float NOT NULL,
+                  `codUsuario` varchar(3) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+        $param = array();
+        $this->result = $this->con->ConsultaSimple($consulta, $param);
+        //Asignamos la clave principal a la tabla de empleados
+        $consulta = "ALTER TABLE `empleado_".$obj->__GET("codTienda")."` ADD PRIMARY KEY (`codEmpleado`);";
+        $param = array();
+        $this->result = $this->con->ConsultaSimple($consulta, $param);
+
+        //Creamos la tabla de producto con el codigo de la nueva tienda
+        $consulta = "CREATE TABLE `producto_".$obj->__GET("codTienda")."` (
+                    `codProducto` varchar(3) NOT NULL,
+                    `referencia` varchar(13) NOT NULL,
+                    `nombre` varchar(30) NOT NULL,
+                    `descripcion` text NOT NULL,
+                    `precio` float NOT NULL,
+                    `IVA` float NOT NULL,
+                    `descuento` float NOT NULL,
+                    `cantidad` int(3) NOT NULL,
+                    `cantidadMin` int(3) NOT NULL,
+                    `nuevo` tinyint(1) NOT NULL,
+                    `foto` blob NOT NULL
+                  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+        $param = array();
+        $this->result = $this->con->ConsultaSimple($consulta, $param);
+        //Asignamos la clave principal a la tabla de producto
+        $consulta = "ALTER TABLE `producto_".$obj->__GET("codTienda")."` ADD PRIMARY KEY (`codProducto`);";
+        $param = array();
+        $this->result = $this->con->ConsultaSimple($consulta, $param);
+
+        //Creamos la tabla de proveedores con el codigo de la nueva tienda
+        $consulta = "CREATE TABLE `proveedor_".$obj->__GET("codTienda")."` (
+                      `codProveedor` varchar(3) NOT NULL,
+                      `nombre` varchar(30) NOT NULL,
+                      `nombreContacto` varchar(30) NOT NULL,
+                      `apellido1Contacto` varchar(30) NOT NULL,
+                      `apellido2Contacto` varchar(30) NOT NULL,
+                      `telefono` varchar(12) NOT NULL,
+                      `movil` varchar(12) NOT NULL,
+                      `email` varchar(40) NOT NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+        $param = array();
+        $this->result = $this->con->ConsultaSimple($consulta, $param);
+        //Asignamos la clave principal a la tabla de proveedores
+        $consulta = "ALTER TABLE `proveedor_".$obj->__GET("codTienda")."` ADD PRIMARY KEY (`codProveedor`);";
+        $param = array();
+        $this->result = $this->con->ConsultaSimple($consulta, $param);
+        
+        //Creamos la tabla de suministro con el codigo de la nueva tienda
+        $consulta = "CREATE TABLE `suministro_".$obj->__GET("codTienda")."` (
+                      `codProducto` varchar(3) NOT NULL,
+                      `codProveedor` varchar(3) NOT NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+        $param = array();
+        $this->result = $this->con->ConsultaSimple($consulta, $param);
+        //Asignamos la clave principal a la tabla de suministro
+        $consulta = "ALTER TABLE `suministro_".$obj->__GET("codTienda")."` ADD PRIMARY KEY (`codProducto`,`codProveedor`);";
+        $param = array();
+        $this->result = $this->con->ConsultaSimple($consulta, $param);
+        
+        //FIN-Creacion de Tablas
+
       }catch (Exception $e){
         echo($e->getMessage());
       }  

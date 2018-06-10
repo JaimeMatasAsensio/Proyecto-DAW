@@ -282,12 +282,12 @@ function validarTienda (element){
 $( "#resultadoBusquedaElementos" ).click( function() {
   
   $("#formsResaultadoBusqueda form input").keyup(validarTienda);
-  //$("#formsResultadoBusqueda form input").focusin(validarTienda);
-  //$("#formsResaultadoBusqueda form input").focusout(validarTienda);
+  $("#formsResultadoBusqueda form input").focusin(validarTienda);
+  $("#formsResaultadoBusqueda form input").focusout(validarTienda);
   
   $("#formsResaultadoBusqueda form select").change(validarTienda);
-  //$("#formsResultadoBusqueda form select").focusin(validarTienda);
-  //$("#formsResaultadoBusqueda form select").focusout(validarTienda);
+  $("#formsResultadoBusqueda form select").focusin(validarTienda);
+  $("#formsResaultadoBusqueda form select").focusout(validarTienda);
 
 });
 //Valida los elementos de una tienda cuando se pulsa una tecla, toma el foco o lo deja en el formulario de modificacion
@@ -295,11 +295,11 @@ $( "#resultadoBusquedaElementos" ).click( function() {
 $( "#nuevoElemento" ).click( function() {
   
   $("#formNuevoElemento form input").keyup(validarTienda);
-  //$("form input").focusin(validarTienda);
+  $("#formNuevoElemento form input").focusin(validarTienda);
   $("#formNuevoElemento form input").focusout(validarTienda);
   
   $("#formNuevoElemento form select").change(validarTienda);
-  //$("form select").focusin(validarTienda);
+  $("#formNuevoElemento form select").focusin(validarTienda);
   $("#formNuevoElemento form select").focusout(validarTienda);
 });
 //Valida los elementos de una tienda cuando se pulsa una tecla, toma el foco o lo deja en el formulario de alta

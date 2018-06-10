@@ -4,6 +4,7 @@
 				<?php
 		if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 			$nivelAcc = $_SESSION["nivelAcceso"];
+			//Enlaces de navegacion para un usuario con el nivel de acceso de administrador
 			if ($nivelAcc == "adm") {
 				echo "<ul>";
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=tiendas'>Tiendas</a></li>";
@@ -14,6 +15,7 @@
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
 				echo "</ul>";
 			}
+			//Enlaces de navegacion para un usuario con el nivel de acceso de gerente
 			if ($nivelAcc == "gen") {
 				echo "<ul>";
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";
@@ -22,6 +24,7 @@
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=alertas'>Alertas</a></li>";
 				echo "</ul>";
 			}
+			//Enlaces de navegacion para un usuario con el nivel de acceso de empleado
 			if ($nivelAcc == "emp") {
 				echo "<ul>";
 				echo "<li><a href='../_web/controller.php?accion=move&operacion=productos'>Productos</a></li>";

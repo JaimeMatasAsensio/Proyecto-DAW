@@ -76,6 +76,7 @@ session_start();
 
 			<div class="row formulario formulario-crud" id="formNuevoElemento">
 			<h3 class=infoProceso></h3>
+			<div class="confirmDelete"></div>
 			<div class="overFlowForms"></div>
 				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=alta" method="post" name="tienda">
 					<div class="col-xs-12">
