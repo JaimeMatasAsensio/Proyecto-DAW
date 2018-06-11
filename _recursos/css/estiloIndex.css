@@ -116,6 +116,10 @@ header div{
 		border-top-left-radius: 5px;
 		border-bottom-right-radius: 5px;
 	}
+	img#EnConstruccion{
+		border-top-left-radius: 15px;
+		border-bottom-right-radius: 15px;
+	}
 	#menuEscritorio{
 		display: inline;
 		width: 60%;
@@ -266,6 +270,10 @@ main{
 	#cont1img div img{
 		border-bottom-right-radius: 20px; 
 		height: 280px;
+	}
+	img#EnConstruccion{
+		border-top-left-radius: 20px;
+		border-bottom-right-radius: 20px;
 	}
 }
 @media (min-width: 1200px) {
