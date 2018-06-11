@@ -38,7 +38,7 @@ switch ( $accion ) {
 	case 'nuevoRegistro' :
 //Direccionamientos a nuevos registros
 		$_SESSION["nuevoRegistroSuscripcion"] = isset($_REQUEST["tSuscripcion"]) ? $_REQUEST["tSuscripcion"] : "";
-		header("Location: ../_vistas/nuevoRegistro.php");
+		header("Location: ../_vistas/onWork.php");
 		break;
 	case 'login' :
 //Direccionamientos a login de usuario

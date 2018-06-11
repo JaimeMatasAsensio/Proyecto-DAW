@@ -37,6 +37,22 @@ rgba(244, 103, 59, 1)
 }
 
 /*Estilos para header*/
+img#EnConstruccion{
+	width: 100%;
+	max-width: 500px;
+	height: auto;
+	border: 2px solid rgba(236, 4, 76, 1);
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	display: inline-block;
+	margin:50px auto;
+	padding: 20px;
+}
+div.enConstruccion{
+	display: flex;
+	justify-content: center;
+}
+}
 header{
 	padding: 5px 0px;
 }
