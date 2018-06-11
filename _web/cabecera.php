@@ -41,6 +41,4 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 			<li><a href="#cont3">Suscripciones</a></li>
 			<li><a href="#cont4">¡¡¡Registrate!!!</a></li>
 		</ul>
-	</div>
-	<script type="text/javascript" src="_recursos/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="_recursos/js/jqueryUI.js"></script>
+	</div><script type="text/javascript" src="_recursos/js/jquery-ui.min.js"></script><script type="text/javascript" src="_recursos/js/jqueryUI.js"></script>

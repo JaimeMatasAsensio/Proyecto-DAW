@@ -92,7 +92,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 						<div>
 							<form action="_web/controller.php?accion=nuevoRegistro" method="post">
 								<input type="hidden" name="tSuscripcion" value="pre">
-								<button class="btn-regIndex">Registrate</button>
+								<button type="button" class="btn-regIndex">Registrate</button>
 							</form>
 						</div>
 					</div>
@@ -111,7 +111,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 						<div>
 							<form action="_web/controller.php?accion=nuevoRegistro" method="post">
 								<input type="hidden" name="tSuscripcion" value="nor">
-								<button class="btn-regIndex">Registrate</button>
+								<button type="button" class="btn-regIndex">Registrate</button>
 							</form>
 						</div>
 					</div>
@@ -130,7 +130,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 						<div>
 							<form action="_web/controller.php?accion=nuevoRegistro" method="post">
 								<input type="hidden" name="tSuscripcion" value="fre">
-								<button class="btn-regIndex">Registrate</button>
+								<button type="button" class="btn-regIndex">Registrate</button>
 							</form>
 						</div>
 					</div>
@@ -142,7 +142,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 					<img src="_recursos/img/imgRegistro.jpg" class=" border-shopShpere-xs" id="imgRegistro" alt="Imgen de registro">
 					<form action="_web/controller.php?accion=nuevoRegistro" method="post">
 						<input type="hidden" name="tSuscripcion" value="">
-						<button class="btn-regIndex">Registrate</button>
+						<button type="button" class="btn-regIndex">Registrate</button>
 					</form>
 				</div>
 			</div>
@@ -150,6 +150,5 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 		</main>
 	</div>
 	<?php	include "_web/pie.php";	?>
-</body>
-<script type="text/javascript" src="_recursos/js/bootstrap.min.js" charset="utf-8"></script>
+</body><script type="text/javascript" src="_recursos/js/bootstrap.min.js" charset="utf-8"></script>
 </html>
