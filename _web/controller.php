@@ -6,6 +6,12 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 2018
 */
 session_start();
+//Determinimanos si se ha realizado un login correcto
+if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] !== 1) {
+	header("Location: ../index.php");
+}
+//De esta forma evitamos que usuarios anonimos entren a esta parte de la aplicacion
+
 //Entidades y modelos necesarios para el funcionamiento del controlador
 /*utilidad*/
 require_once "imprForm.php";
@@ -71,7 +77,7 @@ switch ( $accion ) {
 						
 						
 						if($usuario == $user->__GET("nombre") && $pass == trim($user->__GET("password"))){
-							//Si el usuario existe y la contraseña coincide recuperamos variables reaccionadas con el login
+							//Si el usuario existe y la contraseña coincide creamos variables reaccionadas con el login
 							$_SESSION["logDone"] = 1;
 							$_SESSION["codUser"] = $user->__GET("codUsuario");
 							$_SESSION["nivelAcceso"] = $user->__GET("nivelAcceso"); 
@@ -182,6 +188,11 @@ switch ( $accion ) {
 				break;
 			//Libera y destruye las variables de session. Redirije al usuario a la pagina inicial
 			case 'logoff':
+				//Eliminamos las variables de sesion
+				$_SESSION["logDone"] = 0;
+				$_SESSION["codUser"] = "";
+				$_SESSION["nivelAcceso"] = ""; 
+				
 				session_unset();
 				session_destroy();
 				header("Location: ../index.php");

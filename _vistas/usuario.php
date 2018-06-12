@@ -6,6 +6,11 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 2018
 */
 session_start();
+//Determinimanos si se ha realizado un login correcto
+if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] != 1) {
+	header("Location: ../index.php");
+}
+//De esta forma filtramos a los usuarios anonimos
 ?>
 <!DOCTYPE html>
 <html lang="es-ES">

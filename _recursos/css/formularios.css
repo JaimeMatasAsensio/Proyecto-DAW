@@ -32,8 +32,8 @@ rgba(244, 103, 59, 1)
 	border-bottom-right-radius: 5px;
 }
 .border-shopShpere-xs{
-	border-top-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-top-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 }
 input#cerrarSession{
 	padding: 1px 13px;
@@ -99,8 +99,14 @@ h3{
 	border-bottom-right-radius: 5px;
 }
 #enlaceRecuperacion a{
-	margin:5px 0px;
+	margin:4px 0px;
 	display: block;
+	text-decoration: none;
+	color: black;
+}
+#enlaceRecuperacion a:hover{
+	text-decoration: underline;
+	text-decoration-color: rgba(236, 4, 76, 1);
 }
 .formulario div:last-child button{
 	margin-right: 10px;
@@ -135,8 +141,8 @@ h3.infoProceso{
 	top:50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 50%;
-	height: 40%;
+	width: 200px;
+	height: auto;
 	padding: 10px 16px;
 	background-color: white;
 	z-index: -100;
@@ -158,6 +164,10 @@ h3.preguntaBorrado{
 	max-width: 300px;
 }
 
+#formularioLogin p {
+	padding: 8px 4px;
+	color: black;
+}
 
 .form-control{
 	border-radius: 0px;
@@ -459,9 +469,6 @@ div.confMod.col-xs-6 button{
 		border-top-left-radius: 5px;
 		border-bottom-right-radius: 5px;
 	}
-	#selectorTienda div.from-group{
-
-	}
 	#selectorTienda button.btn.btn-info{
 		width: 100px;
 		margin-left: 5px;
@@ -518,6 +525,10 @@ div.confMod.col-xs-6 button{
 		display: inline-block;
 		width: 80px;
 		margin-left: 5px;
+	}
+	.confirmDelete{
+		width: 400px;
+		height: 150px;
 	}
 }
 

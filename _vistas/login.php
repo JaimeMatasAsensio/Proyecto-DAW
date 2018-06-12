@@ -8,7 +8,8 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 session_start();
 
 if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
- isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"])){
+ isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) &&
+	isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1){
 	switch ($_SESSION["nivelAcceso"]) {
 		case "adm" :
 			header("Location: ../_vistas/tienda.php");
@@ -64,13 +65,13 @@ if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
 						</fieldset>
 					</div>
 					<div class="col-xs-12" id="enlaceRecuperacion">
-						<a href="#">¿Olvido su contraseña?</a>
-						<a href="#">¿Olvido su usuario?</a>
+						<a href="#"><p class="bg-info border-shopShpere-xs">¿Olvido su contraseña?</p></a>
+						<a href="#"><p class="bg-info border-shopShpere-xs">¿Olvido su usuario?</p></a>
 					</div>
 					<?php
 					if(isset($_SESSION["logDone"]) && $_SESSION["logDone"] == -1){
 						echo "<div class='col-xs-12' id='infoLogin'>";
-						echo "<p class='text-danger'>Usuario y contraseña incorrectos</p>";
+						echo "<p class='bg-danger border-shopShpere-xs'>Usuario y contraseña incorrectos</p>";
 						echo "</div>";
 					}
 					?>					

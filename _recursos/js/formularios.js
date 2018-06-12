@@ -11,37 +11,6 @@ var arrTiendas = [];
 /*Acciones con JQuery*/
 $(document).ready(function(){
   
-  /*Objetos planos para recoger valores y realizar JSON
-  var tienda = {
-    codTienda: "",
-    nombre: "",
-    pais: "",
-    provincia: "",
-    poblacion: "",
-    direccion: "",
-    numero: "",
-    telefono: "",
-    movil: "",
-    email: "",
-    tipoSuscripcion: ""
-  };
-  */
-  /*Objeto Tienda */
-
-  function resetTienda(tienda){
-    tienda.codTienda = "";
-    tienda.nombre =  "";
-    tienda.pais = "";
-    tienda.provincia = "";
-    tienda.poblacion = "";
-    tienda.direccion = "";
-    tienda.numero = "";
-    tienda.telefono = "";
-    tienda.movil = "";
-    tienda.email = "";
-    tienda.tipoSuscripcion = "";   
-  }
-  /*Reset de valores del objeto Tienda */
 
   $( ".divMod button" ).click( function(element) {
 
