@@ -123,5 +123,8 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 	</div>
 	<script type="text/javascript" src="../_recursos/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../_recursos/js/jqueryUI.js"></script>
+	<script type="text/javascript" src="../_recursos/js/classError.js"></script>
 	<script type="text/javascript" src="../_recursos/js/classTienda.js"></script>
+	<script type="text/javascript" src="../_recursos/js/classUsuario.js"></script>
+	<script type="text/javascript" src="../_recursos/js/classAcceso.js"></script>
 	<script type="text/javascript" src="../_recursos/js/formularios.js"></script>

@@ -31,6 +31,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
   <link rel="stylesheet" type="text/css" href="../_recursos/css/estiloIndex.css">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/formularios.css">
   <script type="text/javascript" src="../_recursos/js/jquery-3.3.1.min.js"></script>
+  
 </head>
 <body>
 	<?php
@@ -184,6 +185,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 	</div>
 	<?php	include "pieVistas.php";	?>
 	<script type="text/javascript" src="../_recursos/js/bootstrap.min.js" charset="utf-8"></script>
-	<script type="text/javascript" src="../_recursos/js/validacionTienda.js"></script>
+	<script type="text/javascript" src="../_recursos/js/validacionFormulario.js"></script>
+	<script type="text/javascript" src="../_recursos/js/busquedasInputTienda.js"></script>
 </body>
 </html>

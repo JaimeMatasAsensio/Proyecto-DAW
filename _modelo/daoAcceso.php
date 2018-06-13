@@ -20,27 +20,22 @@ require_once '../_conexion/libreria_PDO.php';
     }
     //Funcion constructor del modelos de datos de acceso
     
-    public function buscarAcceso($codUsuario){
+    public function listarAccesosUsuarios(){
       try {
-        $consulta = "SELECT * FROM acceso WHERE codUsuario = :codUsuario";
-        $param = array(":codUsuario" => $codUsuario);
+        $consulta = "SELECT * FROM acceso WHERE codUsuario > 0";
+        $param = array();
         $this->con->ConsultaNormalAssoc($consulta, $param);
-
-        $fila = $this->con->datos[0];
-        if(!empty($fila)){
-          $acceso = new acceso();   
-          $acceso->__SET("codUsuario", $fila['codUsuario']);
-          $acceso->__SET("codTienda", $fila['codTienda']);
-          
-          return $acceso;
-        }else{
-          return false;
+        $this->result = array();
+        foreach ($this->con->datos as $fila){
+          $acceso[ $fila['codUsuario'] ] = $fila['codTienda'];
         }
+        $this->result[] = $acceso;
       }catch (Exception $e){
         echo($e->getMessage());
       }  
     }
-    //Funcion modelos de datos para acceso, devuelve un objeto por return
+    //retorna un listado de usuarios en array[codUsuario] = codTienda
+
     public function eliminarAcceso($codUsuario){
       try {
       $consulta = "DELETE FROM acceso WHERE codUsuario = :codUsuario";
@@ -52,7 +47,7 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
     //Funcion modelo de datos acceso elimina por clave
-    public function insertarUsuario($obj){
+    public function insertarAcceso($obj){
       try {
       $consulta = "INSERT INTO usuario(codUsuario,codAcceso) VALUES (?,?)";
       $param = array(

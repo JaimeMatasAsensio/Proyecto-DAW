@@ -6,10 +6,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 2018
 */
 session_start();
-//Determinimanos si se ha realizado un login correcto
-if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] !== 1) {
-	header("Location: ../index.php");
-}
+
 //De esta forma evitamos que usuarios anonimos entren a esta parte de la aplicacion
 
 //Entidades y modelos necesarios para el funcionamiento del controlador
@@ -64,9 +61,9 @@ switch ( $accion ) {
 
 					$usuario = $_POST["nombreUsuario"];
 					$pass = $_POST["passUsuario"];
+
 					$daoUsuario = new daoUsuarios();
-		
-					$user = $daoUsuario->buscarUsuarioPorNombre($usuario);
+					$user = $daoUsuario->buscarUsuarioLogin($usuario);
 					if($user){
 						//Si existe el usuario, pasamos a la comprobacion de nombre y contraseña
 
@@ -227,11 +224,21 @@ switch ( $accion ) {
 			case 'usuarios':
 			//Carga de valores predeterminados para la vista de usuarios. Vista exclusiva del administrador
 				if (isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1 ){
+				 		//Insatancia del modelo de datos de usuario
 				 		$daoUsuarios = new daoUsuarios();
+				 		//Consulta del listado de usuarios
 						$daoUsuarios->listarUsuarios();
+						//Almacenamiento del resultade
 						$usuarios = $daoUsuarios->result;
 						$_SESSION["listadoUsuarios"] = serialize($usuarios);
-						//redireccion a la pagina de tiendas
+						//Instanciacion del modelo de datos de Acceso
+						$daoAcceso = new daoAcceso();
+				 		//Consulta del listado de acceso de usuarios
+						$daoAcceso->listarAccesosUsuarios();
+						//Almacenamiento del resultado, array[codUsuario] = codTienda
+						$acceso = $daoAcceso->result[0];
+						$_SESSION["accesoTienda"] = $acceso;
+						//redireccion a la pagina de usuarios
 						header("Location: ../_vistas/usuario.php");
 				 }else{
 				 	//Si no cumple ninguna de las condiciones, redirige al index
@@ -461,7 +468,7 @@ switch ( $accion ) {
 				$_SESSION["nivelAcceso"] = $_REQUEST["nAcceso"];
 				$_SESSION["logDone"] = $_REQUEST["logDone"];
 				echo "Tipode Busqueda : $tipoBusqueda ;Busqueda por Nombre/cod: $stringBusqueda ;Busqueda por suscripcion: $selectBusqueda <br>";
-				
+				//Tipos de busqueda para la vista de TIENDAS
 				switch ($tipoBusqueda) {
 					case 'codTienda':
 						//Instancia del modelo de datos
@@ -518,6 +525,165 @@ switch ( $accion ) {
 				break;
 		}
 		break;
+
+	case 'mantenimentoUsuario':
+//CRUD de Usuarios-Acceso
+		$operacion = $_REQUEST["operacion"] ? $_REQUEST["operacion"] : "";
+		switch ($operacion) {
+			//Accion de UPDATE sobre la tabla de usuarios
+			case 'modificacion':
+			//Operacion de MODIFICACION sobre la tabla de usuarios
+				//Obtenemos el JSON enviado por AJAX
+				
+				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
+				//Decodificamos el JSON para que sea un array asociativo
+				$datos = json_decode($datos,true);
+				//Instanciamos un objeto de usuario
+				/*
+				$updateUsuario = new usuario();
+				foreach ($datos as $key => $value) {
+					$updateUsuario->__SET($key,$value);
+				}
+				//Instancia del modelo de datos
+				$daoUsuarios = new daoTiendas();
+				//Actualizamos los datos de usuario
+				$daoUsuarios->insertarUsuario($updateUsuario);
+				//Buscamos la tienda actualizada
+				$returnUsuario = $daoUsuario->buscarUsuario($updateUsuario->__GET("codUsuario"));
+				//Creamos un array asociativo para convertirlo a JSON
+				$returnUsuario = array(
+					"codUsuario" => $updateTienda->__GET("codUsuario"),
+					"nombre" => $updateTienda->__GET("nombre"),
+					"email" => $updateTienda->__GET("email"),
+					"provincia" => $updateTienda->__GET("provincia"),
+					"poblacion" => $updateTienda->__GET("poblacion"),
+					"msgReturn" => "Modificacion completada con exito"
+				);
+				*/
+				//Codificacion y devolucion del JSON - solo necesita un echo :D
+				echo json_encode($datos);
+				
+				break;
+				/*
+			case 'alta':
+			//Operacion de ALTA sobre la tabla de tiendas
+				//Obtenemos el JSON enviado por AJAX
+				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
+				//Decodificamos el JSON para que sea un array asociativo
+				$datos = json_decode($datos,true);
+				//Instanciamos un objeto de tienda
+				$insertTienda = new tienda();
+				foreach ($datos as $key => $value) {
+					$insertTienda->__SET($key,$value);
+				}
+				//Instancia del modelo de datos--->Modificar funcion de insertar tienda para que cree tablas
+				$daoTiendas = new daoTiendas();
+				//Generamos un nuevo codigo de tienda basandonos en el ultimo codigo
+				$codTiendaNuevo = $daoTiendas->obtenerUltimoCodigo();//
+				$codTiendaNuevo++;
+				//Añadimos el nuevo codigo al objeto de tienda
+				$insertTienda->__SET("codTienda", $codTiendaNuevo);
+
+				//Insertamos el registro de la nueva tienda en la tabla de tiendas y las tablas que necesita
+				$daoTiendas->insertarTienda($insertTienda);
+
+				//retorno AJAX
+				$returnTienda = array(
+					"codTienda" => $insertTienda->__GET("codTienda"),
+					"nombre" => $insertTienda->__GET("nombre"),
+					"tipoSuscripcion" => $insertTienda->__GET("tipoSuscripcion"),
+					"msgReturn" => "Nueva tienda Creada con exito"
+				);
+				//Codificacion y devolucion del JSON - solo necesita un echo :D
+				echo json_encode($returnTienda);
+				
+				break;
+
+			case 'baja':
+			//Operacion de BAJA sobre la tabla de tiendas
+				//Obtenemos el JSON enviado por AJAX
+				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
+				//Decodificamos el JSON para que sea un array asociativo
+				$datos = json_decode($datos,true);
+				//Instanciamos el modelo de datos de tienda
+				$daoTiendas = new daoTiendas();
+				//Borramos la tienda y todas las tablas, usuarios y accesos relaccionada con esta
+				$daoTiendas->eliminarTienda($datos["codTienda"]);
+
+				$retornoDelete = array("msgReturn" => "Tienda con codigo: ' ".$datos["codTienda"]." '  eliminada del sistema");
+
+				echo json_encode($retornoDelete);
+				break;
+			//Busquedas de tienda por distintos parametros
+				*/
+			case 'buscar':
+			//Operacion de busqueda sobre la tabla de usuario
+				//Recepcion de los parametros de busqueda
+				$tipoBusqueda = $_REQUEST["tBusqueda"];
+				$stringBusqueda = $_REQUEST["busqueda"];
+				//Recuperacion de variables IMPROTANTES para la sesion
+				$_SESSION["nivelAcceso"] = $_REQUEST["nAcceso"];
+				$_SESSION["logDone"] = $_REQUEST["logDone"];
+				echo "Tipode Busqueda : $tipoBusqueda ;Busqueda por Nombre/cod: $stringBusqueda  <br>";
+				//Tipos de Busqueda para la vista USUARIOS
+				switch ($tipoBusqueda) {
+					case 'codUsuario':
+						//Insatancia del modelo de datos de usuario
+				 		$daoUsuarios = new daoUsuarios();
+				 		//Consulta busqueda de usuario por codigo
+				 		$usuarios = array();
+						$usuarios[] = $daoUsuarios->buscarUsuario($stringBusqueda);
+						//Serializamos el resultado de busqueda
+						$_SESSION["listadoUsuarios"] = serialize($usuarios);
+						//Instanciacion del modelo de datos de Acceso
+						$daoAcceso = new daoAcceso();
+				 		//Consulta del listado de acceso de usuarios
+						$daoAcceso->listarAccesosUsuarios();
+						//Almacenamiento del resultado, array[codUsuario] = codTienda
+						$acceso = $daoAcceso->result[0];
+						$_SESSION["accesoTienda"] = $acceso;
+						//redireccion a la pagina de usuarios
+						header("Location: ../_vistas/usuario.php");
+						break;
+					case 'nombre':
+						//Insatancia del modelo de datos de usuario
+				 		$daoUsuarios = new daoUsuarios();
+				 		//Consulta busqueda de usuario por nombre	
+				 		$stringBusqueda = "%".$stringBusqueda."%";			 		
+						$daoUsuarios->buscarUsuarioPorNombre($stringBusqueda);
+						$usuarios = $daoUsuarios->result;
+						//Serializamos el resultado de busqueda
+						$_SESSION["listadoUsuarios"] = serialize($usuarios);
+						//Instanciacion del modelo de datos de Acceso
+						$daoAcceso = new daoAcceso();
+				 		//Consulta del listado de acceso de usuarios
+						$daoAcceso->listarAccesosUsuarios();
+						//Almacenamiento del resultado, array[codUsuario] = codTienda
+						$acceso = $daoAcceso->result[0];
+						$_SESSION["accesoTienda"] = $acceso;
+						//redireccion a la pagina de usuarios
+						header("Location: ../_vistas/usuario.php");
+						break;
+					
+					default:
+						//Encaso de forzar un fallo en el filtro de la busqueda estara esta opcion
+						//Se carga un resultado de consulta vacia en un array 
+						$tiendas[] = 0;
+
+						//Se almacena el array en la consulta vacia
+						$_SESSION["listadoTiendas"] = serialize($tiendas);
+						header("Location: ../_vistas/tienda.php");
+						break;
+				}
+
+
+				break;
+			default:
+				echo "Accion sent: $accion, unknown operacion ' $operacion ' ";
+				break;
+		}
+		break;
+
 	default:
 		echo "unknown ACCION sent ' $accion ' ";
 		break;

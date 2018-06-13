@@ -39,72 +39,86 @@ require_once '../_conexion/libreria_PDO.php';
       }
     }
     //Funcion modelo de datos usuario lista usuarios, devuelve un array de objetos por result
+
     public function buscarUsuario($codUsuario){
       try {
         $consulta = "SELECT * FROM usuario WHERE codUsuario = :codUsuario";
         $param = array(":codUsuario" => $codUsuario);
         $this->con->ConsultaNormalAssoc($consulta, $param);
-        $fila = $this->con->datos[0];
-        if(!empty($fila)){
-          $usuario = new usuario();   
-          $usuario->__SET("codUsuario", $fila['codUsuario']);
-          $usuario->__SET("nombre", $fila['nombre']);
-          $usuario->__SET("password", $fila['password']);
-          $usuario->__SET("email", $fila['email']);
-          $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
-          return $usuario;
+        if(!empty($this->con->datos)){
+
+          $fila = $this->con->datos[0];
+          if(!empty($fila)){
+            $usuario = new usuario();   
+            $usuario->__SET("codUsuario", $fila['codUsuario']);
+            $usuario->__SET("nombre", $fila['nombre']);
+            $usuario->__SET("password", $fila['password']);
+            $usuario->__SET("email", $fila['email']);
+            $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
+            return $usuario;
+          }else{
+            return false;
+          }
+          
         }else{
-          return false;
+          false;
         }
       }catch (Exception $e){
         echo($e->getMessage());
       }  
     }
     //Funcion modelo de datos usuario busqueda por clave, devuelve un objeto por return
+
+    public function buscarUsuarioLogin($nombre){
+      try {
+        $consulta = "SELECT * FROM usuario WHERE nombre = :nombre";
+        $param = array(":nombre" => $nombre);
+        $this->con->ConsultaNormalAssoc($consulta, $param);
+        if(!empty($this->con->datos)){
+
+          $fila = $this->con->datos[0];
+          if(!empty($fila)){
+            $usuario = new usuario();   
+            $usuario->__SET("codUsuario", $fila['codUsuario']);
+            $usuario->__SET("nombre", $fila['nombre']);
+            $usuario->__SET("password", $fila['password']);
+            $usuario->__SET("email", $fila['email']);
+            $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
+            return $usuario;
+          }else{
+            return false;
+          }
+          
+        }else{
+          false;
+        }
+      }catch (Exception $e){
+        echo($e->getMessage());
+      }  
+    }
+    //Funcion modelo de datos usuario busqueda por nombre (uso en el LOGIN), devuelve un objeto por return
+
     public function buscarUsuarioPorNombre($nombre){
       try {
         $consulta = "SELECT * FROM usuario WHERE nombre LIKE :nombre";
         $param = array(":nombre" => $nombre);
         $this->con->ConsultaNormalAssoc($consulta, $param);
-        $fila = $this->con->datos[0];
-        if(!empty($fila)){
+        $this->result = array();
+        foreach ($this->con->datos as $fila){
           $usuario = new usuario();   
           $usuario->__SET("codUsuario", $fila['codUsuario']);
           $usuario->__SET("nombre", $fila['nombre']);
           $usuario->__SET("password", $fila['password']);
           $usuario->__SET("email", $fila['email']);
           $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
-          return $usuario;
-        }else{
-          return false;
+          $this->result[] = $usuario;
         }
       }catch (Exception $e){
         echo($e->getMessage());
       }  
     }
     //Funcion modelo de datos usuario busqueda por nombre, devuelve un array de objetos por result
-    public function buscarUsuarioPorEmail($email){
-      try {
-        $consulta = "SELECT * FROM usuario WHERE email = :email";
-        $param = array(":email" => $email);
-        $this->con->ConsultaNormalAssoc($consulta, $param);
-        $fila = $this->con->datos[0];
-        if(!empty($fila)){
-          $usuario = new usuario();   
-          $usuario->__SET("codUsuario", $fila['codUsuario']);
-          $usuario->__SET("nombre", $fila['nombre']);
-          $usuario->__SET("password", $fila['password']);
-          $usuario->__SET("email", $fila['email']);
-          $usuario->__SET("nivelAcceso", $fila['nivelAcceso']);
-          return $usuario;
-        }else{
-          return false;
-        }
-      }catch (Exception $e){
-        echo($e->getMessage());
-      }  
-    }
-    //Funcion modelo de datos usuario busqueda por email, devuelve un objeto por return
+    
     public function eliminarUsuario($codUsuario){
       try {
       $consulta = "DELETE FROM usuario WHERE codUsuario = :codUsuario";

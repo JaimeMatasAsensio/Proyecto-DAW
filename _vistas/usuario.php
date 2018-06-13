@@ -36,13 +36,14 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 	<?php
 	include "cabeceraVistas.php";
 	require_once '../_entidad/classUsuario.php';
+	require_once '../_entidad/classAcceso.php';
 	require_once '../_web/imprForm.php';
 	?>
 	<div class="container-fluid">
 		<main class="container">
 			<h1>Mantenimiento Usuarios</h1>
 			<div class="row formulario formulario-crud" id="formBusq">
-				<form action="#" class="form-inline">
+				<form action="../_web/controller.php?accion=mantenimentoUsuario&operacion=buscar" method="post" class="form-inline">
 					<div class="col-xs-12">
 						<fieldset>
 							<legend>Buscar Usuarios</legend>
@@ -52,7 +53,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 						    <select name="tBusqueda" lass="form-control" id="tBusqueda">
 						    	<option value="">Filtro</option>
 						    	<option value="nombre">Nombre</option>
-						    	<option value="tsuscripcion">Tipo Suscripcion</option>
+						    	<option value="codUsuario">codigo Usuario</option>
 						    </select>
 						  </div>
 
@@ -64,6 +65,11 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							</div>
 						</fieldset>
 					</div>
+				  <?php
+					echo'<input type="hidden" name="nAcceso" value="'.$_SESSION["nivelAcceso"].'">
+							<input type="hidden" name="logDone" value="'.$_SESSION["logDone"].'">'
+
+					   ?>
 				</form>
 			</div>
 
@@ -92,7 +98,6 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    <label for="password" class="hidden-xs">Contraseña</label>
 							    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
 							  </div>
-							 
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="nacceso" class="hidden-xs">Nivel Acceso</label>
 							    <select class="form-control" name="nAcceso" id="nAcceso">
@@ -102,6 +107,19 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    	<option value="emp">Empleado</option>
 							    </select>
 							  </div>
+							  <?php
+							  echo '<div class="form-group col-xs-12 col-sm-6">';
+						    echo '<label for="accesoTienda hidden-xs">Acceso a Tienda</label>';
+						    echo '<select name="accesoTienda" class="form-control" id="accesoTienda">';
+					    	echo '<option value="">Acceso a Tienda</option>';
+					    	echo '<option value="">Acceso Administrador</option>';
+					    	$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+						    	foreach ($TiendasSession as $key => $value) {
+						    		echo '<option value="'.$key.'"> '.$key.' - '.$value.'</option>';
+						    	}
+						    echo '</select>';
+							  echo '</div>';
+							 ?>
 							</div>
 						</fieldset>
 					</div>
@@ -124,15 +142,17 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			<?php
 			if(isset($_SESSION["listadoUsuarios"])  && !empty($_SESSION["listadoUsuarios"]) ){
 				$usuarios = unserialize($_SESSION["listadoUsuarios"]);
+				//Si hay usuarios listados los mostrara en su formulario, sino muestra que no existen usuarios
 				if($usuarios && count($usuarios) > 0){
 					for ($i=0; $i < count($usuarios); $i++) { 
-							imprFormUsuario($usuarios[$i]);
+							$accesoUsuarios = $_SESSION["accesoTienda"];
+							imprFormUsuario($usuarios[$i],$accesoUsuarios, $TiendasSession);
 						}
 				}else{
 					echo "<div class='row'>";
 					echo "<div class='col-xs-12'>";
 					echo '<blockquote>
-						  			<p class="bg-info" id="NoResult">No dispone de usuarios...</p>
+						  			<p class="bg-info" id="NoResult">No se encontraron usuarios...</p>
 									</blockquote>';
 					echo "</div'>";
 				}
@@ -144,5 +164,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 	</div>
 	<?php	include "pieVistas.php";	?>
 	<script type="text/javascript" src="../_recursos/js/bootstrap.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../_recursos/js/validacionFormulario.js"></script>
+	<script type="text/javascript" src="../_recursos/js/busquedasInputUsuario.js"></script>
 </body>
 </html>

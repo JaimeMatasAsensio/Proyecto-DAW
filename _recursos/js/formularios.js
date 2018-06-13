@@ -8,6 +8,8 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 */
 //Array de tiendas que se almacenaran durante la modificacion
 var arrTiendas = [];
+var arrUsuarios = [];
+var arrAcceso = [];
 /*Acciones con JQuery*/
 $(document).ready(function(){
   
@@ -59,10 +61,38 @@ $(document).ready(function(){
         break;
       
       case "usuario":
-        
+        //instanciamos un objeto de usuario
+        var usuario = new Usuario();
+        //Guardamos los vlaores del formulario
+        usuario.codUsuario = form[1].value;
+        usuario.nombre = form[2].value;
+        usuario.email = form[3].value;
+        usuario.password = form[4].value;
+        usuario.nivelAcceso = form[5].value;
+
+        while(usuario.nivelAcceso == ""){
+          usuario.nivelAcceso = form[5][i].selected?form[5][i].value:"";
+          i++;
+        }
+
+        //Guardamos la relaccion usuario-acceso
+        var acceso  = new Acceso();
+        acceso.codUsuario = form[1].value;
+        var i = 1;
+        while(acceso.codTienda == ""){
+          acceso.codTienda = form[6][i].selected?form[6][i].value:"";
+          i++;
+        }
+        //Guardamos en el array
+        arrUsuarios.push(usuario);
+        arrAcceso.push(acceso);
         break;
       
       case "producto":
+        
+        break;
+      
+      case "proveedores":
         
         break;
       
@@ -109,7 +139,46 @@ $(document).ready(function(){
         break;
       
       case "usuario":
-        //Formulario de usuarios
+        //recuperamos el objeto de usuario que coincida con el cod del formulario que cancela la modificacion
+        var usuario;
+        for(var i = 0; i < arrUsuarios.length ; i++){
+          if(arrUsuarios[i].codUsuario == form[1].value){
+            //Obtenemos el objeto, lo eliminamos del array y cortamos el bucle for
+            usuario = arrUsuarios[i];
+            arrUsuarios.splice(i,1);
+            i = arrUsuarios.length;
+          }
+        }
+        //Recuperamos los antiguos valores al formulario
+        form[2].value = usuario.nombre;
+        form[3].value = usuario.email;
+        form[4].value = usuario.password;
+        
+        for(var i = 1; i < form[5].length; i++){
+          form[5][i].selected = form[5][i].value == usuario.nivelAcceso ? true : false ;
+        }
+
+        var acceso;
+        for(var i = 0; i < arrAcceso.length ; i++){
+          if(arrAcceso[i].codUsuario == form[1].value){
+            //Obtenemos el objeto, lo eliminamos del array y cortamos el bucle for
+            acceso = arrAcceso[i];
+            arrAcceso.splice(i,1);
+            i = arrAcceso.length;
+          }
+        }
+        for(var i = 1; i < form[6].length; i++){
+          form[6][i].selected = form[6][i].value == acceso.codTienda ? true : false ;
+        }
+
+        //Si existe un textArea respeta su tamaño
+        for(var i = 2; i < form.length ; i++){
+          form[i].parentElement.className = form.tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
+        }     
+        break;
+      
+      case "producto":
+        //Formularios de productos
         break;
       
       case "producto":
@@ -151,12 +220,13 @@ $(document).ready(function(){
     
     //Segun el nombre del formulario, que esta asociado a la tabla a la que hace referencia...
     switch (form.name) {
+//---------->TIENDA
       case "tienda":
         //Divisiones de informacion y bloqueo del formulario mientras se realiza el AJAX
         $( "#onProcessInfo" ).text("");
         $( "#onProcessOverFlow" ).animate({zIndex:"1"});
       
-        //Montar el obj, para convertirlo a JSON
+        //Montar el obj, para convertirlo a JSON _TIENDA
         var tienda = new Tienda();
         tienda.codTienda = form[1].value;
         tienda.nombre = form[2].value;
@@ -177,7 +247,9 @@ $(document).ready(function(){
           operacion:  "modificacion",
           json: JSON.stringify(tienda.getJSON)
         };
-        //Envio de AJAX
+        console.log(parametros);
+      
+        //Envio de AJAX - Modificacion de TIENDA
         $.ajax({
           data: parametros,
           url: "../_web/controller.php",
@@ -215,7 +287,7 @@ $(document).ready(function(){
           $( ".divMod" ).show();
           $(".confMod").hide();
           $( "#onProcessInfo" ).text(tiendaUpdated.msgReturn)
-          
+
         }).fail(function(jqXHR,estado,error){
           //Errores en la peticion de AJAX
           console.log("---------->Retorno de AJAX : FAIL<-----------");
@@ -249,13 +321,119 @@ $(document).ready(function(){
               
             });  
         });
-        
+        //Envio de AJAX - Modificacion de TIENDA
         break;
-      
+//--------->USUARIO  
       case "usuario":
-        //Formularios de usuarios
+         //Divisiones de informacion y bloqueo del formulario mientras se realiza el AJAX
+         $( "#onProcessInfo" ).text("");
+         $( "#onProcessOverFlow" ).animate({zIndex:"1"});
+       
+         //Montar el obj, para convertirlo a JSON _USUARIO
+         var usuario = new Usuario();
+         usuario.codUsuario = form[1].value;
+         usuario.nombre = form[2].value;
+         usuario.password = form[3].value;
+         usuario.email = form[4].value;
+         usuario.nivelAcceso = form[5].value;
+         
+         //Montar el obj, para pconvertirlo a JSON _ACCESO
+         var acceso = new Acceso();
+         acceso.codUsuario = form[1].value;
+         acceso.codTienda = form[6].value;
+         
+         //creamos un JSON de envio <-------- ¡¡¡¡AQUI JAIME MONTA EL JSON Y ENVIALO, TU PUEDES!!!!
+         
+         //AJAX - Modifcacion usuario
+         //Parametros de la peticion ajax para la modificacion de usario
+         var parametros = {
+           accion: "mantenimentoUsuario",
+           operacion:  "modificacion",
+           json: compJSON
+         };
+         console.log(parametros);
+         //Envio de AJAX - Modificacion USUARIO
+
+         $.ajax({
+           data: parametros,
+           url: "../_web/controller.php",
+           type: "post"
+         }).done(function(response,estado,jqXHR){
+           console.log("---------->Retorno de AJAX : DONE<-----------");
+           console.log(response);
+           console.log(estado);
+           console.log(jqXHR);
+           console.log("---------->Retorno de AJAX : DONE<-----------");
+           /*
+           //Peticion terminada con resultado correcto
+           var tiendaUpdated = JSON.parse(response);
+           //Toma los nuevos valores y los inserta en el formulario
+           form[1].value = tiendaUpdated.codTienda;
+           form[2].value = tiendaUpdated.nombre;
+           form[3].value = tiendaUpdated.pais;
+           form[4].value = tiendaUpdated.provincia;
+           form[5].value = tiendaUpdated.poblacion;
+           form[6].value = tiendaUpdated.direccion;
+           form[7].value = tiendaUpdated.numero;
+           form[8].value = tiendaUpdated.telefono;
+           form[9].value =  tiendaUpdated.movil;
+           form[10].value = tiendaUpdated.email;
+           for(var i = 1; i < form[11].length; i++){
+             form[11][i].selected = form[11][i].value == tiendaUpdated.tipoSuscripcion ? true : false ;
+           }
+           //Deshabilita la modificacion de campos
+           for( var i = 1; i < form.length ; i++){
+             var type = form[i].type;
+             if(type != "hidden"){
+               form[i].disabled = true;
+             }
+           }
+           //Oculta la division de control de modificacion y muestra de la division de modificacion
+           $( ".divMod" ).show();
+           $(".confMod").hide();
+           $( "#onProcessInfo" ).text(tiendaUpdated.msgReturn)
+           */
+         }).fail(function(jqXHR,estado,error){
+           //Errores en la peticion de AJAX
+           console.log("---------->Retorno de AJAX : FAIL<-----------");
+           console.log(error);
+           console.log(estado);
+           console.log(jqXHR);
+           console.log("---------->Retorno de AJAX : FAIL<-----------");
+           
+         }).always(function(jqXHR,estado){
+           // AJAX completado
+           console.log("---------->Retorno de AJAX : ALWAYS<-----------");
+           console.log(estado);
+           console.log(jqXHR);
+           console.log("---------->Retorno de AJAX : ALWAYS<-----------");
+           //Animaciones tras la peticion AJAX y resultado  
+             var aux = $( "#onProcessOverFlow" );
+             var width = aux[0].offsetWidth;
+             var height = aux[0].offsetHeight
+             width = "-=" + width + "px";
+             height = "-=" + height + "px";
+             $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
+               $( "#onProcessInfo" ).animate({zIndex: "1"}); 
+               $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},3000,function(){
+                 $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
+                 $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"}); 
+                 $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
+                 for(var i = 2; i < form.length; i++){
+                   form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
+                 }
+               }); 
+               
+             });  
+         });
+         
+        //Envio de AJAX - Modificacion USUARIO
         break;
-      
+//--------->PRODUCTO     
+      case "producto":
+        //Formularios de productos
+        break;
+
       case "producto":
         //Formularios de productos
         break;
@@ -283,6 +461,7 @@ $(document).ready(function(){
     formsInsert = formsInsert[0];
     for(var j = 1 ; j < formsInsert.length ; j++){
       formsInsert[j].parentElement.className = "form-group col-xs-12 col-sm-6";
+      formsInsert[j].parentElement.className = formsBusqueda[i][j].tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
     }      
     
     
@@ -449,25 +628,6 @@ $(document).ready(function(){
   /*Funcion de envio de datos por AJAX con JSON para la INSERCCION del formulario<--on working*/
 //-------------------------->fin-Alta<-------------------------//
 
-  $("#tBusqueda").change( function(){
-    
-    var elementsBusqueda = $(this).parent().next().children();
-    elementsBusqueda[1].style.display = $(this).val() == "nombre" || $( this ).val() == "" || $( this ).val() == "codTienda" ? "inline-block" : "none";
-    elementsBusqueda[2].style.display = $(this).val() == "tsuscripcion" ? "inline-block" : "none";
-
-    elementsBusqueda[1].value = "";
-    elementsBusqueda[2].value = "";
-
-    if($(this).val() == "nombre" || $( this ).val() == "" || $( this ).val() == "codTienda"){
-      elementsBusqueda[2].required = false;
-      elementsBusqueda[1].required = true;
-    }else{
-      elementsBusqueda[2].required = true;
-      elementsBusqueda[1].required = false;
-    }
-    
-  });
-  //Funcion para modificar el tipo de input en la busqueda
 
 //-------------------------->ini-Borrado<-------------------------//
   $(".confDelete button").click(function(element){

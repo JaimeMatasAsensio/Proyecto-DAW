@@ -117,91 +117,112 @@ function imprFormTienda($obj){
 }
 //Funcion para la impresion del formulario de tienda pasando un objeto php
 
-function imprFormUsuario($obj){
-	echo '<div class="row formulario formulario-crud">
-				<h3 class=infoProceso></h3>
-				<div class="confirmDelete"></div>
-				<div class="overFlowForms"></div>
-				<form action="../_web/controller.php?accion=mantenimentoUsuarios&operacion=modificacion" method="post">
-				<div class="col-xs-12">
-				<fieldset>
+function imprFormUsuario($obj, $arrayUsuariosAcceso, $arrayTiendas){
+	if($obj->__GET("codUsuario") != 0){
+		echo '<div class="row formulario formulario-crud">
+					<h3 class=infoProceso></h3>
+					<div class="confirmDelete"></div>
+					<div class="overFlowForms"></div>
+					<form action="../_web/controller.php?accion=mantenimentoUsuarios&operacion=modificacion" method="post" name="usuario">
+					<div class="col-xs-12">
+					<fieldset>
 
-				<legend>Usuario: \''.$obj->__GET("codUsuario").'\'</legend>
-				<input type="hidden" name="codUsuario" value="'.$obj->__GET("codUsuario").'">
-				<div class="row">
+					<legend>Usuario: \''.$obj->__GET("codUsuario").'\'</legend>
+					<input type="hidden" name="codUsuario" value="'.$obj->__GET("codUsuario").'">
+					<div class="row">
 
-				<div class="form-group col-xs-12 col-sm-6">
-				<label for="nombre" class="hidden-xs">Nombre</label>
-				<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Usuario" value="'.$obj->__GET("nombre").'" disabled>
-				</div>
+					<div class="form-group col-xs-12 col-sm-6">
+					<label for="nombre" class="hidden-xs">Nombre</label>
+					<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Usuario" value="'.$obj->__GET("nombre").'" disabled>
+					</div>
 
-				<div class="form-group col-xs-12 col-sm-6">
-				<label for="email" class="hidden-xs">Email</label>
-				<input type="mail" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled>
-				</div>
+					<div class="form-group col-xs-12 col-sm-6">
+					<label for="email" class="hidden-xs">Email</label>
+					<input type="mail" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled>
+					</div>
 
-				<div class="form-group col-xs-12 col-sm-6">
-				<label for="password" class="hidden-xs">Nueva Contraseña</label>
-				<input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" value="'.$obj->__GET("password").'" disabled>
-				</div>
+					<div class="form-group col-xs-12 col-sm-6">
+					<label for="password" class="hidden-xs">Nueva Contraseña</label>
+					<input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" value="'.$obj->__GET("password").'" disabled>
+					</div>
 
-				<div class="form-group col-xs-12 col-sm-6">
-				<label for="nacceso" class="hidden-xs">Nivel Acceso</label>
-				<select class="form-control" name="nAcceso" id="nAcceso" disabled>';
-					switch ($obj->__GET("nivelAcceso")) {
-						//Se bloquea el valor de nivel de acceso de administrador.
-						/*El nivel de acceso de Administrador solo se puede obtener si un administrador lo crea.
-							Los niveles de acceso de gerente y empleado pueden cambiarse entre si, pero no pueden
-							tomar el valor de administrador*/
-						case 'adm':
-							echo '<option value="">Nivel Acceso</option>';
-							echo '<option value="adm" selected>Administrador</option>';						
-							break;
-						case 'gen':
-							echo '<option value="">Nivel Acceso</option>';
-							echo '<option value="gen" selected>Gerente</option>';
-							echo '<option value="emp">Empleado</option>';		
-							break;
-						case 'emp':
-							echo '<option value="">Nivel Acceso</option>';
-							echo '<option value="gen">Gerente</option>';
-							echo '<option value="emp" selected>Empleado</option>';		
-							break;
-						default:
-							echo '<option value="">Nivel Acceso</option>';
-							echo '<option value="gen">Gerente</option>';
-							echo '<option value="emp">Empleado</option>';	
-							break;
-					}
+					<div class="form-group col-xs-12 col-sm-6">
+					<label for="nAcceso" class="hidden-xs">Nivel Acceso</label>
+					<select class="form-control" name="nAcceso" id="nAcceso" disabled>';
+						switch ($obj->__GET("nivelAcceso")) {
+							//Se bloquea el valor de nivel de acceso de administrador.
+							/*El nivel de acceso de Administrador solo se puede obtener si un administrador lo crea.
+								Los niveles de acceso de gerente y empleado pueden cambiarse entre si, pero no pueden
+								tomar el valor de administrador*/
+							case 'adm':
+								echo '<option value="">Nivel Acceso</option>';
+								echo '<option value="adm" selected>Administrador</option>';						
+								break;
+							case 'gen':
+								echo '<option value="">Nivel Acceso</option>';
+								echo '<option value="gen" selected>Gerente</option>';
+								echo '<option value="emp">Empleado</option>';		
+								break;
+							case 'emp':
+								echo '<option value="">Nivel Acceso</option>';
+								echo '<option value="gen">Gerente</option>';
+								echo '<option value="emp" selected>Empleado</option>';		
+								break;
+							default:
+								echo '<option value="">Nivel Acceso</option>';
+								echo '<option value="gen">Gerente</option>';
+								echo '<option value="emp">Empleado</option>';	
+								break;
+						}
 
+						
+					echo '</select>
+					</div>';
+		echo '<div class="form-group col-xs-12 col-sm-6">';
+							    echo '<label for="accesoTienda">Acceso a Tienda</label>';
+							    echo '<select name="accesoTienda" class="form-control" id="accesoTienda" disabled>';
+						    	echo '<option value="">Acceso a Tienda</option>';
+						    		//recoremos el array de tiendas
+						    	foreach ($arrayTiendas as $codTienda => $Nombre) {
+						    		//si el acceso del usuario es igual al de esa tienda
+						    		if($arrayUsuariosAcceso[$obj->__GET("codUsuario")] == $codTienda){
+						    			//aparece seleccionada
+						    			echo '<option value="'.$codTienda.'" selected>'.$codTienda.' - '.$Nombre.'</option>';	
+						    		}else{
+						    			//sino aparece como opcion del select
+						    			echo '<option value="'.$codTienda.'">'.$codTienda.' - '.$Nombre.'</option>';	
+						    		}
+						    	}
+						    	
+						    	
+							    echo '</select>';
+								  echo '</div>';
+		echo '</div>
+					</fieldset>
+					</div>
+
+					</form>
+
+					<div class="col-xs-12 control-btn">
+					<div class="col-xs-6 divMod">
+					<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+					</div>
+					<div class="col-xs-6 confMod">
+					<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
+					</div>
 					
-				echo '</select>
-				</div>
+					<div class="col-xs-6 confDelete">';
+					if($obj->__GET("nivelAcceso") == "adm"){
+					echo	'<button class="btn btn-default" disabled><span class="glyphicon glyphicon-trash"></span></span></button>';
+					}else{
+						echo	'<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>';
+					}
+		echo	'</div>
 
-				</div>
-				</fieldset>
-				</div>
-
-				</form>
-
-				<div class="col-xs-12 control-btn">
-				<div class="col-xs-6 divMod">
-				<button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-				</div>
-				<div class="col-xs-6 confMod">
-				<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger cancelMod"><span class="glyphicon glyphicon-remove"></span></button>
-				</div>
-				
-				<div class="col-xs-6 confDelete">';
-				if($obj->__GET("nivelAcceso") == "adm"){
-				echo	'<button class="btn btn-default" disabled><span class="glyphicon glyphicon-trash"></span></span></button>';
-				}else{
-					echo	'<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>';
-				}
-	echo	'</div>
-
-				</div>
-				</div>';
+					</div>
+					</div>';
+		
+	}
 }
 //Funcion para impresion del formulario de tienda pasando un objeto php
 

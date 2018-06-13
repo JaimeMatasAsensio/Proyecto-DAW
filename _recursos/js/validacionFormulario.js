@@ -4,9 +4,9 @@
 Jaime Matas Asensio
 Proyecto DAW: ShopSphere
 I.E.S. Maestre de Calatrava - Ciudad Real
-2017
+2018
 */
-function validarTienda (element){
+function validarFormulario (element){
   //Selector de la division del input a tratar
   element = element.target || element; //Target del objetoJQuery || elemento de DOM
   //Segun el nombre del input recibe un tratamiento u otro
@@ -270,7 +270,81 @@ function validarTienda (element){
         
       }
       break;
-
+      case "password":
+      //Validacion para el input de tipo de password
+        var exprNombre = /^\w{4,}$/;
+        if(exprNombre.test(element.value) && element.value != ""){
+          $( this ).parent().removeClass("has-error");
+          $( this ).parent().addClass("has-success");
+          //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+          var divInputs = element.parentElement.parentElement.children;
+          for(var i = 0; i < divInputs.length ; i++){
+            if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
+              $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+              
+            }else{
+              $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+              
+              i = divInputs.length; 
+            }
+          }
+        }else{
+          $( this ).parent().removeClass("has-success");
+          $( this ).parent().addClass("has-error");
+          $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+          
+        }
+        break;
+        case "nAcceso":
+      //Validacion para el select de tipo de nivel acceso
+        var exprNombre = /((emp)||(gen)){1}/;
+        if(exprNombre.test(element.value) && element.value != ""){
+          $( this ).parent().removeClass("has-error");
+          $( this ).parent().addClass("has-success");
+          //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+          var divInputs = element.parentElement.parentElement.children;
+          for(var i = 0; i < divInputs.length ; i++){
+            if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
+              $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+              
+            }else{
+              $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+              
+              i = divInputs.length; 
+            }
+          }
+        }else{
+          $( this ).parent().removeClass("has-success");
+          $( this ).parent().addClass("has-error");
+          $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+          
+        }
+          break;
+        case "accesoTienda":
+        //Validacion para el select de tipo de acceso a tienda
+          var exprNombre = /\d{1,3}/;
+          if(exprNombre.test(element.value) && element.value != ""){
+            $( this ).parent().removeClass("has-error");
+            $( this ).parent().addClass("has-success");
+            //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+            var divInputs = element.parentElement.parentElement.children;
+            for(var i = 0; i < divInputs.length ; i++){
+              if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
+                $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+                
+              }else{
+                $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+                
+                i = divInputs.length; 
+              }
+            }
+          }else{
+            $( this ).parent().removeClass("has-success");
+            $( this ).parent().addClass("has-error");
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            
+          }
+        break;
     default:
       console.log("error... input no pertenece al formulario de tiendas...");
       break;
@@ -281,25 +355,33 @@ function validarTienda (element){
 
 $( "#resultadoBusquedaElementos" ).click( function() {
   
-  $("#formsResaultadoBusqueda form input").keyup(validarTienda);
-  $("#formsResultadoBusqueda form input").focusin(validarTienda);
-  $("#formsResaultadoBusqueda form input").focusout(validarTienda);
+  $("#formsResaultadoBusqueda form input").keyup(validarFormulario);
+  $("#formsResaultadoBusqueda form input").focusout(validarFormulario);
   
-  $("#formsResaultadoBusqueda form select").change(validarTienda);
-  $("#formsResultadoBusqueda form select").focusin(validarTienda);
-  $("#formsResaultadoBusqueda form select").focusout(validarTienda);
+  $("#formsResaultadoBusqueda form select[name=nAcceso]").change(validarFormulario);
+  $("#formsResaultadoBusqueda form select[name=accesoTienda]").change(validarFormulario);
+  $("#formsResaultadoBusqueda form select[name=tSuscripcion]").change(validarFormulario);
+  
+  $("#formsResaultadoBusqueda form select[name=nAcceso]").focusout(validarFormulario);
+  $("#formsResaultadoBusqueda form select[name=accesoTienda]").focusout(validarFormulario);
+  $("#formsResaultadoBusqueda form select[name=tSuscripcion]").focusout(validarFormulario);
+  
 
 });
 //Valida los elementos de una tienda cuando se pulsa una tecla, toma el foco o lo deja en el formulario de modificacion
 
 $( "#nuevoElemento" ).click( function() {
   
-  $("#formNuevoElemento form input").keyup(validarTienda);
-  $("#formNuevoElemento form input").focusin(validarTienda);
-  $("#formNuevoElemento form input").focusout(validarTienda);
+  $("#formNuevoElemento form input").keyup(validarFormulario);
+  $("#formNuevoElemento form input").focusout(validarFormulario);
   
-  $("#formNuevoElemento form select").change(validarTienda);
-  $("#formNuevoElemento form select").focusin(validarTienda);
-  $("#formNuevoElemento form select").focusout(validarTienda);
+  $("#formNuevoElemento form select[name=nAcceso]").change(validarFormulario);
+  $("#formNuevoElemento form select[name=accesoTienda]").change(validarFormulario);
+  $("#formNuevoElemento form select[name=tSuscripcion]").change(validarFormulario);
+  
+  $("#formNuevoElemento form select[name=nAcceso]").focusout(validarFormulario);
+  $("#formNuevoElemento form select[name=accesoTienda]").focusout(validarFormulario);
+  $("#formNuevoElemento form select[name=tSuscripcion]").focusout(validarFormulario);
+  
 });
 //Valida los elementos de una tienda cuando se pulsa una tecla, toma el foco o lo deja en el formulario de alta
