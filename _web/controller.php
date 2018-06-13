@@ -39,15 +39,15 @@ Esta variable es el motor del controlador, segun el valor que tome, el controlad
 */
 switch ( $accion ) {
 	case 'nuevoRegistro' :
-//Direccionamientos a nuevos registros
+//Direccionamientos a NUEVOS_REGISTROS
 		$_SESSION["nuevoRegistroSuscripcion"] = isset($_REQUEST["tSuscripcion"]) ? $_REQUEST["tSuscripcion"] : "";
 		header("Location: ../_vistas/onWork.php");
 		break;
 	case 'login' :
-//Direccionamientos a login de usuario
+//Direccionamientos a LOGIN
 		//Recupera la operacion asociada a la accion de 'login'
 		$operacion = isset($_REQUEST["operacion"]) ? $_REQUEST["operacion"] : "";
-		//Direccionamientos segun la operacion para la accion 'move'
+		//Direccionamientos segun la operacion para la accion 'LOGIN'
 		switch ($operacion) {
 			//Redirije a la vista del formulario de login
 			case 'doLogin' :
@@ -103,7 +103,7 @@ switch ( $accion ) {
 									//La pagina de inicio de los gerentes sean las alertas
 									//Recuperamos el codTienda a la que tiene acceso el usuario
 									$daoAcceso = new daoAcceso();
-									$codTiendaAcceso = $daoAcceso->buscarAcceso($_SESSION["codUser"]);
+									$codTiendaAcceso = $daoAcceso->buscarAccesoPorCodUsuario($_SESSION["codUser"]);
 									//Almacenamos la tienda en la variable de sesion
 									$daoTiendas = new daoTiendas();
 									$tiendaAcceso = $daoTiendas->buscarTienda($codTiendaAcceso->__GET("codTienda"));
@@ -134,7 +134,7 @@ switch ( $accion ) {
 									//La pagina de inicio de los empleados seran los productos
 									//Recuperamos el codTienda a la que tiene acceso el usuario
 									$daoAcceso = new daoAcceso();
-									$codTiendaAcceso = $daoAcceso->buscarAcceso($_SESSION["codUser"]);
+									$codTiendaAcceso = $daoAcceso->buscarAccesoPorCodUsuario($_SESSION["codUser"]);
 									//Almacenamos la tienda en la variable de sesion
 									$daoTiendas = new daoTiendas();
 									$tiendaAcceso = $daoTiendas->buscarTienda($codTiendaAcceso->__GET("codTienda"));
@@ -199,12 +199,14 @@ switch ( $accion ) {
 				echo "accion sent '$accion' ; unknown operacion '$operacion'";
 				break;
 		}
+		// FIN -SWITCH ACCION = login, operacion = Interacciones con el login
 		break;
+
 	case 'move':
 //Direccionamiento de los enlaces en Pie y cabecera de las vistas 
 		//Recupera la operacion asociada a la accion de 'move'
 		$operacion = isset($_REQUEST["operacion"]) ? $_REQUEST["operacion"] : "" ;
-		//Direccionamientos segun la operacion para la accion de 'move'
+		//Direccionamientos segun la operacion para la accion de 'MOVE'
 		switch ($operacion) {
 			case 'tiendas': 
 			//Carga de valores predeterminados para la vista de tiendas. Vista exclusiva del administrador
@@ -365,6 +367,7 @@ switch ( $accion ) {
 			echo "Accion sent: $accion, unknown destiny ' $to ' ";
 				break;
 		}
+		// FIN - SWITCH ACCION = move, Operacion = redirecciones a vistas
 		break;
 	case 'mantenimentoTiendas':
 //CRUD de Tiendas
@@ -457,7 +460,7 @@ switch ( $accion ) {
 
 				echo json_encode($retornoDelete);
 				break;
-			//Busquedas de tienda por distintos parametros
+			
 			case 'buscar':
 			//Operacion de busqueda sobre la tabla de tiendas
 				//Recepcion de los parametros de busqueda
@@ -467,7 +470,7 @@ switch ( $accion ) {
 				//Recuperacion de variables IMPROTANTES para la sesion
 				$_SESSION["nivelAcceso"] = $_REQUEST["nAcceso"];
 				$_SESSION["logDone"] = $_REQUEST["logDone"];
-				echo "Tipode Busqueda : $tipoBusqueda ;Busqueda por Nombre/cod: $stringBusqueda ;Busqueda por suscripcion: $selectBusqueda <br>";
+				//echo "Tipode Busqueda : $tipoBusqueda ;Busqueda por Nombre/cod: $stringBusqueda ;Busqueda por suscripcion: $selectBusqueda <br>";
 				//Tipos de busqueda para la vista de TIENDAS
 				switch ($tipoBusqueda) {
 					case 'codTienda':
@@ -516,57 +519,91 @@ switch ( $accion ) {
 						header("Location: ../_vistas/tienda.php");
 						break;
 				}
-
+				// FIN - SWITCH ACCION = mantenimientoTiendas, OPERACION = buscar, TIPO_BUSQUEDA = Opciones de busqueda en la vista de tiendas
 
 				break;
 			
 			default:
 				echo "Accion sent: $accion, unknown operacion ' $operacion ' ";
 				break;
+			//FIN - SWITCH accion = mantenimientoTiendas
 		}
 		break;
-
+		// FIN - SWITCH ACCION = mantenimientoTiendas, OPERACION ----> CRUD
 	case 'mantenimentoUsuario':
 //CRUD de Usuarios-Acceso
 		$operacion = $_REQUEST["operacion"] ? $_REQUEST["operacion"] : "";
 		switch ($operacion) {
-			//Accion de UPDATE sobre la tabla de usuarios
+			//operacion de MODIFICACION sobre la tabla de usuarios
 			case 'modificacion':
 			//Operacion de MODIFICACION sobre la tabla de usuarios
 				//Obtenemos el JSON enviado por AJAX
-				
-				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
+				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";			
 				//Decodificamos el JSON para que sea un array asociativo
 				$datos = json_decode($datos,true);
-				//Instanciamos un objeto de usuario
-				/*
+				//Instanciamos un objeto de USUARIO
 				$updateUsuario = new usuario();
+				//Recorremos el array asociativo del objeto JSON tomando los valores relacionados con la tabla usuario
 				foreach ($datos as $key => $value) {
-					$updateUsuario->__SET($key,$value);
+					if($key != "acceso"){
+						$updateUsuario->__SET($key,$value);
+					}
 				}
-				//Instancia del modelo de datos
-				$daoUsuarios = new daoTiendas();
+				//Instanciamos el modelo de datos de usuario
+				$daoUsuarios = new daoUsuarios();
+				//Comprobamos si la contraseña ha cambiado
+				$testPassword = $daoUsuarios->buscarUsuario($updateUsuario->__GET("codUsuario"));
+				// si la contraseña enviada es distinta de la almacenada en la tabla...
+				if($testPassword->__GET("password") != $updateUsuario->__GET("password")){
+						//... componemos el Hash sobre la nueva contraseña y la codificamos con sha1
+						$ini = "-.^@#%{";
+						$fin = "}%#@^.-";
+						$pass = sha1($ini.$updateUsuario->__GET("password").$fin);
+						$updateUsuario->__SET("password",$pass);
+				}
+				//Instanciamos un objeto de ACCESO
+				$updateAcceso = new acceso();
+				//Recorremos el array asociativo del objeto JSON tomando los valores relacionados con la tabla de acceso
+				foreach ($datos as $key => $value) {
+					//En funcion del valor de la key, asignamos un valor u otro al objeto de acceso
+					switch ($key) {
+						case 'codUsuario':
+							$updateAcceso->__SET("codUsuario", $value);
+							break;
+						case 'acceso':
+							$updateAcceso->__SET("codTienda", $value);
+							break;
+					}
+				}
+				//Instancia del modelo de datos para usuario
+				$daoUsuarios = new daoUsuarios($updateUsuario);
 				//Actualizamos los datos de usuario
-				$daoUsuarios->insertarUsuario($updateUsuario);
-				//Buscamos la tienda actualizada
-				$returnUsuario = $daoUsuario->buscarUsuario($updateUsuario->__GET("codUsuario"));
+				$daoUsuarios->actualizarUsuario($updateUsuario);
+				//Instancia del modelo de datos para acceso
+				$daoAcceso = new daoAcceso();
+				//Actualizamos los datos del acceso
+				$daoAcceso->actualizarAcceso($updateAcceso);
+				//Buscamos el usuario actualizado y su acceso
+				$returnUsuario = $daoUsuarios->buscarUsuario($updateUsuario->__GET("codUsuario"));
+				//Buscamos su acceso asociado
+				$returnAcceso = $daoAcceso->buscarAccesoPorCodUsuario($updateUsuario->__GET("codUsuario"));
 				//Creamos un array asociativo para convertirlo a JSON
 				$returnUsuario = array(
-					"codUsuario" => $updateTienda->__GET("codUsuario"),
-					"nombre" => $updateTienda->__GET("nombre"),
-					"email" => $updateTienda->__GET("email"),
-					"provincia" => $updateTienda->__GET("provincia"),
-					"poblacion" => $updateTienda->__GET("poblacion"),
+					"codUsuario" => $updateUsuario->__GET("codUsuario"),
+					"nombre" => $updateUsuario->__GET("nombre"),
+					"email" => $updateUsuario->__GET("email"),
+					"password" => $updateUsuario->__GET("password"),
+					"nivelAcceso" => $updateUsuario->__GET("nivelAcceso"),
+					"acceso" => $updateAcceso->__GET("codTienda"),
 					"msgReturn" => "Modificacion completada con exito"
 				);
-				*/
-				//Codificacion y devolucion del JSON - solo necesita un echo :D
-				echo json_encode($datos);
+				//Codificacion y devolucion del JSON del USUARIO-ACCESO - solo necesita un echo :D
+				echo json_encode($returnUsuario);
 				
 				break;
-				/*
+				
 			case 'alta':
-			//Operacion de ALTA sobre la tabla de tiendas
+			//Operacion de ALTA sobre la tabla de usuarios----> Por aqui Jaime, continua con el alta!
 				//Obtenemos el JSON enviado por AJAX
 				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
 				//Decodificamos el JSON para que sea un array asociativo
@@ -598,9 +635,9 @@ switch ( $accion ) {
 				echo json_encode($returnTienda);
 				
 				break;
-
+				/*
 			case 'baja':
-			//Operacion de BAJA sobre la tabla de tiendas
+			//Operacion de BAJA sobre la tabla de usuarios-----> modificar
 				//Obtenemos el JSON enviado por AJAX
 				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
 				//Decodificamos el JSON para que sea un array asociativo
@@ -614,8 +651,8 @@ switch ( $accion ) {
 
 				echo json_encode($retornoDelete);
 				break;
-			//Busquedas de tienda por distintos parametros
 				*/
+			//Busquedas de tienda por distintos parametros
 			case 'buscar':
 			//Operacion de busqueda sobre la tabla de usuario
 				//Recepcion de los parametros de busqueda
@@ -667,15 +704,15 @@ switch ( $accion ) {
 					
 					default:
 						//Encaso de forzar un fallo en el filtro de la busqueda estara esta opcion
-						//Se carga un resultado de consulta vacia en un array 
-						$tiendas[] = 0;
+						//Se carga un resultado de consulta vacia 
+						$usuarios[] = 0;
 
 						//Se almacena el array en la consulta vacia
-						$_SESSION["listadoTiendas"] = serialize($tiendas);
-						header("Location: ../_vistas/tienda.php");
+						$_SESSION["listadoUsuarios"] = serialize($usuarios);
+						header("Location: ../_vistas/usuarios.php");
 						break;
 				}
-
+				// FIN - SWITCH ACCION = mantenimientoTiendas, OPERACION = buscar, TIPO_BUSQUEDA = busquedas para la vista de
 
 				break;
 			default:
@@ -683,10 +720,11 @@ switch ( $accion ) {
 				break;
 		}
 		break;
-
+		// FIN - SWITCH ACCION = mantenimientoUsuario, OPERACION----> CRUD
 	default:
 		echo "unknown ACCION sent ' $accion ' ";
 		break;
+	//FIN - SWITCH - ACCION
 }
 
 

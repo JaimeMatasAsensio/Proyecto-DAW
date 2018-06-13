@@ -6,30 +6,50 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 2018
 */
 $("#tBusqueda").change( function(){
-  
-  var pattrnNumero = "/^\d{1,3}$/";
-  var elementBusqueda = $(this).parent().next().children();
-  
-  
+  //Obtenemos el input de texto para la busqueda
+  var elementBusqueda = $(this).parent().next().children("#busqueda");
+  elementBusqueda.val("");
+  //Si el valor del select es igual a nombre valida este valor para String de nombres
+    //This->Select
   if($(this).val() == "nombre"){
-    elementBusqueda.find("#busqueda").keyup(function(){
-      var pattrNombre = "/^[áéíóúÁÉÍÓÚüÜñÑ]*([aA-zZ]+[áéíóúÁÉÍÓÚüÜñÑ]*\s*)+$/";
-      if(pattrNombre.test($(this).val)){
-        elementBusqueda.parent().next().attr("disabled", false);
+    //Deshabilitamos por defecto el boton
+    elementBusqueda.parent().next("button").attr("disabled", true);
+    //Asignamos la funcion keyup para que valide mientras escribe
+    elementBusqueda.keyup(function(){
+      //expresion regular para no introducir numeros, solo letras y letras con acentos
+      var pattrNombre = /^[áéíóúÁÉÍÓÚüÜñÑ]*([aA-zZ]+[áéíóúÁÉÍÓÚüÜñÑ]*\s*)+$/;
+      //Obtenemos el valor del input de busqueda. this->input#busqueda
+      var valorInputBusqueda = $(this).val();
+      //si cumple la expresion regular habilita el boton de busqueda...
+      if(pattrNombre.test(valorInputBusqueda)){
+        elementBusqueda.parent().next("button").attr("disabled", false);
       }else{
-        elementBusqueda.parent().next().attr("disabled", true);
+        //...si no deshabilita el boton
+        elementBusqueda.parent().next("button").attr("disabled", true);
       }
-    })
+    });
+
   }else{
-    elementBusqueda.find("#busqueda").keyup(function(){
-      if(pattrNumero.test($(this).val)){
-        var pattrnNumero = "/^\d{1,3}$/";
-        elementBusqueda.parent().next().attr("disabled", false);
+    //Si el valor del select es dustino a nombre valida este valor para codUsuario
+    //Deshabilitamos por defecto el boton
+    elementBusqueda.parent().next("button").attr("disabled", true);
+    //Asignamos la funcion keyup para que valide mientras escribe
+    elementBusqueda.keyup(function(){
+      //expresion regular para introducir numeros solo 3
+      var pattrNumero = /^\d{1,3}$/;
+      //Obtenemos el valor del input de busqueda. this->input#busqueda
+      var valorInputBusqueda = $(this).val();
+      console.log(valorInputBusqueda);
+      //si cumple la expresion regular habilita el boton de busqueda...
+      if(pattrNumero.test(valorInputBusqueda)){
+        elementBusqueda.parent().next("button").attr("disabled", false);
       }else{
-        elementBusqueda.parent().next().attr("disabled", true);
+        //...si no deshabilita el boton
+        elementBusqueda.parent().next("button").attr("disabled", true);
       }
     })
   }
-  console.log(elementBusqueda.find("#busqueda"));
+  
+  
 });
 //Funcion para modificar el tipo de input en la busqueda

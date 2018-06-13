@@ -36,6 +36,33 @@ require_once '../_conexion/libreria_PDO.php';
     }
     //retorna un listado de usuarios en array[codUsuario] = codTienda
 
+    public function buscarAccesoPorCodUsuario($codUsuario){
+      try {
+        $consulta = "SELECT * FROM acceso WHERE codUsuario = :codUsuario";
+        $param = array(":codUsuario" => $codUsuario);
+        $this->con->ConsultaNormalAssoc($consulta, $param);
+        if(!empty($this->con->datos)){
+
+          $fila = $this->con->datos[0];
+          if(!empty($fila)){
+            $acceso = new acceso();   
+            $acceso->__SET("codUsuario", $fila['codUsuario']);
+            $acceso->__SET("codTienda", $fila['codTienda']);
+            
+            return $acceso;
+          }else{
+            return false;
+          }
+          
+        }else{
+          false;
+        }
+      }catch (Exception $e){
+        echo($e->getMessage());
+      }  
+    }
+    //Funcion modelo de datos usuario busqueda por clave, devuelve un objeto por return(para modificaciones de usuario)
+
     public function eliminarAcceso($codUsuario){
       try {
       $consulta = "DELETE FROM acceso WHERE codUsuario = :codUsuario";
@@ -49,7 +76,7 @@ require_once '../_conexion/libreria_PDO.php';
     //Funcion modelo de datos acceso elimina por clave
     public function insertarAcceso($obj){
       try {
-      $consulta = "INSERT INTO usuario(codUsuario,codAcceso) VALUES (?,?)";
+      $consulta = "INSERT INTO acceso(codUsuario,codAcceso) VALUES (?,?)";
       $param = array(
         $obj->__GET("codUsuario"),
         $obj->__GET("codAcceso"),
@@ -64,7 +91,7 @@ require_once '../_conexion/libreria_PDO.php';
     //Funcion modelo de datos acceso inserta un nuevo registro
     public function actualizarAcceso($obj){
       try {
-      $consulta = "UPDATE articulos SET codTienda=? WHERE codUsuario=?";
+      $consulta = "UPDATE acceso SET codTienda=? WHERE codUsuario=?";
       $param = array(
         $obj->__GET("codTienda"),
         $obj->__GET("codUsuario")

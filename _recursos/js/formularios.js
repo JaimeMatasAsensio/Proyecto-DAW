@@ -199,8 +199,9 @@ $(document).ready(function(){
 	});
   /*Deshabilita los campos del formulario de modificacion y recoje los valores antiguos*/
 
-  //-------------------------->ini-Modificacion<--------------------------//
+//-------------------------->ini-Modificacion<--------------------------//
   $( ".confMod button:first-child" ).click( function(element) {
+//Accion de Modificacion al pulsar el boton de aceptar en un formulario
     //Obtenemos los elementes que pertenecen al boton donde se ha hecho click
     //Formulario
     var form = element.target.parentElement.parentElement.parentElement.children[3];
@@ -219,6 +220,7 @@ $(document).ready(function(){
     infoProcess.id = "onProcessInfo";
     
     //Segun el nombre del formulario, que esta asociado a la tabla a la que hace referencia...
+    //-------> INI - SWITCH MODIFICACION - FORMULARIOS
     switch (form.name) {
 //---------->TIENDA
       case "tienda":
@@ -247,9 +249,9 @@ $(document).ready(function(){
           operacion:  "modificacion",
           json: JSON.stringify(tienda.getJSON)
         };
-        console.log(parametros);
-      
-        //Envio de AJAX - Modificacion de TIENDA
+              
+//------>INI - Envio de AJAX - Modificacion de TIENDA
+        console.log("INI - Comunicacion AJAX - MODIFICACION TIENDA");
         $.ajax({
           data: parametros,
           url: "../_web/controller.php",
@@ -321,7 +323,8 @@ $(document).ready(function(){
               
             });  
         });
-        //Envio de AJAX - Modificacion de TIENDA
+        console.log("FIN - Comunicacion AJAX - MODIFICACION TIENDA");
+//------>FIN - Envio de AJAX - Modificacion de TIENDA
         break;
 //--------->USUARIO  
       case "usuario":
@@ -329,31 +332,38 @@ $(document).ready(function(){
          $( "#onProcessInfo" ).text("");
          $( "#onProcessOverFlow" ).animate({zIndex:"1"});
        
-         //Montar el obj, para convertirlo a JSON _USUARIO
+         //Instanciar el obj usuario, para convertirlo a JSON
          var usuario = new Usuario();
          usuario.codUsuario = form[1].value;
          usuario.nombre = form[2].value;
-         usuario.password = form[3].value;
-         usuario.email = form[4].value;
+         usuario.password = form[4].value;
+         usuario.email = form[3].value;
          usuario.nivelAcceso = form[5].value;
          
-         //Montar el obj, para pconvertirlo a JSON _ACCESO
+         //Instanciar el obj tienda, para pconvertirlo a JSON
          var acceso = new Acceso();
          acceso.codUsuario = form[1].value;
          acceso.codTienda = form[6].value;
          
-         //creamos un JSON de envio <-------- ¡¡¡¡AQUI JAIME MONTA EL JSON Y ENVIALO, TU PUEDES!!!!
+         //Componer un JSON para el envio de datos al controlador
+         var envioJSON = {
+           codUsuario: usuario.codUsuario,
+           nombre: usuario.nombre,
+           password: usuario.password,
+           email: usuario.email,
+           nivelAcceso: usuario.nivelAcceso,
+           acceso: acceso.codTienda
+         };
          
-         //AJAX - Modifcacion usuario
-         //Parametros de la peticion ajax para la modificacion de usario
+         //Parametros de la peticion ajax para la modificacion de usario ---> stringify(envioJSON)
          var parametros = {
            accion: "mantenimentoUsuario",
            operacion:  "modificacion",
-           json: compJSON
+           json: JSON.stringify(envioJSON) 
          };
          console.log(parametros);
-         //Envio de AJAX - Modificacion USUARIO
-
+//------->INI - Envio de AJAX - Modifcacion USUARIO
+        console.log("INI - Comunicacion AJAX - MODIFICACION USUARIO");
          $.ajax({
            data: parametros,
            url: "../_web/controller.php",
@@ -364,22 +374,25 @@ $(document).ready(function(){
            console.log(estado);
            console.log(jqXHR);
            console.log("---------->Retorno de AJAX : DONE<-----------");
-           /*
+           
            //Peticion terminada con resultado correcto
-           var tiendaUpdated = JSON.parse(response);
+           var usuarioUpdated = JSON.parse(response);
+           console.log(usuarioUpdated);
            //Toma los nuevos valores y los inserta en el formulario
-           form[1].value = tiendaUpdated.codTienda;
-           form[2].value = tiendaUpdated.nombre;
-           form[3].value = tiendaUpdated.pais;
-           form[4].value = tiendaUpdated.provincia;
-           form[5].value = tiendaUpdated.poblacion;
-           form[6].value = tiendaUpdated.direccion;
-           form[7].value = tiendaUpdated.numero;
-           form[8].value = tiendaUpdated.telefono;
-           form[9].value =  tiendaUpdated.movil;
-           form[10].value = tiendaUpdated.email;
-           for(var i = 1; i < form[11].length; i++){
-             form[11][i].selected = form[11][i].value == tiendaUpdated.tipoSuscripcion ? true : false ;
+            //Valores para campos "escribibles"
+           form[1].value = usuarioUpdated.codUsuario;
+           form[2].value = usuarioUpdated.nombre;
+           form[3].value = usuarioUpdated.email;
+           form[4].value = usuarioUpdated.password;
+           
+           //Valores para campos de tipo select
+            //Select de nivel de acceso
+           for(var i = 1; i < form[5].length; i++){
+             form[5][i].selected = form[5][i].value == usuarioUpdated.nivelAcceso ? true : false ;
+           }
+            //Select de acceso a tienda
+           for(var i = 1; i < form[5].length; i++){
+            form[5][i].selected = form[5][i].value == usuarioUpdated.codTienda ? true : false ;
            }
            //Deshabilita la modificacion de campos
            for( var i = 1; i < form.length ; i++){
@@ -391,8 +404,8 @@ $(document).ready(function(){
            //Oculta la division de control de modificacion y muestra de la division de modificacion
            $( ".divMod" ).show();
            $(".confMod").hide();
-           $( "#onProcessInfo" ).text(tiendaUpdated.msgReturn)
-           */
+           $( "#onProcessInfo" ).text(usuarioUpdated.msgReturn)
+           
          }).fail(function(jqXHR,estado,error){
            //Errores en la peticion de AJAX
            console.log("---------->Retorno de AJAX : FAIL<-----------");
@@ -408,43 +421,53 @@ $(document).ready(function(){
            console.log(jqXHR);
            console.log("---------->Retorno de AJAX : ALWAYS<-----------");
            //Animaciones tras la peticion AJAX y resultado  
-             var aux = $( "#onProcessOverFlow" );
-             var width = aux[0].offsetWidth;
-             var height = aux[0].offsetHeight
-             width = "-=" + width + "px";
-             height = "-=" + height + "px";
-             $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
-               $( "#onProcessInfo" ).animate({zIndex: "1"}); 
-               $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},3000,function(){
-                 $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
-                 $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"}); 
-                 $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
-                 for(var i = 2; i < form.length; i++){
-                   form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
-                 }
-               }); 
-               
-             });  
+            //Obtenemos la capa de bloqueo 
+            var aux = $( "#onProcessOverFlow" );
+            //Tomamos su anchura y altura
+            var width = aux[0].offsetWidth;
+            var height = aux[0].offsetHeight
+            //Parametros para a animacion de levantado de la capa de bloqueo
+            width = "-=" + width + "px";
+            height = "-=" + height + "px";
+            //Animacion del levantado de bloqueo
+            $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
+              //Subimos la capa de informacion del proceso
+              $( "#onProcessInfo" ).animate({zIndex: "1"});
+              //Animacion para el desvanecimiento de la capa de informacion del proceso 
+              $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},3000,function(){
+                // devolvemos la capa de informacion del proceso a su estado original
+                $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
+                // devolvemos la capa de bloqueo a su estado original
+                $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"}); 
+                //Removemos los id's identificativos del proceso de modificacion
+                $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
+                // removemos las marcas de validacion de los inputs
+                for(var i = 2; i < form.length; i++){
+                  form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
+                }
+              }); 
+              
+            });  
          });
-         
-        //Envio de AJAX - Modificacion USUARIO
+         console.log("FIN - Comunicacion AJAX - MODIFICACION USUARIO");
+//------>FIN - Envio de AJAX - Modificacion USUARIO
         break;
-//--------->PRODUCTO     
+//--------->PRODUCTO <--- Next to work
       case "producto":
         //Formularios de productos
         break;
 
-      case "producto":
-        //Formularios de productos
+      case "proveedor":
+        //Formularios de proveedor
         break;
       
       default:
         break;
     }
-    
+    //-------> FIN - SWITCH MODIFICACION - FORMULARIOS
   });
-  /*Funcion de envio de datos por AJAX con JSON para la MODIFICACION del Formulario*/
-  //-------------------------->fin-Modificacion<-------------------------//
+    /*Funcion de envio de datos por AJAX con JSON para la MODIFICACION de los Formularios*/
+//-------------------------->fin-Modificacion<-------------------------//
 
   $( "#resultadoBusquedaElementos" ).click( function() {
     var formsBusqueda = $( "#formsResaultadoBusqueda div.row.formulario.formulario-crud form" );

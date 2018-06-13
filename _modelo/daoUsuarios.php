@@ -19,6 +19,7 @@ require_once '../_conexion/libreria_PDO.php';
       }
     }
     //Funcion constructor del modelos de datos de usuario
+
     public function listarUsuarios(){
       try {
       $consulta = "SELECT * FROM usuario WHERE 1";
@@ -130,9 +131,10 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
     //Funcion modelo de datos usuario elimina por clave
+
     public function insertarUsuario($obj){
       try {
-      $consulta = "INSERT INTO usuario(codUsuario, nombre, password, email, nivelAcceso) VALUES (?,?,?,?,?,?,?,?)";
+      $consulta = "INSERT INTO usuario(codUsuario, nombre, password, email, nivelAcceso) VALUES (?,?,?,?,?)";
       $param = array(
         $obj->__GET("codUsuario"),
         $obj->__GET("nombre"),
@@ -147,9 +149,10 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
     //Funcion modelo de datos usuario inserta un nuevo registro
+    
     public function actualizarUsuario($obj){
       try {
-      $consulta = "UPDATE articulos SET nombre=?,password=?,email=?,nivelAcceso=? WHERE codUsuario=?";
+      $consulta = "UPDATE usuario SET nombre=?,password=?,email=?,nivelAcceso=? WHERE codUsuario=?";
       $param = array(
         $obj->__GET("nombre"),
         $obj->__GET("password"),
