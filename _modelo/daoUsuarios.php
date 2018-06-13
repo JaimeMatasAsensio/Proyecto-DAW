@@ -167,4 +167,27 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
     //Funcion modelo de datos usuario actualiza un registro existente
+
+    public function obtenerUltimoCodigo(){
+      
+      $consulta = "SELECT codUsuario FROM usuario WHERE 1 ORDER BY codUsuario DESC LIMIT 1";
+      $param = array();
+      try {
+        $this->con->ConsultaNormalAssoc($consulta, $param);
+        if(!empty($this->con->datos)){
+          $fila = $this->con->datos[0];
+            if(!empty($fila)){
+              
+              $usuario = $fila["codUsuario"];
+
+              return $usuario;
+            }else{
+              return 0;
+            }
+        }
+      }catch (Exception $e){
+        echo($e->getMessage());
+      }
+    }
+    //Funcion para obtener el codigo de la ultima tienda insertada, deveulve un entero - UTILIDAD
 }

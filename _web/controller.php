@@ -584,17 +584,17 @@ switch ( $accion ) {
 				//Actualizamos los datos del acceso
 				$daoAcceso->actualizarAcceso($updateAcceso);
 				//Buscamos el usuario actualizado y su acceso
-				$returnUsuario = $daoUsuarios->buscarUsuario($updateUsuario->__GET("codUsuario"));
+				$updatedUsuario = $daoUsuarios->buscarUsuario($updateUsuario->__GET("codUsuario"));
 				//Buscamos su acceso asociado
-				$returnAcceso = $daoAcceso->buscarAccesoPorCodUsuario($updateUsuario->__GET("codUsuario"));
+				$updatedAcceso = $daoAcceso->buscarAccesoPorCodUsuario($updateUsuario->__GET("codUsuario"));
 				//Creamos un array asociativo para convertirlo a JSON
 				$returnUsuario = array(
-					"codUsuario" => $updateUsuario->__GET("codUsuario"),
-					"nombre" => $updateUsuario->__GET("nombre"),
-					"email" => $updateUsuario->__GET("email"),
-					"password" => $updateUsuario->__GET("password"),
-					"nivelAcceso" => $updateUsuario->__GET("nivelAcceso"),
-					"acceso" => $updateAcceso->__GET("codTienda"),
+					"codUsuario" => $updatedUsuario->__GET("codUsuario"),
+					"nombre" => $updatedUsuario->__GET("nombre"),
+					"email" => $updatedUsuario->__GET("email"),
+					"password" => $updatedUsuario->__GET("password"),
+					"nivelAcceso" => $updatedUsuario->__GET("nivelAcceso"),
+					"acceso" => $updatedAcceso->__GET("codTienda"),
 					"msgReturn" => "Modificacion completada con exito"
 				);
 				//Codificacion y devolucion del JSON del USUARIO-ACCESO - solo necesita un echo :D
@@ -603,36 +603,53 @@ switch ( $accion ) {
 				break;
 				
 			case 'alta':
-			//Operacion de ALTA sobre la tabla de usuarios----> Por aqui Jaime, continua con el alta!
+			//Operacion de ALTA sobre la tabla de usuarios
 				//Obtenemos el JSON enviado por AJAX
-				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
+				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : 0;
 				//Decodificamos el JSON para que sea un array asociativo
 				$datos = json_decode($datos,true);
-				//Instanciamos un objeto de tienda
-				$insertTienda = new tienda();
+				//Instanciamos un objeto de USUARIO
+				$insertUsuario = new usuario();
+				//Recorremos el array asociativo del objeto JSON tomando los valores relacionados con la tabla usuario
 				foreach ($datos as $key => $value) {
-					$insertTienda->__SET($key,$value);
+					if($key != "acceso"){
+						$insertUsuario->__SET($key,$value);
+					}
 				}
-				//Instancia del modelo de datos--->Modificar funcion de insertar tienda para que cree tablas
-				$daoTiendas = new daoTiendas();
-				//Generamos un nuevo codigo de tienda basandonos en el ultimo codigo
-				$codTiendaNuevo = $daoTiendas->obtenerUltimoCodigo();//
-				$codTiendaNuevo++;
-				//Añadimos el nuevo codigo al objeto de tienda
-				$insertTienda->__SET("codTienda", $codTiendaNuevo);
-
-				//Insertamos el registro de la nueva tienda en la tabla de tiendas y las tablas que necesita
-				$daoTiendas->insertarTienda($insertTienda);
-
+				//Instanciamos el modelo de datos de usuario
+				$daoUsuarios = new daoUsuarios();
+				//Obtenemos la ultima clave de usuario
+				$ultimoCodUsuario = $daoUsuarios->obtenerUltimoCodigo();
+				//La añadimos al objeto antes de insertarlo
+				$ultimoCodUsuario++;
+				$insertUsuario->__SET("codUsuario", $ultimoCodUsuario);
+				//En funcion del tipo de acceso insertamos el acceso
+				//Si el nivel de acceso es distinto del de administrador, insertamos en tabla de acceso
+				if($datos["acceso"] != 0){
+					//Instanciamos un objeto de ACCESO
+					$insertAcceso = new acceso();
+					//Tomamos el valor del codigo de tienda del acceso del JSON
+					$insertAcceso->__SET("codTienda", $datos["acceso"]);
+					//Tomamos el codigo de usuario nuevo
+					$insertAcceso->__SET("codUsuario", $insertUsuario->__GET("codUsuario"));
+					//Instancia del modelo de datos para acceso
+					$daoAcceso = new daoAcceso();
+					//Insertamos el acceso para usuarios distintos al de administrador
+					$daoAcceso->insertarAcceso($insertAcceso);
+				}
+				//Insertamos el nuevo Usuario
+				$daoUsuarios->insertarUsuario($insertUsuario);
+				//Buscamos el usuario insertado 
+				$updatedUsuario = $daoUsuarios->buscarUsuario($insertUsuario->__GET("codUsuario"));
 				//retorno AJAX
-				$returnTienda = array(
-					"codTienda" => $insertTienda->__GET("codTienda"),
-					"nombre" => $insertTienda->__GET("nombre"),
-					"tipoSuscripcion" => $insertTienda->__GET("tipoSuscripcion"),
-					"msgReturn" => "Nueva tienda Creada con exito"
+				$returnUsuario = array(
+					"codUsuario" => $updatedUsuario->__GET("codUsuario"),
+					"nombre" => $updatedUsuario->__GET("nombre"),
+					"nivelAcceso" => $updatedUsuario->__GET("nivelAcceso"),
+					"msgReturn" => "Nueva Usuario creado con exito"
 				);
 				//Codificacion y devolucion del JSON - solo necesita un echo :D
-				echo json_encode($returnTienda);
+				echo json_encode($returnUsuario);
 				
 				break;
 				/*

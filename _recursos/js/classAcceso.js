@@ -6,7 +6,7 @@ Proyecto DAW: ShopSphere
 I.E.S. Maestre de Calatrava - Ciudad Real
 2018
 */
-
+//Clase JavaScript de Acceso
 function Acceso (){
   //validacion en la llamada del objeto acceso
   if(!(this instanceof Acceso)) throw new ConstructorCalledFunction();
@@ -44,4 +44,4 @@ function Acceso (){
 };
 Acceso.prototype = {};
 Acceso.prototype.constructor = Acceso;
-//Funcion para la clase de acceso
+//Funcion para la clase de Acceso

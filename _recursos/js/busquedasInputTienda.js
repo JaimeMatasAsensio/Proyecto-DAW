@@ -1,3 +1,4 @@
+"use strict";
 //Documento para implementar las busquedas en la tienda
 
 $("#tBusqueda").change( function(){
@@ -18,4 +19,4 @@ $("#tBusqueda").change( function(){
   }
   
 });
-//Funcion para modificar el tipo de input en la busqueda
+//Funcion para modificar el tipo de input en la busqueda<<-- mejorable

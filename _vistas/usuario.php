@@ -81,7 +81,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			<h3 class=infoProceso></h3>
 			<div class="confirmDelete"></div>
 			<div class="overFlowForms"></div>
-				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=alta" method="post">
+				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=alta" method="post" name="usuario">
 					<div class="col-xs-12">
 						<fieldset>
 							<legend>Añadir Usuario</legend>
@@ -109,10 +109,10 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							  </div>
 							  <?php
 							  echo '<div class="form-group col-xs-12 col-sm-6">';
-						    echo '<label for="accesoTienda hidden-xs">Acceso a Tienda</label>';
+						    echo '<label for="accesoTienda" class="hidden-xs">Acceso a Tienda</label>';
 						    echo '<select name="accesoTienda" class="form-control" id="accesoTienda">';
 					    	echo '<option value="">Acceso a Tienda</option>';
-					    	echo '<option value="">Acceso Administrador</option>';
+					    	echo '<option value="0">Acceso Administrador</option>';
 					    	$TiendasSession = unserialize($_SESSION["TIENDAS"]);
 						    	foreach ($TiendasSession as $key => $value) {
 						    		echo '<option value="'.$key.'"> '.$key.' - '.$value.'</option>';
@@ -124,9 +124,9 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 						</fieldset>
 					</div>
 				</form>
-			  <div class="col-xs-12 control-btn">
+			  <div class="col-xs-12 control-btn confInsert" >
 		  		<div class="col-xs-6">
-		  			<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+		  			<button class="btn btn-success" disabled><span class="glyphicon glyphicon-ok"></span></button>
 		  		</div>
 		  		<div class="col-xs-6">
 		  			<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>

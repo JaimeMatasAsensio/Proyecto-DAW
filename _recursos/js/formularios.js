@@ -199,7 +199,7 @@ $(document).ready(function(){
 	});
   /*Deshabilita los campos del formulario de modificacion y recoje los valores antiguos*/
 
-//-------------------------->ini-Modificacion<--------------------------//
+//-------------------------->INI - MODIFICACION<--------------------------//
   $( ".confMod button:first-child" ).click( function(element) {
 //Accion de Modificacion al pulsar el boton de aceptar en un formulario
     //Obtenemos los elementes que pertenecen al boton donde se ha hecho click
@@ -209,13 +209,9 @@ $(document).ready(function(){
     var overFlow = element.target.parentElement.parentElement.parentElement.children[2];
     //Capa de mensaje de retorno
     var infoProcess = element.target.parentElement.parentElement.parentElement.children[0];
+    //Bloquear el resto de capas mientras se realiza la modificacion de un formulario <---- ON PROCESS
     var othersOverFlow = $( "div.overFlowForms:not(#onProcessOverFlow)" )
-    /*
-    console.log(form);
-    console.log(form[4]);
-    console.log(overFlow);
-    console.log(infoProcess);
-    */
+    
     overFlow.id = "onProcessOverFlow";
     infoProcess.id = "onProcessInfo";
     
@@ -467,7 +463,7 @@ $(document).ready(function(){
     //-------> FIN - SWITCH MODIFICACION - FORMULARIOS
   });
     /*Funcion de envio de datos por AJAX con JSON para la MODIFICACION de los Formularios*/
-//-------------------------->fin-Modificacion<-------------------------//
+//-------------------------->FIN - MODIFICACION<-------------------------//
 
   $( "#resultadoBusquedaElementos" ).click( function() {
     var formsBusqueda = $( "#formsResaultadoBusqueda div.row.formulario.formulario-crud form" );
@@ -484,7 +480,7 @@ $(document).ready(function(){
     formsInsert = formsInsert[0];
     for(var j = 1 ; j < formsInsert.length ; j++){
       formsInsert[j].parentElement.className = "form-group col-xs-12 col-sm-6";
-      formsInsert[j].parentElement.className = formsBusqueda[i][j].tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
+      formsInsert[j].parentElement.className = formsInsert[j].tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
     }      
     
     
@@ -507,9 +503,9 @@ $(document).ready(function(){
   });
   /*Funcion de cancelacion de la inserccion del formulario de tienda. Limpia los campos de insercion de marcas de validacion y reinicia el formulario*/
 
-//-------------------------->ini-Alta<-------------------------//
+//-------------------------->INI-ALTA<-------------------------//
   $( ".confInsert div:first-child button:first-child" ).click( function(element){
-    //Obtenemos los elementes que pertenecen al boton donde se ha hecho click
+    //Obtenemos los elementos que pertenecen al boton donde se ha hecho click - Formulario de alta
     //El formulario de alta
     var form = element.target.parentElement.parentElement.parentElement.children[3];
     //Capa de bloqueo del formulario
@@ -522,7 +518,9 @@ $(document).ready(function(){
     infoProcess.id = "onProcessInfo";
     
     //Segun el nombre del formulario, que esta asociado a la tabla a la que hace referencia...
+    //-------> INI - SWITCH ALTA - FORMULARIOS
     switch (form.name) {
+//---------->TIENDA
       case "tienda":
         //Divisiones de informacion y bloqueo del formulario mientras se realiza el AJAX
         $( "#onProcessInfo" ).text("");
@@ -542,7 +540,7 @@ $(document).ready(function(){
         tienda.email = form[9].value;
         tienda.tipoSuscripcion = form[10].value;
                 
-        //AJAX - ALTA Tienda
+//------>INI - Envio de AJAX - Alta de TIENDA
         //Parametros de la peticion ajax para la alta de tienda
         var parametros = {
           accion: "mantenimentoTiendas",
@@ -630,22 +628,152 @@ $(document).ready(function(){
               
             });  
         });
-        
-        
+//------>FIN - Envio de AJAX - Alta de TIENDA       
         break;
-        
+//----------->USUARIO        
         case "usuario":
-        //Formularios de usuarios
+        //Divisiones de informacion y bloqueo del formulario mientras se realiza el AJAX
+        $( "#onProcessInfo" ).text("");
+        $( "#onProcessOverFlow" ).animate({zIndex:"1"});
+        //Divisiones de informacion y bloqueo del formulario mientras se realiza el AJAX
+        $( "#onProcessInfo" ).text("");
+        $( "#onProcessOverFlow" ).animate({zIndex:"1"});
+      
+        //Instanciar el obj usuario, para convertirlo a JSON
+        var usuario = new Usuario();
+        usuario.codUsuario = "";
+        usuario.nombre = form[1].value;
+        usuario.email = form[2].value;
+        usuario.password = form[3].value;
+        usuario.nivelAcceso = form[4].value;
+        
+        //Instanciar el obj acceso, para pconvertirlo a JSON
+        var acceso = new Acceso();
+        acceso.codUsuario = "";
+        acceso.codTienda = form[5].value;
+        
+        //Componer un JSON para el envio de datos al controlador
+        var envioJSON = {
+          codUsuario: usuario.codUsuario,
+          nombre: usuario.nombre,
+          password: usuario.password,
+          email: usuario.email,
+          nivelAcceso: usuario.nivelAcceso,
+          acceso: acceso.codTienda
+        };
+        
+        //Parametros de la peticion ajax para la alta de usario ---> stringify(envioJSON)
+        var parametros = {
+          accion: "mantenimentoUsuario",
+          operacion:  "alta",
+          json: JSON.stringify(envioJSON) 
+        };
+        console.log(parametros);
+         
+          //Envio de AJAX
+  //------>INI - Envio de AJAX - Alta de USUARIO
+          $.ajax({
+            data: parametros,
+            url: "../_web/controller.php",
+            type: "post"
+          }).done(function(response,estado,jqXHR){
+            //Realiza este ?callBack¿ siempre que se completa la peticion AJAX al servidor
+            console.log("----------->INI-Retorno de AJAX : DONE<-----------");
+            console.log(response);
+            console.log(estado);
+            console.log(jqXHR);
+            console.log("----------->FIN-Retorno de AJAX : DONE<-----------");
+            //Peticion terminada con resultado correcto
+
+            //Obtenemos el objeto JSON con la tienda del Retorno
+            var resultadoInserccion = JSON.parse(response);
+            
+            //Determinamos que tipo de nivel de acceso tiene el nuevo usuario
+            var insertUsuario_nAcceso;
+            switch (resultadoInserccion.nivelAcceso) {
+              case "emp":
+              insertUsuario_nAcceso = "Empleado";
+                break;
+              
+              case "gen":
+              insertUsuario_nAcceso = "Gerente";
+                break;
+              
+              case "adm":
+              insertUsuario_nAcceso = "Administrador";
+                break;
+              
+              default:
+                console.log("unknown resultadoInserccion.nivelAcceso");
+                insertUsuario_nAcceso = "unknown";
+                break;
+            }
+            //Añadimos la informacion al mensaje de retorno 
+            $( "#onProcessInfo" ).text(resultadoInserccion.msgReturn);
+            $( "#onProcessInfo ").append(
+              "<span class='insertTiendaMsg'>cod.Usuario : " +resultadoInserccion.codUsuario + "</span>"+
+              "<span class='insertTiendaMsg'>Nombre : " +resultadoInserccion.nombre + "</span>"+
+              "<span class='insertTiendaMsg'>Nivel Acceso : " +insertUsuario_nAcceso + "</span>"
+            );
+          }).fail(function(jqXHR,estado,error){
+            //Errores en la peticion de AJAX
+            console.log("----------->INI-Retorno de AJAX : FAIL<-----------");
+            console.log(error);
+            console.log(estado);
+            console.log(jqXHR);
+            console.log("----------->FIN-Retorno de AJAX : FAIL<-----------");
+            
+          }).always(function(jqXHR,estado,jqXHR_last){
+            // realiza este ?callBack¿ SIEMPRE que termine la peticion AJAX
+            console.log("----------->INI-Retorno de AJAX : ALWAYS<-----------");
+            console.log(estado);
+            console.log(jqXHR);
+            console.log(jqXHR_last);
+            console.log("----------->FIN-Retorno de AJAX : ALWAYS<-----------");
+            //Animaciones tras la peticion AJAX y resultado  
+              //Tomamos la capa de bloqueo del formulario
+              var aux = $( "#onProcessOverFlow" );
+              //Obtenemos su altura y anchura
+              var width = aux[0].offsetWidth;
+              var height = aux[0].offsetHeight
+              //Creamos los parametros de reduccion de la capa
+              width = "-=" + width + "px";
+              height = "-=" + height + "px";
+              //Animamos la reduccion de la capa de bloqueo
+              $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
+                //Mostramos la capa de informacion
+                $( "#onProcessInfo" ).animate({zIndex: "1"});
+                //Animamos la capa de informacion 
+                $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},10000,function(){
+                  //Devolvemos los valores originales a  las capaas de bloquo e informacion
+                  $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
+                  $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"});
+                  //Eliminamos los span con la informacion de la capa de informacion
+                  $( "#onProcessInfo" ).remove( "#onProcessInfo span" ); 
+                  //Eliminamos los id's de las capas de proceso e informacion
+                  $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
+                  for(var i = 2; i < form.length; i++){
+                    form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
+                  }
+                }); 
+                
+              });  
+          });
+//------>FIN - Envio de AJAX - Alta de USUARIO
+        
         break;
         
         case "producto":
+        //Formularios de productos
+        break;
+        case "proveedor":
         //Formularios de productos
         break;
         
         default:
         break;
       }
-     
+    //-------> FIN - SWITCH MODIFICACION - FORMULARIOS
 
   });
   /*Funcion de envio de datos por AJAX con JSON para la INSERCCION del formulario<--on working*/
@@ -774,11 +902,15 @@ $(document).ready(function(){
                 for(var i = 2; i < form.length; i++){
                   form[i].parentElement.className = "form-group col-xs-12 col-sm-6";//<-----rompe estilos de formularios
                 }
+                //Remueve la capa de confirmacion de borrado
                 $(confirmDelete).remove();
+                //Remueve la capa de bloqueo
                 $(overFlow).remove();
+                //Remueve la capa de informacion del proceso
                 $(infoProcess).remove();
-                //Efecto para la eliminacion de tienda
+                //Efecto para la eliminacion de tienda-->desplaza la tienda
                 $(conjuntoElementos).effect("drop",{},1000,function(){
+                  //Remueve toda la capa del formulario
                   $(conjuntoElementos).remove();
                 });
               }); 

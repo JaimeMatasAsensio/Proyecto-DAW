@@ -52,4 +52,25 @@ $("#tBusqueda").change( function(){
   
   
 });
-//Funcion para modificar el tipo de input en la busqueda
+//Funcion para validar el input de busqueda bloqueando el boton de buscar
+$("#formNuevoElemento form select[name=nAcceso]").change(function () {
+  
+  if( ( $(this).val() ) == "adm"){
+    $("#formNuevoElemento form select[name=accesoTienda]").val("0");
+  }else{
+    $("#formNuevoElemento form select[name=accesoTienda]").val("");
+    $("#formNuevoElemento form select[name=nAcceso]").parent().removeClass("has-success");
+  }
+});
+//Funcion para bloquear el select de acceso cuando el acceso es de administrador
+
+$("#formNuevoElemento form select[name=accesoTienda]").change(function () {
+  
+  if( ( $(this).val() ) == "0"){
+    $("#formNuevoElemento form select[name=nAcceso]").val("adm");
+  }else{
+    $("#formNuevoElemento form select[name=nAcceso]").val("");
+    $("#formNuevoElemento form select[name=nAcceso]").parent().removeClass("has-success");
+  }
+});
+//Funcion para bloquear el select de acceso cuando el acceso es de administrador

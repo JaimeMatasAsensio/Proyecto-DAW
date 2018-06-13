@@ -6,7 +6,7 @@ Proyecto DAW: ShopSphere
 I.E.S. Maestre de Calatrava - Ciudad Real
 2018
 */
-
+//Clase JavaScript de Usuario
 function Usuario (){
   //validacion en la llamada del objeto acceso
   if(!(this instanceof Usuario)) throw new ConstructorCalledFunction();
@@ -65,4 +65,4 @@ function Usuario (){
 };
 Usuario.prototype = {};
 Usuario.prototype.constructor = Usuario;
-//Funcion para la clase de aceso
+//Funcion para la clase de Usuario
