@@ -183,16 +183,20 @@ function imprFormUsuario($obj, $arrayUsuariosAcceso, $arrayTiendas){
 							    echo '<select name="accesoTienda" class="form-control" id="accesoTienda" disabled>';
 						    	echo '<option value="">Acceso a Tienda</option>';
 						    		//recoremos el array de tiendas
-						    	foreach ($arrayTiendas as $codTienda => $Nombre) {
-						    		//si el acceso del usuario es igual al de esa tienda
-						    		if($arrayUsuariosAcceso[$obj->__GET("codUsuario")] == $codTienda){
-						    			//aparece seleccionada
-						    			echo '<option value="'.$codTienda.'" selected>'.$codTienda.' - '.$Nombre.'</option>';	
-						    		}else{
-						    			//sino aparece como opcion del select
-						    			echo '<option value="'.$codTienda.'">'.$codTienda.' - '.$Nombre.'</option>';	
+						    	if(array_key_exists($obj->__GET("codUsuario"), $arrayUsuariosAcceso)){
+							    	foreach ($arrayTiendas as $codTienda => $Nombre) {
+							    		//si el acceso del usuario es igual al de esa tienda
+								    		if($arrayUsuariosAcceso[$obj->__GET("codUsuario")] == $codTienda){
+								    			//aparece seleccionada
+								    			echo '<option value="'.$codTienda.'" selected>'.$codTienda.' - '.$Nombre.'</option>';	
+								    		}else{
+								    			//sino aparece como opcion del select
+								    			echo '<option value="'.$codTienda.'">'.$codTienda.' - '.$Nombre.'</option>';	
+								    		}
+							    	}
+						    	}else{
+						    			echo '<option value="0" selected>Acceso Administrador</option>';
 						    		}
-						    	}
 						    	
 						    	
 							    echo '</select>';
@@ -212,11 +216,7 @@ function imprFormUsuario($obj, $arrayUsuariosAcceso, $arrayTiendas){
 					</div>
 					
 					<div class="col-xs-6 confDelete">';
-					if($obj->__GET("nivelAcceso") == "adm"){
-					echo	'<button class="btn btn-default" disabled><span class="glyphicon glyphicon-trash"></span></span></button>';
-					}else{
-						echo	'<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>';
-					}
+					echo	'<button class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></span></button>';
 		echo	'</div>
 
 					</div>

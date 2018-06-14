@@ -19,6 +19,7 @@ function validarFormulario (element){
         //si todo es true marca el input como correcto
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         //busca en las divisiones del Formulario la classe "has-error"

@@ -561,32 +561,46 @@ switch ( $accion ) {
 						$pass = sha1($ini.$updateUsuario->__GET("password").$fin);
 						$updateUsuario->__SET("password",$pass);
 				}
+				//Creamos la variable updatedAcceso
+				$updatedAcceso = "";
 				//Instanciamos un objeto de ACCESO
 				$updateAcceso = new acceso();
-				//Recorremos el array asociativo del objeto JSON tomando los valores relacionados con la tabla de acceso
-				foreach ($datos as $key => $value) {
-					//En funcion del valor de la key, asignamos un valor u otro al objeto de acceso
-					switch ($key) {
-						case 'codUsuario':
-							$updateAcceso->__SET("codUsuario", $value);
-							break;
-						case 'acceso':
-							$updateAcceso->__SET("codTienda", $value);
-							break;
+				//Controlamos la modificacion de usuarios con nivel de acceso Administrador
+				if($datos["acceso"] != 0){
+					//Recorremos el array asociativo del objeto JSON tomando los valores relacionados con la tabla de acceso
+					foreach ($datos as $key => $value) {
+						//En funcion del valor de la key, asignamos un valor u otro al objeto de acceso
+						switch ($key) {
+							case 'codUsuario':
+								$updateAcceso->__SET("codUsuario", $value);
+								break;
+							case 'acceso':
+								$updateAcceso->__SET("codTienda", $value);
+								break;
+						}
 					}
+					//Instancia del modelo de datos para acceso
+					$daoAcceso = new daoAcceso();
+					//Actualizamos los datos del acceso
+					$daoAcceso->actualizarAcceso($updateAcceso);
+					//Instancia del modelo de datos para acceso
+					$daoAcceso = new daoAcceso();
+					//Buscamos su acceso asociado
+					$updatedAcceso = $daoAcceso->buscarAccesoPorCodUsuario($updateUsuario->__GET("codUsuario"));
+				}else{
+					//instancioamos updatedAcceso como un objeto
+					$updatedAcceso = new acceso();
+					//Si es un usuario administrador creado, su codigo de tienda de acceso siempre sera 0
+					$updatedAcceso->__SET("codUsuario", $updateUsuario->__GET("codUsuario"));
+					$updatedAcceso->__SET("codTienda", 0);
 				}
+				
 				//Instancia del modelo de datos para usuario
 				$daoUsuarios = new daoUsuarios($updateUsuario);
 				//Actualizamos los datos de usuario
 				$daoUsuarios->actualizarUsuario($updateUsuario);
-				//Instancia del modelo de datos para acceso
-				$daoAcceso = new daoAcceso();
-				//Actualizamos los datos del acceso
-				$daoAcceso->actualizarAcceso($updateAcceso);
 				//Buscamos el usuario actualizado y su acceso
 				$updatedUsuario = $daoUsuarios->buscarUsuario($updateUsuario->__GET("codUsuario"));
-				//Buscamos su acceso asociado
-				$updatedAcceso = $daoAcceso->buscarAccesoPorCodUsuario($updateUsuario->__GET("codUsuario"));
 				//Creamos un array asociativo para convertirlo a JSON
 				$returnUsuario = array(
 					"codUsuario" => $updatedUsuario->__GET("codUsuario"),
@@ -652,23 +666,27 @@ switch ( $accion ) {
 				echo json_encode($returnUsuario);
 				
 				break;
-				/*
+				
 			case 'baja':
-			//Operacion de BAJA sobre la tabla de usuarios-----> modificar
+			//Operacion de BAJA sobre la tabla de usuarios
 				//Obtenemos el JSON enviado por AJAX
 				$datos = isset($_REQUEST["json"]) ? $_REQUEST["json"] : "";
 				//Decodificamos el JSON para que sea un array asociativo
 				$datos = json_decode($datos,true);
-				//Instanciamos el modelo de datos de tienda
-				$daoTiendas = new daoTiendas();
-				//Borramos la tienda y todas las tablas, usuarios y accesos relaccionada con esta
-				$daoTiendas->eliminarTienda($datos["codTienda"]);
+				//Instanciamos el modelo de datos de usuario
+				$daoUsuarios = new daoUsuarios();
+				//Borramos al usuario de la tabla de usuario
+				$daoUsuarios->eliminarUsuario($datos["codUsuario"]);
+				//Instanciamos el modelo de datos de acceso
+				$daoAcceso = new daoAcceso();
+				//Borramos el acceso para este usuario
+				$daoAcceso->eliminarAcceso($datos["codUsuario"]);
 
-				$retornoDelete = array("msgReturn" => "Tienda con codigo: ' ".$datos["codTienda"]." '  eliminada del sistema");
+				$retornoDelete = array("msgReturn" => "Usuario con codigo: ' ".$datos["codUsuario"]." '  eliminado del sistema");
 
 				echo json_encode($retornoDelete);
 				break;
-				*/
+				
 			//Busquedas de tienda por distintos parametros
 			case 'buscar':
 			//Operacion de busqueda sobre la tabla de usuario

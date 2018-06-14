@@ -131,7 +131,7 @@ require_once '../_conexion/libreria_PDO.php';
       }  
     }
     //Funcion modelo de datos usuario elimina por clave
-
+    
     public function insertarUsuario($obj){
       try {
       $consulta = "INSERT INTO usuario(codUsuario, nombre, password, email, nivelAcceso) VALUES (?,?,?,?,?)";

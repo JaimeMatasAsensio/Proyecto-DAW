@@ -76,10 +76,10 @@ require_once '../_conexion/libreria_PDO.php';
     //Funcion modelo de datos acceso elimina por clave
     public function insertarAcceso($obj){
       try {
-      $consulta = "INSERT INTO acceso(codUsuario,codAcceso) VALUES (?,?)";
+      $consulta = "INSERT INTO acceso(codUsuario,codTienda) VALUES (?,?)";
       $param = array(
         $obj->__GET("codUsuario"),
-        $obj->__GET("codAcceso"),
+        $obj->__GET("codTienda"),
         
       );
       $this->result = $this->con->ConsultaSimple($consulta, $param);

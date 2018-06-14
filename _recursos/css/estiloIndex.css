@@ -495,7 +495,6 @@ footer{
 	color: white;
 }
 #redesSociales{
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -526,8 +525,8 @@ footer{
 		font-size: 18px;
 	}
 	#logoPie a img{
-		width: 250px;
-		height: 125px;
+		width: 200px;
+		height: auto;
 		border-bottom-right-radius: 15px; 
 		border-top-left-radius: 15px;
 	}
@@ -538,7 +537,7 @@ footer{
 		height: auto;
 	}
 	#enlacesPie ul li{
-		font-size: 40px;
+		font-size: 20px;
 	}
 	#logoPie a img{
 		border-bottom-right-radius: 20px; 

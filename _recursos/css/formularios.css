@@ -148,6 +148,7 @@ h3.infoProceso{
 	z-index: -100;
 	border-top-left-radius: 15px;
 	border-bottom-right-radius: 15px;
+	border: 2px solid rgba(244, 103, 88, 1);
 }
 .confirmarBorrado{
 	display: flex;

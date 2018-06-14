@@ -75,13 +75,17 @@ $(document).ready(function(){
           i++;
         }
 
-        //Guardamos la relaccion usuario-acceso
-        var acceso  = new Acceso();
-        acceso.codUsuario = form[1].value;
-        var i = 1;
-        while(acceso.codTienda == ""){
-          acceso.codTienda = form[6][i].selected?form[6][i].value:"";
-          i++;
+        //Guardamos la relaccion usuario-acceso en caso de que no sea un usuario administrador
+        if(usuario.nivelAcceso != "adm"){
+          var acceso  = new Acceso();
+          acceso.codUsuario = form[1].value;
+          var i = 1;
+          while(acceso.codTienda == ""){
+            acceso.codTienda = form[6][i].selected?form[6][i].value:"";
+            i++;
+          }
+        }else{
+          usuario.nivelAcceso = 0;
         }
         //Guardamos en el array
         arrUsuarios.push(usuario);
@@ -357,7 +361,6 @@ $(document).ready(function(){
            operacion:  "modificacion",
            json: JSON.stringify(envioJSON) 
          };
-         console.log(parametros);
 //------->INI - Envio de AJAX - Modifcacion USUARIO
         console.log("INI - Comunicacion AJAX - MODIFICACION USUARIO");
          $.ajax({
@@ -370,12 +373,10 @@ $(document).ready(function(){
            console.log(estado);
            console.log(jqXHR);
            console.log("---------->Retorno de AJAX : DONE<-----------");
-           
            //Peticion terminada con resultado correcto
            var usuarioUpdated = JSON.parse(response);
-           console.log(usuarioUpdated);
            //Toma los nuevos valores y los inserta en el formulario
-            //Valores para campos "escribibles"
+           //Valores para campos "escribibles"
            form[1].value = usuarioUpdated.codUsuario;
            form[2].value = usuarioUpdated.nombre;
            form[3].value = usuarioUpdated.email;
@@ -503,7 +504,7 @@ $(document).ready(function(){
   });
   /*Funcion de cancelacion de la inserccion del formulario de tienda. Limpia los campos de insercion de marcas de validacion y reinicia el formulario*/
 
-//-------------------------->INI-ALTA<-------------------------//
+//-------------------------->INI - ALTA<-------------------------//
   $( ".confInsert div:first-child button:first-child" ).click( function(element){
     //Obtenemos los elementos que pertenecen al boton donde se ha hecho click - Formulario de alta
     //El formulario de alta
@@ -777,10 +778,10 @@ $(document).ready(function(){
 
   });
   /*Funcion de envio de datos por AJAX con JSON para la INSERCCION del formulario<--on working*/
-//-------------------------->fin-Alta<-------------------------//
+//-------------------------->FIN - Alta<-------------------------//
 
 
-//-------------------------->ini-Borrado<-------------------------//
+//-------------------------->INI - BORRADO<-------------------------//
   $(".confDelete button").click(function(element){
     //Obtenemos los elementos relacionados con el boton 
     //Capa de confirmacion de borrado
@@ -828,7 +829,9 @@ $(document).ready(function(){
       infoProcess.id = "onProcessInfo";
     
     //Segun el nombre del formulario, que esta asociado a la tabla a la que hace referencia...
+    //-------> INI - SWITCH BAJA - FORMULARIOS
     switch (form.name) {
+//---------->TIENDA
       case "tienda":
         //Divisiones de informacion y bloqueo del formulario mientras se realiza el AJAX
         $( "#onProcessInfo" ).text("");
@@ -845,7 +848,7 @@ $(document).ready(function(){
           operacion:  "baja",
           json: JSON.stringify(tienda.getJSON)
         };
-        //Envio de AJAX
+//------>INI - Envio de AJAX - Baja de TIENDA
         $.ajax({
           data: parametros,
           url: "../_web/controller.php",
@@ -917,23 +920,115 @@ $(document).ready(function(){
               
             });  
         });
-        
+//------>FIN - Envio de AJAX - Baja de TIENDA        
         break;
-      
+//---------->USUARIO      
       case "usuario":
-        //Formularios de usuarios
+        //Divisiones de informacion y bloqueo del formulario mientras se realiza el AJAX
+        $( "#onProcessInfo" ).text("");
+        $( "#onProcessOverFlow" ).animate({zIndex:"1"});
+      
+        //Montar el obj, para convertirlo a JSON. Solo necesitamos el codigo de la usuario a borrar
+        var usuario = new Usuario();
+        usuario.codUsuario = form[1].value;
+      
+        //AJAX -  Borrar Usuario
+        //Parametros de la peticion ajax para la modificacion de tienda
+        var parametros = {
+          accion: "mantenimentoUsuario",
+          operacion:  "baja",
+          json: JSON.stringify(usuario.getJSON)
+        };
+//------>FIN - Envio de AJAX - Baja de USUARIO
+        $.ajax({
+          data: parametros,
+          url: "../_web/controller.php",
+          type: "post"
+        }).done(function(response,estado,jqXHR){
+          console.log("---------->Retorno de AJAX : DONE<-----------");
+          console.log(response);
+          console.log(estado);
+          console.log(jqXHR);
+          console.log("---------->Retorno de AJAX : DONE<-----------");
+          //Peticion terminada con resultado correcto
+          var tiendaUpdated = JSON.parse(response);
+          
+          //Oculta la division de control de modificacion y muestra de la division de modificacion
+          $( ".divMod" ).show();
+          $(".confMod").hide();
+          $( "#onProcessInfo" ).text(tiendaUpdated.msgReturn)
+          
+        }).fail(function(jqXHR,estado,error){
+          //Errores en la peticion de AJAX
+          console.log("---------->Retorno de AJAX : FAIL<-----------");
+          console.log(error);
+          console.log(estado);
+          console.log(jqXHR);
+          console.log("---------->Retorno de AJAX : FAIL<-----------");
+          
+        }).always(function(jqXHR,estado){
+          // AJAX completado
+          console.log("---------->Retorno de AJAX : ALWAYS<-----------");
+          console.log(estado);
+          console.log(jqXHR);
+          console.log("---------->Retorno de AJAX : ALWAYS<-----------");
+          //Animaciones tras la peticion AJAX y resultado  
+            var aux = $( "#onProcessOverFlow" );
+            var width = aux[0].offsetWidth;
+            var height = aux[0].offsetHeight
+            width = "-=" + width + "px";
+            height = "-=" + height + "px";
+            //Animacion se reduce la capa de bloqueo
+            $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
+              //En callBack...
+              //trae hacia delante la capa de informacion de retorno
+              $( "#onProcessInfo" ).animate({zIndex: "1"}); 
+              //Lleva hacia atras la capa de informacion del retorno
+              $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},2000,function(){
+                //En callBack....
+                //Restaura los valores de la capa de informacion del proceso
+                $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
+                //Restaura los valores de la capa de bloqueo
+                $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"}); 
+                //Remueve los id's del proceso
+                $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
+                //restura las clases del formulario
+                for(var i = 2; i < form.length; i++){
+                  form[i].parentElement.className = "form-group col-xs-12 col-sm-6";//<-----rompe estilos de formularios
+                }
+                //Remueve la capa de confirmacion de borrado
+                $(confirmDelete).remove();
+                //Remueve la capa de bloqueo
+                $(overFlow).remove();
+                //Remueve la capa de informacion del proceso
+                $(infoProcess).remove();
+                //Efecto para la eliminacion de usuario-->desplaza al formulario
+                $(conjuntoElementos).effect("drop",{},1000,function(){
+                  //Remueve toda la capa del formulario
+                  $(conjuntoElementos).remove();
+                });
+              }); 
+              
+            });  
+        });
+//------>FIN - Envio de AJAX - Baja de USUARIO
         break;
       
       case "producto":
         //Formularios de productos
         break;
       
+      case "proveedor":
+        //Formularios de proveedor
+        break;
+      
       default:
         break;
     }
+    //-------> FIN - SWITCH BAJA - FORMULARIOS
     });
   });
-//-------------------------->fin-Borrado<-------------------------//
+//-------------------------->INI - BORRADO<-------------------------//
   //Funcion 
 
 });//Fin del documentReady
