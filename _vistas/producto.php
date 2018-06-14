@@ -56,7 +56,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 				$nivelAcc = $_SESSION["nivelAcceso"];
 				if ($nivelAcc == "adm") {
-					echo "<h1>Gestion Proveedores - Usuario Administrador</h1>";
+					echo "<h1>Gestion Productos - Usuario Administrador</h1>";
 					echo '<div class="row formulario formulario-crud" id="selectorTienda">';
 					echo '<form action="../_web/controller.php?accion=move&operacion=productos" method="post" class="form-inline">';
 					echo '<div class="col-xs-12">';

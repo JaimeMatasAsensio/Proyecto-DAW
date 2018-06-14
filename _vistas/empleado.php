@@ -18,6 +18,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 	<title>Proyecto-DAW | ShopSphere</title>
 	<meta charset="UTF-8">
   <meta name="author" content="Jaime Matas Asensio">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php 
 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); 
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 
@@ -196,8 +197,6 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			}
 			?>
 			</div>
-				}
-
 		</main>
 	</div>
 	<?php	include "pieVistas.php";	?>

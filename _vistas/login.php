@@ -65,8 +65,8 @@ if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
 						</fieldset>
 					</div>
 					<div class="col-xs-12" id="enlaceRecuperacion">
-						<a href="#"><p class="bg-info border-shopShpere-xs">¿Olvido su contraseña?</p></a>
-						<a href="#"><p class="bg-info border-shopShpere-xs">¿Olvido su usuario?</p></a>
+						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvido su contraseña?</p></a>
+						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvido su usuario?</p></a>
 					</div>
 					<?php
 					if(isset($_SESSION["logDone"]) && $_SESSION["logDone"] == -1){
