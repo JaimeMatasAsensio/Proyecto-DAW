@@ -31,64 +31,73 @@ function imprFormTienda($obj){
 	echo '<div class="form-group col-xs-12 col-sm-6">';
 	echo '<label for="nombre" class="hidden-xs">Nombre</label>';
 	echo '<input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Tienda" value="'.$obj->__GET("nombre").'" disabled="true" required="true">';
+	echo '<span class="errValidacion">Nombre no valido</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
-	echo '<label for="pais" class="hidden-xs">Pais</label>';
-	echo '<input type="text" class="form-control" name="pais" id="pais" placeholder="Pais" value="'.$obj->__GET("pais").'" disabled="true" required="true">';
+	echo '<label for="pais" class="hidden-xs">País</label>';
+	echo '<input type="text" class="form-control" name="pais" id="pais" placeholder="País" value="'.$obj->__GET("pais").'" disabled="true" required="true">';
+	echo '<span class="errValidacion">País no valido</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
 	echo '<label for="provincia" class="hidden-xs">Provincia</label>';
 	echo '<input type="text" class="form-control" name="provincia" id="Provincia" placeholder="Provincia" value="'.$obj->__GET("provincia").'" disabled="true" required="true">';
+	echo '<span class="errValidacion">Provincia no valida</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
-	echo'<label for="poblacion" class="hidden-xs">Poblacion</label>';
-	echo '<input type="text" class="form-control" name="poblacion" id="poblacion" placeholder="Poblacion" value="'.$obj->__GET("poblacion").'" disabled="true" required="true">';
+	echo'<label for="poblacion" class="hidden-xs">Población</label>';
+	echo '<input type="text" class="form-control" name="poblacion" id="poblacion" placeholder="Población" value="'.$obj->__GET("poblacion").'" disabled="true" required="true">';
+	echo '<span class="errValidacion">Población no valida</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
-	echo '<label for="direccion" class="hidden-xs">Direccion</label>';
-	echo '<input type="text" class="form-control" name="direccion" id="direccion" placeholder="Direccion" value="'.$obj->__GET("direccion").'" disabled="true" required="true">';
+	echo '<label for="direccion" class="hidden-xs">Dirección</label>';
+	echo '<input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección" value="'.$obj->__GET("direccion").'" disabled="true" required="true">';
+	echo '<span class="errValidacion">Dirección no valida</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
-	echo '<label for="numero" class="hidden-xs">Numero</label>';
-	echo '<input type="text" class="form-control" name="numero" id="numero" placeholder="Numero" value="'.$obj->__GET("numero").'" disabled="true" required="true">';
+	echo '<label for="numero" class="hidden-xs">Número Dirección</label>';
+	echo '<input type="text" class="form-control" name="numero" id="numero" placeholder="Número" value="'.$obj->__GET("numero").'" disabled="true" required="true">';
+	echo '<span class="errValidacion">Número de dirección no valido</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
-	echo '<label for="telefono" class="hidden-xs">Telefono</label>';
-	echo '<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono" value="'.$obj->__GET("telefono").'" disabled="true" required="true">';
+	echo '<label for="telefono" class="hidden-xs">Teléfono</label>';
+	echo '<input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono" value="'.$obj->__GET("telefono").'" disabled="true" required="true">';
+	echo '<span class="errValidacion">Número de teléfono no valido</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
 	echo '<label for="movil" class="hidden-xs">Movil</label>';
-	echo '<input type="text" class="form-control" name="movil" id="movil" placeholder="Movil" value="'.$obj->__GET("movil").'" disabled="true" required="true">';
+	echo '<input type="text" class="form-control" name="movil" id="movil" placeholder="Móvil" value="'.$obj->__GET("movil").'" disabled="true" required="true">';
+	echo '<span class="errValidacion">Número de móvil no valido</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
 	echo '<label for="email"  class="hidden-xs">Email</label>';
 	echo '<input type="text" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled="true"  required="true">';
+	echo '<span class="errValidacion">Formato de correo incorrecto</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
-	echo '<label for="pais" class="hidden-xs">Tipo de Suscripcion</label>';
+	echo '<label for="pais" class="hidden-xs">Tipo de Suscripción</label>';
 	echo '<select class="form-control" name="tSuscripcion" id="tSuscripcion" disabled="true"  required="true">';
 
 	switch ($obj->__GET("tipoSuscripcion")) {
 		case 'pre':
-			echo '<option value="">Tipo Suscripcion</option>';
+			echo '<option value="">Tipo Suscripción</option>';
 			echo '<option value="pre" selected>Premium - 360€/año</option>';
 			echo '<option value="nor">Normal - 250€/año</option>';
 			echo '<option value="fre">Basica - ¡¡Gratis!!</option>';	
 			break;
 		case 'nor':
-			echo '<option value="">Tipo Suscripcion</option>';
+			echo '<option value="">Tipo Suscripción</option>';
 			echo '<option value="pre">Premium - 360€/año</option>';
 			echo '<option value="nor" selected>Normal - 250€/año</option>';
 			echo '<option value="fre">Basica - ¡¡Gratis!!</option>';	
 			break;
 		case 'fre':
-			echo '<option value="">Tipo Suscripcion</option>';
+			echo '<option value="">Tipo Suscripción</option>';
 			echo '<option value="pre">Premium - 360€/año</option>';
 			echo '<option value="nor">Normal - 250€/año</option>';
 			echo '<option value="fre" selected>Basica - ¡¡Gratis!!</option>';	
 			break;
 		default:
-			echo '<option value="" selected>Tipo Suscripcion</option>';
+			echo '<option value="" selected>Tipo Suscripción</option>';
 			echo '<option value="pre">Premium - 360€/año</option>';
 			echo '<option value="nor">Normal - 250€/año</option>';
 			echo '<option value="fre">Basica - ¡¡Gratis!!</option>';	
@@ -97,6 +106,7 @@ function imprFormTienda($obj){
 		
 
 	echo '</select>';
+	echo '<span class="errValidacion">Seleccione una suscripción</span>';
 	echo '</div>';
 	echo '</div>';
 	echo '</fieldset>';
@@ -134,16 +144,19 @@ function imprFormUsuario($obj, $arrayUsuariosAcceso, $arrayTiendas){
 					<div class="form-group col-xs-12 col-sm-6">
 					<label for="nombre" class="hidden-xs">Nombre</label>
 					<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Usuario" value="'.$obj->__GET("nombre").'" disabled>
+					<span class="errValidacion">Nombre no valido</span>
 					</div>
 
 					<div class="form-group col-xs-12 col-sm-6">
 					<label for="email" class="hidden-xs">Email</label>
 					<input type="mail" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled>
+					<span class="errValidacion">Formato de correo incorrecto</span>
 					</div>
 
 					<div class="form-group col-xs-12 col-sm-6">
 					<label for="password" class="hidden-xs">Nueva Contraseña</label>
 					<input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" value="'.$obj->__GET("password").'" disabled>
+					<span class="errValidacion checkPassword"></span>
 					</div>
 
 					<div class="form-group col-xs-12 col-sm-6">
@@ -182,9 +195,10 @@ function imprFormUsuario($obj, $arrayUsuariosAcceso, $arrayTiendas){
 
 						
 					echo '</select>
+					<span class="errValidacion">Seleccione una opcion</span>
 					</div>';
 		echo '<div class="form-group col-xs-12 col-sm-6">';
-							    echo '<label for="accesoTienda">Acceso a Tienda</label>';
+							    echo '<label for="accesoTienda" class="hidden-xs">Acceso a Tienda</label>';
 							    echo '<select name="accesoTienda" class="form-control" id="accesoTienda" disabled>';
 						    	echo '<option value="">Acceso a Tienda</option>';
 						    		//recoremos el array de tiendas
@@ -205,6 +219,7 @@ function imprFormUsuario($obj, $arrayUsuariosAcceso, $arrayTiendas){
 						    	
 						    	
 							    echo '</select>';
+							    echo '<span class="errValidacion">Seleccione una opcion</span>';
 								  echo '</div>';
 		echo '</div>
 					</fieldset>
@@ -245,31 +260,38 @@ function imprFormProveedor($obj){
 							  <div class="form-group col-xs-12">
 							    <label for="nombre" class="hidden-xs">Nombre Proveedor</label>
 							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Proveedor" value="'.$obj->__GET("nombre").'" disabled>
+							    <span class="errValidacion">Nombre no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
 							    <label for="nombre" class="hidden-xs">Nombre Contacto</label>
 							    <input type="text" class="form-control" name="nombre" id="nombreContacto" placeholder="Nombre Contacto" value="'.$obj->__GET("nombreContacto").'" disabled>
+							    <span class="errValidacion">Nombre contacto no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
 							    <label for="apellido1Contacto" class="hidden-xs">1º Apellido Contato</label>
 							    <input type="text" class="form-control" name="apellido1Contacto" id="apellido1Contacto" placeholder="1º Apellido Contacto" value="'.$obj->__GET("apellido1Contacto").'" disabled>
+							    <span class="errValidacion">1º Apellido no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
 							    <label for="apellido2Contacto" class="hidden-xs">2º Apellido Contacto</label>
 							    <input type="text" class="form-control" name="apellido2Contacto" id="apellido2Contacto" placeholder="2º Apellido Contacto" value="'.$obj->__GET("apellido2Contacto").'" disabled>
+							    <span class="errValidacion">2º Apellido no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
 							    <label for="telefono" class="hidden-xs">Telefono</label>
 							    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono" value="'.$obj->__GET("telefono").'" disabled>
+							    <span class="errValidacion">Número de teléfono no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
 							    <label for="Movil" class="hidden-xs">Movil</label>
 							    <input type="text" class="form-control" name="movil" id="movil" placeholder="Movil" value="'.$obj->__GET("movil").'" disabled>
+							    <span class="errValidacion">Número de móvil no valido</span>
 							  </div>
 								
 							  <div class="form-group col-xs-12 col-sm-4">
 							    <label for="email" class="hidden-xs">Email</label>
 							    <input type="mail" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled>
+							    <span class="errValidacion">Formato de correo incorrecto</span>
 							  </div>
 							</div>
 							</fieldset>
@@ -390,30 +412,37 @@ function imprFormProducto($obj){
 					  <div class="form-group col-xs-12 col-sm-6">
 					    <label for="nombre" class="hidden-xs">Nombre</label>
 					    <input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Usuario" value="'.$obj->__GET("nombre").'" disabled>
+					    <span class="errValidacion">Nombre no valido</span>
 					  </div>
 					  <div class="form-group col-xs-12 col-sm-6">
 					    <label for="referencia" class="hidden-xs">Referencia</label>
 					    <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia" value="'.$obj->__GET("referencia").'" disabled>
+					    <span class="errValidacion">Sin valor de referencia</span>
 					  </div>
 					  <div class="form-group col-xs-12 col-sm-4">
 					    <label for="precio" class="hidden-xs">Precio (€)</label>
 					    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio (€)" value="'.$obj->__GET("precio").'" disabled>
+					    <span class="errValidacion">Formato de precio no valido</span>
 					  </div>
 						<div class="form-group col-xs-12 col-sm-4">
 					    <label for="IVA" class="hidden-xs">IVA</label>
 					    <input type="text" class="form-control" name="IVA" id="IVA" placeholder="IVA" value="'.$obj->__GET("IVA").'" disabled>
+					    <span class="errValidacion">Formato de IVA no valido</span>
 					  </div>
 						<div class="form-group col-xs-12 col-sm-4">
 					    <label for="descuento" class="hidden-xs">Descuento</label>
 					    <input type="text" class="form-control" name="descuento" id="descuento" placeholder="Descuento" value="'.$obj->__GET("descuento").'" disabled>
+					    <span class="errValidacion">Formato de precio no valido</span>
 					  </div>
 						<div class="form-group col-xs-12 col-sm-4">
 					    <label for="cantidad" class="hidden-xs">Cantidad</label>
 					    <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad" min="0" value="'.$obj->__GET("cantidad").'" disabled>
+					    <span class="errValidacion">Formato de cantidad no valida</span>
 					  </div>
 					  <div class="form-group col-xs-12 col-sm-4">
 					    <label for="cantidadMin" class="hidden-xs">Cantidad Minima</label>
 					    <input type="number" class="form-control" name="cantidadMin" id="cantidadMin" placeholder="Cantidad Minima" min="0" value="'.$obj->__GET("cantidadMin").'" disabled>
+					    	<span class="errValidacion">Formato de cantidad minima no valido</span>
 					  </div>
 						<div class="form-group col-xs-12 col-sm-4">
 					    <label for="nuevo">Nuevo Producto</label>
@@ -431,7 +460,9 @@ function imprFormProducto($obj){
 					    }else{
 					    	echo "Introduzca una Descripcion";
 					    }
+
 			 echo '</textarea>
+			 			<span class="errValidacion">Sin valor de descripcion</span>
 					  </div>								
 				</div>
 				</fieldset>

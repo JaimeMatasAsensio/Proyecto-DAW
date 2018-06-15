@@ -38,16 +38,16 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 
 			<div id="cont1" class="row indexCont">
 				<div class="col-sm-6 col-md-6 col-lg-6 hidden-xs" id="textDesEsc">
-					<h3>¿Que es ShopSphere?</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia libero tempore repellat. Ipsum magni numquam debitis ipsam voluptatem, harum illo atque asperiores assumenda obcaecati! Ut, est. Ut quisquam obcaecati, facilis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deleniti illo ipsa quidem, amet iste.</p>
+					<h3>ShopSphere</h3>
+					<p>ShopSphere es una aplicación de gestión de tienda. Con esta aplicación podrás gestionar todo tu negocio, proveedores, productos, empleados. La interfaz sencilla y amigable te ayudara a mejorar tu negocio y a obtener mejor margen de beneficios. El servicio es gratuito pero si quieres mejorar el servicio puede pagar una suscripción anual para una mejor experiencia. </p>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="cont1img">
 					<div id="imgCont1">
 						<img src="_recursos/img/imgIndex1.jpg" class="border-shopShpere-xs" alt="imagen 1 del index">
-						<p id="Quees" class="hidden-sm hidden-md hidden-lg">¿Que es ShopSphere?</p>					
+						<p id="Quees" class="hidden-sm hidden-md hidden-lg">ShopSphere</p>					
 					</div>
 					<div id="textoDesc" class="col-xs-12 hidden-sm hidden-md hidden-lg">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia libero tempore repellat. Ipsum magni numquam debitis ipsam voluptatem, harum illo atque asperiores assumenda obcaecati! Ut, est. Ut quisquam obcaecati, facilis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deleniti illo ipsa quidem, amet iste. Aut quas impedit fugit soluta facilis rerum animi hic. Assumenda ex omnis perspiciatis dolore itaque.</p>
+						<p>ShopSphere es una aplicación de gestión de tienda. Con esta aplicación podrás gestionar todo tu negocio, proveedores, productos, empleados. La interfaz sencilla y amigable te ayudara a mejorar tu negocio y a obtener mejor margen de beneficios. El servicio es gratuito pero si quieres mejorar el servicio puede pagar una suscripción anual para una mejor experiencia. </p>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="cont2img">
 					<div id="imgCont2">
 						<img src="_recursos/img/imgIndex2.jpg" class="border-shopShpere-xs" alt="imagen 2 del index">
-						<p id="Vent" class="hidden-sm hidden-md hidden-lg">Ventajas de ShopSphere</p>					
+						<p id="Vent" class="hidden-sm hidden-md hidden-lg">Ventajas</p>					
 					</div>
 					<div id="textoVent" class="col-xs-12 hidden-sm hidden-md hidden-lg">
 						<p><span class="glyphicon glyphicon-folder-open"></span>Organiza todo tu negocio</p>
@@ -67,7 +67,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-6 col-lg-6 hidden-xs" id="textVentEsc">
-					<h3>Ventajas de ShopSphere</h3>
+					<h3>Ventajas</h3>
 						<p><span class="glyphicon glyphicon-folder-open"></span> Organiza todo tu negocio</p>
 						<p><span class="glyphicon glyphicon-leaf"></span> Sin necesidad de imprimir documentos</p>
 						<p><span class="glyphicon glyphicon-check"></span> Controla tus proveedores y productos</p>
@@ -78,7 +78,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 			
 
 			<div id="cont3" class="row indexCont">
-				<h2>Elije tu suscripcion</h2>
+				<h2> Suscripciones</h2>
 				<div class="col-xs-12 col-sm-4 suscripciones">
 					<h3>Premium</h3>
 					<div>

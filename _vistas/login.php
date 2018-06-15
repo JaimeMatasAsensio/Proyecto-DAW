@@ -49,11 +49,14 @@ if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
 	<?php include "cabeceraVistas.php"; ?>
 	<div class="container-fluid">
 		<main class="container">
+			<div id="cont3" class="row indexCont">
+				<h2 id="login"> ShopSphere </h2>
+			</div>
 			<div class="row formulario" id="formularioLogin">
 				<form action="../_web/controller.php?accion=login&operacion=validarLogin" method="post">
 					<div class="col-xs-12 col-sm-12">
 						<fieldset>
-							<legend>Acceso ShopSphere</legend>
+							<legend>Acceso</legend>
 							<div class="form-group">
 						    <label for="nombreUsuario">Nombre de Usuario</label>
 						    <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario" placeholder="Nombre de Usuario" maxlength="30">

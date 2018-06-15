@@ -53,9 +53,9 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 						    <label class="sr-only" for="tBusqueda">Tipo Busqueda</label>
 						    <select name="tBusqueda" lass="form-control" id="tBusqueda" required>
 						    	<option value="">Filtro</option>
-						    	<option value="codTienda">Codigo Tienda</option>
+						    	<option value="codTienda">Código Tienda</option>
 						    	<option value="nombre">Nombre</option>
-						    	<option value="tsuscripcion">Tipo Suscripcion</option>
+						    	<option value="tsuscripcion">Tipo Suscripción</option>
 						    </select>
 						  </div>
 
@@ -98,48 +98,57 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="nombre" class="hidden-xs">Nombre</label>
 							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Tienda">
-							    <span class="errValidacion">Nombre contiene numeros</span>
+							    <span class="errValidacion">Nombre no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="pais" class="hidden-xs">Pais</label>
-							    <input type="text" class="form-control" name="pais" id="pais" placeholder="Pais">
+							    <label for="pais" class="hidden-xs">País</label>
+							    <input type="text" class="form-control" name="pais" id="pais" placeholder="País">
+							    <span class="errValidacion">País no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="provincia" class="hidden-xs">Provincia</label>
 							    <input type="text" class="form-control" name="provincia" id="provincia" placeholder="Provincia">
+							    <span class="errValidacion">Provincia no valida</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="poblacion" class="hidden-xs">Poblacion</label>
-							    <input type="text" class="form-control" name="poblacion" id="poblacion" placeholder="Poblacion">
+							    <label for="poblacion" class="hidden-xs">Población</label>
+							    <input type="text" class="form-control" name="poblacion" id="poblacion" placeholder="Población">
+							    <span class="errValidacion">Población no valida</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="direccion" class="hidden-xs">Direccion</label>
-							    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Direccion">
+							    <label for="direccion" class="hidden-xs">Dirección</label>
+							    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección">
+							    <span class="errValidacion">Dirección no valida</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="numero" class="hidden-xs">Numero</label>
-							    <input type="text" class="form-control" name="numero" id="numero" placeholder="Numero">
+							    <label for="numero" class="hidden-xs">Número Dirección</label>
+							    <input type="text" class="form-control" name="numero" id="numero" placeholder="Número">
+							    <span class="errValidacion">Número dirección no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="telefono" class="hidden-xs">Telefono</label>
-							    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono">
+							    <label for="telefono" class="hidden-xs">Teléfono</label>
+							    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono">
+							    <span class="errValidacion">Número de teléfono no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="movil" class="hidden-xs">Movil</label>
+							    <label for="movil" class="hidden-xs">Móvil</label>
 							    <input type="text" class="form-control" name="movil" id="movil" placeholder="Movil">
+							    <span class="errValidacion">Número de móvil no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="email"  class="hidden-xs">Email</label>
 							    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+							    <span class="errValidacion">Formato de correo incorrecto</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="tSuscripcion" class="hidden-xs">Tipo de Suscripcion</label>
+							    <label for="tSuscripcion" class="hidden-xs">Tipo de Suscripción</label>
 							    <select class="form-control" name="tSuscripcion" id="tSuscripcion">
-							    	<option value="">Tipo Suscripcion</option>
+							    	<option value="">Tipo Suscripción</option>
 							    	<option value="pre">Premium - 360€/año</option>
 							    	<option value="nor">Normal - 250€/año</option>
 							    	<option value="fre">Basica - ¡¡Gratis!!</option>
 							    </select>
+							    <span class="errValidacion">Seleccione una suscripción</span>
 							  </div>
 							</div>
 						</fieldset>
@@ -150,13 +159,13 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 		  			<button class="btn btn-success" disabled="true"><span class="glyphicon glyphicon-ok"></span></button>
 		  		</div>
 		  		<div class="col-xs-6">
-		  			<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+		  			<button class="btn btn-danger cancelInsert"><span class="glyphicon glyphicon-remove"></span></button>
 		  		</div>
 			  </div>
 			</div>
 
 			<div class="row" id="resultadoBusquedaElementos">
-				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Búsqueda
 			</div>
 			<div id="formsResaultadoBusqueda">
 			<?php

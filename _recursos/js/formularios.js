@@ -139,6 +139,8 @@ $(document).ready(function(){
           form[i].parentElement.className = form.tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
         }     
 
+        $("span.errValidacion").css({zIndex: "-5"});
+        
         break;
       
       case "usuario":
@@ -177,8 +179,10 @@ $(document).ready(function(){
 
         //Si existe un textArea respeta su tamaño
         for(var i = 2; i < form.length ; i++){
-          form[i].parentElement.className = form.tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
-        }     
+          form[i].parentElement.className = form.name == "descripcion" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
+        }
+        
+        $("span.errValidacion").css({zIndex: "-5"});
         break;
       
       case "producto":
@@ -480,20 +484,13 @@ $(document).ready(function(){
     var formsInsert = $( "#formNuevoElemento form" );
     formsInsert = formsInsert[0];
     for(var j = 1 ; j < formsInsert.length ; j++){
-      formsInsert[j].parentElement.className = "form-group col-xs-12 col-sm-6";
+      $(formsInsert[j].parentElement.className).removeClass("has-error");
+      $(formsInsert[j].parentElement.className).removeClass("has-success");
+      formsInsert[j].value = "";
       
-      formsInser[j].value = "";
-
-      if(formsInsert[j].name == "precio" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
-      if(formsInsert[j].name == "IVA" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
-      if(formsInsert[j].name == "descuento" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
-      if(formsInsert[j].name == "cantidad" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
-      if(formsInsert[j].name == "cantidadMin" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
-      if(formsInsert[j].name == "nuevo" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; }
-      if(formsInsert[j].name == "descripcion" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-12"; }
-
     }      
     
+    $("span.errValidacion").css({zIndex: "-5"});
     
   });
   //Funcion para resetar los input y quitar las marcas de validacion en los formularios de INSERCCION
@@ -511,6 +508,7 @@ $(document).ready(function(){
         form[i].parentElement.className = form.tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
       }
     }
+    $("span.errValidacion").css({zIndex: "-5"});
   });
   /*Funcion de cancelacion de la inserccion del formulario de tienda. Limpia los campos de insercion de marcas de validacion y reinicia el formulario*/
 

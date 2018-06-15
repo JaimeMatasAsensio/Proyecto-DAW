@@ -92,17 +92,20 @@ header div{
 }
 #opcionesMovil ul li a{
 	color:white;
+	font-weight: bold;
 	text-align: center;
 	display: inline-block;
 	width: 99%;
-	padding: 5px 0px;
+	padding: 6px 0px;
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+	box-sizing: border-box; 
 }
 #opcionesMovil ul li a:hover{
 	background-color: rgba(242, 52, 107, 1);
 	text-decoration: none;
 	color:black;
+	border:1px solid white;
 }
 #opcionesMovil ul li a:active{
 	background-color: rgba(242, 52, 107, 1);
@@ -170,7 +173,7 @@ main{
 	max-width: 1335px; 
 }
 .indexCont{
-	margin: 60px 0px;
+	margin: 40px 0px;
 }
 
 @media (min-width: 970px) {
@@ -221,7 +224,7 @@ main{
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 86%;
-	font-size: 12px;
+	font-size: 16px;
 	color: white;
 	text-shadow: -1px -1px black;
 	cursor: pointer;
@@ -235,7 +238,10 @@ main{
 	display: none;
 	text-align: justify;
 	box-sizing: border-box;
-	margin: 10px 0px; 
+	margin: 15px 0px; 
+	padding-top: 10px;
+	border-bottom: 1px solid rgba(236, 4, 76, 1);
+	border-top: 1px solid rgba(236, 4, 76, 1);
 }
 
 @media (min-width: 768px) {
@@ -246,6 +252,11 @@ main{
 		display: inline-block;
 		width: 50%;
 		height: 230px;
+	}
+	#textDesEsc h3{
+		margin-top: 4px;
+		text-decoration: underline;
+		text-decoration-color: rgba(236, 4, 76, 1);
 	}
 	#textDesEsc p{
 		display: inline-block;
@@ -299,7 +310,7 @@ main{
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 74%;
-	font-size: 12px;
+	font-size: 16px;
 	color: white;
 	text-shadow: -1px -1px black;
 	cursor: pointer;
@@ -311,12 +322,17 @@ main{
 }
 #textoVent{
 	display: none;
+	padding: 15px 0px;
+	border-bottom: 1px solid rgba(236, 4, 76, 1);
 }
 
 #textoVent p span{
 	margin-right: 10px;
 }
-
+#textoVent p:first-child{
+	padding-top: 10px;
+	border-top: 1px solid rgba(236, 4, 76, 1);
+}
 @media (min-width: 768px) {
 	#textVentEsc{
 		background-color: rgba(242, 52, 107, 0.5);
@@ -327,6 +343,8 @@ main{
 	}
 	#textVentEsc h3{
 		text-align: right;
+		text-decoration: underline;
+		text-decoration-color: rgba(236, 4, 76, 1);
 	}
 	#textVentEsc p span{
 		margin-right: 10px;
@@ -366,6 +384,8 @@ main{
 	margin-top: 0px;
 	text-align: center;
 	font-variant: small-caps;
+	text-decoration:overline underline;
+	text-decoration-color: rgba(236, 4, 76, 1);
 }
 .suscripciones h3{
 	border-top-left-radius: 5px;
@@ -438,7 +458,7 @@ main{
 	width: 100%;
 	height: auto;
 	margin:8px 0px;
-	border: 1px solid rgba(242, 52, 107, 1); 
+	border: 2px solid rgba(242, 52, 107, 1); 
 }
 
 #div-registro button{
@@ -449,7 +469,10 @@ main{
 	background-color: rgba(236, 4, 76, 0.7);
 	border: none;
 	color: black; 
+	padding: 6px 12px;
 	font-weight: bold;
+	border-bottom-right-radius: 5px; 
+	border-top-left-radius: 5px;
 }
 #div-registro button:hover{
 	text-decoration: underline;
@@ -483,6 +506,10 @@ footer{
 #contPie div{
 	width: 33%;
 	text-align: center;
+
+}
+#enlacesPie{
+	padding-left: 10px;
 }
 #enlacesPie ul li{
 	margin: 5px 0px;
@@ -495,30 +522,33 @@ footer{
 	color: white;
 }
 #redesSociales{
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	border-left: 2px solid rgba(236, 4, 76, 1);
+	border-right: 2px solid rgba(236, 4, 76, 1);
 }
 #redesSociales div{
-	display: inline-block;
-	margin-right: 7px;
+	display: block;
+	margin: 0px auto;
+	text-align: center;
 }
 #redesSociales a{
-	display: inline-block;
+	display: block;
+	width: 100%
 	margin-bottom: 5px;
 }
 #redesSociales a img{
 	display: inline-block;
 	width: 25px;
 	height: auto;
+	margin-bottom: 5px;
 }
+
 #logoPie a img{
 	width: 50px;
 	height: auto;
 }
 @media (min-width: 768px) {
 	#redesSociales a img{
-		width: 60px;
+		width: 30px;
 		height: auto;
 	}
 	#enlacesPie ul li{
@@ -533,7 +563,7 @@ footer{
 }
 @media (min-width: 1200px){
 	#redesSociales a img{
-		width: 75px;
+		width: 35px;
 		height: auto;
 	}
 	#enlacesPie ul li{

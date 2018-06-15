@@ -19,7 +19,7 @@ function validarFormulario (element){
         //si todo es true marca el input como correcto
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
-        
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         //busca en las divisiones del Formulario la classe "has-error"
@@ -37,7 +37,8 @@ function validarFormulario (element){
           }
         }
       }else{
-        //Si falla los requisitos de la validaion deshabilita el boton de envio y marca el input con error
+        //Si falla los requisitos de la validaion deshabilita el boton de envio y marca el input con error y muestra el error de validacion
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
@@ -50,6 +51,7 @@ function validarFormulario (element){
       if(exprNombre.test(element.value) && element.value.length < 30){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
@@ -63,10 +65,10 @@ function validarFormulario (element){
           }
         }
       }else{
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
-        
       }
       break; 
     case "provincia":
@@ -75,6 +77,7 @@ function validarFormulario (element){
       if(exprNombre.test(element.value) && element.value.length < 30){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
@@ -88,10 +91,10 @@ function validarFormulario (element){
           }
         }
       }else{
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
-        
       }
       break;
     case "poblacion":
@@ -100,6 +103,7 @@ function validarFormulario (element){
       if(exprNombre.test(element.value) && element.value.length < 30){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
@@ -113,10 +117,10 @@ function validarFormulario (element){
           }
         }
       }else{
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
-        
       }
       break;
     case "direccion":
@@ -125,6 +129,7 @@ function validarFormulario (element){
       if(exprNombre.test(element.value) && element.value.length < 50){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
@@ -138,11 +143,10 @@ function validarFormulario (element){
           }
         }
       }else{
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
-       
-        
       }
       break;
     case "numero":
@@ -151,6 +155,7 @@ function validarFormulario (element){
       if(exprNombre.test(element.value) && element.value.length < 6){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
@@ -164,6 +169,7 @@ function validarFormulario (element){
           }
         }
       }else{
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
@@ -176,6 +182,7 @@ function validarFormulario (element){
       if(exprNombre.test(element.value) && element.value.length < 12){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
@@ -189,6 +196,7 @@ function validarFormulario (element){
           }
         }
       }else{
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
@@ -201,6 +209,7 @@ function validarFormulario (element){
       if(exprNombre.test(element.value) && element.value.length < 12){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
@@ -214,6 +223,7 @@ function validarFormulario (element){
           }
         }
       }else{
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
@@ -227,6 +237,7 @@ function validarFormulario (element){
       if(exprNombre.test(element.value) && element.value.length < 40){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
@@ -240,6 +251,7 @@ function validarFormulario (element){
           }
         }
       }else{
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
@@ -252,6 +264,7 @@ function validarFormulario (element){
       if(exprNombre.test(element.value) && element.value != ""){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
+        $( this ).next().css({zIndex: "-5"});
         //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
         var divInputs = element.parentElement.parentElement.children;
         for(var i = 0; i < divInputs.length ; i++){
@@ -265,6 +278,7 @@ function validarFormulario (element){
           }
         }
       }else{
+        $( this ).next().css({zIndex: "5"});
         $( this ).parent().removeClass("has-success");
         $( this ).parent().addClass("has-error");
         $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
@@ -272,6 +286,33 @@ function validarFormulario (element){
       }
       break;
       case "password":
+      //Validacion para el input de tipo de password
+        //Expresion regular obtenida de http://w3.unpocodetodo.info/utiles/regex-ejemplos.php?type=psw
+        var exprNombre = /^(?=\w*\d)(?=\w*[a-z])\S{8,}$/;
+        if(exprNombre.test(element.value) && element.value != "" ){
+          $( this ).parent().removeClass("has-error");
+          $( this ).parent().addClass("has-success");          
+          $( this ).next().css({zIndex:"-5"});
+          $( this ).next().text("");
+          //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+          var divInputs = element.parentElement.parentElement.children;
+          for(var i = 0; i < divInputs.length ; i++){
+            if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
+              $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+              
+            }else{
+              $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+              
+              i = divInputs.length; 
+            }
+          }
+        }else{
+          $( this ).parent().removeClass("has-success");
+          $( this ).parent().addClass("has-error");
+          $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+          $( this ).next().css({zIndex:"5"});
+          $( this ).next().text("Use numeros y letras en la contraseña");
+        }
         break;
       case "passwordCheck":
       //Validacion para el input de tipo de password
@@ -283,7 +324,8 @@ function validarFormulario (element){
           $( this ).parent().addClass("has-success");
           $( this ).parent().prev().removeClass("has-error");
           $( this ).parent().prev().addClass("has-success");
-          
+          $( this ).parent().prev().children("span.checkPassword").css({zIndex:"-5"});
+          $( this ).parent().prev().children("span.checkPassword").text("");
           //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
           var divInputs = element.parentElement.parentElement.children;
           for(var i = 0; i < divInputs.length ; i++){
@@ -302,7 +344,8 @@ function validarFormulario (element){
           $( this ).parent().addClass("has-error");
           $( this ).parent().prev().addClass("has-error");
           $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
-          
+          $( this ).parent().prev().children("span.checkPassword").css({zIndex:"5"});
+          $( this ).parent().prev().children("span.checkPassword").text("Las contraseñas no coinciden");
         }
         break;
         case "nAcceso":
@@ -311,6 +354,7 @@ function validarFormulario (element){
         if(exprNombre.test(element.value) && element.value != ""){
           $( this ).parent().removeClass("has-error");
           $( this ).parent().addClass("has-success");
+          $( this ).next().css({zIndex: "-5"});
           //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
           var divInputs = element.parentElement.parentElement.children;
           for(var i = 0; i < divInputs.length ; i++){
@@ -324,6 +368,7 @@ function validarFormulario (element){
             }
           }
         }else{
+          $( this ).next().css({zIndex: "5"});
           $( this ).parent().removeClass("has-success");
           $( this ).parent().addClass("has-error");
           $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
@@ -336,6 +381,7 @@ function validarFormulario (element){
           if(exprNombre.test(element.value) && element.value != ""){
             $( this ).parent().removeClass("has-error");
             $( this ).parent().addClass("has-success");
+            $( this ).next().css({zIndex: "-5"});
             //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
             var divInputs = element.parentElement.parentElement.children;
             for(var i = 0; i < divInputs.length ; i++){
@@ -349,6 +395,7 @@ function validarFormulario (element){
               }
             }
           }else{
+            $( this ).next().css({zIndex: "5"});
             $( this ).parent().removeClass("has-success");
             $( this ).parent().addClass("has-error");
             $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);

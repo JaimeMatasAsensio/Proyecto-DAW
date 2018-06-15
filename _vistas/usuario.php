@@ -89,14 +89,17 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="nombre" class="hidden-xs">Nombre</label>
 							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Usuario">
+							    <span class="errValidacion">Nombre no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="email" class="hidden-xs">Email</label>
 							    <input type="mail" class="form-control" name="email" id="email" placeholder="Email">
+							    <span class="errValidacion">Formato de correo incorrecto</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="password" class="hidden-xs">Contraseña</label>
 							    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+							    <span class="errValidacion checkPassword"></span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="password" class="hidden-xs">Repetir Contraseña</label>
@@ -110,6 +113,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    	<option value="gen">Gerente</option>
 							    	<option value="emp">Empleado</option>
 							    </select>
+							    <span class="errValidacion">Seleccione Nivel de Acceso</span>
 							  </div>
 							  <?php
 							  echo '<div class="form-group col-xs-12 col-sm-6">';
@@ -122,6 +126,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 						    		echo '<option value="'.$key.'"> '.$key.' - '.$value.'</option>';
 						    	}
 						    echo '</select>';
+						    echo '<span class="errValidacion">Seleccione una tienda</span>';
 							  echo '</div>';
 							 ?>
 							</div>

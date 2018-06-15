@@ -143,30 +143,37 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="nombre" class="hidden-xs">Nombre</label>
 							    <input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Usuario">
+							    <span class="errValidacion">Nombre contacto no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="referencia" class="hidden-xs">Referencia</label>
 							    <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia">
+							    <span class="errValidacion">Sin valor de referencia</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
 							    <label for="precio" class="hidden-xs">Precio (€)</label>
 							    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio (€)">
+							    <span class="errValidacion">Formato de precion no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
 							    <label for="IVA" class="hidden-xs">IVA</label>
 							    <input type="text" class="form-control" name="IVA" id="IVA" placeholder="IVA">
+							    <span class="errValidacion">Formato de IVA no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
 							    <label for="descuento" class="hidden-xs">Descuento</label>
 							    <input type="text" class="form-control" name="descuento" id="descuento" placeholder="Descuento">
+							    <span class="errValidacion">Formato de descuento no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
 							    <label for="cantidad" class="hidden-xs">Cantidad</label>
 							    <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad" min="0">
+							    <span class="errValidacion">Formato de cantidad no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
 							    <label for="cantidadMin" class="hidden-xs">Cantidad Minima</label>
 							    <input type="number" class="form-control" name="cantidadMin" id="cantidadMin" placeholder="Cantidad Minima" min="0">
+							    <span class="errValidacion">Formato de cantidad minima no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
 							    <label for="nuevo">Nuevo Producto</label>
@@ -175,6 +182,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 								<div class="form-group col-xs-12 col-sm-12">
 							    <label for="descripcion" class="hidden-xs">Descripcion</label>
 							    <textarea name="descripcion" id="descripcion">Introduzca una Descripcion</textarea>
+							    <span class="errValidacion">Sin valor de descripcion</span>
 							  </div>								
 							</div>
 						</fieldset>

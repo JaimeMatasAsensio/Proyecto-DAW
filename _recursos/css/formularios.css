@@ -18,7 +18,7 @@ rgba(252, 232, 233, 1) - Blanco
 rgba(244, 124, 76, 1)
 rgba(236, 4, 76, 1) (Cabecera!)
 rgba(244, 103, 59, 1)
-
+rgba(162, 162, 162, 1)
 */
 .bg-principal{
 	background-color: rgba(236, 4, 76, 1); 
@@ -51,6 +51,7 @@ h1{
 	text-align: center;
 	padding: 5px 0px;
 	color:white;
+	text-shadow: 2px 2px 3px rgba(162, 162, 162, 1);
 }
 h2{
 	font-size: 17px;
@@ -62,6 +63,11 @@ h2{
 	margin: 10px 0px;
 	cursor: pointer;
 	color:white;
+	text-shadow: 2px 2px 3px rgba(162, 162, 162, 1);
+}
+h2#login{
+ display: inline-block;
+ width: 100%;
 }
 h3{
 	font-size: 20px;
@@ -80,10 +86,14 @@ h3{
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
+#formularioLogin{
+	margin: 50px auto; 
+}
 .formulario-crud{
 	margin:20px auto; 
 	padding: 20px 0px;
 	position:relative;
+	background-color: white;
 }
 .formulario-crud label[for="nuevo"]{
 	width: 100%;
@@ -99,11 +109,17 @@ h3{
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
+/*Errores de validacion en formularios*/
 .formulario-crud form div.form-group{
-	margin-top: 8px; 
+	margin-top: 10px; 
 }
 .formulario-crud form div.form-group span.errValidacion{
 	position: absolute;
+	display: inline-block;
+	width: 100%;
+	font-size: 12px;
+	color: rgba(247, 9, 9,1);
+	z-index: -5;
 }
 /*Esdtilos de login*/
 #enlaceRecuperacion a{
@@ -183,7 +199,7 @@ h3.preguntaBorrado{
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
-
+/*estilo para el formulario de busqueda*/
 #formBusq select{
 	height: 34px;
 	border: 1px solid #ccc;
@@ -256,11 +272,16 @@ justify-content: space-between;
 	padding: 0px 0px;
 }
 
-
+/*Estilos en formulario de nuevo elemento*/
 #formNuevoElemento{
 	display: none;
 }
-
+#formNuevoElemento div.confInsert{
+	margin-top: 10px;
+}
+.control-btn{
+	margin-top: 10px;
+}
 .control-btn div.col-xs-6{
 	display: flex;
 	justify-content: center;
@@ -330,8 +351,8 @@ div.confMod.col-xs-6 button{
 .alertasProductos .imgAlerta{
 	display: flex;
 	justify-content: center;
-	
 }
+
 .alertasProductos .imgAlerta img{
 	width: 100px;
 	height: auto;
@@ -342,35 +363,37 @@ div.confMod.col-xs-6 button{
 .alertasProductos .itemAlerta p{
 	margin: 10px auto;
 }
+
 .alertasProductos .itemAlerta p.text-danger{
 	background-color: red;
 	color: white;
 	text-align: center;
 	padding: 10px 0px;
 }
+
 .alertasProductos .controlAlerta button{
 	width: 100%;
 	border-radius: 0px;
 	border-bottom-right-radius: 5px;
 }
+
 .itemAlerta p.bg-primary{
 	padding: 10px 8px;
 	margin-bottom: 1px;
 	font-weight: bold;
 	font-variant: small-caps;
-	
 }
+
 .itemAlerta p.bg-primary span.dataAlert{
 	font-weight: initial;
 	font-variant: initial;
-	
 }
+
 .itemAlerta p.text-danger span.dataAlertDanger{
 	font-weight: bold;
 	font-variant: small-caps;
 }
 /*Etiquetas de validacion*/
-#formsResultadoBusqueda{} 
 
  /*Estilo cuando no se encuantran resultados de busqueda*/
 #NoResult{
