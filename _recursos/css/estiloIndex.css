@@ -504,13 +504,9 @@ footer{
 	padding-top: 8px;
 }
 #contPie div{
-	width: 33%;
 	text-align: center;
+}
 
-}
-#enlacesPie{
-	padding-left: 10px;
-}
 #enlacesPie ul li{
 	margin: 5px 0px;
 	text-align: left;

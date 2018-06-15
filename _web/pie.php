@@ -8,7 +8,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 ?>
 <footer class="container-fluid">
 	<div id="contPie">
-		<div id="enlacesPie" class="col-xs-4">
+		<div id="enlacesPie" class="col-xs-6">
 			<ul>
 				<li><a href="#cont1">Shopsphere</a></li>
 				<li><a href="#cont2">Ventajas</a></li>
@@ -16,7 +16,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 				<li><a href="#cont4">¡¡¡Registrate!!!</a></li>
 			</ul>
 		</div>
-		<div id="redesSociales" class="col-xs-5">
+		<div id="redesSociales" class="col-xs-3">
 			<div>
 				<a href="https://es-es.facebook.com/"><img src="_recursos/img/facebook.png" alt="logo facebook"></a>
 				<a href="https://www.instagram.com/?hl=es"><img src="_recursos/img/instagram.png" alt="logo instagram"></a>	

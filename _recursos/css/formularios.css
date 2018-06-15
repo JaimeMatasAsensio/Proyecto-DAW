@@ -52,6 +52,7 @@ h1{
 	padding: 5px 0px;
 	color:white;
 	text-shadow: 2px 2px 3px rgba(162, 162, 162, 1);
+	box-shadow: 2px 2px 3px rgba(162, 162, 162, 1);
 }
 h2{
 	font-size: 17px;
@@ -64,15 +65,20 @@ h2{
 	cursor: pointer;
 	color:white;
 	text-shadow: 2px 2px 3px rgba(162, 162, 162, 1);
+	box-shadow: 2px 2px 3px rgba(162, 162, 162, 1);
 }
 h2#login{
+	text-align: center;
  display: inline-block;
  width: 100%;
+ text-shadow: 2px 2px 3px rgba(162, 162, 162, 1);
+ box-shadow: 2px 2px 3px rgba(162, 162, 162, 1);
 }
 h3{
 	font-size: 20px;
 	text-align: center;
 	text-decoration: underline;
+	text-decoration-color: rgba(236, 4, 76, 1);
 }
 #encabezadoTiendas h1{
 	text-align: center;

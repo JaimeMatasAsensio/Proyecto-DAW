@@ -49,7 +49,7 @@ if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
 	<?php include "cabeceraVistas.php"; ?>
 	<div class="container-fluid">
 		<main class="container">
-			<div id="cont3" class="row indexCont">
+			<div class="row indexCont">
 				<h2 id="login"> ShopSphere </h2>
 			</div>
 			<div class="row formulario" id="formularioLogin">
