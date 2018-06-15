@@ -147,6 +147,11 @@ function imprFormUsuario($obj, $arrayUsuariosAcceso, $arrayTiendas){
 					</div>
 
 					<div class="form-group col-xs-12 col-sm-6">
+					<label for="password" class="hidden-xs">Repetir Contraseña</label>
+					<input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="Repetir Contraseña" value="'.$obj->__GET("password").'" disabled>
+					</div>
+
+					<div class="form-group col-xs-12 col-sm-6">
 					<label for="nAcceso" class="hidden-xs">Nivel Acceso</label>
 					<select class="form-control" name="nAcceso" id="nAcceso" disabled>';
 						switch ($obj->__GET("nivelAcceso")) {

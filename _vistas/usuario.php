@@ -99,6 +99,10 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
+							    <label for="password" class="hidden-xs">Repetir Contraseña</label>
+							    <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="Repetir Contraseña">
+							  </div>
+							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="nacceso" class="hidden-xs">Nivel Acceso</label>
 							    <select class="form-control" name="nAcceso" id="nAcceso">
 							    	<option value="">Nivel Acceso</option>

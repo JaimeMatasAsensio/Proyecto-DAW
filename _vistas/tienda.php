@@ -43,7 +43,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 		<main class="container">
 			<h1>Mantenimiento Tiendas</h1>
 			<div class="row formulario formulario-crud" id="formBusq">
-				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=buscar" method="post" class="form-inline" id="f0">
+				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=buscar" method="post" class="form-inline" id="f0" >
 					<div class="col-xs-12">
 						<fieldset>
 
@@ -98,6 +98,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="nombre" class="hidden-xs">Nombre</label>
 							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Tienda">
+							    <span class="errValidacion">Nombre contiene numeros</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="pais" class="hidden-xs">Pais</label>

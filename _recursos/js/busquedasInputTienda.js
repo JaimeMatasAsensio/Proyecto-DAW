@@ -22,7 +22,7 @@ $("#tBusqueda").change( function(){
 });
 //Funcion para modificar el tipo de input en la busqueda
 
-$( "#elementosBusqueda input[name=busqueda]" ).keypress( function (){
+$( "#elementosBusqueda input[name=busqueda]" ).keyup( function (){
   var selectValue = $( this ).parent().prev().children( "select" ).val();
   switch (selectValue) {
     case "nombre":

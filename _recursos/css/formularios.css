@@ -72,6 +72,7 @@ h3{
 	text-align: center;
 	font-variant: small-caps;
 }
+/*estilo de divisiones con formularios*/
 .formulario{
 	margin:100px auto; 
 	padding: 20px 0px;
@@ -98,6 +99,13 @@ h3{
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
+.formulario-crud form div.form-group{
+	margin-top: 8px; 
+}
+.formulario-crud form div.form-group span.errValidacion{
+	position: absolute;
+}
+/*Esdtilos de login*/
 #enlaceRecuperacion a{
 	margin:4px 0px;
 	display: block;
@@ -301,7 +309,6 @@ div.confMod.col-xs-6 button{
 	height: auto;
 }
 
-
 .alertasProductos{
 	width: 98%;
 	margin: 5px auto;
@@ -362,7 +369,8 @@ div.confMod.col-xs-6 button{
 	font-weight: bold;
 	font-variant: small-caps;
 }
-
+/*Etiquetas de validacion*/
+#formsResultadoBusqueda{} 
 
  /*Estilo cuando no se encuantran resultados de busqueda*/
 #NoResult{
@@ -425,6 +433,7 @@ div.confMod.col-xs-6 button{
 	.formulario form{
 		width: 100%;
 	}
+
 	h1{
 		font-size: 30px;
 	}

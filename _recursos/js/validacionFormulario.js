@@ -147,7 +147,7 @@ function validarFormulario (element){
       break;
     case "numero":
     //validacion para los input de numero
-      var exprNombre = /^\d{1,6}$/;
+      var exprNombre = /^[^0]\d{1,6}$/;
       if(exprNombre.test(element.value) && element.value.length < 6){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
@@ -272,11 +272,18 @@ function validarFormulario (element){
       }
       break;
       case "password":
+        break;
+      case "passwordCheck":
       //Validacion para el input de tipo de password
-        var exprNombre = /^\w{4,}$/;
-        if(exprNombre.test(element.value) && element.value != ""){
+        //Expresion regular obtenida de http://w3.unpocodetodo.info/utiles/regex-ejemplos.php?type=psw
+        var exprNombre = /^(?=\w*\d)(?=\w*[a-z])\S{8,}$/;
+        var confirmPass = element.parentElement.previousElementSibling.children[1];
+        if(exprNombre.test(element.value) && element.value != "" && confirmPass.value == element.value){
           $( this ).parent().removeClass("has-error");
           $( this ).parent().addClass("has-success");
+          $( this ).parent().prev().removeClass("has-error");
+          $( this ).parent().prev().addClass("has-success");
+          
           //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
           var divInputs = element.parentElement.parentElement.children;
           for(var i = 0; i < divInputs.length ; i++){
@@ -291,7 +298,9 @@ function validarFormulario (element){
           }
         }else{
           $( this ).parent().removeClass("has-success");
+          $( this ).parent().prev().removeClass("has-success");
           $( this ).parent().addClass("has-error");
+          $( this ).parent().prev().addClass("has-error");
           $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
           
         }
@@ -354,7 +363,7 @@ function validarFormulario (element){
 }
 //Funcion enviada a las validaciones de los inputs de formularios de tienda
 
-$( "#resultadoBusquedaElementos" ).click( function() {
+$(document).ready(function(){
   
   $("#formsResaultadoBusqueda form input").keyup(validarFormulario);
   $("#formsResaultadoBusqueda form input").focusout(validarFormulario);

@@ -118,7 +118,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			</div>
 
 			<div class="row formulario formulario-crud" id="formNuevoElemento">
-				<form action="../_web/controller.php?accion=mantenimentoTiendas&operacion=alta" method="post">
+				<form action="../_web/controller.php?accion=mantenimentoProveedor&operacion=buscar" method="post">
 					<div class="col-xs-12">
 						<fieldset>
 							<legend>Añadir Proveedor</legend>

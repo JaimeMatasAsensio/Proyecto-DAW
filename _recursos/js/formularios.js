@@ -70,7 +70,7 @@ $(document).ready(function(){
         usuario.nivelAcceso = form[5].value;
 
         while(usuario.nivelAcceso == ""){
-          usuario.nivelAcceso = form[5][i].selected?form[5][i].value:"";
+          usuario.nivelAcceso = form[6][i].selected ? form[6][i].value : "";
           i++;
         }
 
@@ -80,7 +80,7 @@ $(document).ready(function(){
           acceso.codUsuario = form[1].value;
           var i = 1;
           while(acceso.codTienda == ""){
-            acceso.codTienda = form[6][i].selected?form[6][i].value:"";
+            acceso.codTienda = form[7][i].selected ? form[7][i].value : "";
             i++;
           }
         }else{
@@ -156,9 +156,10 @@ $(document).ready(function(){
         form[2].value = usuario.nombre;
         form[3].value = usuario.email;
         form[4].value = usuario.password;
+        form[5].value = usuario.password;
         
-        for(var i = 1; i < form[5].length; i++){
-          form[5][i].selected = form[5][i].value == usuario.nivelAcceso ? true : false ;
+        for(var i = 1; i < form[6].length; i++){
+          form[6][i].selected = form[6][i].value == usuario.nivelAcceso ? true : false ;
         }
 
         var acceso;
@@ -170,8 +171,8 @@ $(document).ready(function(){
             i = arrAcceso.length;
           }
         }
-        for(var i = 1; i < form[6].length; i++){
-          form[6][i].selected = form[6][i].value == acceso.codTienda ? true : false ;
+        for(var i = 1; i < form[7].length; i++){
+          form[7][i].selected = form[7][i].value == acceso.codTienda ? true : false ;
         }
 
         //Si existe un textArea respeta su tamaño
@@ -214,8 +215,6 @@ $(document).ready(function(){
     var overFlow = element.target.parentElement.parentElement.parentElement.children[2];
     //Capa de mensaje de retorno
     var infoProcess = element.target.parentElement.parentElement.parentElement.children[0];
-    //Bloquear el resto de capas mientras se realiza la modificacion de un formulario <---- ON PROCESS
-    var othersOverFlow = $( "div.overFlowForms:not(#onProcessOverFlow)" )
     
     overFlow.id = "onProcessOverFlow";
     infoProcess.id = "onProcessInfo";
@@ -337,14 +336,14 @@ $(document).ready(function(){
          var usuario = new Usuario();
          usuario.codUsuario = form[1].value;
          usuario.nombre = form[2].value;
-         usuario.password = form[4].value;
          usuario.email = form[3].value;
-         usuario.nivelAcceso = form[5].value;
+         usuario.password = form[5].value;
+         usuario.nivelAcceso = form[6].value;
          
          //Instanciar el obj tienda, para pconvertirlo a JSON
          var acceso = new Acceso();
          acceso.codUsuario = form[1].value;
-         acceso.codTienda = form[6].value;
+         acceso.codTienda = form[7].value;
          
          //Componer un JSON para el envio de datos al controlador
          var envioJSON = {
@@ -482,7 +481,17 @@ $(document).ready(function(){
     formsInsert = formsInsert[0];
     for(var j = 1 ; j < formsInsert.length ; j++){
       formsInsert[j].parentElement.className = "form-group col-xs-12 col-sm-6";
-      formsInsert[j].parentElement.className = formsInsert[j].tagName == "TEXTAREA" ? "form-group col-xs-12 col-sm-12" : "form-group col-xs-12 col-sm-6" ;
+      
+      formsInser[j].value = "";
+
+      if(formsInsert[j].name == "precio" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
+      if(formsInsert[j].name == "IVA" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
+      if(formsInsert[j].name == "descuento" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
+      if(formsInsert[j].name == "cantidad" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
+      if(formsInsert[j].name == "cantidadMin" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; } 
+      if(formsInsert[j].name == "nuevo" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-4"; }
+      if(formsInsert[j].name == "descripcion" ){ formsInsert[j].parentElement.className =  "form-group col-xs-12 col-sm-12"; }
+
     }      
     
     
@@ -508,7 +517,7 @@ $(document).ready(function(){
 //-------------------------->INI - ALTA<-------------------------//
   $( ".confInsert div:first-child button:first-child" ).click( function(element){
     //Obtenemos los elementos que pertenecen al boton donde se ha hecho click - Formulario de alta
-    //Alpulsar sobre el icono buscara el button para que apartir de ahi obtenga el resto de elementos
+    //Alpulsar sobre el icono buscara el button para que apartir de ahi obtenga el resto de elementos - Error de chromeS
     element.target = element.target.tagName == "BUTTON" ? element.target : element.target.parentElement;
     //El formulario de alta
     var form = element.target.parentElement.parentElement.parentElement.children[3];
@@ -620,7 +629,7 @@ $(document).ready(function(){
             //Levanta la capa de bloqueo y muestra el mensaje de retorno
             $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
               $( "#onProcessInfo" ).animate({zIndex: "1"}); 
-              $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},10000,function(){
+              $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},3000,function(){
                 $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
                 $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"});
                 $( "#onProcessInfo" ).remove( "#onProcessInfo span" ); 
@@ -632,6 +641,7 @@ $(document).ready(function(){
               
             });  
         });
+        
 //------>FIN - Envio de AJAX - Alta de TIENDA       
         break;
 //----------->USUARIO        
@@ -649,12 +659,12 @@ $(document).ready(function(){
         usuario.nombre = form[1].value;
         usuario.email = form[2].value;
         usuario.password = form[3].value;
-        usuario.nivelAcceso = form[4].value;
+        usuario.nivelAcceso = form[5].value;
         
         //Instanciar el obj acceso, para pconvertirlo a JSON
         var acceso = new Acceso();
         acceso.codUsuario = "";
-        acceso.codTienda = form[5].value;
+        acceso.codTienda = form[6].value;
         
         //Componer un JSON para el envio de datos al controlador
         var envioJSON = {
@@ -748,7 +758,7 @@ $(document).ready(function(){
                 //Mostramos la capa de informacion
                 $( "#onProcessInfo" ).animate({zIndex: "1"});
                 //Animamos la capa de informacion 
-                $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},10000,function(){
+                $( "#onProcessInfo" ).animate({opacity:0,zIndex: "-100"},3000,function(){
                   //Devolvemos los valores originales a  las capaas de bloquo e informacion
                   $( "#onProcessInfo" ).css({opacity:1, zIndex: "-100"});
                   $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"});
@@ -768,6 +778,12 @@ $(document).ready(function(){
         break;
         
         case "producto":
+        //Formularios de productos - suministro
+        break;
+        case "proveedor":
+        //Formularios de productos
+        break;
+        case "empleado":
         //Formularios de productos
         break;
         case "proveedor":
@@ -908,7 +924,7 @@ $(document).ready(function(){
                 $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
                 //restura las clases del formulario
                 for(var i = 2; i < form.length; i++){
-                  form[i].parentElement.className = "form-group col-xs-12 col-sm-6";//<-----rompe estilos de formularios
+                  form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
                 }
                 //Remueve la capa de confirmacion de borrado
                 $(confirmDelete).remove();
@@ -920,6 +936,7 @@ $(document).ready(function(){
                 $(conjuntoElementos).effect("drop",{},1000,function(){
                   //Remueve toda la capa del formulario
                   $(conjuntoElementos).remove();
+                  setTimeout(function(){location.href = "../_web/controller.php?accion=move&operacion=tiendas" }, 2000);
                 });
               }); 
               
@@ -1025,6 +1042,9 @@ $(document).ready(function(){
       
       case "proveedor":
         //Formularios de proveedor
+        break;
+      case "empleado":
+        //Formularios de empleado
         break;
       
       default:

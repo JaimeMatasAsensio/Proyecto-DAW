@@ -118,7 +118,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 				<h3 class=infoProceso></h3>
 				<div class="confirmDelete"></div>
 				<div class="overFlowForms"></div>
-				<form action="../_web/controller.php?accion=mantenimientoEmpleados&operacion=alta" method="post" enctype="multipart/form-data" >
+				<form action="../_web/controller.php?accion=mantenimientoEmpleado&operacion=alta" method="post" enctype="multipart/form-data" >
 					<div class="col-xs-12">
 						<fieldset>
 							<legend>Añadir Empleado</legend>

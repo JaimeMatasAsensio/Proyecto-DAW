@@ -202,7 +202,7 @@ switch ( $accion ) {
 		// FIN -SWITCH ACCION = login, operacion = Interacciones con el login
 		break;
 
-	case 'move':
+	case 'move' :
 //Direccionamiento de los enlaces en Pie y cabecera de las vistas 
 		//Recupera la operacion asociada a la accion de 'move'
 		$operacion = isset($_REQUEST["operacion"]) ? $_REQUEST["operacion"] : "" ;
@@ -369,7 +369,7 @@ switch ( $accion ) {
 		}
 		// FIN - SWITCH ACCION = move, Operacion = redirecciones a vistas
 		break;
-	case 'mantenimentoTiendas':
+	case 'mantenimentoTiendas' :
 //CRUD de Tiendas
 		$operacion = $_REQUEST["operacion"] ? $_REQUEST["operacion"] : "";
 		switch ($operacion) {
@@ -530,7 +530,7 @@ switch ( $accion ) {
 		}
 		break;
 		// FIN - SWITCH ACCION = mantenimientoTiendas, OPERACION ----> CRUD
-	case 'mantenimentoUsuario':
+	case 'mantenimentoUsuario' :
 //CRUD de Usuarios-Acceso
 		$operacion = $_REQUEST["operacion"] ? $_REQUEST["operacion"] : "";
 		switch ($operacion) {
@@ -756,6 +756,15 @@ switch ( $accion ) {
 		}
 		break;
 		// FIN - SWITCH ACCION = mantenimientoUsuario, OPERACION----> CRUD
+	case 'mantenimentoProducto' :
+//CRUD de Productos-Suministro
+		break;
+	case 'mantenimentoProveedor' :
+//CRUD de Productos-Suministro
+		break;
+	case 'mantenimentoEmpleado' :
+//CRUD de Productos-Suministro
+		break;
 	default:
 		echo "unknown ACCION sent ' $accion ' ";
 		break;
