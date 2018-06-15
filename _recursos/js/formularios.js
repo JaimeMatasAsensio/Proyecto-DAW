@@ -15,15 +15,14 @@ $(document).ready(function(){
   
 
   $( ".divMod button" ).click( function(element) {
-
+    //Alpulsar sobre el icono buscara el button para que apartir de ahi obtenga el resto de elementos
+    element.target = element.target.tagName == "BUTTON" ? element.target : element.target.parentElement;
     //obtenemos el boton de modificacion
-    var btnMod = element.target
+    var btnMod = element.target;
     //Obtenemos la division de los controles de modificacion
     var divControlMod = btnMod.parentElement.nextElementSibling;
     //Obtenemos el formulario al que pertenece el boton de modificacion
     var form = divControlMod.parentElement.parentElement.children[3];
-    //Obtenemos la capa de bloqueo del formulario sobre le que se realiza la modificacion
-    var onProcessOverFlow = divControlMod.parentElement.parentElement.children[2];
     //Deshabilita el boton de aceptar modificacion
     divControlMod.children[0].disabled = "true";
     //Habilita los campos del formulario
@@ -206,7 +205,9 @@ $(document).ready(function(){
 //-------------------------->INI - MODIFICACION<--------------------------//
   $( ".confMod button:first-child" ).click( function(element) {
 //Accion de Modificacion al pulsar el boton de aceptar en un formulario
-    //Obtenemos los elementes que pertenecen al boton donde se ha hecho click
+    //Obtenemos los elementos que pertenecen al boton donde se ha hecho click
+    //Alpulsar sobre el icono buscara el button para que apartir de ahi obtenga el resto de elementos
+    element.target = element.target.tagName == "BUTTON" ? element.target : element.target.parentElement;
     //Formulario
     var form = element.target.parentElement.parentElement.parentElement.children[3];
     //Capa de bloqueo del formulario
@@ -507,6 +508,8 @@ $(document).ready(function(){
 //-------------------------->INI - ALTA<-------------------------//
   $( ".confInsert div:first-child button:first-child" ).click( function(element){
     //Obtenemos los elementos que pertenecen al boton donde se ha hecho click - Formulario de alta
+    //Alpulsar sobre el icono buscara el button para que apartir de ahi obtenga el resto de elementos
+    element.target = element.target.tagName == "BUTTON" ? element.target : element.target.parentElement;
     //El formulario de alta
     var form = element.target.parentElement.parentElement.parentElement.children[3];
     //Capa de bloqueo del formulario
@@ -783,7 +786,9 @@ $(document).ready(function(){
 
 //-------------------------->INI - BORRADO<-------------------------//
   $(".confDelete button").click(function(element){
-    //Obtenemos los elementos relacionados con el boton 
+    //Obtenemos los elementos relacionados con el boton
+    //Realizamos esta accion por si el usuario hace click sobre el icono - error en chrome
+    element.target = element.target.tagName == "BUTTON" ? element.target : element.target.parentElement;
     //Capa de confirmacion de borrado
     var confirmDelete = element.target.parentElement.parentElement.parentElement.children[1];
     //formulario del elemento que se Borrara

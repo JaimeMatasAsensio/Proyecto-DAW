@@ -252,9 +252,7 @@ justify-content: space-between;
 #formNuevoElemento{
 	display: none;
 }
-#formsResaultadoBusqueda{
-	display: none;
-}
+
 .control-btn div.col-xs-6{
 	display: flex;
 	justify-content: center;

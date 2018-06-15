@@ -39,7 +39,6 @@ $("#tBusqueda").change( function(){
       var pattrNumero = /^\d{1,3}$/;
       //Obtenemos el valor del input de busqueda. this->input#busqueda
       var valorInputBusqueda = $(this).val();
-      console.log(valorInputBusqueda);
       //si cumple la expresion regular habilita el boton de busqueda...
       if(pattrNumero.test(valorInputBusqueda)){
         elementBusqueda.parent().next("button").attr("disabled", false);
