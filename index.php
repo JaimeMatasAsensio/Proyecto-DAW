@@ -160,5 +160,6 @@ session_start();
 		</main>
 	</div>
 	<?php	include "_web/pie.php";	?>
-</body><script type="text/javascript" src="_recursos/js/bootstrap.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="_recursos/js/bootstrap.min.js" charset="utf-8"></script>
+</body>
 </html>

@@ -67,7 +67,7 @@ h2{
 	text-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
 	box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
 }
-h2#login{
+h2#loginCab{
 	text-align: center;
  	display: inline-block;
  	width: 100%;
@@ -261,6 +261,10 @@ justify-content: space-between;
 	width: 100%;
 	text-align: center;
 }
+#selectorTienda div.form-group{
+	width: 100%;
+	display: inline-block;
+}
 #selectorTienda select{
 	display: inline-block;
 	width: 100%;
@@ -282,6 +286,7 @@ justify-content: space-between;
 	width: 100%;
 	height: 34px;
 	padding: 0px 0px;
+	margin: 0 auto;
 }
 
 /*Estilos en formulario de nuevo elemento*/
@@ -506,8 +511,11 @@ div.confMod.col-xs-6 button{
 	display: flex;
 	justify-content: center;
 	}
+	#selectorTienda div.form-group{
+		width: 100%;
+	}
 	#selectorTienda select{
-		display: inline-block;
+		margin: 10px 0px;
 		width: 100%;
 		height: 34px;
 		border: 1px solid #ccc;
@@ -517,9 +525,10 @@ div.confMod.col-xs-6 button{
 	}
 	#selectorTienda button.btn.btn-info{
 		width: 100px;
-		margin-left: 5px;
+		margin: 10px auto;
 		height: 34px;
 		padding: 0px 0px;
+		display: inline-block;
 	}
 	#formBusq fieldset{
 		display: flex;

@@ -50,7 +50,7 @@ if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
 	<div class="container-fluid">
 		<main class="container">
 			<div class="row indexCont">
-				<h2 id="login"> ShopSphere </h2>
+				<h2 id="loginCab"> ShopSphere </h2>
 			</div>
 			<div class="row formulario" id="formularioLogin">
 				<form action="../_web/controller.php?accion=login&operacion=validarLogin" method="post">

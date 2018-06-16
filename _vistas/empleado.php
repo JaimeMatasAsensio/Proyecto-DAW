@@ -94,7 +94,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							 <div class="form-group">
 						    <label class="sr-only" for="tBusqueda">Tipo Busqueda</label>
 						    <select name="tBusqueda" class="form-control" id="tBusqueda">
-						    	<option value=""></option>
+						    	<option value="">-----</option>
 						    	<option value="nombre">Nombre</option>
 						    	<option value="sueldo">Sueldo</option>
 						    </select>
@@ -136,7 +136,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 								</div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="nombre">Nombre</label>
-							    <input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Usuario">
+							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Usuario">
 							    <span class="errValidacion">Nombre no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
@@ -179,7 +179,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			</div>
 
 			<div class="row" id="resultadoBusquedaElementos">
-				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda</h2>
 			</div>
 
 			<div id="formsResaultadoBusqueda">

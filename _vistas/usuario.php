@@ -50,7 +50,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							<div id="elementosBusqueda">
 							 <div class="form-group">
 						    <label class="sr-only" for="tBusqueda">Tipo Busqueda</label>
-						    <select name="tBusqueda" lass="form-control" id="tBusqueda">
+						    <select name="tBusqueda" class="form-control" id="tBusqueda">
 						    	<option value="">Filtro</option>
 						    	<option value="nombre">Nombre</option>
 						    	<option value="codUsuario">codigo Usuario</option>

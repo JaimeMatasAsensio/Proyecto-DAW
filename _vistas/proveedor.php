@@ -96,8 +96,8 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							<div id="elementosBusqueda">
 								<div class="form-group">
 							    <label class="sr-only" for="tBusqueda">Tipo Busqueda</label>
-							    <select name="tBusqueda" lass="form-control" id="tBusqueda">
-							    	<option value=""></option>
+							    <select name="tBusqueda" class="form-control" id="tBusqueda">
+							    	<option value="">-----</option>
 							    	<option value="nombre">Nombre</option>
 							    	<option value="nombreContacto">Nombre del Contacto</option>
 							    </select>
@@ -114,7 +114,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			</div>
 
 			<div class="row" id="nuevoElemento">
-				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Nuevo Proveedor </h2>	
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Nuevo Proveedor</h2>	
 			</div>
 
 			<div class="row formulario formulario-crud" id="formNuevoElemento">
@@ -149,14 +149,14 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    <span class="errValidacion">Número de teléfono no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
-							    <label for="Movil">Móvil</label>
+							    <label for="movil">Móvil</label>
 							    <input type="text" class="form-control" name="movil" id="movil" placeholder="Móvil">
 							    <span class="errValidacion">Número de móvil no valido</span>
 							  </div>
 								
 							  <div class="form-group col-xs-12 col-sm-4">
 							    <label for="email">Email</label>
-							    <input type="mail" class="form-control" name="email" id="email" placeholder="Email">
+							    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
 							    <span class="errValidacion">Formato de correo incorrecto</span>
 							  </div>
 							</div>
@@ -174,7 +174,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			</div>
 
 			<div class="row" id="resultadoBusquedaElementos">
-				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda </h2>
 			</div>
 
 			<div id="formsResaultadoBusqueda">

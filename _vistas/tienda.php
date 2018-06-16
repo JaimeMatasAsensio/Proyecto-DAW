@@ -31,7 +31,6 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
   <link rel="stylesheet" type="text/css" href="../_recursos/css/estiloIndex.css">
   <link rel="stylesheet" type="text/css" href="../_recursos/css/formularios.css">
   <script type="text/javascript" src="../_recursos/js/jquery-3.3.1.min.js"></script>
-  
 </head>
 <body>
 	<?php
@@ -51,7 +50,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							<div id="elementosBusqueda">
 							 <div class="form-group">
 						    <label class="sr-only" for="tBusqueda">Tipo Busqueda</label>
-						    <select name="tBusqueda" lass="form-control" id="tBusqueda">
+						    <select name="tBusqueda" class="form-control" id="tBusqueda">
 						    	<option value="">Filtro</option>
 						    	<option value="codTienda">Código Tienda</option>
 						    	<option value="nombre">Nombre</option>
@@ -60,7 +59,6 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 						  </div>
 
 						  <div class="form-group">
-						    <label class="sr-only" for="busqueda">Buscar</label>
 						    <input type="text" class="form-control" name="busqueda" placeholder="Buscar">
 						    <select name="selBusqueda" class="form-control">
 						    	<option value="">-----</option>
@@ -156,7 +154,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 				</form>
 			  <div class="col-xs-12 control-btn confInsert">
 		  		<div class="col-xs-6">
-		  			<button class="btn btn-success" disabled="true"><span class="glyphicon glyphicon-ok"></span></button>
+		  			<button class="btn btn-success" disabled><span class="glyphicon glyphicon-ok"></span></button>
 		  		</div>
 		  		<div class="col-xs-6">
 		  			<button class="btn btn-danger cancelInsert"><span class="glyphicon glyphicon-remove"></span></button>
@@ -165,7 +163,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			</div>
 
 			<div class="row" id="resultadoBusquedaElementos">
-				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Búsqueda
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Búsqueda </h2>
 			</div>
 			<div id="formsResaultadoBusqueda">
 			<?php
@@ -194,8 +192,8 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 		</main>
 	</div>
 	<?php	include "pieVistas.php";	?>
-	<script type="text/javascript" src="../_recursos/js/bootstrap.min.js" charset="utf-8"></script>
-	<script type="text/javascript" src="../_recursos/js/validacionFormulario.js"></script>
-	<script type="text/javascript" src="../_recursos/js/busquedasInputTienda.js"></script>
+  <script type="text/javascript" src="../_recursos/js/bootstrap.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../_recursos/js/validacionFormulario.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../_recursos/js/busquedasInputTienda.js" charset="utf-8"></script>
 </body>
 </html>

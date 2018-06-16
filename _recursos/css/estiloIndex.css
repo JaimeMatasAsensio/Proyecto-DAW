@@ -503,6 +503,8 @@ footer{
 	background-color: rgba(0, 0, 0, 1);
 	min-height: 100px;
 	padding: 10px 0px;
+	border-top: 2px solid white;
+	outline: 2px solid rgba(236, 4, 76, 1);
 }
 #contPie{
 	padding-top: 8px;

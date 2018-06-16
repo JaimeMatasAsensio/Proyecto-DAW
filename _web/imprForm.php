@@ -290,7 +290,7 @@ function imprFormProveedor($obj){
 								
 							  <div class="form-group col-xs-12 col-sm-4">
 							    <label for="email">Email</label>
-							    <input type="mail" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled>
+							    <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="'.$obj->__GET("email").'" disabled>
 							    <span class="errValidacion">Formato de correo incorrecto</span>
 							  </div>
 							</div>
