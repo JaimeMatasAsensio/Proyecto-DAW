@@ -51,7 +51,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							<div id="elementosBusqueda">
 							 <div class="form-group">
 						    <label class="sr-only" for="tBusqueda">Tipo Busqueda</label>
-						    <select name="tBusqueda" lass="form-control" id="tBusqueda" required>
+						    <select name="tBusqueda" lass="form-control" id="tBusqueda">
 						    	<option value="">Filtro</option>
 						    	<option value="codTienda">Código Tienda</option>
 						    	<option value="nombre">Nombre</option>
@@ -61,8 +61,8 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 
 						  <div class="form-group">
 						    <label class="sr-only" for="busqueda">Buscar</label>
-						    <input type="text" class="form-control" name="busqueda" placeholder="Buscar" required>
-						    <select name="selBusqueda" lass="form-control" required>
+						    <input type="text" class="form-control" name="busqueda" placeholder="Buscar">
+						    <select name="selBusqueda" class="form-control">
 						    	<option value="">-----</option>
 							    <option value="pre">Premium - 360€/año</option>
 							    <option value="nor">Normal - 250€/año</option>
@@ -74,7 +74,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 
 						   ?>
 						  </div>
-						  <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+						  <button type="submit" class="btn btn-info" disabled><span class="glyphicon glyphicon-search"></span></button>
 							</div>
 
 						</fieldset>
@@ -96,52 +96,52 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							<legend>Añadir Tienda</legend>
 							<div class="row">
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="nombre" class="hidden-xs">Nombre</label>
+							    <label for="nombre">Nombre</label>
 							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Tienda">
 							    <span class="errValidacion">Nombre no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="pais" class="hidden-xs">País</label>
+							    <label for="pais">País</label>
 							    <input type="text" class="form-control" name="pais" id="pais" placeholder="País">
 							    <span class="errValidacion">País no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="provincia" class="hidden-xs">Provincia</label>
+							    <label for="provincia">Provincia</label>
 							    <input type="text" class="form-control" name="provincia" id="provincia" placeholder="Provincia">
 							    <span class="errValidacion">Provincia no valida</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="poblacion" class="hidden-xs">Población</label>
+							    <label for="poblacion">Población</label>
 							    <input type="text" class="form-control" name="poblacion" id="poblacion" placeholder="Población">
 							    <span class="errValidacion">Población no valida</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="direccion" class="hidden-xs">Dirección</label>
+							    <label for="direccion">Dirección</label>
 							    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección">
 							    <span class="errValidacion">Dirección no valida</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="numero" class="hidden-xs">Número Dirección</label>
+							    <label for="numero">Número Dirección</label>
 							    <input type="text" class="form-control" name="numero" id="numero" placeholder="Número">
 							    <span class="errValidacion">Número dirección no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="telefono" class="hidden-xs">Teléfono</label>
+							    <label for="telefono" >Teléfono</label>
 							    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono">
 							    <span class="errValidacion">Número de teléfono no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="movil" class="hidden-xs">Móvil</label>
+							    <label for="movil">Móvil</label>
 							    <input type="text" class="form-control" name="movil" id="movil" placeholder="Movil">
 							    <span class="errValidacion">Número de móvil no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="email"  class="hidden-xs">Email</label>
+							    <label for="email">Email</label>
 							    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
 							    <span class="errValidacion">Formato de correo incorrecto</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="tSuscripcion" class="hidden-xs">Tipo de Suscripción</label>
+							    <label for="tSuscripcion">Tipo de Suscripción</label>
 							    <select class="form-control" name="tSuscripcion" id="tSuscripcion">
 							    	<option value="">Tipo Suscripción</option>
 							    	<option value="pre">Premium - 360€/año</option>

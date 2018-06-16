@@ -56,9 +56,15 @@ $("#tBusqueda").change( function(){
 $("#formNuevoElemento form select[name=nAcceso]").change(function () {
   
   if( ( $(this).val() ) == "adm"){
+    $("#formNuevoElemento form select[name=accesoTienda]").parent().removeClass("has-error");
+    $("#formNuevoElemento form select[name=nAcceso]").next().css({zIndex : "-5"});
     $("#formNuevoElemento form select[name=accesoTienda]").val("0");
-  }else{
+    $("#formNuevoElemento form select[name=accesoTienda]").parent().addClass("has-success");
+  }
+  if( $(this).val() != "adm" && $("#formNuevoElemento form select[name=accesoTienda]").val() == 0 ){
     $("#formNuevoElemento form select[name=accesoTienda]").val("");
+    $("#formNuevoElemento form select[name=accesoTienda]").parent().addClass("has-error");
+    $("#formNuevoElemento form select[name=accesoTienda]").next().css({zIndex : "5"});
   }
 });
 //Funcion para bloquear el select de acceso cuando el acceso es de administrador
@@ -68,5 +74,11 @@ $("#formNuevoElemento form select[name=accesoTienda]").change(function () {
   if( ( $(this).val() ) == "0"){
     $("#formNuevoElemento form select[name=nAcceso]").val("adm");
   }
+  if($("#formNuevoElemento form select[name=nAcceso]").val() == "adm" && $("#formNuevoElemento form select[name=accesoTienda]") != 0){
+    $("#formNuevoElemento form select[name=nAcceso]").val("");
+    $("#formNuevoElemento form select[name=nAcceso]").parent().addClass("has-error");
+    $("#formNuevoElemento form select[name=nAcceso]").next().css({zIndex : "5"});
+  }
+
 });
 //Funcion para bloquear el select de acceso cuando el acceso es de administrador

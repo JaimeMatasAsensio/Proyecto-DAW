@@ -106,7 +106,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    <label class="sr-only" for="busqueda">Buscar</label>
 							    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 							  </div>
-							  <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+							  <button type="submit" class="btn btn-info" disabled><span class="glyphicon glyphicon-search"></span></button>
 						</div>
 						</fieldset>
 					</div>
@@ -124,38 +124,38 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							<legend>Añadir Proveedor</legend>
 							<div class="row">
 							  <div class="form-group col-xs-12">
-							    <label for="nombre" class="hidden-xs">Nombre Proveedor</label>
+							    <label for="nombre">Nombre Proveedor</label>
 							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Proveedor">
 							    <span class="errValidacion">Nombre no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="nombre" class="hidden-xs">Nombre Contacto</label>
+							    <label for="nombre">Nombre Contacto</label>
 							    <input type="text" class="form-control" name="nombre" id="nombreContacto" placeholder="Nombre Contacto">
 							    <span class="errValidacion">Nombre contacto no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="apellido1Contacto" class="hidden-xs">1º Apellido Contato</label>
+							    <label for="apellido1Contacto">1º Apellido Contato</label>
 							    <input type="text" class="form-control" name="apellido1Contacto" id="apellido1Contacto" placeholder="1º Apellido Contacto">
 							    <span class="errValidacion">1º Apellido no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="apellido2Contacto" class="hidden-xs">2º Apellido Contacto</label>
+							    <label for="apellido2Contacto">2º Apellido Contacto</label>
 							    <input type="text" class="form-control" name="apellido2Contacto" id="apellido2Contacto" placeholder="2º Apellido Contacto">
 							    <span class="errValidacion">2º Apellido no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="telefono" class="hidden-xs">Teléfono</label>
+							    <label for="telefono">Teléfono</label>
 							    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono">
 							    <span class="errValidacion">Número de teléfono no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
-							    <label for="Movil" class="hidden-xs">Móvil</label>
+							    <label for="Movil">Móvil</label>
 							    <input type="text" class="form-control" name="movil" id="movil" placeholder="Móvil">
 							    <span class="errValidacion">Número de móvil no valido</span>
 							  </div>
 								
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="email" class="hidden-xs">Email</label>
+							    <label for="email">Email</label>
 							    <input type="mail" class="form-control" name="email" id="email" placeholder="Email">
 							    <span class="errValidacion">Formato de correo incorrecto</span>
 							  </div>

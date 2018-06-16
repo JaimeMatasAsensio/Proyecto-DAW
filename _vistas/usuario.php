@@ -87,26 +87,26 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							<legend>Añadir Usuario</legend>
 							<div class="row">
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="nombre" class="hidden-xs">Nombre</label>
+							    <label for="nombre">Nombre</label>
 							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Usuario">
 							    <span class="errValidacion">Nombre no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="email" class="hidden-xs">Email</label>
+							    <label for="email">Email</label>
 							    <input type="mail" class="form-control" name="email" id="email" placeholder="Email">
 							    <span class="errValidacion">Formato de correo incorrecto</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="password" class="hidden-xs">Contraseña</label>
+							    <label for="password">Contraseña</label>
 							    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
 							    <span class="errValidacion checkPassword"></span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="password" class="hidden-xs">Repetir Contraseña</label>
+							    <label for="password">Repetir Contraseña</label>
 							    <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" placeholder="Repetir Contraseña">
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="nacceso" class="hidden-xs">Nivel Acceso</label>
+							    <label for="nacceso">Nivel Acceso</label>
 							    <select class="form-control" name="nAcceso" id="nAcceso">
 							    	<option value="">Nivel Acceso</option>
 							    	<option value="adm">Administrador</option>
@@ -117,7 +117,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							  </div>
 							  <?php
 							  echo '<div class="form-group col-xs-12 col-sm-6">';
-						    echo '<label for="accesoTienda" class="hidden-xs">Acceso a Tienda</label>';
+						    echo '<label for="accesoTienda">Acceso a Tienda</label>';
 						    echo '<select name="accesoTienda" class="form-control" id="accesoTienda">';
 					    	echo '<option value="">Acceso a Tienda</option>';
 					    	echo '<option value="0">Acceso Administrador</option>';

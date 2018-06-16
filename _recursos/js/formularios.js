@@ -461,7 +461,10 @@ $(document).ready(function(){
       case "proveedor":
         //Formularios de proveedor
         break;
-      
+      case "empleado":
+        //Formularios de empleado
+        break;
+
       default:
         break;
     }
@@ -596,6 +599,9 @@ $(document).ready(function(){
               insertTiendaSuscripcion = "unknown";
               break;
           }
+          function redir(){
+            location.href = "../_web/controller.php?accion=mantenimentoTiendas&operacion=buscar&tBusqueda=codTienda&busqueda=" + resultadoInserccion.codTienda ;
+          }
           //Añadimos la informacion al mensaje de retorno 
           $( "#onProcessInfo" ).text(resultadoInserccion.msgReturn);
           $( "#onProcessInfo ").append(
@@ -624,6 +630,8 @@ $(document).ready(function(){
             var height = aux[0].offsetHeight
             width = "-=" + width + "px";
             height = "-=" + height + "px";
+            //Recuperamos el codigo de la tienda para hacer la redireccion
+            var tienda = JSON.stringify(jqXHR);
             //Levanta la capa de bloqueo y muestra el mensaje de retorno
             $( "#onProcessOverFlow" ).animate({height: height, width: width},500,function(){
               $( "#onProcessInfo" ).animate({zIndex: "1"}); 
@@ -632,9 +640,12 @@ $(document).ready(function(){
                 $( "#onProcessOverFlow" ).css({width:"100%" , height: "100%", zIndex: "-100"});
                 $( "#onProcessInfo" ).remove( "#onProcessInfo span" ); 
                 $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
-                for(var i = 2; i < form.length; i++){
+                for(var i = 1; i < form.length; i++){
                   form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
                 }
+                window.setTimeout(function (){
+                  location.href = "../_web/controller.php?accion=move&operacion=tiendas";
+                }, 1000);
               }); 
               
             });  
@@ -766,6 +777,9 @@ $(document).ready(function(){
                   $("#onProcessInfo, #onProcessOverFlow").removeAttr("id");
                   for(var i = 2; i < form.length; i++){
                     form[i].parentElement.className = "form-group col-xs-12 col-sm-6";
+                    setTimeout(function(){
+                      location.href = "../_web/controller.php?accion=move&operacion=usuarios";
+                    },1000);
                   }
                 }); 
                 
@@ -930,11 +944,14 @@ $(document).ready(function(){
                 $(overFlow).remove();
                 //Remueve la capa de informacion del proceso
                 $(infoProcess).remove();
+                //Eliminamos las etiquetas de validacion
+                $("span.errValidacion").remove();
                 //Efecto para la eliminacion de tienda-->desplaza la tienda
                 $(conjuntoElementos).effect("drop",{},1000,function(){
                   //Remueve toda la capa del formulario
                   $(conjuntoElementos).remove();
-                  setTimeout(function(){location.href = "../_web/controller.php?accion=move&operacion=tiendas" }, 2000);
+                  //Redireccionamos para recargar el listado<--- duda el usuario puede estar haciendo un trabajo y decidir borrar una tienda. Si lo hace perderia el trabajo hecho al recargar la pagina
+                  //setTimeout(function(){location.href = "../_web/controller.php?accion=move&operacion=tiendas" }, 1000);
                 });
               }); 
               
@@ -1022,10 +1039,15 @@ $(document).ready(function(){
                 $(overFlow).remove();
                 //Remueve la capa de informacion del proceso
                 $(infoProcess).remove();
+                //Eliminamos las etiquetas de validacion
+                $("span.errValidacion").remove();
                 //Efecto para la eliminacion de usuario-->desplaza al formulario
                 $(conjuntoElementos).effect("drop",{},1000,function(){
                   //Remueve toda la capa del formulario
                   $(conjuntoElementos).remove();
+                  setTimeout(function(){
+                    location.href = "../_web/controller.php?accion=move&operacion=usuarios";
+                  },1000);
                 });
               }); 
               

@@ -201,7 +201,89 @@ switch ( $accion ) {
 		}
 		// FIN -SWITCH ACCION = login, operacion = Interacciones con el login
 		break;
+	case 'recuperarSession' : 
+		//Segun el nivel de Acceso se enviara al usuario a una pagina de inicio u otra
+			switch ($_SESSION["nivelAcceso"]) {
+				case 'adm':
+					//La pagina Inicial del Administrador sera el CRUD de tiendas
+					//Recuperamos todas las tiendas ya que un usuario administrador tendra acceso a todas
+					$daoTienda = new daoTiendas();
+					$daoTienda->listarTiendas();
+					$tiendas = $daoTienda->result;
+					$TIENDAS = array();
+					for( $i = 0; $i < count($tiendas) ; $i++){
+						$TIENDAS[ $tiendas[$i]->__GET("codTienda") ] = $tiendas[$i]->__GET("nombre");
+					}
+					//Variablas necesarias para el mantenimento de tablas especificas de cada tienda
+					$_SESSION["TIENDAS"] = serialize($TIENDAS);
 
+					//Listado inicial de Tiendas
+					$_SESSION["listadoTiendas"] = serialize($tiendas);
+					//redireccion a la pagina inicial del usuario con sus variables de login
+					header("Location: ../_vistas/tienda.php");
+					break;
+				case 'gen':
+					//La pagina de inicio de los gerentes sean las alertas
+					//Recuperamos el codTienda a la que tiene acceso el usuario
+					$daoAcceso = new daoAcceso();
+					$codTiendaAcceso = $daoAcceso->buscarAccesoPorCodUsuario($_SESSION["codUser"]);
+					//Almacenamos la tienda en la variable de sesion
+					$daoTiendas = new daoTiendas();
+					$tiendaAcceso = $daoTiendas->buscarTienda($codTiendaAcceso->__GET("codTienda"));
+					
+					$TIENDAS[ $tiendaAcceso->__GET("codTienda") ] = $tiendaAcceso->__GET("nombre");
+					$_SESSION["TIENDAS"] = serialize($TIENDAS);
+
+					//Guardamos el nombre de la tienda para mostrarsela al usuario
+					$nombreTienda = $tiendaAcceso->__GET("nombre");
+					$_SESSION["nombreTienda"] = $nombreTienda;
+					
+					//Instancia del modelo para alertas
+ 					$daoProductos = new daoProductos();
+
+					//Obtenemos los datos en la precarga de alertas
+					$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+		 			$daoProductos->alertaProductos(key($TiendasSession));
+		 			
+		 			//Obtenemos el listado de alertas para la vista alerta
+					$_SESSION["listadoAlertas"] = serialize($daoProductos->result);
+
+					//redireccion a la pagina de proveedores
+					header("Location: ../_vistas/alertas.php");
+					
+					break;
+				case 'emp':
+					//La pagina de inicio de los empleados seran los productos
+					//Recuperamos el codTienda a la que tiene acceso el usuario
+					$daoAcceso = new daoAcceso();
+					$codTiendaAcceso = $daoAcceso->buscarAccesoPorCodUsuario($_SESSION["codUser"]);
+					//Almacenamos la tienda en la variable de sesion
+					$daoTiendas = new daoTiendas();
+					$tiendaAcceso = $daoTiendas->buscarTienda($codTiendaAcceso->__GET("codTienda"));
+					
+					$TIENDAS[ $tiendaAcceso->__GET("codTienda") ] = $tiendaAcceso->__GET("nombre");
+					$_SESSION["TIENDAS"] = serialize($TIENDAS);
+
+					//Guardamos el nombre de la tienda para mostrarsela al usuario
+					$nombreTienda = $tiendaAcceso->__GET("nombre");
+					$_SESSION["nombreTienda"] = $nombreTienda;
+					
+					//Instancia del modelo para alertas
+ 					$daoProductos = new daoProductos();
+
+					//Obtenemos los datos en la precarga de alertas
+					$TiendasSession = unserialize($_SESSION["TIENDAS"]);
+		 			$daoProductos->listarProductos(key($TiendasSession));
+		 			
+		 			//Obtenemos el listado de alertas para la vista alerta
+					$_SESSION["listadoProductos"] = serialize($daoProductos->result);
+
+					//redireccion a la pagina de proveedores
+					header("Location: ../_vistas/producto.php");
+					
+					break;
+				}
+		break;	
 	case 'move' :
 //Direccionamiento de los enlaces en Pie y cabecera de las vistas 
 		//Recupera la operacion asociada a la accion de 'move'
@@ -630,6 +712,11 @@ switch ( $accion ) {
 						$insertUsuario->__SET($key,$value);
 					}
 				}
+				//Codificamos la contraseña de usuario
+				$ini = "-.^@#%{";
+				$fin = "}%#@^.-";
+				$pass= sha1($ini.$insertUsuario->__GET("password").$fin);
+				$insertUsuario->__SET("password",$pass); 
 				//Instanciamos el modelo de datos de usuario
 				$daoUsuarios = new daoUsuarios();
 				//Obtenemos la ultima clave de usuario

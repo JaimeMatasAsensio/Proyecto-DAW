@@ -7,6 +7,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 *{
 	margin: 0px;
 	padding: 0px;
+
 }
 /*Colores de la aplicacion*/
 /*
@@ -35,7 +36,6 @@ rgba(244, 103, 59, 1)
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
-
 /*Estilos para header*/
 img#EnConstruccion{
 	width: 100%;
@@ -82,6 +82,8 @@ header div{
 	padding: 5px 0px;
 	display: none;
 	width: 100%;
+	border-bottom: 3px solid white;
+	outline: 3px solid rgba(236, 4, 76, 1);
 }
 #opcionesMovil ul li{
 	text-align: center;
@@ -96,7 +98,7 @@ header div{
 	text-align: center;
 	display: inline-block;
 	width: 99%;
-	padding: 6px 0px;
+	padding: 10px 0px;
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	box-sizing: border-box; 
@@ -165,6 +167,7 @@ header div{
 }
 body{
 	background-color: rgba(243, 81, 65, 0.25);
+	overflow-x: hidden;
 }
 /*Estilos para main*/
 main{
@@ -233,10 +236,10 @@ main{
 	border-bottom-right-radius: 5px;
 	background-color: rgba(242, 52, 107, 0.5);
 	text-align: center;
+	box-shadow: 3px 3px 2px rgba(0,0,0,0.5);
 }
 #textoDesc{
 	display: none;
-	text-align: justify;
 	box-sizing: border-box;
 	margin: 15px 0px; 
 	padding-top: 10px;
@@ -319,6 +322,7 @@ main{
 	border-bottom-right-radius: 5px;
 	background-color: rgba(242, 52, 107, 0.5);
 	text-align: center;
+	box-shadow: 3px 3px 2px rgba(0,0,0,0.5);
 }
 #textoVent{
 	display: none;
@@ -512,7 +516,7 @@ footer{
 	text-align: left;
 	list-style: none;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 11px;
 }
 #enlacesPie ul li a{
 	color: white;
@@ -533,7 +537,7 @@ footer{
 }
 #redesSociales a img{
 	display: inline-block;
-	width: 25px;
+	width: 20px;
 	height: auto;
 	margin-bottom: 5px;
 }
@@ -551,7 +555,7 @@ footer{
 		font-size: 18px;
 	}
 	#logoPie a img{
-		width: 200px;
+		width: 175px;
 		height: auto;
 		border-bottom-right-radius: 15px; 
 		border-top-left-radius: 15px;
@@ -568,5 +572,22 @@ footer{
 	#logoPie a img{
 		border-bottom-right-radius: 20px; 
 		border-top-left-radius: 20px;
+	}
+}
+/*Media queries -.-*/
+/*----> Media queries de bootstrap*/
+@media (min-width: 1200px){
+	.container {
+	    width: 1170px;
+	}
+}
+@media (min-width: 992px){
+	.container {
+	    width: initial;
+	}
+}
+@media (min-width: 760px){
+	.container {
+	    width: initial;
 	}
 }

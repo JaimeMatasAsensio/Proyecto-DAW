@@ -103,7 +103,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 						    <label class="sr-only" for="busqueda">Buscar</label>
 						    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						  </div>
-						  <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+						  <button type="submit" class="btn btn-info" disabled><span class="glyphicon glyphicon-search"></span></button>
 							</div>
 						</fieldset>
 					</div>
@@ -135,32 +135,32 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 									</div>
 								</div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="nombre" class="hidden-xs">Nombre</label>
+							    <label for="nombre">Nombre</label>
 							    <input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Usuario">
 							    <span class="errValidacion">Nombre no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="apellido1" class="hidden-xs">1º Apellido</label>
+							    <label for="apellido1">1º Apellido</label>
 							    <input type="text" class="form-control" name="apellido1" id="apellido1" placeholder="1º Apellido">
 							    <span class="errValidacion">1º Apellido no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="apellido2" class="hidden-xs">2º Apellido</label>
+							    <label for="apellido2">2º Apellido</label>
 							    <input type="text" class="form-control" name="apellido2" id="apellido2" placeholder="2º Apellido">
 							    <span class="errValidacion">2º Apellido no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-6">
-							    <label for="telefono" class="hidden-xs">Telefono</label>
+							    <label for="telefono">Telefono</label>
 							    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Telefono">
 							    <span class="errValidacion">Número de teléfono no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-6">
-							    <label for="movil" class="hidden-xs">Movil</label>
+							    <label for="movil">Movil</label>
 							    <input type="text" class="form-control" name="movil" id="movil" placeholder="Movil">
 							    <span class="errValidacion">Número de móvil no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-6">
-							    <label for="sueldo" class="hidden-xs">Sueldo</label>
+							    <label for="sueldo">Sueldo</label>
 							    <input type="number" class="form-control" name="sueldo" id="sueldo" placeholder="Sueldo" min="0">
 							    <span class="errValidacion">Formato de sueldo no valido</span>
 							  </div>

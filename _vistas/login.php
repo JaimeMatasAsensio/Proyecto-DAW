@@ -8,7 +8,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 session_start();
 
 if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
- isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) &&
+ 	isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) &&
 	isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1){
 	switch ($_SESSION["nivelAcceso"]) {
 		case "adm" :
@@ -67,17 +67,18 @@ if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
 						  </div>
 						</fieldset>
 					</div>
-					<div class="col-xs-12" id="enlaceRecuperacion">
-						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvido su contraseña?</p></a>
-						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvido su usuario?</p></a>
-					</div>
 					<?php
 					if(isset($_SESSION["logDone"]) && $_SESSION["logDone"] == -1){
 						echo "<div class='col-xs-12' id='infoLogin'>";
 						echo "<p class='bg-danger border-shopShpere-xs'>Usuario y contraseña incorrectos</p>";
 						echo "</div>";
 					}
-					?>					
+					?>
+					<div class="col-xs-12" id="enlaceRecuperacion">
+						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvido su contraseña?</p></a>
+						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvido su usuario?</p></a>
+					</div>
+										
 				</form>
 				<div class="col-xs-12">
 					<button class="btn btn-success" id="doLogin" name="doLogin"><span class="glyphicon glyphicon-ok"></span></button>

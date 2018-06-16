@@ -109,7 +109,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 						    <label class="sr-only" for="busqueda">Buscar</label>
 						    <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Buscar">
 						  </div>
-						  <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+						  <button type="submit" class="btn btn-info" disabled><span class="glyphicon glyphicon-search"></span></button>
 							</div>						
 						</fieldset>
 					</div>
@@ -141,37 +141,37 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 									</div>
 								</div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="nombre" class="hidden-xs">Nombre</label>
+							    <label for="nombre">Nombre</label>
 							    <input type="text" class="form-control" name="nombre" id="pais" placeholder="Nombre Usuario">
 							    <span class="errValidacion">Nombre contacto no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
-							    <label for="referencia" class="hidden-xs">Referencia</label>
+							    <label for="referencia">Referencia</label>
 							    <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia">
 							    <span class="errValidacion">Sin valor de referencia</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="precio" class="hidden-xs">Precio (€)</label>
+							    <label for="precio">Precio (€)</label>
 							    <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio (€)">
 							    <span class="errValidacion">Formato de precion no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
-							    <label for="IVA" class="hidden-xs">IVA</label>
+							    <label for="IVA">IVA</label>
 							    <input type="text" class="form-control" name="IVA" id="IVA" placeholder="IVA">
 							    <span class="errValidacion">Formato de IVA no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
-							    <label for="descuento" class="hidden-xs">Descuento</label>
+							    <label for="descuento">Descuento</label>
 							    <input type="text" class="form-control" name="descuento" id="descuento" placeholder="Descuento">
 							    <span class="errValidacion">Formato de descuento no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
-							    <label for="cantidad" class="hidden-xs">Cantidad</label>
+							    <label for="cantidad">Cantidad</label>
 							    <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad" min="0">
 							    <span class="errValidacion">Formato de cantidad no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="cantidadMin" class="hidden-xs">Cantidad Minima</label>
+							    <label for="cantidadMin">Cantidad Minima</label>
 							    <input type="number" class="form-control" name="cantidadMin" id="cantidadMin" placeholder="Cantidad Minima" min="0">
 							    <span class="errValidacion">Formato de cantidad minima no valido</span>
 							  </div>
@@ -180,7 +180,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    <input type="checkbox" class="form-control" name="nuevo" id="nuevo">
 							  </div>
 								<div class="form-group col-xs-12 col-sm-12">
-							    <label for="descripcion" class="hidden-xs">Descripcion</label>
+							    <label for="descripcion">Descripcion</label>
 							    <textarea name="descripcion" id="descripcion">Introduzca una Descripcion</textarea>
 							    <span class="errValidacion">Sin valor de descripcion</span>
 							  </div>								

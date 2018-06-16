@@ -151,7 +151,7 @@ function validarFormulario (element){
       break;
     case "numero":
     //validacion para los input de numero
-      var exprNombre = /^[^0]\d{1,6}$/;
+      var exprNombre = /^[^0]\d{0,6}$/;
       if(exprNombre.test(element.value) && element.value.length < 6){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
@@ -178,7 +178,7 @@ function validarFormulario (element){
       break;
     case "telefono":
     //Validacion para los input de telefono
-      var exprNombre = /^(\+\d\d)*\d{9}$/;
+      var exprNombre = /^(\+\d\d)?(9)[0-9]{8}$/;
       if(exprNombre.test(element.value) && element.value.length < 12){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
@@ -205,7 +205,7 @@ function validarFormulario (element){
       break;
     case "movil":
     //Validacion para los input de movil
-      var exprNombre = /^(\+\d\d)*\d{9}$/;
+      var exprNombre = /^(\+\d\d)?(7|6)[0-9]{8}$/;
       if(exprNombre.test(element.value) && element.value.length < 12){
         $( this ).parent().removeClass("has-error");
         $( this ).parent().addClass("has-success");
@@ -215,7 +215,7 @@ function validarFormulario (element){
         for(var i = 0; i < divInputs.length ; i++){
           if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
             $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
-           
+            
           }else{
             $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
            
@@ -413,7 +413,6 @@ function validarFormulario (element){
 $(document).ready(function(){
   
   $("#formsResaultadoBusqueda form input").keyup(validarFormulario);
-  $("#formsResaultadoBusqueda form input").focusout(validarFormulario);
   
   $("#formsResaultadoBusqueda form select[name=nAcceso]").change(validarFormulario);
   $("#formsResaultadoBusqueda form select[name=accesoTienda]").change(validarFormulario);

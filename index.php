@@ -8,6 +8,16 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 ?>
 <!DOCTYPE html>
 <html lang="es-ES">
+<?php
+session_start();
+	if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) &&
+		isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"])){
+
+		header("Location: _web/controller.php?accion=recuperarSession");
+		
+	}
+	//Redireccion si existe una sesion activa
+?>
 <head>
 	<title>Proyecto-DAW | ShopSphere</title>
 	<meta charset="UTF-8">
