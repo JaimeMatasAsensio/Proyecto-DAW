@@ -152,7 +152,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			if(isset($_SESSION["listadoUsuarios"])  && !empty($_SESSION["listadoUsuarios"]) ){
 				$usuarios = unserialize($_SESSION["listadoUsuarios"]);
 				//Si hay usuarios listados los mostrara en su formulario, sino muestra que no existen usuarios
-				if($usuarios && count($usuarios) > 0){
+				if($usuarios && count($usuarios) > 0 && !empty($usuarios[0])){
 					for ($i=0; $i < count($usuarios); $i++) { 
 							$accesoUsuarios = $_SESSION["accesoTienda"];
 							imprFormUsuario($usuarios[$i],$accesoUsuarios, $TiendasSession);

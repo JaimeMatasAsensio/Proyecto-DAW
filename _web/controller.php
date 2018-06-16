@@ -284,6 +284,7 @@ switch ( $accion ) {
 					break;
 				}
 		break;	
+//Direccionamiento si existe la sesion del usuario
 	case 'move' :
 //Direccionamiento de los enlaces en Pie y cabecera de las vistas 
 		//Recupera la operacion asociada a la accion de 'move'
