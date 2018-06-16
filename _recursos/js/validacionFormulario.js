@@ -413,6 +413,7 @@ function validarFormulario (element){
 $(document).ready(function(){
   
   $("#formsResaultadoBusqueda form input").keyup(validarFormulario);
+  $("#formsResaultadoBusqueda form input").focusout(validarFormulario);
   
   $("#formsResaultadoBusqueda form select[name=nAcceso]").change(validarFormulario);
   $("#formsResaultadoBusqueda form select[name=accesoTienda]").change(validarFormulario);
