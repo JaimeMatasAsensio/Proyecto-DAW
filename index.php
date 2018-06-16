@@ -11,7 +11,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 <?php
 session_start();
 	if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) &&
-		isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"])){
+		isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) $_SESSION["logDone"] != 1){
 
 		header("Location: _web/controller.php?accion=recuperarSession");
 		
