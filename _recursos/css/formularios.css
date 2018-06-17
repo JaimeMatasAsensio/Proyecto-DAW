@@ -171,7 +171,7 @@ h3.infoProceso{
 }
 .confirmDelete{
 	position: absolute;
-	top:50%;
+	top:81%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 200px;
@@ -589,7 +589,12 @@ div.confMod.col-xs-6 button{
 		width: 90%;
 	}
 }
-
+@media (min-width: 970px){
+	.confirmDelete{
+		top:70%;
+	}
+	
+}
 @media (min-width: 970px){
 	.formulario{
 		border-top-left-radius: 20px;

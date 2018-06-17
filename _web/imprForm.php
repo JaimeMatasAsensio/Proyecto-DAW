@@ -64,7 +64,7 @@ function imprFormTienda($obj){
 	echo '<span class="errValidacion">Número de teléfono no válido</span>';
 	echo '</div>';
 	echo '<div class="form-group col-xs-12 col-sm-6">';
-	echo '<label for="movil">Movil</label>';
+	echo '<label for="movil">Móvil</label>';
 	echo '<input type="text" class="form-control" name="movil" id="movil" placeholder="Móvil" value="'.$obj->__GET("movil").'" disabled="true" required="true">';
 	echo '<span class="errValidacion">Número de móvil no válido</span>';
 	echo '</div>';
