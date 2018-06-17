@@ -72,7 +72,7 @@ session_start();
 						<p><span class="glyphicon glyphicon-folder-open"></span>Organiza todo tu negocio</p>
 						<p><span class="glyphicon glyphicon-leaf"></span>Sin necesidad de imprimir documentos</p>
 						<p><span class="glyphicon glyphicon-check"></span>Controla tus proveedores y productos</p>
-						<p><span class="glyphicon glyphicon-euro"></span> Ahorra más dinero en organizacion y gestion</p>
+						<p><span class="glyphicon glyphicon-euro"></span> Ahorra más dinero en organización y gestión</p>
 
 					</div>
 				</div>
