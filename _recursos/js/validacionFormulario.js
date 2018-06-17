@@ -288,7 +288,7 @@ function validarFormulario (element){
       case "password":
       //Validacion para el input de tipo de password
         //Expresion regular obtenida de http://w3.unpocodetodo.info/utiles/regex-ejemplos.php?type=psw
-        $(this).parent().next().children("input[name=passwordCheck]").val("");
+        //$(this).parent().next().children("input[name=passwordCheck]").val("");
         $(this).parent().next().removeClass("has-error");
         $(this).parent().next().removeClass("has-success");
         var exprNombre = /^(?=\w*\d)(?=\w*[a-z])\S{8,}$/;
@@ -358,7 +358,7 @@ function validarFormulario (element){
             $( this ).parent().prev().addClass("has-error");
             $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
             $( this ).parent().prev().children("span.checkPassword").css({zIndex:"5"});
-            $( this ).parent().prev().children("span.checkPassword").text("Use números y letras en la contraseña");
+            $( this ).parent().prev().children("span.checkPassword").text("Repita la contraseña introducida");
         }
         
         break;
