@@ -13,7 +13,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 				<li><a href="#cont1">Shopsphere</a></li>
 				<li><a href="#cont2">Ventajas</a></li>
 				<li><a href="#cont3">Suscripciones</a></li>
-				<li><a href="#cont4">¡¡¡Registrate!!!</a></li>
+				<li><a href="#cont4">¡¡¡Regístrate!!!</a></li>
 			</ul>
 		</div>
 		<div id="redesSociales" class="col-xs-3">

@@ -64,7 +64,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 						    	<option value="">-----</option>
 							    <option value="pre">Premium - 360€/año</option>
 							    <option value="nor">Normal - 250€/año</option>
-							    <option value="fre">Basica - ¡¡Gratis!!</option>
+							    <option value="fre">Básica - ¡¡Gratis!!</option>
 						    </select>
 						   <?php
 						echo'<input type="hidden" name="nAcceso" value="'.$_SESSION["nivelAcceso"].'">
@@ -96,42 +96,42 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="nombre">Nombre</label>
 							    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre Tienda">
-							    <span class="errValidacion">Nombre no valido</span>
+							    <span class="errValidacion">Nombre no válido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="pais">País</label>
 							    <input type="text" class="form-control" name="pais" id="pais" placeholder="País">
-							    <span class="errValidacion">País no valido</span>
+							    <span class="errValidacion">País no válido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="provincia">Provincia</label>
 							    <input type="text" class="form-control" name="provincia" id="provincia" placeholder="Provincia">
-							    <span class="errValidacion">Provincia no valida</span>
+							    <span class="errValidacion">Provincia no válida</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="poblacion">Población</label>
 							    <input type="text" class="form-control" name="poblacion" id="poblacion" placeholder="Población">
-							    <span class="errValidacion">Población no valida</span>
+							    <span class="errValidacion">Población no válida</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="direccion">Dirección</label>
 							    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección">
-							    <span class="errValidacion">Dirección no valida</span>
+							    <span class="errValidacion">Dirección no válida</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="numero">Número Dirección</label>
 							    <input type="text" class="form-control" name="numero" id="numero" placeholder="Número">
-							    <span class="errValidacion">Número dirección no valido</span>
+							    <span class="errValidacion">Número dirección no válido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="telefono" >Teléfono</label>
 							    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono">
-							    <span class="errValidacion">Número de teléfono no valido</span>
+							    <span class="errValidacion">Número de teléfono no válido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="movil">Móvil</label>
 							    <input type="text" class="form-control" name="movil" id="movil" placeholder="Movil">
-							    <span class="errValidacion">Número de móvil no valido</span>
+							    <span class="errValidacion">Número de móvil no válido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-6">
 							    <label for="email">Email</label>

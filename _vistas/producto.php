@@ -45,18 +45,18 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 				if( isset($_SESSION["nombreTienda"]) && !empty($_SESSION["nombreTienda"]) ){
 					if ($nivelAcc == "gen") {
 							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
-							echo "<h3>Gestion Productos</h3>";
+							echo "<h3>Gestión Productos</h3>";
 					}
 					if ($nivelAcc == "emp") {
 							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
-							echo "<h3>Gestion Productos</h3>";
+							echo "<h3>Gestión Productos</h3>";
 					}
 				}
 			}
 			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 				$nivelAcc = $_SESSION["nivelAcceso"];
 				if ($nivelAcc == "adm") {
-					echo "<h1>Gestion Productos - Usuario Administrador</h1>";
+					echo "<h1>Gestión Productos - Usuario Administrador</h1>";
 					echo '<div class="row formulario formulario-crud" id="selectorTienda">';
 					echo '<form action="../_web/controller.php?accion=move&operacion=productos" method="post" class="form-inline">';
 					echo '<div class="col-xs-12">';
@@ -171,8 +171,8 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    <span class="errValidacion">Formato de cantidad no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="cantidadMin">Cantidad Minima</label>
-							    <input type="number" class="form-control" name="cantidadMin" id="cantidadMin" placeholder="Cantidad Minima" min="0">
+							    <label for="cantidadMin">Cantidad Mínima</label>
+							    <input type="number" class="form-control" name="cantidadMin" id="cantidadMin" placeholder="Cantidad Mínima" min="0">
 							    <span class="errValidacion">Formato de cantidad minima no valido</span>
 							  </div>
 								<div class="form-group col-xs-12 col-sm-4">
@@ -180,7 +180,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    <input type="checkbox" class="form-control" name="nuevo" id="nuevo">
 							  </div>
 								<div class="form-group col-xs-12 col-sm-12">
-							    <label for="descripcion">Descripcion</label>
+							    <label for="descripcion">Descripción</label>
 							    <textarea name="descripcion" id="descripcion">Introduzca una Descripcion</textarea>
 							    <span class="errValidacion">Sin valor de descripcion</span>
 							  </div>								
@@ -199,7 +199,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			</div>
 
 			<div class="row" id="resultadoBusquedaElementos">
-				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda</h2>
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Búsqueda</h2>
 			</div>
 
 			<div id="formsResaultadoBusqueda">

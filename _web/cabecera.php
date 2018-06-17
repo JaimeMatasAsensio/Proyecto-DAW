@@ -19,12 +19,12 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 				<li><a href="#cont1">ShopSphere</a></li>
 				<li><a href="#cont2">Ventajas</a></li>
 				<li><a href="#cont3">Suscripciones</a></li>
-				<li><a href="#cont4">¡¡¡Registrate!!!</a></li>
+				<li><a href="#cont4">¡¡¡Regístrate!!!</a></li>
 			</ul>
 		</div>
 		<div id="login">
 			<form action="_web/controller.php?accion=login&operacion=doLogin" method="post">
-				<input type="submit" name="login" value="Inicia Sesion" class="btn btn-success">
+				<input type="submit" name="login" value="Inicia Sesión" class="btn btn-success">
 			</form>	
 		</div>
 		<div id="menuMovil" class="hidden-sm hidden-md hidden-lg">
@@ -39,6 +39,6 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 			<li><a href="#cont1">¿Que es ShopSphere?</a></li>
 			<li><a href="#cont2">Ventajas ShopSphere</a></li>
 			<li><a href="#cont3">Suscripciones</a></li>
-			<li><a href="#cont4">¡¡¡Registrate!!!</a></li>
+			<li><a href="#cont4">¡¡¡Regístrate!!!</a></li>
 		</ul>
 	</div><script type="text/javascript" src="_recursos/js/jquery-ui.min.js"></script><script type="text/javascript" src="_recursos/js/jqueryUI.js"></script>

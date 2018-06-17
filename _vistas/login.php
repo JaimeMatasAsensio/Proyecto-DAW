@@ -75,8 +75,8 @@ if(isset($_SESSION["codUser"]) && !empty($_SESSION["codUser"]) &&
 					}
 					?>
 					<div class="col-xs-12" id="enlaceRecuperacion">
-						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvido su contraseña?</p></a>
-						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvido su usuario?</p></a>
+						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvidó su contraseña?</p></a>
+						<a href="onWork.php"><p class="bg-info border-shopShpere-xs">¿Olvidó su usuario?</p></a>
 					</div>
 										
 				</form>

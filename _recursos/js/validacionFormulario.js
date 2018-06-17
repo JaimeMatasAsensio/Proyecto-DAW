@@ -288,6 +288,9 @@ function validarFormulario (element){
       case "password":
       //Validacion para el input de tipo de password
         //Expresion regular obtenida de http://w3.unpocodetodo.info/utiles/regex-ejemplos.php?type=psw
+        $(this).parent().next().children("input[name=passwordCheck]").val("");
+        $(this).parent().next().removeClass("has-error");
+        $(this).parent().next().removeClass("has-success");
         var exprNombre = /^(?=\w*\d)(?=\w*[a-z])\S{8,}$/;
         if(exprNombre.test(element.value) && element.value != "" ){
           $( this ).parent().removeClass("has-error");
@@ -311,42 +314,53 @@ function validarFormulario (element){
           $( this ).parent().addClass("has-error");
           $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
           $( this ).next().css({zIndex:"5"});
-          $( this ).next().text("Use numeros y letras en la contraseña");
+          $( this ).next().text("Use números y letras en la contraseña");
         }
         break;
       case "passwordCheck":
-      //Validacion para el input de tipo de password
+      //Validacion para el input de tipo de password 
         //Expresion regular obtenida de http://w3.unpocodetodo.info/utiles/regex-ejemplos.php?type=psw
         var exprNombre = /^(?=\w*\d)(?=\w*[a-z])\S{8,}$/;
         var confirmPass = element.parentElement.previousElementSibling.children[1];
-        if(exprNombre.test(element.value) && element.value != "" && confirmPass.value == element.value){
-          $( this ).parent().removeClass("has-error");
-          $( this ).parent().addClass("has-success");
-          $( this ).parent().prev().removeClass("has-error");
-          $( this ).parent().prev().addClass("has-success");
-          $( this ).parent().prev().children("span.checkPassword").css({zIndex:"-5"});
-          $( this ).parent().prev().children("span.checkPassword").text("");
-          //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
-          var divInputs = element.parentElement.parentElement.children;
-          for(var i = 0; i < divInputs.length ; i++){
-            if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
-              $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
-              
-            }else{
-              $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
-              
-              i = divInputs.length; 
+        if(exprNombre.test(element.value) ){
+          if( confirmPass.value == element.value){
+            $( this ).parent().removeClass("has-error");
+            $( this ).parent().addClass("has-success");
+            $( this ).parent().prev().removeClass("has-error");
+            $( this ).parent().prev().addClass("has-success");
+            $( this ).parent().prev().children("span.checkPassword").css({zIndex:"-5"});
+            $( this ).parent().prev().children("span.checkPassword").text("");
+            //Antes de habilitar el envio, busca que ho exista la clase "has-error" en otros inputs
+            var divInputs = element.parentElement.parentElement.children;
+            for(var i = 0; i < divInputs.length ; i++){
+              if(divInputs[i].className == "form-group col-xs-12 col-sm-6 has-success"){
+                $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",false);
+                
+              }else{
+                $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+                
+                i = divInputs.length; 
+              }
             }
+          }else{
+            $( this ).parent().removeClass("has-success");
+            $( this ).parent().prev().removeClass("has-success");
+            $( this ).parent().addClass("has-error");
+            $( this ).parent().prev().addClass("has-error");
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            $( this ).parent().prev().children("span.checkPassword").css({zIndex:"5"});
+            $( this ).parent().prev().children("span.checkPassword").text("Las contraseñas no coinciden");
           }
         }else{
           $( this ).parent().removeClass("has-success");
-          $( this ).parent().prev().removeClass("has-success");
-          $( this ).parent().addClass("has-error");
-          $( this ).parent().prev().addClass("has-error");
-          $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
-          $( this ).parent().prev().children("span.checkPassword").css({zIndex:"5"});
-          $( this ).parent().prev().children("span.checkPassword").text("Las contraseñas no coinciden");
+            $( this ).parent().prev().removeClass("has-success");
+            $( this ).parent().addClass("has-error");
+            $( this ).parent().prev().addClass("has-error");
+            $( this ).parent().parent().parent().parent().parent().next().find("button.btn.btn-success").attr("disabled",true);
+            $( this ).parent().prev().children("span.checkPassword").css({zIndex:"5"});
+            $( this ).parent().prev().children("span.checkPassword").text("Use números y letras en la contraseña");
         }
+        
         break;
         case "nAcceso":
       //Validacion para el select de tipo de nivel acceso

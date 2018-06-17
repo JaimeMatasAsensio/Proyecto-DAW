@@ -53,7 +53,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 						    <select name="tBusqueda" class="form-control" id="tBusqueda">
 						    	<option value="">Filtro</option>
 						    	<option value="nombre">Nombre</option>
-						    	<option value="codUsuario">codigo Usuario</option>
+						    	<option value="codUsuario">Código Usuario</option>
 						    </select>
 						  </div>
 
@@ -144,7 +144,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			</div>
 
 			<div class="row" id="resultadoBusquedaElementos">
-				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Búsqueda
 			</div>
 
 			<div id="formsResaultadoBusqueda">

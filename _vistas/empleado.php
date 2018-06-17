@@ -45,14 +45,14 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 				if( isset($_SESSION["nombreTienda"]) && !empty($_SESSION["nombreTienda"]) ){
 					if ($nivelAcc == "gen") {
 							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
-							echo "<h3>Gestion Empleado</h3>";
+							echo "<h3>Gestión Empleado</h3>";
 					}
 				}
 			}
 			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 				$nivelAcc = $_SESSION["nivelAcceso"];
 				if ($nivelAcc == "adm") {
-					echo "<h1>Gestion Empleado - Usuario Administrador</h1>";
+					echo "<h1>Gestión Empleado - Usuario Administrador</h1>";
 					echo '<div class="row formulario formulario-crud" id="selectorTienda">';
 					echo '<form action="../_web/controller.php?accion=move&operacion=empleados" method="post" class="form-inline">';
 					echo '<div class="col-xs-12">';
@@ -179,7 +179,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			</div>
 
 			<div class="row" id="resultadoBusquedaElementos">
-				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda</h2>
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Búsqueda</h2>
 			</div>
 
 			<div id="formsResaultadoBusqueda">

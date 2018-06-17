@@ -45,11 +45,11 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 				if( isset($_SESSION["nombreTienda"]) && !empty($_SESSION["nombreTienda"]) ){
 					if ($nivelAcc == "gen") {
 							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
-							echo "<h3>Gestion Proveedores</h3>";
+							echo "<h3>Gestión Proveedores</h3>";
 					}
 					if ($nivelAcc == "emp") {
 							echo "<h1>".$_SESSION["nombreTienda"]."</h1>";
-							echo "<h3>Gestion Proveedores</h3>";
+							echo "<h3>Gestión Proveedores</h3>";
 					}
 				}
 			}
@@ -57,7 +57,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) ){
 				$nivelAcc = $_SESSION["nivelAcceso"];
 				if ($nivelAcc == "adm") {
-					echo "<h1>Gestion Proveedores - Usuario Administrador</h1>";
+					echo "<h1>Gestión Proveedores - Usuario Administrador</h1>";
 					echo '<div class="row formulario formulario-crud" id="selectorTienda">';
 					echo '<form action="../_web/controller.php?accion=move&operacion=proveedores" method="post" class="form-inline">';
 					echo '<div class="col-xs-12">';
@@ -134,7 +134,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    <span class="errValidacion">Nombre contacto no valido</span>
 							  </div>
 							  <div class="form-group col-xs-12 col-sm-4">
-							    <label for="apellido1Contacto">1º Apellido Contato</label>
+							    <label for="apellido1Contacto">1º Apellido Contacto</label>
 							    <input type="text" class="form-control" name="apellido1Contacto" id="apellido1Contacto" placeholder="1º Apellido Contacto">
 							    <span class="errValidacion">1º Apellido no valido</span>
 							  </div>
@@ -174,7 +174,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 			</div>
 
 			<div class="row" id="resultadoBusquedaElementos">
-				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Busqueda </h2>
+				<h2 class="col-xs-10 col-xs-offset-1"><span class="glyphicon glyphicon-chevron-down"></span> Resultado Búsqueda </h2>
 			</div>
 
 			<div id="formsResaultadoBusqueda">

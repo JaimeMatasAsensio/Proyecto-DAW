@@ -484,11 +484,11 @@ $(document).ready(function(){
   //Funcion para quitar las marcas de validacion en los formularios de MODIFICACION cuando secierra la seccion 
 
   $( "#nuevoElemento" ).click( function() {
-    var formsInsert = $( "#formNuevoElemento form" );
+    var formsInsert = $( "#formNuevoElemento form div div.row div" );
     formsInsert = formsInsert[0];
     for(var j = 1 ; j < formsInsert.length ; j++){
-      $(formsInsert[j].parentElement.className).removeClass("has-error");
-      $(formsInsert[j].parentElement.className).removeClass("has-success");
+      $(formsInsert[j].className).removeClass("has-error");
+      $(formsInsert[j].className).removeClass("has-success");
       formsInsert[j].value = "";
       
     }      

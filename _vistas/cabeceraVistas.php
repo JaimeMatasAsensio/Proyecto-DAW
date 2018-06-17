@@ -68,7 +68,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 					echo "<p>Usuario: Trabajador</p>";
 				}
 				echo "<form action='../_web/controller.php?accion=login&operacion=logoff' method='post'>";
-				echo '<input type="submit" id="cerrarSession" class="btn btn-info" value="Cerrar Session">';
+				echo '<input type="submit" id="cerrarSession" class="btn btn-info" value="Cerrar Sesión">';
 				echo "</form>";
 				echo "</div>";
 			}

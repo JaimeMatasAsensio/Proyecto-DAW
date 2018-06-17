@@ -97,7 +97,7 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 					echo "<div class='row'>";
 					echo "<div class='col-xs-12'>";
 					echo '<blockquote>
-						  			<p class="bg-danger" id="NoResult"><span class="glyphicon glyphicon-alert"></span> Hay productos con stock minimo y/o agotados </p>
+						  			<p class="bg-danger" id="NoResult"><span class="glyphicon glyphicon-alert"></span> Hay productos con stock mínimo y/o agotados </p>
 								</blockquote>';
 					echo "</div'>";
 					for ($i=0; $i < count($productos); $i++) { 

@@ -11,7 +11,7 @@ I.E.S. Maestre de Calatrava - Ciudad Real
 <?php
 session_start();
 	if( isset($_SESSION["nivelAcceso"]) && !empty($_SESSION["nivelAcceso"]) &&
-		isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) $_SESSION["logDone"] == 1){
+		isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["logDone"] == 1){
 
 		header("Location: _web/controller.php?accion=recuperarSession");
 		
@@ -49,7 +49,7 @@ session_start();
 			<div id="cont1" class="row indexCont">
 				<div class="col-sm-6 col-md-6 col-lg-6 hidden-xs" id="textDesEsc">
 					<h3>ShopSphere</h3>
-					<p>ShopSphere es una aplicación de gestión de tienda. Con esta aplicación podrás gestionar todo tu negocio, proveedores, productos, empleados. La interfaz sencilla y amigable te ayudara a mejorar tu negocio y a obtener mejor margen de beneficios. El servicio es gratuito pero si quieres mejorar el servicio puede pagar una suscripción anual para una mejor experiencia. </p>
+					<p>ShopSphere es una aplicación de gestión de tienda. Con esta aplicación podrás gestionar todo tu negocio, proveedores, productos, empleados. La interfaz sencilla y amigable te ayudará a mejorar tu negocio y a obtener mejor margen de beneficios. El servicio es gratuito pero si quieres mejorar el servicio puede pagar una suscripción anual para una mejor experiencia. </p>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="cont1img">
 					<div id="imgCont1">
@@ -57,7 +57,7 @@ session_start();
 						<p id="Quees" class="hidden-sm hidden-md hidden-lg">ShopSphere</p>					
 					</div>
 					<div id="textoDesc" class="col-xs-12 hidden-sm hidden-md hidden-lg">
-						<p>ShopSphere es una aplicación de gestión de tienda. Con esta aplicación podrás gestionar todo tu negocio, proveedores, productos, empleados. La interfaz sencilla y amigable te ayudara a mejorar tu negocio y a obtener mejor margen de beneficios. El servicio es gratuito pero si quieres mejorar el servicio puede pagar una suscripción anual para una mejor experiencia. </p>
+						<p>ShopSphere es una aplicación de gestión de tienda. Con esta aplicación podrás gestionar todo tu negocio, proveedores, productos, empleados. La interfaz sencilla y amigable te ayudará a mejorar tu negocio y a obtener mejor margen de beneficios. El servicio es gratuito pero si quieres mejorar el servicio puede pagar una suscripción anual para una mejor experiencia. </p>
 					</div>
 				</div>
 			</div>
@@ -92,17 +92,17 @@ session_start();
 				<div class="col-xs-12 col-sm-4 suscripciones">
 					<h3>Premium</h3>
 					<div>
-						<h4>Caracteristicas</h4>
+						<h4>Características</h4>
 						<ul>
-							<li><span class="glyphicon glyphicon-tasks"></span>Capacidad sin limites</li>	
-							<li><span class="glyphicon glyphicon-wrench"></span>Servicio Tecnico personal</li>	
+							<li><span class="glyphicon glyphicon-tasks"></span>Capacidad sin límites</li>	
+							<li><span class="glyphicon glyphicon-wrench"></span>Servicio Técnico personal</li>	
 							<li><span class="glyphicon glyphicon-flash"></span>Sin publicidad</li>	
 							<li><span class="glyphicon glyphicon-euro"></span>360 año</li>	
 						</ul>
 						<div>
 							<form action="_web/controller.php?accion=nuevoRegistro" method="post">
 								<input type="hidden" name="tSuscripcion" value="pre">
-								<button class="btn-regIndex">Registrate</button>
+								<button class="btn-regIndex">Regístrate</button>
 							</form>
 						</div>
 					</div>
@@ -111,36 +111,36 @@ session_start();
 				<div class="col-xs-12 col-sm-4 suscripciones">
 					<h3>Normal</h3>
 					<div>
-						<h4>Caracteristicas</h4>
+						<h4>Características</h4>
 						<ul>
 							<li><span class="glyphicon glyphicon-tasks"></span>Capacidad limitada</li>	
-							<li><span class="glyphicon glyphicon-wrench"></span>Servicio Tecnico 24h</li>	
+							<li><span class="glyphicon glyphicon-wrench"></span>Servicio Técnico 24h</li>	
 							<li><span class="glyphicon glyphicon-flash"></span>Sin publicidad</li>	
 							<li><span class="glyphicon glyphicon-euro"></span>250 año</li>	
 						</ul>
 						<div>
 							<form action="_web/controller.php?accion=nuevoRegistro" method="post">
 								<input type="hidden" name="tSuscripcion" value="nor">
-								<button class="btn-regIndex">Registrate</button>
+								<button class="btn-regIndex">Regístrate</button>
 							</form>
 						</div>
 					</div>
 				</div>
 
 				<div class="col-xs-12 col-sm-4 suscripciones">
-					<h3>Basica</h3>
+					<h3>Básica</h3>
 					<div>
-						<h4>Caracteristicas</h4>
+						<h4>Características</h4>
 						<ul>
 							<li><span class="glyphicon glyphicon-tasks"></span>Capacidad muy limitada</li>	
-							<li><span class="glyphicon glyphicon-wrench"></span>Servicio Tecnico 24h</li>	
+							<li><span class="glyphicon glyphicon-wrench"></span>Servicio Técnico 24h</li>	
 							<li><span class="glyphicon glyphicon-flash"></span>Con publicidad</li>	
 							<li><span class="glyphicon glyphicon-euro"></span>Gratis!</li>	
 						</ul>
 						<div>
 							<form action="_web/controller.php?accion=nuevoRegistro" method="post">
 								<input type="hidden" name="tSuscripcion" value="fre">
-								<button class="btn-regIndex">Registrate</button>
+								<button class="btn-regIndex">Regístrate</button>
 							</form>
 						</div>
 					</div>
@@ -152,7 +152,7 @@ session_start();
 					<img src="_recursos/img/imgRegistro.jpg" class=" border-shopShpere-xs" id="imgRegistro" alt="Imgen de registro">
 					<form action="_web/controller.php?accion=nuevoRegistro" method="post">
 						<input type="hidden" name="tSuscripcion" value="">
-						<button class="btn-regIndex">Registrate</button>
+						<button class="btn-regIndex">Regístrate</button>
 					</form>
 				</div>
 			</div>
