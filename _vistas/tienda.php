@@ -66,13 +66,13 @@ if(isset($_SESSION["logDone"]) && !empty($_SESSION["logDone"]) && $_SESSION["log
 							    <option value="nor">Normal - 250€/año</option>
 							    <option value="fre">Básica - ¡¡Gratis!!</option>
 						    </select>
+						  </div>
+						  <button type="submit" class="btn btn-info" disabled><span class="glyphicon glyphicon-search"></span></button>
 						   <?php
 						echo'<input type="hidden" name="nAcceso" value="'.$_SESSION["nivelAcceso"].'">
 								<input type="hidden" name="logDone" value="'.$_SESSION["logDone"].'">'
 
 						   ?>
-						  </div>
-						  <button type="submit" class="btn btn-info" disabled><span class="glyphicon glyphicon-search"></span></button>
 							</div>
 
 						</fieldset>
