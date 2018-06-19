@@ -289,6 +289,17 @@ switch ( $accion ) {
 //Direccionamiento de los enlaces en Pie y cabecera de las vistas 
 		//Recupera la operacion asociada a la accion de 'move'
 		$operacion = isset($_REQUEST["operacion"]) ? $_REQUEST["operacion"] : "" ;
+		// Recuperacion de las tiendas a las que se tiene acceso
+		$daoTienda = new daoTiendas();
+		$daoTienda->listarTiendas();
+		$tiendas = $daoTienda->result;
+		$TIENDAS = array();
+		for( $i = 0; $i < count($tiendas) ; $i++){
+			$TIENDAS[ $tiendas[$i]->__GET("codTienda") ] = $tiendas[$i]->__GET("nombre");
+		}
+		//Variablas necesarias para el mantenimento de tablas especificas de cada tienda
+		$_SESSION["TIENDAS"] = serialize($TIENDAS);
+
 		//Direccionamientos segun la operacion para la accion de 'MOVE'
 		switch ($operacion) {
 			case 'tiendas': 
